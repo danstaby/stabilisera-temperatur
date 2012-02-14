@@ -1,0 +1,45 @@
+﻿ARBETSFLÖDE
+
+1. Hämta från server
+git pull origin master
+2. Uppdatera och skapa filer med valfri editor
+3. Lägg till nya filer till repositoriet
+git add filnamn.tex
+4. Uppdatera repositoriet
+git commit -a -m "Deskriptivt meddelande"
+5. Ladda upp filer till github
+git push origin master
+
+
+####################################################
+
+För att HÄMTA filer så kör ni
+
+git pull origin master
+---------------------------
+För att ladda upp erat arbete på servern så kör ni
+
+git push origin master
+---------------------------
+Om ni har lagt till en fil så kör ni
+
+git add mapp/filnamn.tex
+git commit -m "Laddade upp filnamn.tex"
+
+Efter detta måste ni ladda upp eran lokala repo med push för att uppdatera servern.
+----------------------------
+Kompileringsfiler och loggar skall aldrig addas till repositoriet.
+Var försiktig med att köra exekverade filer utan att kompilera om.
+Kom ihåg att den kompilerade versionen ej nödvändigtvis är den senaste versionen.
+----------------------------
+I början av dagens arbete kör pull för att hämta den senaste versionen från server.
+Under arbetets gång så kör ni commit ofta för att uppdatera filer.
+git commit -a -m "Ändrat lite i fil X"
+Efter att ni har kört commit så kört
+git push origin master
+för att ladda upp till server. Det är viktigt att förändringarna laddas upp
+så att de andra har möjlighet att se vad som är förändrat.
+---------------------------
+Var försiktig när ni kör pull då detta kan skriva över arbete som inte
+är commitat och pushat till server. 
+
