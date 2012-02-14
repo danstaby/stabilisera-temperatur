@@ -1,0 +1,23 @@
+Anvisningar för rapportskrivande:
+
+Öppna ett textdokument i valfri texteditor
+
+Börja dokumentet med aktuell rubrik i LaTeX-format,
+dvs \section{rubrik}, \subsection{underrubrik} eller
+\subsubsection{ännumeraunderrubrik}
+
+Skriv din text
+
+Eventuella formler, bilder och dylikt skapas med LaTeX-kod.
+
+För att infoga en bild används relativ sökväg:
+anta att du befinner dig i mappen report/teori och vill länka
+till en bild med sökvägen report/images/bild.eps
+Skriv då: ../images/bild.eps
+
+
+
+
+Anvisningar för referenser kommer snart!
+
+Skall även skapa en "dummie-tex" så att man kan kompilera enstaka filer...

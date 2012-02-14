@@ -1,4 +1,4 @@
-ARBETSFLÖDE
+﻿ARBETSFLÖDE
 
 1. Hämta från server
 git pull origin master
