@@ -15,6 +15,9 @@ anta att du befinner dig i mappen report/teori och vill länka
 till en bild med sökvägen report/images/bild.eps
 Skriv då: ../images/bild.eps
 
+Spara filen i lämplig mapp i git-repositoriumet med filnamns-
+tillägget .tex
+
 
 
 %---
