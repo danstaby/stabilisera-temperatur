@@ -1,5 +1,4 @@
 # Lista på vad som ignoreras vid commit (särskilt LaTeX-output)
-#
 
 *.aux
 *.log
