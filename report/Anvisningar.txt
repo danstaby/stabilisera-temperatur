@@ -17,7 +17,11 @@ Skriv då: ../images/bild.eps
 
 
 
+%---
+	Anvisningar för referenser kommer snart!
+%---
 
-Anvisningar för referenser kommer snart!
 
-Skall även skapa en "dummie-tex" så att man kan kompilera enstaka filer...
+Om du vill kolla på ett enskilt stycke, utan att kompilera hela
+rapporten, fyll i den relativa sökvägen i \input{sökväg} i tex-
+filen dummy.tex
