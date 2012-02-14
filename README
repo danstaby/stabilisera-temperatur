@@ -19,7 +19,8 @@ Kom ihåg att den kompilerade versionen ej nödvändigtvis är den senaste versi
 ----------------------------
 I början av dagens arbete kör pull för att hämta den senaste versionen från server.
 Under arbetets gång så kör ni commit ofta för att uppdatera filer.
-Efter att ni har kört commit så kör
+git commit -a -m "Ändrat lite i fil X"
+Efter att ni har kört commit så kört
 git push origin master
 för att ladda upp till server. Det är viktigt att förändringarna laddas upp
 så att de andra har möjlighet att se vad som är förändrat.
