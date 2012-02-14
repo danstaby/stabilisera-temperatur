@@ -1,3 +1,18 @@
+ARBETSFLÖDE
+
+1. Hämta från server
+git pull origin master
+2. Uppdatera och skapa filer med valfri editor
+3. Lägg till nya filer till repositoriet
+git add filnamn.tex
+4. Uppdatera repositoriet
+git commit -a -m "Deskriptivt meddelande"
+5. Ladda upp filer till github
+git push origin master
+
+
+####################################################
+
 För att HÄMTA filer så kör ni
 
 git pull origin master
