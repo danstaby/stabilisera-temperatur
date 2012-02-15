@@ -9,14 +9,19 @@ BayArea = 47;
 NorthArea = 290;
 OtherArea = 151+61;
 
-%BayWall is unknown. The previous report was not clear enough on
-%this point to make us able to calculate this flow. 
 	   
 NorthWall = [0.02, 1; %Lengths and thermal conductivities have been taken
 	    0.1, 0.037; %from the previous report.
 	    0.02, 1;
 	    0.5, 0.6;
 	    0.01, 1];
+
+BayWall = [0.024, 0.25;
+	   0.05, 0.037;
+	   0.016, 0.25;
+	   0.025, 0.025;
+	   0.016, 0.5;
+	   0.002, 401];
 
 OtherWall = [0.5, 0.6;
 	    0.01, 1];
@@ -31,25 +36,23 @@ for currentTemp =-30:0.1:30
 
   [HeatNorth, Temperature] = heatrod(BoundaryTemperature, NorthWall);
   [HeatOther, Temperature] = heatrod(BoundaryTemperature, OtherWall);
-  if(currentTemp == -30)
-    HeatNorth*NorthArea
-  elseif(currentTemp == -29)
-    HeatNorth*NorthArea
-    NorthArea
-  end
-  %Add the walls adjacant to the bay windows.
+  [HeatBay, Temperature] = heatrod(BoundaryTemperature, BayWall);
+  
   lossNorth = NorthArea*HeatNorth;
   lossOther = OtherArea*HeatOther;
-  lossTotal = lossNorth + lossOther;
-  HeatLoss = [HeatLoss; lossNorth, lossOther, lossTotal ];
+  lossBay = BayArea*HeatBay;
+  lossTotal = lossNorth + lossOther + lossBay;
+  HeatLoss = [HeatLoss; lossNorth, lossOther, lossBay,  lossTotal ];
 end
 
-plot(T, HeatLoss(:,1), 'b');
-hold on
-plot(T, HeatLoss(:,2), 'r');
-plot(T, HeatLoss(:,3), 'k');
-legend('North Wall', 'Other Walls', 'Total');
+plot(T, HeatLoss(:,4), 'k');
+
 xlabel('Temperature outside in celsius')
 ylabel('Heat loss (W)')
 
-hold off
+disp(['Loss from the wall adjacant to the bay windows: '...
+     num2str(100*HeatLoss(1,3)/HeatLoss(1,4)) '%']);
+disp(['Loss from the north wall: ' ...
+      num2str(100*HeatLoss(1,1)/HeatLoss(1,4)) '%']);
+disp(['Loss from the other walls: ' ...
+     num2str(100*HeatLoss(1,2)/HeatLoss(1,4)) '%']);
