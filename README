@@ -5,9 +5,11 @@ git pull origin master
 2. Uppdatera och skapa filer med valfri editor
 3. Lägg till nya filer till repositoriet
 git add filnamn.tex
-4. Uppdatera repositoriet
+4. Kolla status för förändringar så att ni inte har gjort något tokigt
+git status
+5. Uppdatera repositoriet
 git commit -a -m "Deskriptivt meddelande"
-5. Ladda upp filer till github
+6. Ladda upp filer till github
 git push origin master
 
 
@@ -43,6 +45,7 @@ så att de andra har möjlighet att se vad som är förändrat.
 Var försiktig när ni kör pull då detta kan skriva över arbete som inte
 är commitat och pushat till server. 
 ---------------------------
-För att se status angående förändrade filer och vilka förändringar ni commitat
-(men ej laddat upp) kör kommandot
+För att se status angående förändrade filer och vilka förändringar ni har
+genomfört kör
 git status
+Detta kan lämpligen genomföras innan ni skall commita.
