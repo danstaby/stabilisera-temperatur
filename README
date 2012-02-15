@@ -1,4 +1,12 @@
-﻿ARBETSFLÖDE
+###############################################################
+## VIKTIGT! KÖR ALDRIG COMMIT UTAN ATT PROVAT ATT KOMPILERA. ##
+## Detta för att alla syntaxfel ska vara lösta innan filer   ##
+## laddas upp till github.                                   ##
+###############################################################
+
+
+ARBETSFLÖDE
+-----------
 
 1. Hämta från server
 git pull origin master
