@@ -1,6 +1,12 @@
-# Lista på vad som ignoreras vid commit (särskilt LaTeX-output)
-#
+# List of ignored files with git commit.
+
+#Latex temporary files
+
 *.aux
 *.log
 *.gz
 *.toc
+
+#Emacs temporary files
+
+*~

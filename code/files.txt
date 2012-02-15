@@ -1,0 +1,4 @@
+groundheat.m	Calculates the heatflow through the foundation of the building.
+heatrod.m	Calculates steady state temperatures and flows through a rod.
+wallheat.m	Calculates steady state temperatures through a wall.
+heattest.m	Test file for heatrod.m script

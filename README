@@ -42,4 +42,7 @@ så att de andra har möjlighet att se vad som är förändrat.
 ---------------------------
 Var försiktig när ni kör pull då detta kan skriva över arbete som inte
 är commitat och pushat till server. 
-
+---------------------------
+För att se status angående förändrade filer och vilka förändringar ni commitat
+(men ej laddat upp) kör kommandot
+git status
