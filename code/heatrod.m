@@ -7,7 +7,7 @@ function [Heat, Temperature] = heatrod(BoundaryTemperature,Layers)
 %Inputs:
 %BoundaryTemperature - Vector with boundary temperatures in centigrades
 %Layers - Matrix with length of rod elements in first column and
-%heat conductivity in the second column
+%thermal conductivity in the second column
 %
 %Outputs:
 %Heat - The heat flow per surface unit (W/m^2)
