@@ -1,34 +1,46 @@
-function ret = airinsulatedwall(AirWidth)
-%airinsulatedwall(AirWidth)
+function ret = airinsulatedwall(StepLength, MaxLength)
+%airinsulatedwall(StepLength, MaxLength)
 %
-%This script calculates the steady state temperatures in an air
-%insulated wall for the WallSimulation application
 
-if(nargin == 0)
-  AirWidth = 1.5;
-end
-
-
+TemperatureInside = 20;
+TemperatureOutside = -20;
 	   
 Wall = [0.5, 0.6;
-	0.01, 1;
-	0.024, AirWidth];
+	0.01, 1];
 
-BoundaryTemperature = [20, 0];
+LayerCount = size(Wall);
+LayerCount = LayerCount(1);
 
-WallTemp = [];
-T = [-30:0.1:30];
-for currentTemp =-30:0.1:30
-  
-  BoundaryTemperature(2) = currentTemp;
+BoundaryTemperature = [TemperatureInside, TemperatureOutside];
 
-  
-  [Heat, Temperature] = heatrod(BoundaryTemperature, Wall);
-  WallTemp = [WallTemp Temperature(max(size(Temperature)))];
+[WallHeat, Temperature] = heatrod(BoundaryTemperature, Wall);
+
+InsulatedWall = [Wall; 0, 0.024];
+
+Length = [0:StepLength:MaxLength];
+
+AirHeat = [WallHeat];
+Temp = [TemperatureOutside];
+for L=StepLength:StepLength:MaxLength
+  InsulatedWall(LayerCount + 1, 1) = L;
+  [Heat, Temperature] = heatrod(BoundaryTemperature, ...
+				InsulatedWall);
+  AirHeat = [AirHeat Heat];
+  Temp = [Temp Temperature(LayerCount)];
 end
 
-plot(T, WallTemp, 'k');
+InsulatedWall
+figure(1)
+plot(Length, WallHeat,'k');
+hold on
+plot(Length, AirHeat);
+xlabel('Air width (m)')
+ylabel('Heat flow (W/m^2)')
+hold off
+figure(2)
+plot(Length, 100*(1-AirHeat/WallHeat))
+xlabel('Air width (m)')
+ylabel('Maximum loss due to convection (%)')
 
-xlabel('Temperature outside in celsius')
-ylabel('Wall temperature')
-
+figure(3)
+plot(Length, Temp)
