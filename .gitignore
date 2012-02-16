@@ -10,3 +10,8 @@
 #Emacs temporary files
 
 *~
+
+
+#Java compiled files
+
+*.class
