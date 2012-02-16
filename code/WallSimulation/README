@@ -1,0 +1,5 @@
+This application simulates the flow of air next outside a wall.
+
+To start the application run
+javac *.java
+java Start
