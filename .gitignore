@@ -6,6 +6,11 @@
 *.log
 *.gz
 *.toc
+*.dvi
+
+#Dummy pdf file
+
+dummy.pdf
 
 #Emacs temporary files
 
