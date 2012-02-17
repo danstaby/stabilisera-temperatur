@@ -41,7 +41,7 @@ istället så får ni möjlighet att lösa konflikter lokalt
 För att se status angående förändrade filer och vilka förändringar ni har
 genomfört kör
 git status
-Detta kan lämpligen genomföras innan ni skall commita.
+Detta kan lämpligen genomföras innan ni skall commita filerna.
 
 Om ni inte vill adda alla filer manuellt som skall kommitas så kan ni istället
 flagga -a till commit kommandot så commitas alla förändrade filer
