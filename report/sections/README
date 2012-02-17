@@ -1,2 +1,9 @@
-I denna fil kan vi gärna lista alla .texfiler som vi arbetar med för att ha
+﻿I denna fil kan vi gärna lista alla .texfiler som vi arbetar med för att ha
 lite koll.
+
+report
+	preface
+	abstract
+	theory
+		constantsources
+		sunthroughwindows
