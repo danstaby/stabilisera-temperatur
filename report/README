@@ -19,15 +19,18 @@ För...
 	- tabeller:
 		- \caption{} ska ligga ovanför tabellen!
 		- label i formatet \label{tab:namn}
+		- referera till med \ref{tab:namn}
 	- figurer:
 		- \caption{} ska ligga under figuren!
-		- label i formatet \label{fig:filnamn.eps:namn}
-
-Använd sedan \ref{tab:namn} alt. \ref{fig:filnamn.eps:namn} för att referera till tabell alt. figur.
+		- label i formatet \label{fig:filnamn:namn}
+		- referera till med \ref{fig:filnamn:namn}
+	-ekvationer:
+		- label i formatet \label{eq:avsnittsbeskrivning:namn}
+		- referera till med \eqref{eq:avsnittsbeskrivning:namn}
 
 
 Spara filen i lämplig mapp i git-repositoriumet med filnamns-
-tillägget .tex
+tillägget .tex (eller .eps för figurer)
 
 Kör git add filnamn.tex, git commit -m "meddelande" samt git push origin master!
 
