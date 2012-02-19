@@ -1,5 +1,8 @@
 This application simulates the flow of air next outside a wall.
 
-To start the application run
-javac *.java
-java Start
+To start the application initiate WallSimulation.m
+
+TODO:
+Implement better grid creation algorithm
+Implement creation of stiffness matrix and load vector
+Implement presentation of results
