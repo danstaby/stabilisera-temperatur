@@ -16,7 +16,7 @@ git add filnamn.tex
 4. Kolla status för förändringar så att ni inte har gjort något tokigt
 git status
 5. Uppdatera repositoriet
-git commit -a -m "Deskriptivt meddelande"
+git commit -m "Deskriptivt meddelande"
 6. Ladda upp filer till github
 git push origin master
 
