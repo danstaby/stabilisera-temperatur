@@ -24,20 +24,18 @@ För...
 		- \caption{} ska ligga under figuren!
 		- label i formatet \label{fig:filnamn:namn}
 		- referera till med \ref{fig:filnamn:namn}
-	-ekvationer:
+	- ekvationer:
 		- label i formatet \label{eq:avsnittsbeskrivning:namn}
 		- referera till med \eqref{eq:avsnittsbeskrivning:namn}
-
+	- källhänvisningar:
+		- kolla upp vad vi döpt referensen till i GDocs kalkylark "Referensidentiteter"
+		- skriv \cite{namn}
 
 Spara filen i lämplig mapp i git-repositoriumet med filnamns-
 tillägget .tex (eller .eps för figurer)
 
 Kör git add filnamn.tex, git commit -m "meddelande" samt git push origin master!
 
-
-%---
-	Anvisningar för referenser kommer snart!
-%---
 
 
 Om du vill kolla på ett enskilt stycke, utan att kompilera hela
