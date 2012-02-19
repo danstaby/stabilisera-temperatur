@@ -18,6 +18,7 @@
 \usepackage{fancyhdr}
 \usepackage{amssymb}
 \usepackage{geometry}
+\usepackage{cite}
 
 \newcommand{\N}{\ensuremath{\mathbbm{N}}}
 \newcommand{\Z}{\ensuremath{\mathbbm{Z}}}
@@ -28,10 +29,9 @@
 \newcommand{\id}{\ensuremath{\,\rd}}
 %\linespread{1.3}
 %\setcounter{secnumdepth}{-1}
+
 \newcommand\BackgroundPic{
-
 \numberwithin{equation}{section}
-
 \put(-4,0){
 \parbox[b][\paperheight]{\paperwidth}{
 \includegraphics[width=\paperwidth,
@@ -149,4 +149,6 @@ Institutionen för Teknisk Fysik
 
 %---
 
+\bibliography{ref}{}
+\bibliographystyle{plain}
 \end{document}
