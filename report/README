@@ -21,12 +21,15 @@ För...
 		- label i formatet \label{tab:namn}
 	- figurer:
 		- \caption{} ska ligga under figuren!
-		- label i formatet \label{fig:images/filnamn.eps:namn}
+		- label i formatet \label{fig:filnamn.eps:namn}
+
+Använd sedan \ref{tab:namn} alt. \ref{fig:filnamn.eps:namn} för att referera till tabell alt. figur.
 
 
 Spara filen i lämplig mapp i git-repositoriumet med filnamns-
 tillägget .tex
 
+Kör git add filnamn.tex, git commit -m "meddelande" samt git push origin master!
 
 
 %---
