@@ -30,6 +30,8 @@ För...
 	- källhänvisningar:
 		- kolla upp vad vi döpt referensen till i GDocs kalkylark "Referensidentiteter"
 		- skriv \cite{namn}
+	- fotnoter:
+		- skriv \footnote{text}
 
 Spara filen i lämplig mapp i git-repositoriumet med filnamns-
 tillägget .tex (eller .eps för figurer)
