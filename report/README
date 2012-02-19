@@ -15,6 +15,15 @@ anta att du befinner dig i mappen report/teori och vill länka
 till en bild med sökvägen report/images/bild.eps
 Skriv då: ../images/bild.eps
 
+För...
+	- tabeller:
+		- \caption{} ska ligga ovanför tabellen!
+		- label i formatet \label{tab:namn}
+	- figurer:
+		- \caption{} ska ligga under figuren!
+		- label i formatet \label{fig:images/filnamn.eps:namn}
+
+
 Spara filen i lämplig mapp i git-repositoriumet med filnamns-
 tillägget .tex
 
