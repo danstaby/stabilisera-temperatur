@@ -38,8 +38,9 @@ tillägget .tex (eller .eps för figurer)
 
 Kör git add filnamn.tex, git commit -m "meddelande" samt git push origin master!
 
-
-
-Om du vill kolla på ett enskilt stycke, utan att kompilera hela
-rapporten, fyll i den relativa sökvägen i \input{sökväg} i tex-
-filen dummy.tex
+Vid kompilering:
+	- Kompilera hela rapporten:
+		- Kör latex report; bibtex report; latex report; latex report
+	- Kompilera ett stycke:
+		- Öppna dummy.tex och fyll i relativa sökvägen i \input{sökväg}
+		- Kör latex dummy
