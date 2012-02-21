@@ -10,9 +10,10 @@
 *.bbl
 *.blg
 
-#Dummy pdf file
+# pdf files
 
 dummy.pdf
+report.pdf
 
 #Emacs temporary files
 
