@@ -1,25 +1,7 @@
 \subsection{Effektflöde genom fönster på grund av solstrålning}
 
-\begin{comment}
-Förhållande mellan väderstationens uppmätta värde och tillförd effekt till lägenhet:
-- beroende av fönstrets och grannbyggnaders position
-- beroende av tid på dygnet och året
-- persienner och gardiner försvårar!
-- hur mycket kan maximalt reflekteras ut?
-
-I diskussion:
-- Hur kan man koppla detta till värmesystemet?
-	- Registrera intensitet, tid på dygnet och datum
-	- Beräkna ungefärlig tillförd effekt
-	- Kompensera genom att säga till värmesystemet att minska/stänga inflödet
-- Blir det lättare att helt enkelt mäta temperaturen i rummet och helt enkelt gå utifrån det? Vad är mer kostnadseffektivt?
-
--Konduktion och konvektion räknas tillsammans med väggar.. 
-
--Strålning
-\end{comment}
-
 Solstrålning genom fönster orsakar snabba temperaturökningar i inomhusklimatet. Hur snabba och stora dessa temperaturökningar blir beror på en mängd parametrar varav de viktigaste omfattas av
+
 \begin{itemize}
 \item{
 fönstrets utformning, det vill säga glasets reflektivitet och emmissitivitet.
@@ -31,3 +13,55 @@ vinkeln relativt fönstret som strålningen infaller vid, det vill säga tid på
 de inomhus belägna ytorna som solstrålningen faller på, det vill säga persienner, gardiner, väggar, möbler, etcetera.
 }
 \end{itemize} 
+
+\subsubsection{G-värden}
+
+För att ange transmittansen av solstrålning genom fönster brukar man använda vad som kallas för g-värden (ibland även kallat ``Solar Factor''). Detta värde, mellan noll och ett, anger hur mycket av vinkelrätt infallande solstrålning som släpps igenom. Men eftersom ett sådant värde också beror på strålningens infallsvinkel är den ofta svår att beräkna.
+
+Enligt \cite{karlssonroos99} förändras detta vinkelberoende främst med antalet glas (flerglasfönster) samt typ av eventuella beläggningar på glaset. I samma artikel visades också att g-värdenas vinkelberoende kan approximeras med ett polynom
+
+\begin{equation}\label{eq:radiationwindowstheory:gvalue}
+g = g_0 \left( 1 - az^{\alpha} - bz^{\beta} - cz^{\gamma} \right)
+\end{equation}
+
+där $g_0$ är g-värdet då strålningen infaller vinkelrätt mot ytan, $a+b+c=1$ och $z=\theta/90$ då $\theta$ är vinkeln, mätt i grader, mellan fönstrets normal och solstrålningens riktning. Koefficienterna och exponenterna i \eqref{eq:radiationwindowstheory:gvalue} beror på typen av fönster, och kan sättas till
+
+\begin{eqnarray}
+a = 8, & b = 0.25/q, & c = (1-a-b) \nonumber \\
+\alpha = 5.2 + 0.7q, & \beta = 2, & \gamma = (5.26+0.06p) + (0.73+0.04p)q
+\end{eqnarray}
+
+där p är antalet rutor i fönstret (treglasfönster $\Rightarrow$ p = 3) och q är en parameter, $1 \le q \le 10$, som varierar beroende på beläggningar på glasets yta. Exempelvis har ett treglasfönster utan beläggningar värdet $q=4$.
+
+Det beräknade g-värdet kan sedan användas för att uppskatta energiflödet genom fönstret. Anta att en pyranometer anger solstrålningsstyrkan $\unit{I}{W/m^2}$. Då ges det totala energiflödet Q av sambandet $Q = g \cdot A \cdot I$, där A är fönstrets area.
+
+\subsubsection{Infallsvinkel relativt tid och datum}
+
+Det återstår nu att i \eqref{eq:radiationwindowstheory:gvalue} kunna bestämma parametern $z = \theta/90$. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
+
+% Ställa upp metod eller hänvisa till färdiga program?
+
+Om azimuthala och altitudinella vinklarna ($\beta$ respektive $\alpha$) relativt ett väderstreck respektive horisonten tillhandahålls beräknas infallsvinkeln mot glaset på följande vis:
+
+Se vinklarna som definitioner av vektorer, med azimuthala vektorn $\cos{\beta}\hat{x}+\sin{\beta}\hat{z}$ och altitudinella vektorn $\cos{\alpha}\hat{x}+\sin{\alpha}\hat{y}$. Då ges solens position av vektorn $\bar{S} = \left(\cos{\alpha} + \cos{\beta} \right) \hat{x} \sin{\alpha}\hat{y} + \sin{\beta}\hat{z}$, och vinkeln $\theta$ mellan denna och fönstrets normal $\bar{n} = \hat{x}$ fås ur sambandet
+
+\begin{equation} 
+\theta = \arccos{\left(\frac{\bar{S}\cdot\bar{n}}{|\bar{S}||\bar{n}|}\right)} = \arccos{\left(\frac{\cos{\alpha} + \cos{\beta}}{\sqrt{2\cos{\alpha}\cos{\beta} + 2}}\right)}
+\end{equation}
+
+% Gardiner och persienner förändrar situationen, kolla källan nedan
+\begin{comment}
+Simmler & Binder
+Experimental and numerical determination of the total solar energy transmittance of glazing with venetian blind shading
+\end{comment}
+
+% Be Särnöe om specifikationer?
+
+\begin{comment}
+I diskussion:
+- Hur kan man koppla detta till värmesystemet?
+	- Registrera intensitet, tid på dygnet och datum
+	- Beräkna ungefärlig tillförd effekt
+	- Kompensera genom att säga till värmesystemet att minska/stänga inflödet
+- Blir det lättare att helt enkelt mäta temperaturen i rummet och helt enkelt gå utifrån det? Vad är mer kostnadseffektivt?
+\end{comment}
