@@ -9,6 +9,8 @@ classdef WallSimulation < handle
         hCmdRun
         hCmdLoadBoundary
         hTxtTriangleCount
+        hLblMultipleDivide
+        hTxtMultipleDivide
         hTxtNodeCount
         hAxes
         
@@ -52,17 +54,30 @@ classdef WallSimulation < handle
             obj.hTxtNodeCount = uicontrol('Style', 'text', ...
                                     'Position', [500,170,100,25], ...
                                      'BackgroundColor', get(obj.hGUI,'Color'));
+                                 
+            obj.hLblMultipleDivide = uicontrol('Style', 'text', ...
+                                    'Position', [500,350,100,25], ...
+                                     'BackgroundColor', get(obj.hGUI,'Color'));
+            
+            obj.hTxtMultipleDivide = uicontrol('Style', 'edit', ...
+                                    'Position', [500,320,100,25], ...
+                                    'BackgroundColor', 'w');
+            
 
             obj.hAxes = axes('Units','Pixels','Position',[50,30,350,300],...
                               'XTick', [],'YTick', [], 'XLimMode' , 'manual',...
                               'YLimMode' , 'manual');
+                          
             axis(obj.hAxes, [obj.PlotLow obj.PlotHigh obj.PlotLow obj.PlotHigh])
             set(obj.hCmdLoadBoundary, 'Callback', @obj.promtLoadBoundary);
-            set(obj.hAxes, 'ButtonDownFcn', @obj.divideTriangle);
+            set(obj.hAxes, 'ButtonDownFcn', @obj.axisButtonPressed);
             %obj.setupNewGrid(); %setup new grid
             obj.redrawGrid();
                           
-            align([obj.hCmdRun],'Center','None');
+            
+            set(obj.hTxtMultipleDivide,'String', '2');
+            set(obj.hLblMultipleDivide,'String', 'Left click iterations');
+            
 
             set(obj.hGUI, 'Visible', 'on') %Display form 
 
@@ -79,7 +94,7 @@ classdef WallSimulation < handle
                 uigetfile([strThisFile 'config/*.xls'], 'Load boundary file');
             
             if(FilterIndex ~= 0) %Check if the "Open" button was pressed
-                
+                obj.redrawGrid();
                 obj.hSettings = Settings;
                 
                 obj.hSettings.ReadFile([PathName FileName]);
@@ -132,8 +147,35 @@ classdef WallSimulation < handle
                 
         end
         
-        function divideTriangle(obj, hObject, eventdata, var1, var2)
-            pt = get(hObject, 'CurrentPoint');
+        function axisButtonPressed(obj, hObject, ~, ~, ~)
+           pt = get(hObject, 'CurrentPoint');
+           type = get(obj.hGUI, 'SelectionType');
+           
+           if(strcmp(type, 'normal') == 1)
+               str = get(obj.hTxtMultipleDivide, 'String');
+               num = str2double(str);
+               if(isnan(num) == 0)
+                    obj.divideMultipleTimes(pt, num);
+               end
+                
+           elseif(strcmp(type, 'alt') == 1)
+               	obj.divideTriangle(pt); %Divide triangle once
+           end
+        end
+        
+        function divideMultipleTimes(obj, pt, times)
+            ID = obj.hFEM.getTriangleIDFromPosition(pt(1,1:2));
+            
+            if(ID ~= 0)
+               nodes = obj.hFEM.getTriangleCorners(ID);
+               obj.hFEM.splitTriangleMultipleTimes(ID, times);
+               patch(nodes(:,1), nodes(:,2), (1-0.1*times)*[1 1 1],'Parent', obj.hAxes);
+                
+            end
+        end
+        
+        function divideTriangle(obj, pt)
+            
             ID = obj.hFEM.getTriangleIDFromPosition(pt(1,1:2));
             
             if(ID ~= 0)
@@ -146,31 +188,8 @@ classdef WallSimulation < handle
                 end
                 
                 obj.paintTriangle(idT(4));
-                %Draw new lines and new nodes
             end
         end
-        
-%         function setupNewGrid(obj, hObject, eventdata, var1, var2)
-%             obj.redrawGrid();
-%             
-%             obj.hNodeCircles.clearList();
-%             obj.hTriangleLines.clearList();
-%             obj.hFEM.clearGrid();
-%       
-%             obj.createNode([0 0]);
-%             obj.createNode([1 0]);
-%             obj.createNode([0.5 0.5]);
-%             obj.createNode([0 1]);
-%             obj.createNode([1 1]);
-%             
-%             obj.createTriangle([1 2 3]);
-%             obj.createTriangle([1 3 4]);
-%             obj.createTriangle([2 3 5]);
-%             obj.createTriangle([3 4 5]);
-%             
-%             obj.updateGridText();
-%             
-%         end
         
         function paintNode(obj, ID)
             h = obj.hNodeCircles.getElement(ID);

@@ -77,10 +77,30 @@ classdef FEMSolver < handle
                 
             end
         end
-         
-        function [idT, idN] = splitTriangle(obj, Identifier)
+        
+        function splitTriangleMultipleTimes(obj, Identifier, times)
+            %disp(['Splitting ' num2str(Identifier) ' multiple times'])
+            if(times > 0)
+               
+               [idT, idN] = obj.splitTriangle(Identifier, 0);
+               
+               %disp(['Times: ' num2str(times)])
+               for n=1:max(size(idT))
+                  %idT(n)
+                  obj.splitTriangleMultipleTimes(idT(n), times-1); 
+               end
+            end
             
-            hOldT = obj.hTriangles.getElement(Identifier);
+        end
+         
+        function [idT, idN] = splitTriangle(obj, Identifier, visible)
+            if(nargin < 3)
+                visible = 1;
+            end
+            
+           hOldT = obj.hTriangles.getElement(Identifier);
+            
+            
             nodes = hOldT.vNodes;
             pos = zeros(3,2);
             
@@ -106,6 +126,10 @@ classdef FEMSolver < handle
                [iNewN(n) hNewN(n)] = obj.addAndGetNode(mp(n,1:2));
                hNewT(n) = GridTriangle;
                iNewT(n) = obj.hTriangles.addElement(hNewT(n));
+            end
+            
+            for n=1:4
+               hNewT(n).bDraw = visible; 
             end
             
             %Set node points to triangles
