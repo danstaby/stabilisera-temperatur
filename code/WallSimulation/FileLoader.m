@@ -96,8 +96,7 @@ classdef FileLoader < handle
                                LastNaN = m;
                            end
                        end
-                       LastNaN
-                       tmpCell{rowID} = raw(n,1:(LastNaN-1))
+                       tmpCell{rowID} = raw(n,1:(LastNaN-1));
                    end
                else
                   %Put row into tmp cell
