@@ -7,7 +7,7 @@ classdef WallSimulation < handle
         %GUI handles
         hGUI
         hCmdRun
-        hCmdClear
+        hCmdLoadBoundary
         hTxtTriangleCount
         hTxtNodeCount
         hAxes
@@ -16,6 +16,8 @@ classdef WallSimulation < handle
         hFEM
         hNodeCircles
         hTriangleLines
+        hSettings
+        
         
         %Constants
         PlotHigh
@@ -41,8 +43,8 @@ classdef WallSimulation < handle
             obj.hCmdRun    = uicontrol('Style','pushbutton', ...
                          'String','Run Simulation','Position',[500,50,100,25]);
 
-            obj.hCmdClear    = uicontrol('Style','pushbutton', ...
-                         'String','Clear Mesh','Position',[500,80,100,25]);
+            obj.hCmdLoadBoundary    = uicontrol('Style','pushbutton', ...
+                         'String','Load Boundary','Position',[500,80,100,25]);
 
             obj.hTxtTriangleCount = uicontrol('Style', 'text', ...
                                     'Position', [500,140,100,25], ...
@@ -55,15 +57,70 @@ classdef WallSimulation < handle
                               'XTick', [],'YTick', [], 'XLimMode' , 'manual',...
                               'YLimMode' , 'manual');
             axis(obj.hAxes, [obj.PlotLow obj.PlotHigh obj.PlotLow obj.PlotHigh])
-            set(obj.hCmdClear, 'Callback', @obj.setupNewGrid);
+            set(obj.hCmdLoadBoundary, 'Callback', @obj.promtLoadBoundary);
             set(obj.hAxes, 'ButtonDownFcn', @obj.divideTriangle);
-            obj.setupNewGrid(); %setup new grid
+            %obj.setupNewGrid(); %setup new grid
+            obj.redrawGrid();
                           
             align([obj.hCmdRun],'Center','None');
 
             set(obj.hGUI, 'Visible', 'on') %Display form 
 
             
+        end
+        
+        function promtLoadBoundary(obj, hObject, eventdata, var1, var2)
+            
+            strThisFile = mfilename('fullpath');
+            n = strfind(strThisFile, '/');
+            n = max(n);
+            strThisFile = strThisFile(1:n);
+            [FileName, PathName, FilterIndex] = ...
+                uigetfile([strThisFile 'config/*.xls'], 'Load boundary file');
+            
+            if(FilterIndex ~= 0) %Check if the "Open" button was pressed
+                
+                obj.hSettings = Settings;
+                
+                obj.hSettings.ReadFile([PathName FileName]);
+                
+                obj.importSettings();
+                
+            end
+            
+        end
+        
+        function importSettings(obj)
+            obj.hFEM.clearGrid();
+            
+            cNodes = obj.hSettings.cNodes;
+            cBound = obj.hSettings.cBoundary;
+            cTriangles = obj.hSettings.cTriangles;
+            obj.importNodes(cBound, 1);
+            obj.importNodes(cNodes, 0);
+            
+            obj.importTriangles(cTriangles);
+            obj.updateGridText();
+            
+            
+        end
+        
+        function importTriangles(obj, C)
+            for n=1:max(size(C))
+               row = C{n};
+               id = obj.hFEM.addTriangle([row{1} row{2} row{3}]);
+               obj.paintTriangle(id);
+            end
+        end
+        
+        function importNodes(obj, C, bound)
+            
+            for n=1:max(size(C))
+                row = C{n};
+               
+                id = obj.hFEM.addNode([row{1} row{2}],bound);
+                obj.paintNode(id);
+            end
         end
         
         function redrawGrid(obj)
@@ -93,27 +150,27 @@ classdef WallSimulation < handle
             end
         end
         
-        function setupNewGrid(obj, hObject, eventdata, var1, var2)
-            obj.redrawGrid();
-            
-            obj.hNodeCircles.clearList();
-            obj.hTriangleLines.clearList();
-            obj.hFEM.clearGrid();
-      
-            obj.createNode([0 0]);
-            obj.createNode([1 0]);
-            obj.createNode([0.5 0.5]);
-            obj.createNode([0 1]);
-            obj.createNode([1 1]);
-            
-            obj.createTriangle([1 2 3]);
-            obj.createTriangle([1 3 4]);
-            obj.createTriangle([2 3 5]);
-            obj.createTriangle([3 4 5]);
-            
-            obj.updateGridText();
-            
-        end
+%         function setupNewGrid(obj, hObject, eventdata, var1, var2)
+%             obj.redrawGrid();
+%             
+%             obj.hNodeCircles.clearList();
+%             obj.hTriangleLines.clearList();
+%             obj.hFEM.clearGrid();
+%       
+%             obj.createNode([0 0]);
+%             obj.createNode([1 0]);
+%             obj.createNode([0.5 0.5]);
+%             obj.createNode([0 1]);
+%             obj.createNode([1 1]);
+%             
+%             obj.createTriangle([1 2 3]);
+%             obj.createTriangle([1 3 4]);
+%             obj.createTriangle([2 3 5]);
+%             obj.createTriangle([3 4 5]);
+%             
+%             obj.updateGridText();
+%             
+%         end
         
         function paintNode(obj, ID)
             h = obj.hNodeCircles.getElement(ID);

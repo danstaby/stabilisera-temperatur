@@ -6,6 +6,8 @@ classdef GridNode < handle
    end
    
    properties(SetAccess = private)
+       strNeumann
+       strDirichlet
        bNeumann
        bDirichlet
        fNeumann
@@ -22,11 +24,13 @@ classdef GridNode < handle
        
        function setNeumann(obj, strFunc)
            obj.bNeumann = 1;
+           obj.strNeumann = strFunc;
            obj.fNeumann = inline(strFunc);
        end
        
        function setDirichlet(obj, strFunc)
            obj.bDirichlet = 1;
+           obj.strDirichlet = strFunc;
            obj.fDirichlet = inline(strFunc);
        end
        

@@ -4,13 +4,14 @@ classdef GridTriangle < handle
         
         vNodes
         hNodes
+        bDraw
     end
     
     
     methods
         function obj = GridTriangle()
             
-           obj; 
+           obj.bDraw = 1;
         end
         
         function  setNodes(obj, vIDs, vHandles)
@@ -30,6 +31,11 @@ classdef GridTriangle < handle
         
         
         function bool = isInside(obj, pos)
+            
+            if(obj.bDraw == 0)
+                bool = 0;
+                return;
+            end
             
             X = zeros(3,3);
             p = [pos 0];
