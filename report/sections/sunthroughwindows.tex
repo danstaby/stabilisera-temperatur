@@ -40,26 +40,29 @@ Det beräknade g-värdet kan sedan användas för att uppskatta energiflödet ge
 Det återstår nu att i \eqref{eq:radiationwindowstheory:gvalue} kunna bestämma parametern $z = \theta/90$. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
 
 % Ställa upp metod eller hänvisa till färdiga program?
+En metod för att räkna ut solens position presenteras i \cite{walraven78}.
 
-Om azimuthala och altitudinella vinklarna ($\beta$ respektive $\alpha$) relativt ett väderstreck respektive horisonten tillhandahålls beräknas infallsvinkeln mot glaset på följande vis:
-
-% I vilket väderstreck är normalen riktad?
-
-Om den azimuthala (relativt ett väderstreck i horisontalled) samt den altitudinella (vertikala relativt horisonten) vinkeln tillhandahålls som $\alpha$ respektive $\beta$ (i radianer) fås vinkeln, i grader, relativt fönstrets normal av:
+Om azimuthala och altitudinella vinklarna ($\beta$ respektive $\alpha$) relativt ett väderstreck respektive horisonten tillhandahålls beräknas infallsvinkeln mot glaset, $\theta$, på följande vis:
 
 \begin{equation} 
-\theta = \frac{360}{2\pi}\arctan{\left( \sqrt{\tan{\alpha}^2 + \tan{\beta}^2} \right)}
+\theta = \frac{360}{2\pi}\arctan{\left( \sqrt{\tan{\alpha}^2 + \tan{\beta - \gamma}^2} \right)}
 \end{equation}
+
+där $\gamma$ är vinkeln mellan fönstrets normal och väderstrecket mot vilken azimuthala vinkeln anges. Notera att alla vinklar utom $\theta$ anges i radianer.
+
+\subsubsection{Inverkan av skuggor, gardiner och dylikt}
 
 % Beräkna för vilka vinklar skuggor faller över fönstren
 
-% Gardiner och persienner förändrar situationen, kolla källan nedan
+% Gardiner, persienner och interiör förändrar situationen, kolla källan nedan
 \begin{comment}
 Simmler & Binder
 Experimental and numerical determination of the total solar energy transmittance of glazing with venetian blind shading
 \end{comment}
 
-% Be Särnöe om specifikationer?
+% Be Särnöe om specifikationer:
+% - I vilket väderstreck är normalen riktad?
+% - Vilket g-värde har fönstren?
 
 \begin{comment}
 I diskussion:
@@ -67,5 +70,5 @@ I diskussion:
 	- Registrera intensitet, tid på dygnet och datum
 	- Beräkna ungefärlig tillförd effekt
 	- Kompensera genom att säga till värmesystemet att minska/stänga inflödet
-- Blir det lättare att helt enkelt mäta temperaturen i rummet och helt enkelt gå utifrån det? Vad är mer kostnadseffektivt?
+- Blir det lättare att helt enkelt mäta temperaturen i rummet och gå utifrån det? Vad är mer kostnadseffektivt?
 \end{comment}
