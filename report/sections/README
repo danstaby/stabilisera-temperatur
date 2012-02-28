@@ -5,6 +5,9 @@ report
 	preface
 	abstract
 	introduction
+		background
+		purpose
+		scope
 	theory
 		constantsources
 		sunthroughwindows
