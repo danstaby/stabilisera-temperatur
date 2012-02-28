@@ -26,3 +26,9 @@ report
 		methodsimulation
 		methodstatistics
 
+	results
+		resultsenergyflows
+		resultstimeconstant
+		resultsfreerunning
+
+
