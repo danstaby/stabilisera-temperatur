@@ -16,6 +16,8 @@ report
 		convection		
 		sunthroughwindows
 		thehouse
+		weather
+		weatherstation
 	
 	method
 		staticwallmethod
