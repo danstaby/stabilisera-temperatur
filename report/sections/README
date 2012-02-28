@@ -8,8 +8,12 @@ report
 		background
 		purpose
 		scope
+
 	theory
 		constantsources
+		heatconduction
+		blackbody
+		convection		
 		sunthroughwindows
 		thehouse
 	
