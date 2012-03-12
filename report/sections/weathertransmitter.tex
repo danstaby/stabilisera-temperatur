@@ -1,0 +1,29 @@
+\subsubsection{Väder}
+I rapporten låter vi de parametrar som väderstationen tar in definiera vädret. Väderstationen som vår uppdragsgivare installerat är en Vaisala Weather Transmitter WXT520. Den mäter sju olika värden: vindens hastighet och riktning, lufttemperaturen, lufttryck, relativ fuktighet samt regn och hagels varaktighet och intensitet.
+
+\begin{table}[htdp]
+\caption{Tekniska data för väderstationen, \cite{datablad_weathertransmitter}}
+% Pärmen flik 1.
+\begin{center}
+\begin{tabular}{|l | l l l|}
+\hline
+\textbf{Väder} & \textbf{Mätområde} % range
+ & \textbf{Precision} % accuracy
+ & \textbf{Upplösning} \\ % resolution
+\hline
+\rule{0pt}{3ex}Vindhastighet & $\unit[0-60]{m/s}$ & $\pm 3-5\%$ & $\unit[0,1]{m/s}$ \\ 
+\rule{0pt}{3ex}Vindriktning & alla riktningar & $\pm 3^{\circ}$ & $1^{\circ}$ \\
+\rule{0pt}{3ex}Temperatur & $\unit[-52-+60]{^{\circ}C}$ & & $\unit[0,1]{^{\circ}C}$ \\
+\rule{0pt}{3ex}Lufttryck & $\unit[600-1100]{hPa}$ & $\unit[0,5-1]{hPa}$ & $\unit[0,1]{hPa}$ \\
+\rule{0pt}{3ex}Luftfuktighet & $\unit[0-100]{\%RH}$ & $\unit[\pm3–5]{\%RH}$ & $\unit[0,1]{\%RH}$ \\
+\rule{0pt}{3ex}Regn &  & $\unit[5]{\%}$ & \unit[0,01]{mm} \\
+~varaktighet & & & $\unit[10]{s}$\\
+~intensitet & $\unit[0-200]{mm/h}$ & & $\unit[0,1]{mm/h}$ \\
+\rule{0pt}{3ex}Hagel &  &  & 0,1 träffar/$\unit{cm^2}$ \\
+~varaktighet & & från första träffen & 10 s\\
+~intensitet & & & 0,1 träffar/$\unit{cm^2h}$\\
+\hline
+\end{tabular}
+\end{center}
+\label{default}
+\end{table}
