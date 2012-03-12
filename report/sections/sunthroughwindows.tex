@@ -33,22 +33,25 @@ a = 8, & b = 0.25/q, & c = (1-a-b) \nonumber \\
 
 där p är antalet rutor i fönstret (treglasfönster $\Rightarrow$ p = 3) och q är en parameter, $1 \le q \le 10$, som varierar beroende på beläggningar på glasets yta. Exempelvis har ett treglasfönster utan beläggningar värdet $q=4$.
 
-Det beräknade g-värdet kan sedan användas för att uppskatta energiflödet genom fönstret. Anta att en pyranometer anger solstrålningsstyrkan $\unit{I}{W/m^2}$. Då ges det totala energiflödet Q av sambandet $Q = g \cdot A \cdot I$, där A är fönstrets area.
+Det beräknade g-värdet kan sedan användas för att uppskatta energiflödet genom fönstret. Anta att en pyranometer anger solstrålningsstyrkan $\unit{I\, }{W/m^2}$. Då ges det totala energiflödet Q av sambandet $Q = g \cdot A \cdot I$, där A är fönstrets area.
 
 \subsubsection{Infallsvinkel relativt tid och datum}
 
 Det återstår nu att i \eqref{eq:radiationwindowstheory:gvalue} kunna bestämma parametern $z = \theta/90$. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
 
-% Ställa upp metod eller hänvisa till färdiga program?
-En metod för att räkna ut solens position presenteras i \cite{walraven78}.
+En metod för att räkna ut solens position presenteras i \cite{walraven78} och en Matlabfunktion baserad på samma artikel kan ses i appendix. % Hänvisa till kod
 
 Om azimuthala och altitudinella vinklarna ($\beta$ respektive $\alpha$) relativt ett väderstreck respektive horisonten tillhandahålls beräknas infallsvinkeln mot glaset, $\theta$, på följande vis:
 
 \begin{equation} 
-\theta = \frac{360}{2\pi}\arctan{\left( \sqrt{\tan{\alpha}^2 + \tan{\beta - \gamma}^2} \right)}
+\theta = \frac{360}{2\pi}\arctan{\left( \sqrt{\tan^2{\left(\alpha\right)} + \tan^2{\left(\beta - \gamma}\right)} \right)}
 \end{equation}
 
 där $\gamma$ är vinkeln mellan fönstrets normal och väderstrecket mot vilken azimuthala vinkeln anges. Notera att alla vinklar utom $\theta$ anges i radianer.
+
+Ett Matlabprogram för beräkning av effektflödet på grund av solstrålning genom fönster kan ses i appendix. % Hänvisa till appendix.
+
+% Behöver: longitud, latitud, vinkeln relativt väderstreck, fönsters area, g-värde
 
 \subsubsection{Inverkan av skuggor, gardiner och dylikt}
 
