@@ -12,12 +12,12 @@ end
 tic;
 
 dims = 1;
-border = [0,1,1,0;
-    0,0,1,1];
+border = [0,8,8,-2,0;
+    0,0,6,6,4];
 h = 1;
-neumannConditions = [10*h 0, NaN, 0];
-neumannTConditions = [-h, NaN, NaN, NaN];
-dirichletConditions = [NaN, NaN, 0, NaN];
+neumannConditions = [NaN, -10*h, -10*h, 0, 20*h];
+neumannTConditions = [NaN, -h, -h, NaN, -h];
+dirichletConditions = [-10, NaN, NaN, NaN, NaN];
 
 %dbound = {{'20'}, {NaN}, {NaN}, {'0'}};
 %nbound = {{NaN}, {NaN}, {'0'}, {NaN}};
