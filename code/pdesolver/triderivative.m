@@ -1,6 +1,7 @@
-function ret = triderivative(pts, cor1, cor2, dim)
+function ret = triderivative(pts)
 %Calculates the derivatives of linear triangular elements.
-%cor1 and cor2 can be vectors
+%For notes of the algorithm see Alberty et. al (1999)
 
+G = [1,1,1;pts];
 
-ret = 1/(pts(dim, cor1) - pts(dim, cor2));
+ret = inv(G)*[0,0;1,0;0,1];
