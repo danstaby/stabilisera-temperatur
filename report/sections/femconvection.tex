@@ -1,0 +1,48 @@
+\subsection{Finita element av inkompressibel fluid}
+
+För att lösa Navier-Stokes ekvationer kan lämpligen en datormodell användas.
+Här består denna modell av ett system uppsatt med Galerkins metod.
+I denna lösning så begränsar vi dock oss till att enbart behandla statiska flöden
+då detta kan ses som en okej approxiation.
+
+Om ett system är statiskt kan vi sätta alla tidsderivator i ekvationerna
+\eqref{eq:convection:continuity}-\eqref{eq:convection:energy} till noll.
+För att hantera trycket används den tidigare nämnda Boussinesq approximationen
+samt penalty metoden för att göra hastighetsvektorn källfri. Den bas det
+senare kommer att integreras över är inte källfri. Detta då den är bitvis
+slät och består av linjära plan. Penaltymetoden ger tillåtelse att snirkla
+runt detta faktum.
+
+Genom penaltymetoden beskrives här trycket som $p$ enligt ekvation
+\eqref{eq:femconvection:penalty}. Här är $p_s$ någon form av idealt statiskt
+tryck som är önskat. Detta tryck följer Boussinesq approximation. Med dessa
+idealiseringar kan differentialekvationerna sättas upp igen.
+
+\begin{equation}
+\label{eq:femconvection:penalty}
+p = p_s - \lambda\nabla\cdot\mathbf{v}
+\end{equation}
+
+
+\begin{equation}
+\label{eq:femconvection:u}
+\mathbf{v}\cdot\nabla u =
+\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v} +
+\nu\Delta u
+\end{equation}
+
+\begin{equation}
+\label{eq:femconvection:w}
+\mathbf{v}\cdot\nabla w =
+\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v} + \nu\Delta w +g\beta(T-T_0)
+\end{equation}
+
+\begin{equation}
+\label{eq:femconvection:T}
+\mathbf{v}\cdot\nabla T = \alpha\Delta T
+\end{equation}
+
+
+\subsubsection{Triangulär bas}
+För att använda Galerkins metod måste en bas väljas. En som är populär samt
+enkel att räkna på är linjära triangulära element. 
