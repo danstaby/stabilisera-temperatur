@@ -12,28 +12,28 @@ end
 tic;
 
 dims = 1;
-border = [0,1,1,0;
-    0,0,1,1];
-h = 1;
+border = [0,10,10,0;
+    0,0,6,6];
+h = 1e6;
 
 g = 9.81;
 beta = 3.67e-3; %### NOTE #### T-dependent. Fix later
 alpha =1.9e-5; %Pressure and water dependant
 rho = 1.2920; %Pressure and water dependant
 nu = 13; %Temperature and pressure dependant
-penalty = 1e7; %Which penalty?
-Tref = -10;
+penalty = 1e6; %Which penalty?
+Tref = 20;
 
-TneumannConditions = [0, NaN, 0, NaN];
-TneumannTConditions = [NaN, NaN, NaN, NaN];
+TneumannConditions = [0, -1000000, 0, NaN];
+TneumannTConditions = [NaN, NaN, NaN,NaN];
 
-TdirichletConditions = [NaN, 20, NaN, 0];
+TdirichletConditions = [NaN, NaN, NaN, 20];
 
-UdirichletConditions = [NaN, NaN, NaN, 0];
+UdirichletConditions = [0, 0, 0, 0];
 UneumannConditions = [NaN, NaN, NaN, NaN];
 UneumannTConditions = [NaN, NaN, NaN, NaN];
 
-WdirichletConditions = [0, NaN, NaN, NaN];
+WdirichletConditions = [0, 0, 0, 0];
 WneumannConditions = [NaN, NaN, NaN, NaN];
 
 WneumannTConditions = [NaN, NaN, NaN, NaN];
@@ -209,7 +209,7 @@ fprintf(1, ' done!\n');
 fprintf(1, 'Assembling inhomogenous stiffness matrix...');
 
 for j=1:tCount
-  LM(t(1:3,j), t(1:3,j)) = LM(t(1:3,j), t(1:3,j)) + area(j,1)*voltemp;
+  LM(t(1:3,j), t(1:3,j)) = LM(t(1:3,j), t(1:3,j)) - g*beta*area(j,1)*voltemp;
 end
 
 fprintf(1, ' done!\n');
@@ -221,7 +221,7 @@ fprintf(1, 'Enforcing neumann conditions...')
 for j = 1 :  size(Tneumann,2)
   GT(Tneumann(1:2,j))=GT(Tneumann(1:2,j)) + ... 
       norm(p(:,Tneumann(1,j)) - ... 
-	   p(:,Tneumann(2,j))).* ...
+	   p(:,Tneumann(2,j)))* ...
       ones(2,1)*TneumannConditions(Tneumann(3,j))/2;
 end
 
@@ -229,14 +229,14 @@ end
 for j = 1:size(Uneumann,2)
   Gu(Uneumann(1:2,j))=Gu(Uneumann(1:2,j)) + ... 
       norm(p(:,Uneumann(1,j)) - ... 
-           p(:,Uneumann(2,j))).* ...
+           p(:,Uneumann(2,j)))* ...
       ones(2,1)*UneumannConditions(Uneumann(3,j))/2;
 end
 
 for j = 1:size(Wneumann,2)
   Gw(Wneumann(1:2,j))=Gw(Wneumann(1:2,j)) + ... 
       norm(p(:,Wneumann(1,j)) - ... 
-           p(:,Wneumann(2,j))).* ...
+           p(:,Wneumann(2,j)))* ...
       ones(2,1)*WneumannConditions(Wneumann(3,j))/2;
 end
 
@@ -246,6 +246,8 @@ for k = 1:size(TneumannT,2)
   QT(TneumannT([1 2],k), TneumannT([1 2],k)) = QT(TneumannT([1 2],k),TneumannT([1 2],k)) ...
       - TneumannTConditions(TneumannT(3,k))*L*[2,1;1,2]/6;
 end
+
+%QT
 
 %Note that we don't have any speed dependance in our Neumann
 %boundary conditions for the velocity vector.
@@ -299,11 +301,11 @@ fw = squeeze(sptensor(fw));
 
 
 
-fT = fT - squeeze(sptensor(alpha*(A-QT)*Tu)) - ttv(ttv(TensX, Tu,3),uu,2) - ttv(ttv(TensZ, Tu, 3),wu,2);
+fT = fT - squeeze(sptensor(alpha*(A+QT)*Tu)) - ttv(ttv(TensX, Tu,3),uu,2) - ttv(ttv(TensZ, Tu, 3),wu,2);
 fu = fu - ttv(ttv(TensX, uu,3),uu,2) - ttv(ttv(TensZ, uu, 3),wu,2) - ...
      squeeze(sptensor(nu*A*uu + penalty*(divxx*uu + divxz*wu)/rho));
 fw = fw - ttv(ttv(TensX, wu,3),uu,2) - ttv(ttv(TensZ, wu, 3),wu,2) - ...
-     squeeze(sptensor(nu*A*wu -alpha*beta*LM*Tu + penalty*(divzx*uu + divzz*wu)/rho));
+     (squeeze(sptensor(nu*A*wu + LM*Tu + penalty*(divzx*uu + divzz*wu)/rho)));
 
 %b = b - (A+Q) * u;
 fprintf(1, ' done!\n');
@@ -312,8 +314,8 @@ fprintf(1, ' done!\n');
 %Solve system
 fprintf(1, 'Preparing for solution...');
 
-ITERMAX = 10;
-epsilon = 1e-5;
+ITERMAX = 40;
+epsilon = 6e-5;
 
 TFreeNodes = setdiff(1:pCount,unique(Tdirichlet));
 uFreeNodes = setdiff(1:pCount, unique(Udirichlet));
@@ -341,13 +343,16 @@ res = epsilon + 1;
 iterCount = 0;
 
 
-
+order = 1;
+lastres = res + 1;
 %Make initial guess
-uGuess = 1*ones(uFreeCount,1);
-TGuess = -10*ones(TFreeCount,1);
-wGuess = 1*ones(wFreeCount,1);
+uGuess = zeros(uFreeCount,1);
+TGuess = Tref*ones(TFreeCount,1);
+wGuess = zeros(wFreeCount,1);
 
-while(res > epsilon && iterCount < ITERMAX)
+fprintf(1,'ITERATION\tTRes\t\tuRes\t\twRes\n');
+
+while((res > epsilon || iterCount < 3) && iterCount < ITERMAX)
   
   %Update function value
   
@@ -362,14 +367,14 @@ while(res > epsilon && iterCount < ITERMAX)
       ttv(ttv(TensZ(wFreeNodes, wFreeNodes, wFreeNodes), wGuess,3),wGuess,2)) + ... 
       nu*A(wFreeNodes, wFreeNodes)*wGuess + ...
       penalty*(divzx(wFreeNodes,uFreeNodes)*uGuess + ...
-	       divzz(wFreeNodes,wFreeNodes)*wGuess)/rho - alpha*beta*LM(wFreeNodes,TFreeNodes)*TGuess - double(fw(wFreeNodes));
+	       divzz(wFreeNodes,wFreeNodes)*wGuess)/rho + LM(wFreeNodes,TFreeNodes)*TGuess - double(fw(wFreeNodes));
 
 
 
 						
   resvec(TStart:TEnd,1) = double(ttv(ttv(TensX(TFreeNodes, uFreeNodes,TFreeNodes),TGuess,3),uGuess,2)+...
       ttv(ttv(TensZ(TFreeNodes, wFreeNodes, TFreeNodes), TGuess,3), wGuess,2)) + ...
-      alpha*((A(TFreeNodes, TFreeNodes)-QT(TFreeNodes,TFreeNodes))*TGuess) ...
+      alpha*((A(TFreeNodes, TFreeNodes)+QT(TFreeNodes,TFreeNodes))*TGuess) ...
 	     -double(fT(TFreeNodes));
 
   %Calculate Jacobian
@@ -377,41 +382,76 @@ while(res > epsilon && iterCount < ITERMAX)
   Jacobian = sparse(uFreeCount + wFreeCount + TFreeCount,...
 		    uFreeCount+wFreeCount + TFreeCount);
   
-  
+    
   %Jacobian(uStart:uEnd, uStart:uEnd) = double(ttv(TensX, uGuess),2)
   Jacobian(uStart:uEnd,uStart:uEnd) = double(ttv(TensZ(uFreeNodes, wFreeNodes,uFreeNodes),wGuess,2) ...
-				    + 2*ttv(TensX(uFreeNodes,uFreeNodes, uFreeNodes), uGuess, 2)) ...
+				    + ttv(TensX(uFreeNodes,uFreeNodes, uFreeNodes), uGuess, 2) ...
+                                    + ttv(TensX(uFreeNodes,uFreeNodes,uFreeNodes), uGuess,3)) ...
                                     + penalty*divxx(uFreeNodes,uFreeNodes)/rho...
                                     + nu*A(uFreeNodes,uFreeNodes);
 
+  Jacobian(uStart:uEnd,wStart:wEnd) = double(ttv(TensZ(uFreeNodes,wFreeNodes,uFreeNodes),uGuess,3))...
+                                    + penalty*divxz(uFreeNodes,wFreeNodes)/rho;
+
   Jacobian(wStart:wEnd,wStart:wEnd) = double(ttv(TensX(wFreeNodes, uFreeNodes, wFreeNodes),uGuess,2) ...
-				    + 2*ttv(TensZ(wFreeNodes,wFreeNodes,wFreeNodes),wGuess,2)) ...
+				    + ttv(TensZ(wFreeNodes,wFreeNodes,wFreeNodes),wGuess,2) ...
+		                    + ttv(TensZ(wFreeNodes, wFreeNodes, wFreeNodes), wGuess,3))...
                                     + penalty*divzz(wFreeNodes,wFreeNodes)/rho ...
                                     + nu*A(wFreeNodes, wFreeNodes);
-  
-  Jacobian(TStart:TEnd,TStart:TEnd) = double(ttv(TensX(TFreeNodes,uFreeNodes,TFreeNodes),uGuess,2)...
-				    + ttv(TensZ(TFreeNodes,wFreeNodes,TFreeNodes),wGuess,2))...
-                                    + alpha*(A(TFreeNodes,TFreeNodes)-QT(TFreeNodes, TFreeNodes));
 
+  Jacobian(wStart:wEnd,uStart:uEnd) = double(ttv(TensX(wFreeNodes,uFreeNodes,wFreeNodes),wGuess,3))...
+                                    + penalty*divzx(wFreeNodes,uFreeNodes)/rho;
   
+  Jacobian(wStart:wEnd,TStart:TEnd) = LM(wFreeNodes,TFreeNodes);
+
+  Jacobian(TStart:TEnd,TStart:TEnd) = double(ttv(TensX(TFreeNodes,uFreeNodes,TFreeNodes),uGuess,2)...
+				    + ttv(TensZ(TFreeNodes,wFreeNodes,TFreeNodes),wGuess,2)) ...
+                                    + alpha*(A(TFreeNodes,TFreeNodes)+QT(TFreeNodes, TFreeNodes));
+
+  Jacobian(TStart:TEnd,uStart:uEnd) = double(ttv(TensX(TFreeNodes,uFreeNodes, uFreeNodes),uGuess,3));
+
+  Jacobian(TStart:TEnd,wStart:wEnd) = double(ttv(TensZ(TFreeNodes,wFreeNodes,wFreeNodes),wGuess,3));
+
   %Note the factor 2 in the above expressions. That factor deals
   %with the square terms in the LHS of the equation
 
   %Solve for dx
     
-  %[U S V] = svds(Jacobian);
-  %dx =  U*pinv(S)*V'*(-resvec); %Jacobian\(-resvec);
+  %[SU SS SV] = svds(uJacob);
+  %dx(uStart:uEnd,1) = -SU*pinv(SS)*SV'*resvec(uStart:uEnd);
+  %[SU SS SV] = svds(wJacob);
+  %dx(wStart:wEnd,1) = -SU*pinv(SS)*SV'*resvec(wStart:wEnd);
 
+  %[SU SS SV] = svds(TJacob);
+  %dx(TStart:TEnd,1) = -SU*pinv(SS)*SV'*resvec(TStart:TEnd);
+
+  %dx =  U*pinv(S)*V'*(-resvec); %Jacobian\(-resvec);
+  %JacInv = inv(Jacobian);
   dx = Jacobian\(-resvec);
 
+  %dx(uStart:uEnd,1) = -uJacob\resvec(uStart:uEnd);
+  %dx(wStart:wEnd,1) = -wJacob\resvec(wStart:wEnd);
+  %dx(TStart:TEnd,1) = -TJacob\resvec(TStart:TEnd);
+  
+  res = norm(resvec);
+
+  %norm(wJacob)*norm(inv(wJacob))
+  
+  
+  lastres = res;
   %Update vectors
-  x = x + dx;
+  x = x + order*dx;
   uGuess = x(uStart:uEnd,1);
   wGuess = x(wStart:wEnd,1);
   TGuess = x(TStart:TEnd,1);
   res=norm(resvec);
   iterCount = iterCount + 1;
-  disp(['Iteration ' num2str(iterCount) ' done with residual ' num2str(res)])
+  
+
+  fprintf(1, '%i\t\t%6.4g\t%6.4g\t%6.4g\n', iterCount, norm(resvec(TStart:TEnd)),...
+	  norm(resvec(uStart:uEnd)), norm(resvec(wStart:wEnd)))
+  %disp(['Iteration ' num2str(iterCount) ' done with residual ' ...
+	%num2str(res)])
 end
 
 if(res < epsilon)
@@ -422,7 +462,7 @@ end
 
 Tu(TFreeNodes) = TGuess;
 uu(uFreeNodes) = uGuess;
-Wu(wFreeNodes) = wGuess;
+wu(wFreeNodes) = wGuess;
 %u(FreeNodes) = (A(FreeNodes, FreeNodes)+Q(FreeNodes, FreeNodes))\ ...
 %    (b(FreeNodes) +G(FreeNodes));
 
@@ -440,4 +480,8 @@ figure(2)
 
 quiver(p(1,:)', p(2,:)', uu, wu);
 figure(1)
+%pdeplot(p,e,t,'xydata',Tu,'mesh',showgrid);
+tricontour(p',t(1:3,:)', Tu, 10)
+
+figure(4)
 pdeplot(p,e,t,'xydata',Tu,'mesh',showgrid);
