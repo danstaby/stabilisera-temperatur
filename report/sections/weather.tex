@@ -1,19 +1,21 @@
 \subsection{Väder}
 
+Vår uppdragsgivare vill undersöka hur inomhustemperaturen påverkas av vädret. Han tror att man kan få en mer korrekt styrning av inomhustemperaturen om man inte bara låter den påverkas av utomhustemperaturen, utan även vädret. Han har därför installerat en väderstation, se avsnitt \ref{subsec_weatertransmitter}.
+
 Väder är något som många pratar om och alla påverkas av. Begreppets vardagliga användningsområde är mycket brett och vi ska därför avgränsa vad vi avser med termen väder. 
 
-Kortfattat låter vi vädret definieras som det som vår väderstation mäter. Så som finns beskrivet i avsnitt \ref{subsec_weatertransmitter} mäter vi vädret med utrustning som tar in vindens hastighet och riktning, lufttemperaturen, lufttryck, relativ fuktighet samt regn och hagels varaktighet och intensitet. Vi kommer dock att bortse helt ifrån hagel då detta sker så sällan och i så korta perioder att det kan antas försumbart.
+Kortfattat låter vi vädret definieras som det som vår väderstation mäter. Så som finns beskrivet i avsnitt \ref{subsec_weatertransmitter} mäter vi vädret med utrustning som tar in vindens hastighet och riktning, lufttemperaturen, lufttryck, relativ fuktighet samt regn och hagels varaktighet och intensitet. Vi kommer dock att bortse helt ifrån hagel då detta sker så sällan och i så korta perioder att det kan antas försumbart. % Källa på hur ofta (sällan) det haglar i Sverige.
 
 Kvar har vi då vinden, temperaturen, trycket, fuktigheten och regnet.
 
-% Hur mycket av det ska vi använda? Det kanske beror på hur det går?
-
 \subsubsection{Regn}
 Bekräfta att:
-- Då det regnar är det 100\% luftfuktighet.
+- Då det regnar är det 100\% luftfuktighet. % inte sant.
 - Övre gräns: ingen isolerande luft. ref-temp = randtemp.
 Det ger en uppskattning på hur mycket extra värme som försvinner vid regn. 
 
 % Ungefär vilka temperatursvängningar, nederbörd o.s.v. är det i området.
 
-Snö: isolerar. Men vi har ingen mätutrustning.
+
+\subsubsection{Snö}
+När snön har lagt sig på taket kan man anta att den har en isolerande effekt. Vi kan inte mäta om och i så fall hur mycket snö det ligger på taket. Enligt SMHI (http://www.smhi.se/klimatdata/meteorologi/sno/Normalt-antal-dygn-med-snotacke-per-ar-1.7937) rör det sig enbart om 25-50 dygn med snö i Göteborg per år. Detta påverkar dessutom främst de översta lägenheterna, de på vinden. Har man däremot en enplansvilla i Norrland kan man anta att detta är en mer betydande parameter, men det är alltså inget vi kommer att undersöka.
