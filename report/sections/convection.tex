@@ -1,2 +1,63 @@
 \subsection{Konvektion}
+\label{section:convection}
+I fasta ämnen går det utmärkt att approximera värmeflöde enbart med hjälp
+av värmeledningsekvationen. Detta håller dock ej lika bra för fluider, det vill säga
+material som deformeras då de utsätts för tryck ett litet tryck.
+Under dessa förhållanden
+måste det tas hänsyn till konservation av massa, energi samt rörelsemoment.
+\\\\\\\\\\
+DETTA MÅSTE HÄRLEDAS
+\\\\\\\\\\
+
+För homogena inkompressibla fluider i två dimensioner gäller då ekvationerna
+\eqref{eq:convection:continuity}, \eqref{eq:convection:momentumx},
+\eqref{eq:convection:momentumz} samt \eqref{eq:convection:energy}. Här
+är $\mathbf{v} = (u,w)$ hastighetsvektorn, $\alpha$ är den termiska
+diffusiviteten, $\nu$ är den kinematiska viskositeten, $p$ är trycket,
+$\rho$ är densiteten, $g$ är den lokala tyngdaccelerationen
+och slutligen är $\rho_0$ referensdensiteten.
+
+\begin{equation}
+\label{eq:convection:continuity}
+\nabla\cdot\mathbf{v} = 0
+\end{equation}
+
+\begin{equation}
+\label{eq:convection:momentumx}
+\frac{\partial u}{\partial t} + \mathbf{v}\cdot\nabla u = 
+-\frac{1}{\rho_0}\frac{\partial p}{\partial x} + 
+\nu\Delta u
+\end{equation}
+
+\begin{equation}
+\label{eq:convection:momentumz}
+\frac{\partial w}{\partial t} + \mathbf{v}\cdot\nabla w = 
+-\frac{1}{\rho_0}\frac{\partial p}{\partial z} + \nu\Delta w
+\end{equation}
+
+\begin{equation}
+\label{eq:convection:energy}
+\frac{\partial T}{\partial t} + \mathbf{v}\cdot\nabla T = \alpha\Delta T
+\end{equation}
+
+\subsubsection{Boussinesq approximation}
+
+För flytkraftsdrivet flöde kan det vara lämpligt att använda sig av
+Boussinesq approximation. Denna säger att det enda som påverkar trycket är
+tyngdaccelerationen. Genom detta är det möjligt att sätta upp uttryck för densiteten
+och tryckderivatorna enligt ekvationerna \eqref{eq:convection:density}
+och \eqref{eq:convection:pressurez}. Här är
+$\beta$ den volymetriska expansionskonstanten och
+$T_0$ temperaturen som råder vid referensdensiteten $\rho_0$.
+
+\begin{equation}
+\label{eq:convection:density}
+\rho = \rho_0[1-\beta(T-T_0)]
+\end{equation}
+
+\begin{equation}
+\label{eq:convection:pressurez}
+\frac{\partial p}{\partial z} = -\rho_0g
+\end{equation}
+
 
