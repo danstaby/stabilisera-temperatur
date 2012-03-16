@@ -12,9 +12,13 @@ end
 tic;
 
 dims = 1;
-border = [0,10,10,0;
-    0,0,6,6];
-h = 1e6;
+%border = [0,10,10,0;
+%    0,0,6,6];
+
+border = [0,20,20,-5,0;
+	 0,0,9+5/sqrt(3),9+5/sqrt(3),9];
+
+h = 50;
 
 g = 9.81;
 beta = 3.67e-3; %### NOTE #### T-dependent. Fix later
@@ -22,21 +26,21 @@ alpha =1.9e-5; %Pressure and water dependant
 rho = 1.2920; %Pressure and water dependant
 nu = 13; %Temperature and pressure dependant
 penalty = 1e6; %Which penalty?
-Tref = 20;
+Tref = 0;
 
-TneumannConditions = [0, -1000000, 0, NaN];
-TneumannTConditions = [NaN, NaN, NaN,NaN];
+TneumannConditions = [NaN, h*Tref, h*Tref, 0, 0.8*20];
+TneumannTConditions = [NaN, -h, NaN, -h, -0.8];
 
-TdirichletConditions = [NaN, NaN, NaN, 20];
+TdirichletConditions = [Tref, NaN, NaN, NaN, NaN];
 
-UdirichletConditions = [0, 0, 0, 0];
-UneumannConditions = [NaN, NaN, NaN, NaN];
-UneumannTConditions = [NaN, NaN, NaN, NaN];
+UdirichletConditions = [0, NaN, NaN, 0, 0];
+UneumannConditions = [NaN, 0, 0, NaN, NaN];
+UneumannTConditions = [NaN, NaN, NaN, NaN, NaN];
 
-WdirichletConditions = [0, 0, 0, 0];
-WneumannConditions = [NaN, NaN, NaN, NaN];
+WdirichletConditions = [0, NaN, NaN, 0, 0];
+WneumannConditions = [NaN, 0, 0, NaN, NaN];
 
-WneumannTConditions = [NaN, NaN, NaN, NaN];
+WneumannTConditions = [NaN, NaN, NaN, NaN, NaN];
 
 
 %dbound = {{'20'}, {NaN}, {NaN}, {'0'}};
@@ -85,6 +89,7 @@ TensX = sptensor([pCount pCount pCount]);
 TensZ = sptensor([pCount pCount pCount]);
 
 fprintf(1,' done!\n');
+
 
 Tneunan = isnan(TneumannConditions(e(5,:)));
 TneuTnan = isnan(TneumannTConditions(e(5,:)));
@@ -222,7 +227,7 @@ for j = 1 :  size(Tneumann,2)
   GT(Tneumann(1:2,j))=GT(Tneumann(1:2,j)) + ... 
       norm(p(:,Tneumann(1,j)) - ... 
 	   p(:,Tneumann(2,j)))* ...
-      ones(2,1)*TneumannConditions(Tneumann(3,j))/2;
+      alpha*ones(2,1)*TneumannConditions(Tneumann(3,j))/2;
 end
 
 
@@ -230,14 +235,14 @@ for j = 1:size(Uneumann,2)
   Gu(Uneumann(1:2,j))=Gu(Uneumann(1:2,j)) + ... 
       norm(p(:,Uneumann(1,j)) - ... 
            p(:,Uneumann(2,j)))* ...
-      ones(2,1)*UneumannConditions(Uneumann(3,j))/2;
+      nu*ones(2,1)*UneumannConditions(Uneumann(3,j))/2;
 end
 
 for j = 1:size(Wneumann,2)
   Gw(Wneumann(1:2,j))=Gw(Wneumann(1:2,j)) + ... 
       norm(p(:,Wneumann(1,j)) - ... 
            p(:,Wneumann(2,j)))* ...
-      ones(2,1)*WneumannConditions(Wneumann(3,j))/2;
+      nu*ones(2,1)*WneumannConditions(Wneumann(3,j))/2;
 end
 
 for k = 1:size(TneumannT,2)
@@ -360,14 +365,15 @@ while((res > epsilon || iterCount < 3) && iterCount < ITERMAX)
       ttv(ttv(TensZ(uFreeNodes, wFreeNodes, uFreeNodes), uGuess, 3),wGuess,2)) +  ...
       nu*A(uFreeNodes, uFreeNodes)*uGuess + penalty*(divxx(uFreeNodes, uFreeNodes)*uGuess + ...
       divxz(uFreeNodes, wFreeNodes)*wGuess)/rho - ...
-      double(fu(uFreeNodes));
+      double(fu(uFreeNodes)) - Gu(uFreeNodes);
 
   
   resvec(wStart:wEnd,1) = double(ttv(ttv(TensX(wFreeNodes, uFreeNodes,wFreeNodes), wGuess,3),uGuess,2) + ...
       ttv(ttv(TensZ(wFreeNodes, wFreeNodes, wFreeNodes), wGuess,3),wGuess,2)) + ... 
       nu*A(wFreeNodes, wFreeNodes)*wGuess + ...
       penalty*(divzx(wFreeNodes,uFreeNodes)*uGuess + ...
-	       divzz(wFreeNodes,wFreeNodes)*wGuess)/rho + LM(wFreeNodes,TFreeNodes)*TGuess - double(fw(wFreeNodes));
+	       divzz(wFreeNodes,wFreeNodes)*wGuess)/rho +LM(wFreeNodes,TFreeNodes)*TGuess ...
+      - double(fw(wFreeNodes)) - Gw(wFreeNodes);
 
 
 
@@ -375,7 +381,7 @@ while((res > epsilon || iterCount < 3) && iterCount < ITERMAX)
   resvec(TStart:TEnd,1) = double(ttv(ttv(TensX(TFreeNodes, uFreeNodes,TFreeNodes),TGuess,3),uGuess,2)+...
       ttv(ttv(TensZ(TFreeNodes, wFreeNodes, TFreeNodes), TGuess,3), wGuess,2)) + ...
       alpha*((A(TFreeNodes, TFreeNodes)+QT(TFreeNodes,TFreeNodes))*TGuess) ...
-	     -double(fT(TFreeNodes));
+	     -double(fT(TFreeNodes)) - GT(TFreeNodes);
 
   %Calculate Jacobian
 
@@ -479,9 +485,9 @@ pdemesh(p,e,t)
 figure(2)
 
 quiver(p(1,:)', p(2,:)', uu, wu);
-figure(1)
+%figure(1)
 %pdeplot(p,e,t,'xydata',Tu,'mesh',showgrid);
-tricontour(p',t(1:3,:)', Tu, 10)
+%tricontour(p',t(1:3,:)', Tu, 10)
 
 figure(4)
 pdeplot(p,e,t,'xydata',Tu,'mesh',showgrid);
