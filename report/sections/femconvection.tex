@@ -8,15 +8,15 @@ då detta kan ses som en okej approxiation.
 Om ett system är statiskt kan vi sätta alla tidsderivator i ekvationerna
 \eqref{eq:convection:continuity}-\eqref{eq:convection:energy} till noll.
 För att hantera trycket används den tidigare nämnda Boussinesq approximationen
-samt penalty metoden för att göra hastighetsvektorn källfri. Den bas det
-senare kommer att integreras över är inte källfri. Detta då den är bitvis
-slät och består av linjära plan. Penaltymetoden ger tillåtelse att snirkla
-runt detta faktum.
+samt penalty metoden för att göra hastighetsvektorn källfri och uppfylla
+kontinuitetsekvationen. Det finns således inget direkt behov av att räkna ut trycket.
+Vid användning av många sorters elementtyper som inte uppfyller Babuska-Brezzikriteriet
+är detta dessutom nödvändigt.\cite{babuska1973}\cite{segal2011}
 
 Genom penaltymetoden beskrives här trycket som $p$ enligt ekvation
 \eqref{eq:femconvection:penalty}. Här är $p_s$ någon form av idealt statiskt
 tryck som är önskat. Detta tryck följer Boussinesq approximation. Med dessa
-idealiseringar kan differentialekvationerna sättas upp igen. \cite{heinrich88}
+idealiseringar kan differentialekvationerna sättas upp igen. \cite{heinrich88}\cite{taylor79}
 
 \begin{equation}
 \label{eq:femconvection:penalty}
