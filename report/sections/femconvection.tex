@@ -19,8 +19,10 @@ idealiseringar kan differentialekvationerna sättas upp igen. \cite{heinrich88}\
 Som kan ses så leder den godtyckliga penaltyparametern $\lambda$ till att justera trycket
 om hastighetsfältets divergens ej är identiskt noll. I viss litteratur anges 
 det att penaltyparametern skall vara i storleksordningen $10^7$ men att den
-är väldigt applikationsberoende. För små värden leder till att trycket inte elimineras och
-för stora resulterar i ett svårlösligt ekvationssystem med stora stabilitetsproblem.\cite{reddy93}\cite{roy05}\cite{basak04}\cite{segal2011}
+är väldigt applikationsberoende. En för liten vald penaltyparameter leder till att
+trycket inte elimineras. Andra problem uppstår vid en för stor parameter. Ekvationssystemet
+kan bli svårlöst och få stabilitetsproblem när parametern blir
+för stor i jämförelse med de andra delarna i differentialekvationen.\cite{reddy93}\cite{roy05}\cite{basak04}\cite{segal2011}
 
 \begin{equation}
 \label{eq:femconvection:penalty}
@@ -69,7 +71,19 @@ Detta förs in i momentekvationerna vilket ger ekvationerna \eqref{eq:femconvect
 \mathbf{v}\cdot\nabla T = \alpha\Delta T
 \end{equation}
 
-
 \subsubsection{Svag formulering}
 
+En finita elementlösning med Galerkins metod kräver att problemet reduceras till
+ett ekvivalent variationsproblem. Här söks $T\in\Phi$, $u\in\Phi$ och
+$w\in\Phi$ som uppfyller ekvation \eqref{eq:femconvection:variation}. Här
+betecknar brackets skalärprodukt, $\mathbf{L}$ är differentialoperatorn
+som betecknar systemet av differentialekvationer som $\mathbf{L}(T,u,w) = 0$.
+$\Phi$ är rummet av alla testfunktioner $\phi$ som är kontinuerliga i
+definitionsmängden $\Omega$ samt vars derivator är bitvis kontinuerliga på randen
+$/Gamma$. De måste även vara $L^2$ integrabla.
+
+\begin{equation*}
+\label{eq:femconvection:variation}
+\langle \mathbf{L}(T,u,w), \phi \rangle = 0\mbox{,  } \forall \phi \in \Phi
+\end{equation*}
 
