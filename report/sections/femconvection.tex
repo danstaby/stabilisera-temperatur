@@ -3,26 +3,53 @@
 För att lösa Navier-Stokes ekvationer kan lämpligen en datormodell användas.
 Här består denna modell av ett system uppsatt med Galerkins metod.
 I denna lösning så begränsar vi dock oss till att enbart behandla statiska flöden
-då detta kan ses som en okej approxiation.
+vilket genomförs genom att sätta alla tidsderivator till noll.
 
-Om ett system är statiskt kan vi sätta alla tidsderivator i ekvationerna
-\eqref{eq:convection:continuity}-\eqref{eq:convection:energy} till noll.
-För att hantera trycket används den tidigare nämnda Boussinesq approximationen
+För att hantera trycket i \eqref{eq:convection:continuity}-\eqref{eq:convection:energy} används den tidigare nämnda Boussinesq approximation
 samt penalty metoden för att göra hastighetsvektorn källfri och uppfylla
 kontinuitetsekvationen. Det finns således inget direkt behov av att räkna ut trycket.
 Vid användning av många sorters elementtyper som inte uppfyller Babuska-Brezzikriteriet
-är detta dessutom nödvändigt.\cite{babuska1973}\cite{segal2011}
+är detta dessutom nödvändigt då det annars kan bildas oönskade trycknoder. 
+En annan möjlighet är att välja divergensfria element. \cite{babuska1973}\cite{segal2011}
 
 Genom penaltymetoden beskrives här trycket som $p$ enligt ekvation
 \eqref{eq:femconvection:penalty}. Här är $p_s$ någon form av idealt statiskt
 tryck som är önskat. Detta tryck följer Boussinesq approximation. Med dessa
 idealiseringar kan differentialekvationerna sättas upp igen. \cite{heinrich88}\cite{taylor79}
+Som kan ses så leder den godtyckliga penaltyparametern $\lambda$ till att justera trycket
+om hastighetsfältets divergens ej är identiskt noll. I viss litteratur anges 
+det att penaltyparametern skall vara i storleksordningen $10^7$ men att den
+är väldigt applikationsberoende. För små värden leder till att trycket inte elimineras och
+för stora resulterar i ett svårlösligt ekvationssystem med stora stabilitetsproblem.\cite{reddy93}\cite{roy05}\cite{basak04}\cite{segal2011}
 
 \begin{equation}
 \label{eq:femconvection:penalty}
 p = p_s - \lambda\nabla\cdot\mathbf{v}
 \end{equation}
 
+\noindent
+Fortsatt skall trycket deriveras med avseende på de rumsliga variablerna vilket möjliggör
+att eliminera trycket från differentialekvationerna. Dessa deriveringar kan ses i ekvation
+\eqref{eq:femconvection:partx} samt \eqref{eq:femconvection:partz}. Notera att det statiska trycket
+$p_s$ ej beror på $x$ vilket resulterar i att derivatan är noll.
+
+\begin{equation}
+\label{eq:femconvection:partx}
+\frac{\partial p}{\partial x} = \frac{\partial p_s}{\partial x} -
+\frac{\partial}{\partial x} \lambda\nabla\cdot\mathbf{v} = -
+\frac{\partial}{\partial x} \lambda\nabla\cdot\mathbf{v}
+\end{equation}
+
+\begin{equation}
+\label{eq:femconvection:partz}
+\frac{\partial p}{\partial z} = \frac{\partial p_s}{\partial z} -
+\frac{\partial}{\partial z} \lambda\nabla\cdot\mathbf{v} =
+-g\rho_0 - \frac{\partial}{\partial z} \lambda\nabla\cdot\mathbf{v}
+\end{equation}
+
+\noindent
+Detta förs in i momentekvationerna vilket ger ekvationerna \eqref{eq:femconvection:u} -
+\eqref{eq:femconvection:T}. Här är det ekvationssystem som syftar att lösas.
 
 \begin{equation}
 \label{eq:femconvection:u}
@@ -43,6 +70,6 @@ p = p_s - \lambda\nabla\cdot\mathbf{v}
 \end{equation}
 
 
-\subsubsection{Triangulär bas}
-För att använda Galerkins metod måste en bas väljas. En som är populär samt
-enkel att räkna på är linjära triangulära element. 
+\subsubsection{Svag formulering}
+
+
