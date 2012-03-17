@@ -15,6 +15,7 @@ report
 		blackbody
 		convection		
 		femconvection
+		newtonsmethod
 		sunthroughwindows
 		thehouse
 		weather

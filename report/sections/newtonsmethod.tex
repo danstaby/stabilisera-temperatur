@@ -1,0 +1,44 @@
+\subsection{Newton-Raphsons metod}
+
+När ett ekvationssystem är ickelinjärt kan ej exakta metoder som Gausseliminering användas
+för ekvationslösning.
+I dessa fall måste approximativa optimeringsmetoder utnyttjas. En sådan
+metod är Newton-Raphsons metod. Denna bygger på trunkerad Taylorutveckling 
+av en funktion för att linjarisera ett ickelinjört ekvationssystem
+$\mathbf{f}(\mathbf{x}) = 0$
+vilket kan ses i ekvation \eqref{eq:newtonsmethod:taylor}. Här är
+$\mathbf{J}_f(\mathbf{x})$ jacobianen för $\mathbf{f}(\mathbf{x})$. 
+
+\begin{equation}
+\label{eq:newtonsmethod:taylor}
+\mathbf{f}(\mathbf{x} + \Delta\mathbf{x}) \approx \mathbf{f}(\mathbf{x}) +
+\mathbf{J}_f(\mathbf{x})\Delta\mathbf{x}
+\end{equation}
+
+\noindent
+Principen går ut på att algoritmen upprepat gissar nya lösningar där de
+nya lösningarna följer den negativa jacobianen. Till en början är en god initial gissning
+$\mathbf{x}_0$ ett kriterie för att Newton-Raphson skall konvergera. Därefter så beräknas
+funktionsvärdet $\mathbf{f}(\mathbf{x}_0)$ samt jacobianen $\mathbf{J}_f(\mathbf{x}_0)$.
+Dessa används för att beräkna nästa gissning genom att lösa
+\eqref{eq:newtonsmethod:guess} och beräkna nästa $\mathbf{x}$ med
+\eqref{eq:newtonsmethod:nextx}. \cite{heath2002}
+
+\begin{equation}
+\label{eq:newtonsmethod:guess}
+\mathbf{J}_f(\mathbf{x}_n)\Delta\mathbf{x}_n = -\mathbf{f}(\mathbf{x_n})
+\end{equation}
+
+\begin{equation}
+\label{eq:newtonsmethod:nextx}
+\mathbf{x}_{n+1} = \mathbf{x}_n + \Delta\mathbf{x}_n
+\end{equation}
+
+\noindent
+Itereringen bör avbrytas då ett maxantal itereringar har uppnåtts och funktionen
+ej har konvergerat alternativt när felet är tillräckligt litet. En av styrkorna 
+med denna algoritm är dess snabba konvergens ($N^2$) mot enkelrötter. \cite{ympa95}
+En svaghet med Newton-Raphson är att det i många fall ej är möjligt att analytiskt beräkna
+jacobianen. Istället måste andra algoritmer untnyttjas som till exempel finita differensmetoden
+för beräkning av jacobianen. Omvägar som denna bidrar till att lösningsprocessen blir mycket
+mer omständig och processorintensiv. 
