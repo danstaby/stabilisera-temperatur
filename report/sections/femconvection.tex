@@ -14,8 +14,8 @@ En annan möjlighet är att välja divergensfria element. \cite{babuska1973}\cit
 
 Genom penaltymetoden beskrives här trycket som $p$ enligt ekvation
 \eqref{eq:femconvection:penalty}. Här är $p_s$ någon form av idealt statiskt
-tryck som är önskat. Detta tryck följer Boussinesq approximation. Med dessa
-idealiseringar kan differentialekvationerna sättas upp igen. \cite{heinrich88}\cite{taylor79}
+tryck som är önskat. Detta tryck följer Boussinesq approximation.
+\cite{heinrich88}\cite{taylor79}
 Som kan ses så leder den godtyckliga penaltyparametern $\lambda$ till att justera trycket
 om hastighetsfältets divergens ej är identiskt noll. I viss litteratur anges 
 det att penaltyparametern skall vara i storleksordningen $10^7$ men att den
@@ -32,7 +32,8 @@ p = p_s - \lambda\nabla\cdot\mathbf{v}
 \noindent
 Fortsatt skall trycket deriveras med avseende på de rumsliga variablerna vilket möjliggör
 att eliminera trycket från differentialekvationerna. Dessa deriveringar kan ses i ekvation
-\eqref{eq:femconvection:partx} samt \eqref{eq:femconvection:partz}. Notera att det statiska trycket
+\eqref{eq:femconvection:partx} samt \eqref{eq:femconvection:partz}.
+Notera att det statiska trycket
 $p_s$ ej beror på $x$ vilket resulterar i att derivatan är noll.
 
 \begin{equation}
@@ -51,40 +52,114 @@ $p_s$ ej beror på $x$ vilket resulterar i att derivatan är noll.
 
 \noindent
 Detta förs in i momentekvationerna vilket ger ekvationerna \eqref{eq:femconvection:u} -
-\eqref{eq:femconvection:T}. Här är det ekvationssystem som syftar att lösas.
+\eqref{eq:femconvection:T}. Vilket är det ekvationssystem $\mathbf{L}(u,w,T) = 0$
+som syftas att bli evaluerat.
 
-\begin{equation}
+\begin{align}
 \label{eq:femconvection:u}
-\mathbf{v}\cdot\nabla u =
-\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v} +
-\nu\Delta u
-\end{equation}
-
-\begin{equation}
+\mathbf{v}\cdot\nabla u -
+\frac{\lambda}{\rho_0}\frac{\partial}{\partial x}\nabla\cdot\mathbf{v} -\nu\Delta u &= 0
+\\
 \label{eq:femconvection:w}
-\mathbf{v}\cdot\nabla w =
-\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v} + \nu\Delta w +g\beta(T-T_0)
-\end{equation}
-
-\begin{equation}
+\mathbf{v}\cdot\nabla w -
+\frac{\lambda}{\rho_0}\frac{\partial}{\partial z}\nabla\cdot\mathbf{v}
+- \nu\Delta w - g\beta(T-T_0) &= 0 \\ 
 \label{eq:femconvection:T}
-\mathbf{v}\cdot\nabla T = \alpha\Delta T
-\end{equation}
+\mathbf{v}\cdot\nabla T - \alpha\Delta T &= 0
+\end{align}
 
 \subsubsection{Svag formulering}
 
 En finita elementlösning med Galerkins metod kräver att problemet reduceras till
 ett ekvivalent variationsproblem. 
 Här är $\mathbf{L}$ är differentialoperatorn
-som betecknar systemet av differentialekvationer som $\mathbf{L}(T,u,w) = 0$.
-$\Phi$ är rummet av alla testfunktioner$\phi$ som är kontinuerliga i
+som betecknar systemet av differentialekvationer \eqref{eq:femconvection:u}-
+\eqref{eq:femconvection:T} som $\mathbf{L}(T,u,w) = 0$.
+$\Phi$ är rummet av alla testfunktioner $\phi$ som är kontinuerliga i
 definitionsmängden $\Omega$ samt vars derivator är bitvis kontinuerliga på randen
-$\Gamma$. De måste ävenvara $L^2$ integrabla.
+$\Gamma$. Testfunktionerna $\phi \in \Phi$ måste även vara $L^2$ integrabla.
 Variationsproblemet blir då: Sök $T\in\Phi$, $u\in\Phi$ och
-$w\in\Phi$ som uppfyller ekvation \eqref{eq:femconvection:variation}. 
+$w\in\Phi$ som uppfyller ekvation \eqref{eq:femconvection:variation}. Det är tydligt
+att alla $(u,w,T)$ som uppfyller $\mathbf{L}(u,w,T) = 0$ är ortogonala mot alla
+$L^2$ integrabla testfunktioner ty integranden kommer då alltid vara identiskt noll.
 
 \begin{equation}
 \label{eq:femconvection:variation}
 \int_\Omega \mathbf{L}(T,u,w) \phi d\Omega = 0\mbox{,  } \forall \phi \in \Phi
 \end{equation}
 
+\noindent
+Då differentialekvationerna innehåller andra ordningens deriveringsoperatorer i form av
+partialderiveringsoperatorn samt divergensoperatorn så behövs det lite analys.
+Divergensteoremet i två dimensioner \eqref{eq:femconvectiongausstheorem}
+med $\mathbf{A} = (uw, 0)$ eller $\mathbf{A} = (0, uw)$ ger då ekvation
+\eqref{eq:femconvection:partint}. Slutligen summeras uttrycket över alla
+$k$ för att få \eqref{eq:femconvection:green}. Här är $w$ utbytt mot $w_i$ med
+påståendet att $\mathbf{w} = (w_1, w_2) = \nabla v$. \cite{johnson2009}
+
+\begin{equation}
+\label{eq:femconvectiongausstheorem}
+\int_\Omega \nabla\cdot \mathbf{A} d\Omega = \int_\Gamma \mathbf{A}\cdot\mathbf{n} d\Gamma
+\end{equation} 
+
+\begin{equation}
+\label{eq:femconvection:partint}
+\int_\Omega w\frac{\partial u}{\partial x_k} d\Omega +
+\int_\Omega u\frac{\partial w}{\partial x_k} d\Omega =
+\int_\Gamma uwn_k d\Gamma\mbox{,   }k=1,2
+\end{equation}
+
+\begin{equation}
+\label{eq:femconvection:green}
+\int_\Omega u\Delta v d\Omega =
+\int_\Gamma u\nabla v\cdot\mathbf{n}d\Gamma-\int_\Omega \nabla v\cdot\nabla u d\Omega
+\end{equation}
+
+\noindent
+Med hjälp av ovanstående uttryck kan nu differentialekvationerna föras in i
+\eqref{eq:femconvection:variation} på ett meningsfullt sätt. Detta är genomfört i 
+ekvationerna \eqref{eq:femconvection:weaku}-\eqref{eq:femconvection:weakT}.
+
+\begin{align}
+\int_\Omega \left(\phi\mathbf{v}\cdot\nabla u + 
+\frac{\partial \phi}{\partial x}\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}
++\nu\nabla\phi\nabla u\right)d\Omega = \nonumber \\
+\int_\Gamma\left( \phi\nabla u\cdot\mathbf{n} + 
+n_x\frac{\lambda}{\rho_0}\phi\nabla\cdot\mathbf{v}\right)d\Gamma
+\label{eq:femconvection:weaku}
+\end{align}
+\begin{align}
+\int_\Omega\left(\phi\mathbf{v}\cdot\nabla w
++ \frac{\partial \phi}{\partial z} \frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}
++ \nu\nabla\phi\cdot\nabla w + \phi\beta(T_0-T)\right)d\Omega
+= \nonumber \\
+\int_\Gamma\left(\phi\nabla w\cdot\mathbf{n} +
+n_z\phi\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}\right)d\Gamma
+\label{eq:femconvection:weakw}
+\end{align}
+\begin{equation}
+\int_\Omega\left(\phi\mathbf{v}\cdot\nabla T + \alpha\nabla\phi\nabla T\right)d\Omega
+= \int_\Gamma \phi\nabla T\cdot\mathbf{n}d\Gamma
+\label{eq:femconvection:weakT}
+\end{equation}
+
+\subsubsection{Galerkinformulering}
+
+Ansätt en lösning på formen \eqref{eq:femconvection:ansatz}.
+Då $\phi_k \in \Phi$, $k=1,2,..,N$ så uppfylls även att $u,w$ och $T$ tillhör
+$\Phi$ då dessa är en linjärkombination av basen $\phi_k$. Om konstanterna
+är dimensionerade så att dessa uppfyller $\mathbf{L}(u,w,T) = 0$ är detta
+en lösning till variationsproblemet. \cite{johnson2009}\cite{heath2002}\cite{lewis04}
+
+\begin{align}
+u(x,z) &= \sum^N_{k=1}u_k\phi_k(x,z)
+\nonumber \\
+w(x,z) &= \sum^N_{k=1}w_k\phi_k(x,z)
+\nonumber \\
+T(x,z) &= \sum^N_{k=1}T_k\phi_k(x,z)
+\label{eq:femconvection:ansatz}
+\end{align}
+
+\noindent
+Ansatsen kan nu sättas in i den svaga formuleringen.
+Alla förekomster av $\phi$ byts ut mot $\phi_i$ med $i=1,2,..,N$.
