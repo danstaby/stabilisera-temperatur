@@ -36,19 +36,17 @@ att eliminera trycket från differentialekvationerna. Dessa deriveringar kan ses
 Notera att det statiska trycket
 $p_s$ ej beror på $x$ vilket resulterar i att derivatan är noll.
 
-\begin{equation}
+\begin{align}
 \label{eq:femconvection:partx}
-\frac{\partial p}{\partial x} = \frac{\partial p_s}{\partial x} -
+\frac{\partial p}{\partial x} &= \frac{\partial p_s}{\partial x} -
 \frac{\partial}{\partial x} \lambda\nabla\cdot\mathbf{v} = -
 \frac{\partial}{\partial x} \lambda\nabla\cdot\mathbf{v}
-\end{equation}
-
-\begin{equation}
+\\
 \label{eq:femconvection:partz}
-\frac{\partial p}{\partial z} = \frac{\partial p_s}{\partial z} -
+\frac{\partial p}{\partial z} &= \frac{\partial p_s}{\partial z} -
 \frac{\partial}{\partial z} \lambda\nabla\cdot\mathbf{v} =
 -g\rho_0 - \frac{\partial}{\partial z} \lambda\nabla\cdot\mathbf{v}
-\end{equation}
+\end{align}
 
 \noindent
 Detta förs in i momentekvationerna vilket ger ekvationerna \eqref{eq:femconvection:u} -
