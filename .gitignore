@@ -23,3 +23,7 @@ report.pdf
 #Java compiled files
 
 *.class
+
+#Mac OS X folder settings
+
+.DS_Store
