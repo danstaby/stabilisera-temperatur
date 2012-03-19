@@ -1,1 +1,43 @@
 \subsubsection{Solstrålning genom fönster}
+
+För att beräkna den totala effekt solstrålning tillför byggnaden behövs fönstrenas vinkelberoende g-värden (presenterat i avsnitt \ref{gvalue}). 
+
+För att beräkna g-värdet ur \eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
+
+En metod för att räkna ut solens position presenteras i \cite{walraven78} och en Matlabfunktion baserad på samma artikel kan ses i appendix. % Hänvisa till kod
+
+Om azimuthala och altitudinella vinklarna ($\beta$ respektive $\alpha$) relativt ett väderstreck respektive horisonten tillhandahålls beräknas infallsvinkeln mot glaset, $\theta$, på följande vis:
+
+\begin{equation} 
+\theta = \frac{360}{2\pi}\arctan{\left( \sqrt{\tan^2{\left(\alpha\right)}
++ \tan^2{\left(\beta - \gamma \right)}} \right)}
+\end{equation}
+
+där $\gamma$ är vinkeln mellan fönstrets normal och väderstrecket mot vilken azimuthala vinkeln anges. Notera att alla vinklar utom $\theta$ anges i radianer.
+
+Med dessa samband tillgängliga kan ett Matlabprogram för beräkning av effektflödet på grund av solstrålning genom fönster skapas, och ett exempel kan ses i appendix. % Hänvisa till appendix.
+
+% Behöver: longitud, latitud, vinkeln relativt väderstreck, fönsters area, g-värde
+
+\subsubsection{Inverkan av skuggor, gardiner och dylikt}
+
+% Beräkna för vilka vinklar skuggor faller över fönstren
+
+% Gardiner, persienner och interiör förändrar situationen, kolla källan nedan
+\begin{comment}
+Simmler & Binder
+Experimental and numerical determination of the total solar energy transmittance of glazing with venetian blind shading
+\end{comment}
+
+% Be Särnöe om specifikationer:
+% - I vilket väderstreck är normalen riktad?
+% - Vilket g-värde har fönstren?
+
+\begin{comment}
+I diskussion:
+- Hur kan man koppla detta till värmesystemet?
+	- Registrera intensitet, tid på dygnet och datum
+	- Beräkna ungefärlig tillförd effekt
+	- Kompensera genom att säga till värmesystemet att minska/stänga inflödet
+- Blir det lättare att helt enkelt mäta temperaturen i rummet och gå utifrån det? Vad är mer kostnadseffektivt?
+\end{comment}
