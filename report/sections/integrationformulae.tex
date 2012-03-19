@@ -1,2 +1,45 @@
 \section{Formler för linjära triangulära element}
 
+Vid skapande av stelhetsmatriser och lastvektorer behövs ett antal integraler
+evaluras. Detta appendix syftar till att vara en formelsamling för några
+nödvändiga beräkningar för linjära triangulära element. I ekvation
+\eqref{eq:formula:area} beskrivs arean av en triangel. $(x,y)$ betecknar koordinaterna
+av hörnen $(i,j,k)$. Ekvation \eqref{eq:formula:volume} beskriver integralen för ett
+antal basfunktioner $\phi$ över en triangel $\Omega$. Liknande formulering för två dimensioner
+återfinns i ekvation \eqref{eq:formula:rand}. I denna betecknas linjen mellan kanterna
+$i$ och $j$ som $\Gamma$. \cite{lewis04}
+
+Slutligen förekommer det även derivator av basfunktionerna. Alla derivator i en triangel
+kan med lätthet beräknas genom att använda en determinant enligt ekvation
+\eqref{eq:formula:derivative}. Här löper $l$ över $l=i,j,k$ och $\mathbf{r} = (x,y)$ som är
+de rumsliga koordinaterna. \cite{fem50}
+
+\begin{align}
+\label{eq:formula:area}
+A &=
+\frac{1}{2}
+\begin{vmatrix}
+1 & 1 & 1 \\
+x_i & x_j & x_k \\
+y_i & y_j & y_K
+\end{vmatrix} \\
+\label{eq:formula:volume}
+\int_\Omega \phi^a_i\phi^b_j\phi^c_j d\Omega &=
+\frac{a!b!c!2A}{(a+b+c+2)!} \\
+\label{eq:formula:rand}
+\int_\Gamma \phi^a_i \phi^b_j d\Gamma &=
+\frac{a!b!l}{(a+b+1)!} \\
+\label{eq:formula:derivative}
+\frac{\partial \phi_l}{\partial \mathbf{r} } &=
+\begin{pmatrix}
+1 & 1 & 1 \\
+x_i & x_j & x_k \\
+y_i & y_j & y_k  
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+0 & 0 \\
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\end{align}
+
