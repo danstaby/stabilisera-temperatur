@@ -206,6 +206,31 @@ detta galerkinformuleringen
 \int_\Gamma \alpha\phi_i\nabla w \cdot \mathbf{n} d\Gamma
 \end{align}
 
+\subsubsection{Spatial diskretisering}
 
+Lösningen av de galerkinformulerade ekvationerna kräver att en basfunktion väljs.
+Ett i populärt val i litteraturen är linjära triangulära element. Området den
+partiella differentialekvationen skall lösas i delas upp i triangulära element.
+Trianglarnas hörn blir då noder. Elementen uppför sig genom att i en basfunktion
+är funktionen ett för noden som har samma nummer som basfunktionen. Denna funktion
+antar sedan värdet noll på alla motstående kanter på alla trianglar som innehar noden
+med samma nummer som basfunktionen. Mellan dessa positioner bildar basfunktionen
+linjära plan på det sätt att basfunktionen blir kontinuerlig med en bitvis kontinuerlig
+derivata.
+Utanför dessa trianglar är basfunktionen noll. \cite{johnson2009} 
 
+\subsubsection{Påtvingangde av randvillkor}
 
+Två typer av randvillkor är relevanta för detta arbete. Det ena är dirichletvillkor som
+innebär att sökt funktion antar ett visst värde på randen. Det andra är neumannvillkor 
+vilket sätter derivatan i randnormalriktningen till ett värde. Tillvägagångssättet
+för påtvingande av dessa villkor i galerkins metod är lite olika. Dirichletvillkor
+påtvångas lättast genom att noderna som innehar denna typ av villkor sätts till ett värde
+och att ekvationerna uppdateras med detta värde. Neumannvillkor påtvingas istället
+genom att värdet på dessa rander sätts in i integralerna som går över randen. Då ekvationerna
+uppdateras med dessa villkor låts indexet $i$ i ekvationerna
+\eqref{eq:femconvection:galerkinu}-\eqref{eq:femconvection:galerkinT} löpa över alla fria noder.
+\footnote{Noder vars värde inte är kända tack vare dirichletvillkor} Nu finns det
+lika många ekvationer som fria noder och ekvationssystemet kan lösas. Problem
+kan uppkomma om för få randvillkor har införts. Detta kan innebära att ekvationssystemet
+får en trivial lösning.
