@@ -1,0 +1,19 @@
+Denna applikation är till för att lösa konduktionkonvektionsproblem
+med hjälp av finita elementmetoden.
+
+För att sätta upp ett problem för en viss geometri skall den nya
+geometrin föras in i scriptet createMesh.m.
+Detta script skall sedan köras enligt
+
+createMesh('mingeometri.mat',Iterationer)
+där iterationer anger hur många frihetsgrader systemet skall bestå av.
+Iterationer = 2 motsvarar ungefär 3000 frihetsgrader och det tar en halv
+minut att skapa geometrin.
+
+När en matfil sedan existerar kan femsolver.m köras.
+Denna fil innehåller randvillkor och problemställning.
+Scriptet exikveras genom
+
+femsolver('mingeometri.mat', Tref)
+
+där Tref är utomhustemperaturen i celsius.
