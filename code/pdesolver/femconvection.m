@@ -24,21 +24,34 @@ g = 9.81;
 beta = 3.67e-3; %### NOTE #### T-dependent. Fix later
 alpha =1.9e-5; %Pressure and water dependant
 rho = 1.2920; %Pressure and water dependant
-nu = 13; %Temperature and pressure dependant
-penalty = 1e6; %Which penalty?
-Tref = 0;
+nu = 1.3e-5;%1.3e-5;%1.3e-5; %Temperature and pressure dependant
+penalty = 1e8; %Which penalty?
+sigma = 5.670373e-8;
+kelvin = 273.15;
+Tref = -0+kelvin;
+T0 = kelvin+3.5;
+TL = -20+kelvin;
+Tin = 20 + kelvin;
+Uvalue = 1.1858;
+bb = sigma*(0.8*TL^4 +  0.2*Tref^4 + 0.8*3*T0^4)
+bbt = -0.8*4*sigma*T0^3
 
-TneumannConditions = [NaN, h*Tref, h*Tref, 0, 0.8*20];
-TneumannTConditions = [NaN, -h, NaN, -h, -0.8];
+%TneumannConditions = [NaN, -h*Tref, -h*Tref, 0, -0.8*(20+kelvin)];% + 0.1*sigma*(4*TL^4+ Tref^4+5*T0^4)];
+%TneumannTConditions = [NaN, h, h, NaN, 0.8]; % - sigma*T0^3];
+
+TneumannConditions = 0.6*[NaN, h*Tref, h*Tref, 0, Uvalue*Tin + bb];
+TneumannTConditions = 0.6*[NaN,-h, -h, NaN, -Uvalue + bbt];
+
+%TNeummanT4Conditions = [NaN, -sigma, NaN, NaN, NaN];
 
 TdirichletConditions = [Tref, NaN, NaN, NaN, NaN];
 
-UdirichletConditions = [0, NaN, NaN, 0, 0];
-UneumannConditions = [NaN, 0, 0, NaN, NaN];
+UdirichletConditions = [0, 0, 0, 0, 0];
+UneumannConditions = [NaN, NaN, NaN, NaN, NaN];
 UneumannTConditions = [NaN, NaN, NaN, NaN, NaN];
 
-WdirichletConditions = [0, NaN, NaN, 0, 0];
-WneumannConditions = [NaN, 0, 0, NaN, NaN];
+WdirichletConditions = [0, 0, 0, 0, 0];
+WneumannConditions = [NaN, NaN, NaN, NaN, NaN];
 
 WneumannTConditions = [NaN, NaN, NaN, NaN, NaN];
 
@@ -51,8 +64,11 @@ gd = [2,max(size(border)), border(1,:), border(2,:)]';
 dl = decsg(gd);
 [p, e, t] = initmesh(dl);
 for n = 1:refinements
+  p = jigglemesh(p,e,t, 'Opt', 'off', 'Iter', 50);
   [p, e, t] = refinemesh(dl, p, e, t);
 end
+
+p = jigglemesh(p,e,t, 'Opt', 'off', 'Iter', 50);
 
 %bMatrix = createBoundaryMatrix(dims,max(size(border)), dbound, nbound)
 %u = assempde(bMatrix, p, e, t, 1, 0, 0);
@@ -144,8 +160,6 @@ fprintf(1, 'Assembling stiffness tensors...');
 Tx = sptensor(3,3,3);
 Tz = sptensor(3,3,3);
 
-
-
 voltemp = [2, 1, 1; 1,2,1;1,1,2]/12;
 
 for k = 1:tCount
@@ -202,10 +216,8 @@ fprintf(1, 'Assembling load vector...');
 
 for k = 1:tCount
   
-  fw(t(1:3,k),1) = fw(t(1:3,k),1) + -Tref*area(k)/3;
+  fw(t(1:3,k),1) = fw(t(1:3,k),1) - g*beta*Tref*area(k)/3;
 end
-
-fw = g*beta*fw;
 
 fprintf(1, ' done!\n');
 
@@ -224,7 +236,7 @@ fprintf(1, 'Enforcing neumann conditions...')
 
 
 for j = 1 :  size(Tneumann,2)
-  GT(Tneumann(1:2,j))=GT(Tneumann(1:2,j)) + ... 
+  GT(Tneumann(1:2,j))=GT(Tneumann(1:2,j)) - ... 
       norm(p(:,Tneumann(1,j)) - ... 
 	   p(:,Tneumann(2,j)))* ...
       alpha*ones(2,1)*TneumannConditions(Tneumann(3,j))/2;
@@ -232,14 +244,14 @@ end
 
 
 for j = 1:size(Uneumann,2)
-  Gu(Uneumann(1:2,j))=Gu(Uneumann(1:2,j)) + ... 
+  Gu(Uneumann(1:2,j))=Gu(Uneumann(1:2,j)) - ... 
       norm(p(:,Uneumann(1,j)) - ... 
            p(:,Uneumann(2,j)))* ...
       nu*ones(2,1)*UneumannConditions(Uneumann(3,j))/2;
 end
 
 for j = 1:size(Wneumann,2)
-  Gw(Wneumann(1:2,j))=Gw(Wneumann(1:2,j)) + ... 
+  Gw(Wneumann(1:2,j))=Gw(Wneumann(1:2,j)) - ... 
       norm(p(:,Wneumann(1,j)) - ... 
            p(:,Wneumann(2,j)))* ...
       nu*ones(2,1)*WneumannConditions(Wneumann(3,j))/2;
@@ -249,8 +261,9 @@ for k = 1:size(TneumannT,2)
   L = norm(p(:,TneumannT(1,k)) - p(:,TneumannT(2,k)));
   
   QT(TneumannT([1 2],k), TneumannT([1 2],k)) = QT(TneumannT([1 2],k),TneumannT([1 2],k)) ...
-      - TneumannTConditions(TneumannT(3,k))*L*[2,1;1,2]/6;
+      - alpha*TneumannTConditions(TneumannT(3,k))*L*[2,1;1,2]/6;
 end
+
 
 %QT
 
@@ -261,6 +274,21 @@ end
 %vector to zero on the border. 
 
 fprintf(1, ' done!\n')
+
+%fprintf(1, 'Assembling neumann tensor...');
+
+%for i = 1:size(TneumannT4,2)
+%  L = norm(p(:,TneumannT4(1,k)) - p(:,TneumannT4(2,k)));
+%  el = TneumannT4(1:2,i);
+  
+%  for j = 1:5
+%    val(j) = factorial(j)*factorial(5-j)*L/720;
+    
+%  end
+%end
+
+
+%fprintf(1, ' done!\n');
 
 %Move dirichlet nodes to RHS
 fprintf(1, 'Enforcing dirichlet conditions...')
@@ -292,7 +320,7 @@ uu(int(ind)) = 0.5*(UdirichletConditions(Udirichlet(3,ca(ind))) + ...
 
 ind = find(Wdirichlet(3,ca) ~= Wdirichlet(3,cb));
 
-Wu(int(ind)) = 0.5*(WdirichletConditions(Wdirichlet(3,ca(ind))) + ...
+wu(int(ind)) = 0.5*(WdirichletConditions(Wdirichlet(3,ca(ind))) + ...
                    WdirichletConditions(Wdirichlet(3,cb(ind))));
 
 
@@ -306,7 +334,7 @@ fw = squeeze(sptensor(fw));
 
 
 
-fT = fT - squeeze(sptensor(alpha*(A+QT)*Tu)) - ttv(ttv(TensX, Tu,3),uu,2) - ttv(ttv(TensZ, Tu, 3),wu,2);
+fT = fT - squeeze(sptensor((alpha*A+QT)*Tu)) - ttv(ttv(TensX, Tu,3),uu,2) - ttv(ttv(TensZ, Tu, 3),wu,2);
 fu = fu - ttv(ttv(TensX, uu,3),uu,2) - ttv(ttv(TensZ, uu, 3),wu,2) - ...
      squeeze(sptensor(nu*A*uu + penalty*(divxx*uu + divxz*wu)/rho));
 fw = fw - ttv(ttv(TensX, wu,3),uu,2) - ttv(ttv(TensZ, wu, 3),wu,2) - ...
@@ -320,7 +348,7 @@ fprintf(1, ' done!\n');
 fprintf(1, 'Preparing for solution...');
 
 ITERMAX = 40;
-epsilon = 6e-5;
+epsilon = 1e-6;
 
 TFreeNodes = setdiff(1:pCount,unique(Tdirichlet));
 uFreeNodes = setdiff(1:pCount, unique(Udirichlet));
@@ -365,7 +393,7 @@ while((res > epsilon || iterCount < 3) && iterCount < ITERMAX)
       ttv(ttv(TensZ(uFreeNodes, wFreeNodes, uFreeNodes), uGuess, 3),wGuess,2)) +  ...
       nu*A(uFreeNodes, uFreeNodes)*uGuess + penalty*(divxx(uFreeNodes, uFreeNodes)*uGuess + ...
       divxz(uFreeNodes, wFreeNodes)*wGuess)/rho - ...
-      double(fu(uFreeNodes)) - Gu(uFreeNodes);
+      double(fu(uFreeNodes)) + Gu(uFreeNodes);
 
   
   resvec(wStart:wEnd,1) = double(ttv(ttv(TensX(wFreeNodes, uFreeNodes,wFreeNodes), wGuess,3),uGuess,2) + ...
@@ -373,15 +401,13 @@ while((res > epsilon || iterCount < 3) && iterCount < ITERMAX)
       nu*A(wFreeNodes, wFreeNodes)*wGuess + ...
       penalty*(divzx(wFreeNodes,uFreeNodes)*uGuess + ...
 	       divzz(wFreeNodes,wFreeNodes)*wGuess)/rho +LM(wFreeNodes,TFreeNodes)*TGuess ...
-      - double(fw(wFreeNodes)) - Gw(wFreeNodes);
-
-
+      - double(fw(wFreeNodes)) + Gw(wFreeNodes);
 
 						
   resvec(TStart:TEnd,1) = double(ttv(ttv(TensX(TFreeNodes, uFreeNodes,TFreeNodes),TGuess,3),uGuess,2)+...
       ttv(ttv(TensZ(TFreeNodes, wFreeNodes, TFreeNodes), TGuess,3), wGuess,2)) + ...
-      alpha*((A(TFreeNodes, TFreeNodes)+QT(TFreeNodes,TFreeNodes))*TGuess) ...
-	     -double(fT(TFreeNodes)) - GT(TFreeNodes);
+      (alpha*A(TFreeNodes, TFreeNodes)+QT(TFreeNodes,TFreeNodes))*TGuess ...
+	     -double(fT(TFreeNodes)) + GT(TFreeNodes);
 
   %Calculate Jacobian
 
@@ -412,14 +438,12 @@ while((res > epsilon || iterCount < 3) && iterCount < ITERMAX)
 
   Jacobian(TStart:TEnd,TStart:TEnd) = double(ttv(TensX(TFreeNodes,uFreeNodes,TFreeNodes),uGuess,2)...
 				    + ttv(TensZ(TFreeNodes,wFreeNodes,TFreeNodes),wGuess,2)) ...
-                                    + alpha*(A(TFreeNodes,TFreeNodes)+QT(TFreeNodes, TFreeNodes));
+                                    + alpha*A(TFreeNodes,TFreeNodes)+QT(TFreeNodes, TFreeNodes);
 
   Jacobian(TStart:TEnd,uStart:uEnd) = double(ttv(TensX(TFreeNodes,uFreeNodes, uFreeNodes),uGuess,3));
 
   Jacobian(TStart:TEnd,wStart:wEnd) = double(ttv(TensZ(TFreeNodes,wFreeNodes,wFreeNodes),wGuess,3));
 
-  %Note the factor 2 in the above expressions. That factor deals
-  %with the square terms in the LHS of the equation
 
   %Solve for dx
     
@@ -490,4 +514,38 @@ quiver(p(1,:)', p(2,:)', uu, wu);
 %tricontour(p',t(1:3,:)', Tu, 10)
 
 figure(4)
-pdeplot(p,e,t,'xydata',Tu,'mesh',showgrid);
+pdeplot(p,e,t,'xydata',Tu-kelvin,'mesh',showgrid);
+
+
+edges = find(~(e(5,:)-5));
+meantemp = mean(Tu(unique([e(1,edges) e(2,edges)])))-kelvin
+maxnorm = 0;
+speed = zeros(size(uu,1),1);
+for i = 1:size(uu,1)
+  speed(i) = norm([uu(i) wu(i)]);
+end
+
+max(speed)
+
+
+
+
+fprintf(1, 'Calculating pressure...');
+
+divP = sparse(pCount,1);
+
+PCount = sparse(pCount,1);
+
+for j = 1:tCount
+  PCount(t(1:3,j),1) = PCount(t(1:3,j),1) + 1;
+  divP(t(1:3,j),1) = divP(t(1:3,j),1) + basedx(t(1:3,j),j).*uu(t(1:3,k),1) ...
+      + basedz(t(1:3,j),j).*wu(t(1:3,k),1);
+end
+
+divP = divP./PCount;
+
+figure(5)
+pdeplot(p,e,t, 'xydata', divP, 'mesh', showgrid)
+
+
+fprintf(1, ' done!\n');
