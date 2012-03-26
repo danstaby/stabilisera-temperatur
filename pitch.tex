@@ -1,0 +1,94 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[swedish]{babel}
+\usepackage{amsmath}
+\usepackage{ae}
+\usepackage{units}
+\usepackage{icomma}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{bbm}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{subfig}
+\usepackage{marvosym}
+\usepackage{eso-pic}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{cite}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{calc}
+\usepackage{minibox}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{multirow}
+
+\begin{document}
+
+\addtolength{\parindent}{-0.6 cm}
+\pagenumbering{gobble}
+\pagestyle{fancy}
+\lhead{\sc\footnotesize Pitch till CTK Bachelor's Challenge}
+\rhead{\sc\footnotesize \today}
+\mbox{}
+\vspace{4mm}
+
+\begin{center}
+\textcolor{ForestGreen}{\textbf{\Huge För ett behagligt och grönt boende}}
+\end{center}
+
+\mbox{}
+\vspace{4mm}
+
+\setlength{\columnsep}{5mm}
+%\setlength{\columnseprule}{0.5mm}
+\begin{multicols}{2}
+\addtolength{\parskip}{1.5ex}
+\linespread{1.1}
+\normalsize
+
+% Ingress
+\textbf{Vi genomför en undersökning av hur vädret kan påverka energiflöden genom en fastighet. Syftet är att minska energikonsumtionen och i förlängningen bevara miljön. Att detta också leder till ett bättre inomhusklimat är en positiv bieffekt i vår strävan att hushålla med våra ändliga resurser.}
+
+\begin{comment}
+\textbf{I dagens samhälle blir kontrollen över vår energikonsumtion allt viktigare, en naturlig följd av både miljömedvetenhet och skenande elpriser. En stor del av våra bostäders energianvändning går åt till uppvärmning, vilket föranleder frågeställningen: kan man minska denna förbrukning genom att ta hänsyn till hela spektrumet av väderparametrar?}
+\end{comment}
+
+En av dagens stora utmaningar är att drastiskt minska vår påverkan på miljö och klimat utan att försämra människors levnadsstandard. Bland de stora energibovarna återfinns uppvärmningen av äldre fastigheter som inte byggdes med tanke på rådande energipriser eller med modern isolerteknik.
+
+Vår uppdragsgivare håller för närvarande på att renovera värme- och ventilationsanläggningen i ett flerbostadshus i Göteborg, med siktet inställt på energibesparingar och behagligare inomhusklimat. I dagsläget styrs radiatorernas  temperatur endast av den momentana utomhustemperaturen i en referenspunkt på husets norrsida. Eftersom värmeförluster genom väggar och tak även beror på parametrar såsom solintensitet, luftfuktighet och vindhastighet är detta system alltför simpelt för att ge någon större noggrannhet. Detta orsakar stora fluktuationer i inomhustemperaturen vilket de boende inte uppskattar.
+
+% Något om tidsfördröjning?
+Målet med detta projekt är att utarbeta förslag till ett system som förutser energibehovet i byggnaden baserat på den sammanvägda effekten av olika väderparametrar och att undersöka hur mycket energi som kan sparas vid implementation av en sådan metod. Detta för att fastigheten i högre grad skall följa naturens variationer. 
+\renewcommand{\arraystretch}{1.2}
+\noindent
+\resizebox{8cm}{!} {
+\begin{tabular}{l r}
+\hline
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} \textbf{Projektnamn:}}\\[3pt]
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} \textit{Väder\!parametrars inverkan på}}\\
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} \textit{energi\!f\,örluster i en fastighe\!t -}}\\
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} \textit{en s\!tu\!die av värme\!fl\,öden}}\\
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} \textbf{Gruppmedlemmar:}} \\[3pt]
+\multicolumn{1}{|l}{\cellcolor{YellowGreen} Erik Ahlqvist (E)} & \multicolumn{1}{r|}{\cellcolor{YellowGreen} Ylva Dahl (F)}\\
+\multicolumn{1}{|l}{\cellcolor{YellowGreen} Mats Lindström (F)} & \multicolumn{1}{r|}{\cellcolor{YellowGreen} Dan Ståby (F)}\\
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} Institutionen för Teknisk Fysik} \\
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} \textbf{Kategori:}} \\[3pt]
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} Green Initiative \&}\\
+\multicolumn{2}{|c|}{\cellcolor{YellowGreen} Sustainable Development}\\
+\hline
+& \\
+\end{tabular}
+}
+
+Detta tillvägagångssätt kommer även jämföras med andra tekniska och byggnadsmässiga lösningar i syfte att finna de metoder som lättast, billigast och grönast kan implementeras för att spara än mer energi i uppvärmningsprocessen.
+
+För lösning av problemet används ett flertal metoder. Vår repertoar består exempelvis av simuleringar med finita elementmetoden (FEM), analytiska beräkningar av differentialekvationer och litteraturstudier av tidigare forskning.
+
+Resultatet kommer kunna generaliseras för framtida användning i andra byggnader. Särskilt givande blir systemet för äldre fastigheter som inte byggdes med miljöaspekten i åtanke och idag slösar mängder av energi. Med vädret i åtanke kan ett behagligare inomhusklimat och en lägre energikonsmumtion åtstadkommas. Genom detta bidrar vi till utveckligen för ett hållbart samhälle.
+
+\end{multicols}
+\end{document}

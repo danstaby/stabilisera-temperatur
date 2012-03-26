@@ -30,6 +30,7 @@ BoundaryTemperature = [20, 0];
 
 HeatLoss = [];
 T = [-30:0.1:30];
+
 for currentTemp =-30:0.1:30
   
   BoundaryTemperature(2) = currentTemp;
@@ -46,9 +47,12 @@ for currentTemp =-30:0.1:30
 end
 
 plot(T, HeatLoss(:,4), 'k');
-
 xlabel('Temperature outside in celsius')
 ylabel('Heat loss (W)')
+
+figure(2)
+plot(T,HeatLoss(:,2)/OtherArea,'k')
+
 
 disp(['Loss from the wall adjacant to the bay windows: '...
      num2str(100*HeatLoss(1,3)/HeatLoss(1,4)) '%']);

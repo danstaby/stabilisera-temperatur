@@ -20,6 +20,8 @@ report
 		thehouse
 		weather
 			weatherstation
+		freerunningtemperature
+		equivalenttemperature
 	
 	method
 		methodliterature
