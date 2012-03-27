@@ -1,4 +1,4 @@
-function ret = femsolver(fileName, Tout)
+function [p, t, Tu] = femsolver(fileName, Tout)
 %femsolver(fileName, Tout)
 %
 %This function solves the navier stokes equations for
@@ -274,3 +274,4 @@ for i = 1:size(uu,1)
 end
 
 max(speed)
+
