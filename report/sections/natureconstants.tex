@@ -2,7 +2,7 @@
 
 Vid olika tryck, fuktighet, temperatur och annat väder som påverkar. Luft består av 78,1\% kväve och 21,0\% syre (mer exakt http://en.wikipedia.org/wiki/Air\#Composition)
 
-\subsection{Termisk diffusivitet}
+\subsection{Termisk diffusivitet} % Viktig
 In heat transfer analysis, thermal diffusivity is the thermal conductivity divided by density and specific heat capacity at constant pressure. It has the SI unit of $m^2/s$. The formula is:
 
 \begin{equation}
@@ -22,29 +22,54 @@ Källor:\\
 http://www.electronics-cooling.com/2007/08/thermal-diffusivity/\\
 http://en.wikipedia.org/wiki/Thermal\_diffusivity\\
 
-\subsubsection{Termisk konduktivitet}
+\subsubsection{Termisk konduktivitet} % Viktigt
 The property of a material's ability to conduct heat. Unit: W/(m·K).
 
-\subsubsection{Desitet}
+\subsubsection{Densitet} % inte så viktigt
 
 https://www.brisbanehotairballooning.com.au/faqs/education/116-calculate-air-density.html
 
 Gäller så länge ideala gaslagen gäller vilket den gör vid lufttryck. Källa?
 
 
-
-
 \subsubsection{Specifik värmekapacitivitet}
 kan approximeras med konstanten 1.005 kJ/(kg·K (källa: http://www.engineeringtoolbox.com/air-properties-d\_156.html) (för torr luft).
 
-\subsection{Volymetriska expantionskoefficienten}
+\subsection{Volumetriska expansionskoefficienten} % Viktig
+Vattnets expansionskoefficient är 1.8e-4 per grad (vid 'normalt' tryck). Källa: nationellt resurscentrum för fysik vid Lunds Universitet. Även vid hög luftfuktighet är det relativt lite vatten i luften. Då vattnet utvidgas så lite borde det inte spela någon roll.
 
-\subsection{Kinematiska viskositeten}
+För torr luft borde det gå att använda allmänna gaslagen.
 
-\subsection{Andra funderingare}
-Fråga någon på Geofysik, Klimat, t.ex. någon här: http://www.gvc.gu.se/Forskning/klimat/stadsklimat/gucg/people/
+\subsection{Kinematiska viskositeten} % Inte så viktig
+Dynamisk viskositet luft: $\unit[16,7\cdot10^{-6}]{Pa\cdot sh}$, vid $0^\circ C$.
+$\unit[1.78\cdot10^{-5}]{Pa\cdot sh}$, vid $15^\circ C$
 
+Den kinematiska viskositeten $\nu$ definieras som: $\nu = \frac {\mu} {\rho}.$
 
-\end{document}
+där $\mu$ är den dynamiska viskositeten och $\rho=\unit[1,2041]{kg/m^3}$ är lufts densitet. \emph{(Källa Wikipedia, som hänvisar till Henrik Alvarez (1997). Energiteknik. Lund: Marinlitteratur.)}
 
+Beroende på tryck och temperatur: http://en.wikipedia.org/wiki/File:Air\_dry\_dynamic\_visocity\_on\_pressure\_temperature.svg
 
+\subsubsection{Sutherland's formula}
+can be used to derive the dynamic viscosity of an ideal gas as a function of the temperature \emph{(källa: wikipeida som hänvisar till Alexander J. Smits, Jean-Paul Dussauge Turbulent shear layers in supersonic flow, Birkhäuser, 2006, ISBN 0387261400 p. 46)}
+
+\begin{equation}
+{\mu} = {\mu}_0 \frac {T_0+C} {T + C} \left (\frac {T} {T_0} \right )^{3/2}.
+\end{equation}
+
+Luft: C=120K, T0=291.15K, $\mu$0=18.27$\mu$Pa s
+
+Valid for temperatures between 0 < T < 555 K with an error due to pressure less than 10\% below 3.45 MPa.
+
+\subsection{Andra funderingar}
+\begin{itemize}
+\item[] Fråga någon på Geofysik, Klimat, t.ex. någon här: \\
+http://www.gvc.gu.se/Forskning/klimat/stadsklimat/gucg/people/
+\item[] Materialedata for tør luft (101325 Pa): http://www.formel.dk/materialedata/luft.htm
+\end{itemize}
+
+\subsection{Övergångsmotstånd}
+Hur det beror av fuktighet, vindhastighet, temperatur, solintensitet
+\begin{equation}
+U=\frac{1}{\Sigma R}
+\end{equation}
