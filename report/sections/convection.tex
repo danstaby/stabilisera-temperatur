@@ -5,7 +5,7 @@ av värmeledningsekvationen. Detta håller dock ej lika bra för fluider, det vi
 material som deformeras då de utsätts för tryck.
 Under dessa förhållanden
 måste det tas hänsyn till konservation av massa, energi samt rörelsemoment.
-För att härleda giltiga differentialekvationer som beskriver en fluids rörelse används ofta sambandet
+I det följande kommer en homogen fluid betraktas. För att härleda giltiga differentialekvationer som beskriver en fluids rörelse används ofta sambandet
 
 \begin{equation}
 \label{eq:convection:reynolds}
@@ -73,9 +73,11 @@ Det sista högerledet kan skrivas om som
 \left( \mathbf{v}\left[ \frac{\partial \rho}{\partial t} + \nabla\cdot \rho \mathbf{v}\right] + \rho\left[ \frac{\partial \mathbf{v}}{\partial t} + u\frac{\partial\mathbf{v}}{\partial x} + v\frac{\partial\mathbf{v}}{\partial y} + w\frac{\partial\mathbf{v}}{\partial z} \right]\right)dxdydz.
 \end{equation}
 
-Första termen inom hakparentes är kontinuitetsekvationen \eqref{eq:convection:continuity} och går alltså bort. Den andra hakparentesen motsvarar något som kallas materiederivata. Man kan visa att 
+Första termen inom hakparentes är kontinuitetsekvationen \eqref{eq:convection:continuity} och går alltså bort.
+\begin{comment}
+Den andra hakparentesen motsvarar något som kallas materiederivata. Man kan visa att 
 
-% OBS, blandat tensorer och vektorer!
+% OBS, blandat tensorer och vektorer
 \begin{equation}
 \label{eq:convection:material}
 \frac{d\mathbf{v}}{dt} = \frac{\partial \mathbf{v}}{\partial t} + \mathbf{v}_i\frac{\partial \mathbf{v}}{\partial x_i}
@@ -87,41 +89,39 @@ och därmed reduceras \eqref{eq:convection:linear} till
 \label{eq:convection:linearfinal}
 \sum \mathbf{F} = \rho \frac{d\mathbf{v}}{dt}dxdydz.
 \end{equation}
+\end{comment}
 
-Summan av de på volymen verkande krafterna måste nu utvecklas. Dessa krafter uppstår på grund av gravitation, tryck och viskositet. Andra krafter, såsom från elektromagnetiska fält, kan i sammanhanget anses vara försumbara. Gravitationskraften $\mathbf{F}_g$ beskrivs för den infinitesimala volymen med $\rho \mathbf{g} dxdydz = \rho g dxdydz \hat{z}$. Tryckkraften $\mathbf{F}_p$, i sin tur, ges av $-\nabla p dxdydz$. Viskositetskraften $\mathbf{F}_{visc}$ är lite besvärligare att sammanställa. Anta att volymen är en Newtonsk fluid, det vill säga stresstensorn $\tau$ är linjärt proportionell mot hastighetsgradienten $\nabla\mathbf{v}$ med proportionaltitetskonstanten $\mu$, $\tau = \mu \nabla \mathbf{v}$. 
+Därmed reduceras \eqref{eq:convection:linear} till
 
-% Hur härleda viskositetsbidraget
+\begin{equation}
+\label{eq:convection:linearfinal}
+\sum \mathbf{F} = \rho \left( \frac{\partial \mathbf{v}}{\partial t} + \mathbf{v}\cdot \nabla\mathbf{v} \right)dxdydz.
+\end{equation}
+
+Summan av de på volymen verkande krafterna måste nu utvecklas. Dessa krafter uppstår på grund av gravitation, tryck och viskositet. Andra krafter, såsom från elektromagnetiska fält, kan i sammanhanget anses vara försumbara. Gravitationskraften $\mathbf{F}_g$ beskrivs för den infinitesimala volymen med $\rho \mathbf{g} dxdydz = \rho g dxdydz \hat{z}$. Tryckkraften $\mathbf{F}_p$, i sin tur, ges av tryckgradienten $-\nabla \left( p \right) dxdydz$. Viskösa kraften $\mathbf{F}_{visc}$ är lite besvärligare att sammanställa. Anta att volymen är en Newtonsk fluid, det vill säga stresstensorn $\tau$ är linjärt proportionell mot hastighetsgradienten $\nabla\mathbf{v}$ med proportionaltitetskonstanten $\mu$, $\tau = \mu \nabla \mathbf{v}$. Den viskösa kraften verkande på kroppen blir då $\mathbf{F}_{visc} = \mu\Delta\mathbf{v}dxdydz$.
+
+% Skriv om till integralrelationer och använd gauss sats, därefter infinitesimal volym
 
 Vi har alltså ekvationssystemet
 
 \begin{eqnarray}
-\frac{du}{dt} & = & -\frac{\partial p}{\partial z} \nonumber\\
-\frac{dv}{dt} & = & -\frac{\partial p}{\partial z}\\
-\frac{dw}{dt} & = & \rho g -\frac{\partial p}{\partial z} \nonumber
+\label{eq:convection:momentum}
+\rho\left(\frac{\partial u}{\partial t} + \mathbf{v}\cdot \nabla u\right) & = & -\frac{\partial p}{\partial x} + \mu\Delta u \nonumber\\
+\rho\left(\frac{\partial v}{\partial t} + \mathbf{v}\cdot \nabla v\right) & = & -\frac{\partial p}{\partial y} + \mu\Delta v\\
+\rho\left(\frac{\partial w}{\partial t} + \mathbf{v}\cdot \nabla w\right) & = & -\rho g -\frac{\partial p}{\partial z} + \mu\Delta w\nonumber
 \end{eqnarray}
 
+% Energirelationen
 
 För homogena inkompressibla fluider i två dimensioner gäller då ekvationerna
-\eqref{eq:convection:continuity}, \eqref{eq:convection:momentumx},
-\eqref{eq:convection:momentumz} samt \eqref{eq:convection:energy}. Här
+\eqref{eq:convection:continuity}, \eqref{eq:convection:momentum} samt \eqref{eq:convection:energy}. Här
 är $\mathbf{v} = (u,w)$ hastighetsvektorn, $\alpha$ är den termiska
 diffusiviteten, $\nu$ är den kinematiska viskositeten, $p$ är trycket,
 $\rho$ är densiteten, $g$ är den lokala tyngdaccelerationen
 och slutligen är $\rho_0$ referensdensiteten.
 
-\begin{equation}
-\label{eq:convection:momentumx}
-\frac{\partial u}{\partial t} + \mathbf{v}\cdot\nabla u = 
--\frac{1}{\rho_0}\frac{\partial p}{\partial x} + 
-\nu\Delta u
-\end{equation}
-
-\begin{equation}
-\label{eq:convection:momentumz}
-\frac{\partial w}{\partial t} + \mathbf{v}\cdot\nabla w = 
--\frac{1}{\rho_0}\frac{\partial p}{\partial z} + \nu\Delta w - \frac{\rho}{\rho_0}g
-\end{equation}
-
+% Denna kallas för convection-diffusion equation
+% Kan härledas mha kontinuitetsekvationen och Ficks lag
 \begin{equation}
 \label{eq:convection:energy}
 \frac{\partial T}{\partial t} + \mathbf{v}\cdot\nabla T = \alpha\Delta T
