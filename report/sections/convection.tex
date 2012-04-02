@@ -88,7 +88,17 @@ och därmed reduceras \eqref{eq:convection:linear} till
 \sum \mathbf{F} = \rho \frac{d\mathbf{v}}{dt}dxdydz.
 \end{equation}
 
-Summan av de på volymen verkande krafterna måste nu utvecklas. Här tas endast hänsyn till gravitationskrafter och... \textcolor{red}{Fortsätt här med stresstensorer...}
+Summan av de på volymen verkande krafterna måste nu utvecklas. Dessa krafter uppstår på grund av gravitation, tryck och viskositet. Andra krafter, såsom från elektromagnetiska fält, kan i sammanhanget anses vara försumbara. Gravitationskraften $\mathbf{F}_g$ beskrivs för den infinitesimala volymen med $\rho \mathbf{g} dxdydz = \rho g dxdydz \hat{z}$. Tryckkraften $\mathbf{F}_p$, i sin tur, ges av $-\nabla p dxdydz$. Viskositetskraften $\mathbf{F}_{visc}$ är lite besvärligare att sammanställa. Anta att volymen är en Newtonsk fluid, det vill säga stresstensorn $\tau$ är linjärt proportionell mot hastighetsgradienten $\nabla\mathbf{v}$ med proportionaltitetskonstanten $\mu$, $\tau = \mu \nabla \mathbf{v}$. 
+
+% Hur härleda viskositetsbidraget
+
+Vi har alltså ekvationssystemet
+
+\begin{eqnarray}
+\frac{du}{dt} & = & -\frac{\partial p}{\partial z} \nonumber\\
+\frac{dv}{dt} & = & -\frac{\partial p}{\partial z}\\
+\frac{dw}{dt} & = & \rho g -\frac{\partial p}{\partial z} \nonumber
+\end{eqnarray}
 
 
 För homogena inkompressibla fluider i två dimensioner gäller då ekvationerna
