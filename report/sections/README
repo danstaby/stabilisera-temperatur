@@ -33,6 +33,7 @@ report
 
 	results
 		resultsenergyflows
+			sunthroughwindowsresult
 		resultstimeconstant
 		resultsfreerunning
 
