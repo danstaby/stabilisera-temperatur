@@ -113,6 +113,33 @@ Vi har alltså ekvationssystemet
 
 % Energirelationen
 
+Slutligen sätts i \ref{reynolds} $B=Q$ för att söka ett uttryck för energins bevarande (antagandet att volymen inte utför något arbete?).
+
+\begin{eqnarray}
+\label{reynoldsenergyone}
+\frac{dQ}{dt} & = & \frac{\partial}{\partial t} \int_V \frac{dQ}{dm}\rho dV + \int_{\partial V}\frac{dQ}{dm}\rho \mathbf{v} \cdot \mathbf{n} dA \nonumber\\
+& = & \frac{\partial}{\partial t} \int_V c_p T \rho dV + \int_{\partial V} c_p T \rho \mathbf{v} \cdot \mathbf{n} dA \nonumber\\
+& = & \left(\frac{\partial}{\partial t} \left( c_p T \rho \right) + \nabla\cdot c_p T \rho \mathbf{v}\right) dxdydz \nonumber\\
+& = & c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right)
+\end{eqnarray}
+
+Sista steget följer av att kontinuitetsekvationen bryts ut som i fallet med rörelsemängdsekvationen.
+För vänsterledet fås från Fouriers lag för en volym V att
+
+\begin{eqnarray}
+\label{reynoldsenergytwo}
+\frac{dQ}{dt} & = & -k \int_{\partial V} \nabla T \cdot \mathbf{n} dA \nonumber\\
+& = & -k \int_V \Delta T dV \nonumber \\
+& = & -k \Delta T dxdydz
+\end{eqnarray}
+
+vilket ger att
+
+\begin{equation}
+\label{reynoldsenergyalmost}
+-k \Delta T = c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right)
+\end{equation}
+
 För homogena inkompressibla fluider i två dimensioner gäller då ekvationerna
 \eqref{eq:convection:continuity}, \eqref{eq:convection:momentum} samt \eqref{eq:convection:energy}. Här
 är $\mathbf{v} = (u,w)$ hastighetsvektorn, $\alpha$ är den termiska
