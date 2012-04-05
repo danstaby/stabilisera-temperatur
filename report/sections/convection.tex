@@ -1,11 +1,6 @@
 \subsection{Konvektion}
 \label{section:convection}
-I fasta ämnen går det utmärkt att approximera värmeflöde enbart med hjälp
-av värmeledningsekvationen. Detta håller dock ej lika bra för fluider, det vill säga
-material som deformeras då de utsätts för tryck.
-Under dessa förhållanden
-måste det tas hänsyn till konservation av massa, energi samt rörelsemoment.
-I det följande kommer en homogen fluid betraktas. För att härleda giltiga differentialekvationer som beskriver en fluids rörelse används ofta sambandet
+I fasta ämnen går det utmärkt att approximera värmeflöde enbart med hjälp av värmeledningsekvationen. Detta håller dock ej lika bra för fluider, det vill säga material som deformeras då de utsätts för tryck. Under dessa förhållanden måste det tas hänsyn till konservation av massa, rörelsemängd och energi. I det följande kommer en homogen fluid betraktas. För att härleda giltiga differentialekvationer som beskriver en fluids rörelse används ofta sambandet
 
 \begin{equation}
 \label{eq:convection:reynolds}
@@ -18,14 +13,16 @@ Sätt $B = m$ där $m$ är fluidens massa (oberoende av tiden) och låt $V$ vara
 
 \begin{equation}
 \label{eq:convection:masscon}
-\int_V \frac{\partial \rho}{\partial t} dV + \int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) dA = 0
+0 = \int_V \frac{\partial \rho}{\partial t} dV + \int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) dA
 \end{equation}
 
-Första termen i detta uttryck beskriver förändringar i densiteten inom kontrollvolymen medan andra termen omfattar alla flöden in och ut genom kontrollvolymens rand. För masskonservering krävs alltså att summan av dessa termer ska vara noll. Den andra termen kan, vid diskreta flödesmängder, även skrivas som
+Första termen i detta uttryck beskriver förändringar i densiteten inom kontrollvolymen medan andra termen omfattar alla flöden in och ut genom kontrollvolymens rand. För masskonservering krävs alltså att summan av dessa termer ska vara noll.
+
+Den andra termen kan skrivas om med hjälp av Gauss sat (även kallad divergenssatsen),
 
 \begin{equation}
-\label{eq:convection:discrete}
-\int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) dA = \sum_i \left( \rho \mathbf{v}_i\cdot \mathbf{A}_i \right)_{ut} - \sum_i \left( \rho \mathbf{v}_i\cdot \mathbf{A}_i \right)_{in}
+\label{eq:convection:gauss}
+\int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) dA = \int_V \nabla \cdot \rho \mathbf{v} dV
 \end{equation}
 
 \begin{figure}[hpbt]
@@ -34,18 +31,18 @@ Första termen i detta uttryck beskriver förändringar i densiteten inom kontro
 \caption{\label{fig:massflowcube} Infinitesimal kontrollvolym för derivering av bevaranderelationer, här med massflödet exemplifierat}
 \end{figure}
 
-Betrakta nu en infinitesimal kontrollvolym som den i figur \ref{fig:massflowcube}. In- och utflödena kan här approximeras till endimensionella flöden och \eqref{eq:convection:masscon} reduceras till
+Betrakta nu en infinitesimal kontrollvolym som den i figur \ref{fig:massflowcube}. Integralerna över V ersätts med den infinitesimala volymen $dxdydz$ och \eqref{eq:convection:masscon} reduceras till
 
 \begin{equation}
 \label{eq:convection:massconinf}
-\int_V \frac{\partial \rho}{\partial t} dxdydz + \frac{\partial}{\partial x}\left( \rho u \right)dxdydz + \frac{\partial}{\partial y}\left( \rho v \right)dxdydz + \frac{\partial}{\partial z}\left( \rho w \right)dxdydz = 0
+0 = \left( \frac{\partial \rho}{\partial t} + \nabla \cdot \rho \mathbf{v}\right) dxdydz
 \end{equation}
 
-vilket, om dxdydz tas bort, kan förenklas som
+vilket, om $dxdydz$ förkortas bort, kan förenklas som
 
 \begin{equation}
 \label{eq:convection:continuity}
-\frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \mathbf{v} \right) = 0
+0 = \frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \mathbf{v} \right) 
 \end{equation}
 
 Om inkompressibilitet antas ($\rho$ = konstant) reduceras denna ekvation ytterligare till
@@ -61,8 +58,9 @@ Betrakta åter \eqref{eq:convection:reynolds} och sätt nu $B = m\mathbf{v}$. P�
 
 \begin{eqnarray}
 \label{eq:convection:linear}
-\sum \mathbf{F} & = & \frac{\partial}{\partial t} \left( \int_V \mathbf{v} \rho dV \right) + \sum_i \left( \dot{m}_i \mathbf{v}_i \right)_{ut} - \sum_i \left( \dot{m}_i \mathbf{v}_i \right)_{in}\nonumber\\
-& = &\left(\frac{\partial}{\partial t} \left( \rho\mathbf{v} \right) + \frac{\partial}{\partial x}\left( \rho u \mathbf{v}\right) + \frac{\partial}{\partial y}\left( \rho v \mathbf{v}\right) + \frac{\partial}{\partial z}\left( \rho w \mathbf{v}\right)\right)dxdydz
+\sum \mathbf{F} & = & \frac{\partial}{\partial t} \left( \int_V \rho\mathbf{v} dV \right) + \int_{\partial V} \mathbf{v}\rho\left( \mathbf{v} \cdot \mathbf{n}\right)dV \nonumber \\
+& = &\left(\frac{\partial}{\partial t} \left( \rho\mathbf{v} \right) + \nabla \cdot \left( \mathbf{v} \rho \mathbf{v}\right)\right)dxdydz \nonumber\\
+& = &\left( \frac{\partial}{\partial t} \left( \rho\mathbf{v} \right) + \mathbf{v}\left(\nabla\cdot\rho\mathbf{v}\right) + \left(\rho\mathbf{v} \cdot \nabla\right) \mathbf{v}\right) dxdydz
 \end{eqnarray}
 
 ty enligt Newtons andra lag är tidsderivatan av rörelsemängden $m\mathbf{v}$ lika med summan av alla krafter som verkar på kroppen. $\dot{m}_i$ betecknar här massflödet $\rho\mathbf{v}_i\cdot\mathbf{A}_i$.
@@ -113,7 +111,7 @@ Vi har alltså ekvationssystemet
 
 % Energirelationen
 
-Slutligen sätts i \ref{reynolds} $B=Q$ för att söka ett uttryck för energins bevarande (antagandet att volymen inte utför något arbete?).
+Slutligen sätts i \ref{eq:convection:reynolds} $B=Q$ för att söka ett uttryck för energins bevarande (antagandet att volymen inte utför något arbete?).
 
 \begin{eqnarray}
 \label{reynoldsenergyone}
