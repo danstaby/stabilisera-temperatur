@@ -1,10 +1,10 @@
 \subsection{Definition av väder}
 \label{subsec_weather}
-Vår uppdragsgivare vill undersöka hur inomhustemperaturen påverkas av vädret. Han tror att man kan få en mer korrekt styrning av inomhustemperaturen om man inte bara låter den påverkas av utomhustemperaturen, utan även vädret. Han har därför installerat en väderstation, se avsnitt \ref{subsubsec_weatertransmitter}.
+Vår uppdragsgivare vill undersöka hur inomhustemperaturen påverkas av vädret. Han tror att man kan få en mer korrekt styrning av inomhustemperaturen om man inte bara låter den påverkas av utomhustemperaturen, utan även vädret. Han har därför installerat en väderstation, se avsnitt \ref{subsubsec_weathertransmitter}.
 
 Väder är något som många pratar om och alla påverkas av. Begreppets vardagliga användningsområde är mycket brett och vi ska därför avgränsa vad vi avser med termen väder. 
 
-Kortfattat låter vi vädret definieras som det som vår väderstation mäter. Så som finns beskrivet i avsnitt \ref{subsubsec_weatertransmitter} mäter vi vädret med utrustning som tar in vindens hastighet och riktning, lufttemperaturen, lufttryck, relativ fuktighet samt regn och hagels varaktighet och intensitet. Vi kommer dock att bortse helt ifrån hagel då detta sker så sällan och i så korta perioder att det kan antas försumbart.  Dessutom finns en mätare för solen som tar in solens intensitet och varaktighet. % Källa på hur ofta (sällan) det haglar i Sverige. % Finns det en solmätare?
+Kortfattat låter vi vädret definieras som det som vår väderstation mäter. Så som finns beskrivet i avsnitt \ref{subsubsec_weathertransmitter} mäter vi vädret med utrustning som tar in vindens hastighet och riktning, lufttemperaturen, lufttryck, relativ fuktighet samt regn och hagels varaktighet och intensitet. Vi kommer dock att bortse helt ifrån hagel då detta sker så sällan och i så korta perioder att det kan antas försumbart.  Dessutom finns en mätare för solen som tar in solens intensitet och varaktighet. % Källa på hur ofta (sällan) det haglar i Sverige. % Finns det en solmätare?
 
 Tanken är att under en vindstilla natt värms luften närmast fastigheten upp av den värme som går ut ur huset genom väggen. Ligger solen på ökas uppvärmningen av husfasaden medan om det blåser så cirkulerar luften och hinner aldrig värmas upp. Tar man hänsyn till allt detta fås en annan temperatur att räkna som utomhustemperatur, än den faktiska utomhustemperaturen som väderstationen mäter upp. Denna nya temperatur kallas free-running temperature, eller -- på svenska. %vad svenska?
 % finns det parametrar som kyler så pass att vi kan få en lägre temperatur än den uppmätta?
@@ -22,7 +22,7 @@ En parameter som vi inte tar hänsyn till är snö. När snön har lagt sig på 
 rör det sig enbart om 25-50 dygn med snö i Göteborg per år. Detta påverkar dessutom främst de översta lägenheterna, de på vinden. Har man däremot en enplansvilla i Norrland kan man anta att detta är en mer betydande parameter, men det är alltså inget vi kommer att undersöka.
 
 \subsubsection{Väderstationen}
-\label{subsubsec_weatertransmitter}
+\label{subsubsec_weathertransmitter}
 I rapporten låter vi de parametrar som väderstationen tar in definiera vädret, se avsnitt \ref{subsec_weather}. Väderstationen som vår uppdragsgivare installerat är en Vaisala Weather Transmitter WXT520. Den mäter sju olika värden: vindens hastighet och riktning, lufttemperaturen, lufttryck, relativ fuktighet samt regn och hagels varaktighet och intensitet. I tabell \ref{tbl:weathertransmitter} kan vi se stationens mätområde, noggrannhet och upplösning för de olika parametrarna.
 
 Uppdragsgivaren har installerat en väderstation och är således intresserad av vad man kan göra med den för att påverka inomhusklimatet.
