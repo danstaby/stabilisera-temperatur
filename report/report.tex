@@ -24,6 +24,13 @@
 \usepackage{listings}
 \usepackage{mcode} % För m-filer, använd exv \lstinputlisting[firstline=5, lastline=15]{../code/FILENAME.m}
 
+% åäö till comments i m-filer
+\lstset{
+  literate={ö}{{\"o}}1
+           {ä}{{\"a}}1
+           {å}{{\r{a}}}1
+}
+
 %\linespread{1.3}
 %\setcounter{secnumdepth}{-1}
 
