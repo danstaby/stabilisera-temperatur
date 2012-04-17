@@ -31,6 +31,13 @@ BoundaryTemperature = [20, 0];
 HeatLoss = [];
 T = [-30:0.1:30];
 
+Rsum = 0;
+for n = 1:size(NorthWall,1)
+Rsum = Rsum + NorthWall(n,1)/NorthWall(n,2);
+end
+
+NorthU = 1/Rsum
+
 for currentTemp =-30:0.1:30
   
   BoundaryTemperature(2) = currentTemp;
@@ -52,7 +59,10 @@ ylabel('Heat loss (W)')
 
 figure(2)
 plot(T,HeatLoss(:,2)/OtherArea,'k')
-
+legend('Other Wall')
+figure(3)
+plot(T, HeatLoss(:,1)/NorthArea, 'k');
+legend('North Wall')
 
 disp(['Loss from the wall adjacant to the bay windows: '...
      num2str(100*HeatLoss(1,3)/HeatLoss(1,4)) '%']);
