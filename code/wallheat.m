@@ -31,12 +31,9 @@ BoundaryTemperature = [20, 0];
 HeatLoss = [];
 T = [-30:0.1:30];
 
-Rsum = 0;
-for n = 1:size(NorthWall,1)
-Rsum = Rsum + NorthWall(n,1)/NorthWall(n,2);
-end
-
-NorthU = 1/Rsum
+NorthU = calcuvalue(NorthWall(:,1), NorthWall(:,2))
+OtherU = calcuvalue(OtherWall(:,1), OtherWall(:,2))
+BayU = calcuvalue(BayWall(:,1), BayWall(:,2))
 
 for currentTemp =-30:0.1:30
   
