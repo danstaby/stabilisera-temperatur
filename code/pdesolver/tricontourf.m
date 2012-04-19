@@ -65,7 +65,7 @@ for k=1:size(t,2)
   u = cac./cbc; %Create coordinate transformation
   v = -cab./cbc;
   
-  id = find(u >= 0 & v >= 0 & (v+u) < 1);
+  id = find(u >= 0 & v >= 0 & (v+u) <= 1);
   
   if(isempty(id) == 0)
     Z(id) = dot([ones(1,size(id,2));P(1:2,id)],spline((3*k-2):(3*k))*fillMatrix(1,1:max(size(id))));
