@@ -1,4 +1,4 @@
-\subsection{Finita element av inkompressibel fluid}
+\section{Finita element av inkompressibel fluid}
 
 För att lösa Navier-Stokes ekvationer kan lämpligen en datormodell användas.
 Här består denna modell av ett system uppsatt med Galerkins metod.
@@ -66,7 +66,7 @@ som syftas att bli evaluerat.
 \mathbf{v}\cdot\nabla T - \alpha\Delta T &= 0
 \end{align}
 
-\subsubsection{Svag formulering}
+\subsection{Svag formulering}
 
 En finita elementlösning med Galerkins metod kräver att problemet reduceras till
 ett ekvivalent variationsproblem. 
@@ -143,7 +143,7 @@ n_z\phi\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}\right)d\Gamma
 
 
 
-\subsubsection{Galerkinformulering}
+\subsection{Galerkinformulering}
 
 Ansätt en lösning på formen \eqref{eq:femconvection:ansatz}.
 Då $\phi_k \in \Phi$, $k=1,2,..,N$ så uppfylls även att $u,w$ och $T$ tillhör
@@ -206,7 +206,7 @@ detta galerkinformuleringen
 \int_\Gamma \alpha\phi_i\nabla w \cdot \mathbf{n} d\Gamma
 \end{align}
 
-\subsubsection{Spatial diskretisering}
+\subsection{Spatial diskretisering}
 
 Lösningen av de galerkinformulerade ekvationerna kräver att en basfunktion väljs.
 Ett i populärt val i litteraturen är linjära triangulära element. Området den
@@ -219,7 +219,7 @@ linjära plan på det sätt att basfunktionen blir kontinuerlig med en bitvis ko
 derivata.
 Utanför dessa trianglar är basfunktionen noll. \cite{johnson2009} 
 
-\subsubsection{Påtvingangde av randvillkor}
+\subsection{Påtvingande av randvillkor}
 
 Två typer av randvillkor är relevanta för detta arbete. Det ena är dirichletvillkor som
 innebär att sökt funktion antar ett visst värde på randen. Det andra är neumannvillkor 

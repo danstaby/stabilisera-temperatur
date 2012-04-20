@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[swedish]{babel}
@@ -140,22 +140,18 @@ Institutionen för Teknisk Fysik
 
 % Inledning
 \input{sections/introduction}
-\newpage
+
 %Teori
 \input{sections/theory}
 
-\newpage
 %Metod
 \input{sections/method}
-\newpage
 
 %Resultat
 \input{sections/results}
-\newpage
 
 %Diskussion
 \input{sections/discussion}
-\newpage
 
 %Slutsats
 \input{sections/conclusion}
@@ -166,7 +162,7 @@ Institutionen för Teknisk Fysik
 %---
 \newpage
 \clearpage
-\addcontentsline{toc}{section}{Referenser}
+\addcontentsline{toc}{chapter}{Referenser}
 \bibliography{ref}{}
 \bibliographystyle{plain}
 \newpage
