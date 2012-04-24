@@ -7,7 +7,7 @@ Luftens egenskaper kan beskrivas med hjälp av en mängd olika konstanter. Dessa
 
 Termisk diffusitet beskriver hur snabbt värme färdas genom ett ämne där ett högre värde indikerar en högre hastighet. Ett ämne med hög termisk diffusitet når snabbt sitt termiska jämviktsläge.
 
-Termisk diffusitet, $\alpha$, är
+Termisk diffusitet, $\alpha$, är \cite{termiskdiffusivitet}
 
 \begin{equation}
 \alpha=\frac{k}{\rho c_p}
@@ -62,7 +62,7 @@ Värmeledningsförmågan ändras generellt med temperaturen. För de flesta ämn
 Luftens densitet beskriver hur mycket den väger per volymsenhet. Vid normala variationer i lufttryck kan vi använda ideala gaslagen, vilket ger att densiteten, $\rho$, är
 
 \begin{equation}
-\rho_\text{luft}=\frac{p}{R T M_\text{luft}
+\rho_\text{luft}=\frac{p M}{R M_\text{luft}
 \end{equation}
 
 \begin{itemize}
@@ -77,32 +77,30 @@ Luftens molmassa fås ur att att den består av 78\% kväve, 21\% syre och 1\% a
 %%%%%
 
 \paragraph{Specifik värmekapacitivitet}
-kan approximeras med konstanten $\unit[1,005]{kJ/kg\cdot K}$ och är tämligen oberoende av tryck och temperatur.
-% (källa: http://www.engineeringtoolbox.com/air-properties-d\_156.html) (för torr luft).
+Den specifika värmekapaciteten för luft kan approximeras med konstanten $\unit[1,005]{kJ/kg\cdot K}$ och är tämligen oberoende av tryck och temperatur.\cite{engineeringtoolbox}
 
 Tyvärr saknas data för hur den varierar med fuktigheten men troligen ökar den något eftersom vatten har en värmekapacitivitet ungefär fyra gånger större än den för luft.
 
 %%%%%
 
 \paragraph{Volumetriska expansionskoefficienten} % Viktig
-Den volymetriska expansionskoefficienten beskriver ur ett ämnes volym förändras med temperaturen. För luft tordes eventuell luftfuktighet vara helt oviktig, eftersom vattnets expansionskoefficient är så låg och även vid hög luftfuktighet innehåller luften relativt lite vatten.
+Den volymetriska expansionskoefficienten beskriver ur ett ämnes volym förändras med temperaturen, $\frac{1}{V}\frac{\Delta V}{\Delta T}$. För luft tordes eventuell luftfuktighet vara helt oviktig, eftersom vattnets expansionskoefficient är så låg och även vid hög luftfuktighet innehåller luften relativt lite vatten.
 
-För torr luft borde det gå att använda allmänna gaslagen som ger ett förhållande mellan tryck, volym och temperatur och den volymetriska expansionskoefficienten, $\beta=nR / p$
+För torr luft borde det gå att använda allmänna gaslagen som ger ett förhållande mellan tryck, volym och temperatur och den volymetriska expansionskoefficienten.% $\beta=\frac{1}{pT}$
 
-\begin{itemize}
-   \item[] $p$ är lufttrycket, $\unit{N/m^2}$
-   \item[] $\R=\unit[8,3145]{J/ molK}$ är gaskonstanten
-   \item[] $n$ luftens molantal, $\unit{mol)}$
-\end{itemize}
+%\begin{itemize}
+%   \item[] $p$ är lufttrycket, $\unit{N/m^2}$
+%   \item[] $T$ luftens temperatur, $\unit{K)}$
+%\end{itemize}
 
-% Undersök det där med molantalet.
+% Hur blir det egentligen?
 
 %%%%%
 
 \paragraph{Kinematiska viskositeten} % Inte så viktig
 Den kinematiska viskositeten anger hur snabbt en vätska sprider sig i förhållande till sin massa om den hälls ut på en plan yta. Detta kan sedan utvidgas till att också tillämpas på en gas.
 
-Den kinematiska viskositeten, $\nu$, definieras som 
+Den kinematiska viskositeten, $\nu$, definieras som \cite{kinematiskviskositet}
 \begin{equation}
 $\nu = \frac {\mu} {\rho}$.
 \end{equation}
@@ -113,7 +111,7 @@ där
 \item[] $\rho är lufts densitet, se ovan.\\
 \end{itemize}
 
-För att bestämma den dynamiska viskositeten kan Sutherlands formel användas. %\emph{(källa: wikipeida som hänvisar till Alexander J. Smits, Jean-Paul Dussauge Turbulent shear layers in supersonic flow, Birkhäuser, 2006, ISBN 0387261400 p. 46)}
+För att bestämma den dynamiska viskositeten kan Sutherlands formel användas. Sutherlands formel är riktig för temperaturer mellan 0 och 555 K och vid låga tryck, tryck under \unit[3,45]{MPa} fås endast mindre avvikelser, vilka vi kan bortse i från.\cite{sutherlandsformula}
 
 Den ger  
 \begin{equation}
@@ -126,12 +124,6 @@ där följande konstanter gäller för luft:
 \item[] $T_0=\unit[291,15]{K}$
 \item[] $mu_0=\unit[18,27]{Pa s}$
 \end{itemize}
-
-Sutherlands formel är riktig för temperaturer mellan 0 och 555 K och vid låga tryck, tryck under \unit[3,45]{MPa} fås endast mindre avvikelser, vilka vi kan bortse i från.
-% \emph{(källa: http://mac6.ma.psu.edu/stirling/simulations/DHT/ViscosityTemperatureSutherland.html)}
-
-
-% \emph{(Källa Wikipedia, som hänvisar till Henrik Alvarez (1997). Energiteknik. Lund: Marinlitteratur.)}
 
 %Graf över beroende av tryck och temperatur:\\
 %http://en.wikipedia.org/wiki/File:Air\_dry\_dynamic\_visocity\_on\_pressure\_temperature.svg
