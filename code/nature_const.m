@@ -52,6 +52,7 @@ c_v=1.005; % kJ/kgK
 
 
 % VOLYMETRISKA EXPANSIONSKOEFFICIENTEN
+ % FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL FEL 
 % använd allmänna gaslagen (ty fuktighet påverkar så lite) 
 beta=dV/dT;
 % Allmänna gaslagen, V = n*R*T/p, ger då:
@@ -67,7 +68,7 @@ beta=n*R/p;
 nu = mu/rho;
 
 % rho: densiteten
-rho=p/(R*T*molmassa_luft);
+rho=p*molmassa_luft/(R*T);
 
 % Dynamisk viskositet,mu, luft:
 % 1,67*10^(-5) Pa s, vid 0°C
