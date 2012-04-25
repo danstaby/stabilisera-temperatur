@@ -1,6 +1,11 @@
 \chapter{Teoretiskt ramverk}
 
-I detta avsnitt presenteras härledningar av de fysikaliska fenomen och beräkningsmetoder projektet baseras på samt definitioner av, för projektet, centrala begrepp. För full förståelse krävs en viss matematisk bakgrund, men i många fall kan läsaren helt hoppa över härledningarna. 
+I detta avsnitt presenteras härledningar av de fysikaliska fenomen och beräkningsmetoder projektet baseras på samt definitioner av, för projektet, centrala begrepp. Först presenteras vilka aspekter på väder vi använder oss av samt specifikation på aktuell utrustning för vädermätning. Vidare följer en grund till vårt resonemang kring solens påverkan på inomhustemperaturen då den skiner in genom fönstren samt en termodynamisk härledning av svartkroppsstrålning.
+
+Nästa del är av lite tyngre matematisk karaktär och full förståelse krävs en viss matematisk bakgrund, men i många fall är härledningarna inte essentiella för förståelsen av resultatet och läsaren helt hoppa över dem. Här presenteras grunden för konvektion samt hur finita elementmetoden kan användas i vår tillämpning. På det följer ett avsnitt om optimering med Newton-Raphsons metod. 
+
+Slutligen presenteras några naturkonstanter för luft som används i våra beräkningar och det hela avslutas med en sammanfattning av begreppet ekvivalent temperatur.
+
 % Konventioner listas efter denna kommentar...
 % Följande kanske inte behövs, vilken nivå ska vi förvänta oss av en läsare?
 % Nabla- ($\nabla$) och Laplaceoperatorn ($\Delta$) kommer på sina ställen att användas i ekvationerna. Dessa betecknar vektorerna $\left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)$ respektive $\left( \frac{\partial^2}{\partial x^2}, \frac{\partial^2}{\partial y^2}, \frac{\partial^2}{\partial z^2} \right)$. Gradienten av skalären $T$ blir då $\nabla T = \left( \frac{\partial T}{\partial x}, \frac{\partial T}{\partial y}, \frac{\partial T}{\partial z}\right)$. 
