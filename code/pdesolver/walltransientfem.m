@@ -1,15 +1,43 @@
-function ret = walltransientfem(Time, Nodes, Insulated)
-% walltransientfem(Time, Nodes, Insulated)
+function ret = walltransientfem(Time, Nodes, Insulated, UseSun, StaticTemp)
+% walltransientfem(Time, Nodes, Insulated, UseSun, StaticTemp)
 %
 % This Script calculates the transient temperatures in a wall with
 % a specified amount of nodes. Insulated = 0 means uninsulated wall
 % and Insulated = 1 mean that the wall is insulated.
+%StaticTemp = -999 means that the dynamic temperature is used instead.
 
 %Temperature inside
+
+PrepareInterpolation('sunintensity_april.txt');
+PrepareTempInterpolation([6, 6;16,9]);
+
+%t = [0:60:24*3600];
+%temp = zeros(1,size(t,2));
+%sun = zeros(1,size(t,2));
+%for n = 1:size(t,2)
+  
+%  temp(n) = Tout(t(n));
+%  sun(n) = Qsun(t(n));
+%end
+
+%figure(1)
+%hold off
+%plot(t/3600, temp)
+%figure(2)
+%plot(t/3600, sun)
+
+
+
 Tin = 20;
 
-if(nargin == 2)
-  Insulated = 0
+if(nargin < 5)
+  StaticTemp = -999;
+end
+if(nargin < 4)
+  UseSun = 1;
+end
+if(nargin < 3)
+  Insulated = 0;
 end
 
 
@@ -72,7 +100,7 @@ Pts(sum(NrNodes)+1) = PrevL;
 
 %Set initial value to the steady state solution
 if(size(Material,1) > 1)
-  [~, TempInit] = heatrod([0 Tin], Material(:, [1 3]));
+  [~, TempInit] = heatrod([7.5 Tin], Material(:, [1 3]));
 end
 PrevEnd = 0;
 Tlast = 0;
@@ -108,6 +136,7 @@ Vec = zeros(NodeCount,NodeCount); %Eigen vectors
 lambda = zeros(Nodes,1); %Eigennumbers of the problem (inverse of
                          %mass matrix times the stiffness matrix)
 Energy = zeros(floor((Time(3)-Time(1))/Time(2))+1,1);
+EnergyIn = zeros(floor((Time(3)-Time(1))/Time(2))+1,1);
 
 dirbc = [NodeCount; %Column vectors with the dirichlet condition(s)
 	Tin+kelvin];
@@ -161,12 +190,19 @@ for t = Time(1):Time(2):Time(3)
   n = n+1;
   
   %Update boundary conditions
-  To = Tout(t)+kelvin;
-  Qs = Qsun(t);
- 
- 
-  Q(1,1) = -(-50)/kappa(1); %T dependent neumann conditions
-  g(1,1) = (Qs+50*To + sigma*(0.8*To^4+0.2*(To-30)^4 - uLast(1)^4))/kappa(1); %Constant neumann conditions
+  To = StaticTemp;
+
+  if(To == -999)
+    To = Tout(t)+kelvin;
+  end
+  
+  Qs = UseSun;
+  if(Qs ~= 0)
+    Qs = Qsun(t);
+  end
+  h = 25;
+  Q(1,1) = -(-h)/kappa(1); %T dependent neumann conditions
+  g(1,1) = (Qs+h*To + sigma*(0.8*To^4+0.2*(To-30)^4 - uLast(1)^4))/kappa(1); %Constant neumann conditions
 
   %Move dirichlet conditions to the RHS
   u(:) = 0;
@@ -174,7 +210,7 @@ for t = Time(1):Time(2):Time(3)
   b = f - A*u + g;
   
   %Calculate eigenspace and solve the equations
-  %disp('Kalle')
+  
   [VecTemp lambdaTemp] = eig(full(MinvA(Free,Free)+Minv(Free,Free)*Q(Free,Free)));
   Vec(Free,Free) = VecTemp;
   lambda(Free) = diag(lambdaTemp);
@@ -193,7 +229,9 @@ for t = Time(1):Time(2):Time(3)
   %disp('Yay plotted!')
   %end
   
-  Energy(n) = kappa(NodeCount-1)*(uLast(NodeCount)-uLast(NodeCount-1))/(L(NodeCount-1));
+  Energy(n) = kappa(NodeCount-1)*(uLast(NodeCount)-uLast(NodeCount- ...
+						  1))/(L(NodeCount-1));
+  EnergyIn(n) = kappa(1)*(uLast(1)*Q(1,1)+g(1,1));
 end
 
 
@@ -210,14 +248,121 @@ ylabel('Energy loss (W/m^2)')
 legend('Momentary energy loss', 'Moving average (3 days)')
 hold off
 
-function ret = Qsun(Time)
-t = mod(Time,24*3600);
-if(t > 43200)
-  ret = 0;
-else
-  ret = 200*sin(pi*t/43200);
+
+ret = [(Time(1):Time(2):Time(3))', Energy, EnergyIn];
+
+function ret = PrepareInterpolation(fileName)
+global SunResolution SplineInterpolation
+
+%Load file
+data = importdata(fileName);
+time = data(:,2);
+I = data(:,1);
+SunResolution = mean(diff(time));
+timesteps = size(time,1);
+
+%Set up the system of equations
+SplineInterpolation = zeros(2*(timesteps-1),1);
+A = zeros(2*(timesteps-1), 2*(timesteps-1));
+b = zeros(2*(timesteps-1),1);
+for n = 1:(timesteps-1)
+  A([2*n-1 2*n], [2*n-1 2*n]) = [ones(2,1), time([n n+1])];
+  b([2*n-1 2*n]) = I([n n+1]);
 end
 
-function ret = Tout(Time)
+
+%Solve for X 
+SplineInterpolation = A\b;
+
+
+function ret = PrepareTempInterpolation(points)
+global BreakTimes TemperatureSpline
+
+%Points is a matrix that contains the known
+%times in the first column and the assosciated temperatures
+%in the second column. The function should be periodic on 24h.
+
+splineCount = size(points,1)+1;
+A = zeros(splineCount*2, splineCount*2);
+b = zeros(splineCount*2,1);
+BreakTimes = points(:,1);
+
+%Prepare equation system
+
+for n=1:(splineCount-1)
+  A(2*n-1, [2*n-1, 2*n]) = [1, points(n,1)];
+  A(2*n, [2*(n+1)-1, 2*(n+1)]) = [1, points(n,1)];
+  b([2*n-1 2*n]) = points(n,2);
+end
+
+A(2*splineCount-1,[1,2,2*splineCount-1, 2*splineCount]) = ...
+    [1, 0,-1,-24];
+
+A(2*splineCount,[2, 2*splineCount]) = [1, -1];
+
+%Solve for X.
+TemperatureSpline = A\b;
+
+function ret = Qsun(Time)
+global SunResolution SplineInterpolation
+
 t = mod(Time,24*3600);
-ret = 5*sin(pi*t/43200);
+
+if(((t/3600)-2) >= 0)
+  [height, angle] = sunposition(11.979435,57.691522,2011,04,15,t/ ...
+				(3600)-2);
+else
+  angle = 0;
+  height = -1;
+end
+
+theta = mod(angle - (58+90),360);
+
+projection = cosd(theta)*cosd(height);    
+
+if(projection < 0 || height < 0)
+  projection = 0;
+end
+
+spline = floor(t/(3600*SunResolution))+1; %Calculate which spline that
+ 
+                                %should be used
+
+
+I = [1, t/3600]*SplineInterpolation([2*spline-1 2*spline]);
+
+%Get the solar intensity normal to the sun rays.
+
+ret = I*projection;
+
+
+function ret = Tout(Time)
+global BreakTimes TemperatureSpline
+
+t = mod(Time,24*3600)/3600;
+
+
+foundSpline = 0;
+
+for n = 1:(size(BreakTimes,1)-1)
+  
+  if((t > BreakTimes(n)) & (t < BreakTimes(n+1)))
+    foundSpline = n+1;
+  end
+end
+
+if(foundSpline == 0)
+  
+  if(t<= BreakTimes(1))
+    foundSpline = 1;
+  else
+    foundSpline = size(BreakTimes,1)+1;
+  end
+end
+
+
+ret = [1,t]*TemperatureSpline(2*foundSpline+[-1:0]);
+
+%ret = 5*sin(pi*t/43200);
+%T(t)=3/10*t+4.2, då 06.00<t<16.00
+%T(t)=3/14*t+39/7 då t<06.00, t>16.00
