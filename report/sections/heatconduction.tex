@@ -1,8 +1,40 @@
 \section{Värmeledning}\label{sec:heatconduction}
-Konduktion. Det pågår ständigt värmetransport från kalla till varma sidor. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktion, eller ledning genom ett material, här värmeledning innebär att värme flyttar sig inom ett material, utan att materialet i sig rör sig eller flyttar sig. Konduktiviteten, eller värmeledningsförmågan, betecknad kappa inom fysiken eller lambda inom byggsektorn är en materialegenskap. Eftersom överföring av värme i form av ledning är den enklaste överföringen är det den som lambda värdet bygger på. För att bestämma lambdavärdet för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Då värmeöverföring via konvektion samt strålning är så pass svår att behandla matematiskt så ingår dessa i lambdavärdet som är väldigt enkelt att jobba med matematiskt. $q=k \nabla \cdot T$ vilket ger oss $Q=U \Delta \cdot T$ och därifrån kan vi lösa ut U-värdet som $U = \frac{Q}{\Delta\cdot T}$. Värmeledningsförmågan påverkas av materialets densitet, porositet, temperatur samt fuktighet. Fuktkorrigering görs, enligt vissa framställda värden. Värmemotstånd, R beräknas utifrån lambdavärdet.
 
-\begin{equation}
-R_i=\frac{d}{\lambda}
+Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $\kappa$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion. I denna rapport används den förstnämnda symbolen, $\kappa$. För att bestämma lambdavärdet för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Då värmeöverföring via konvektion samt strålning är så pass svår att behandla matematiskt så ingår dessa i lambdavärdet som är väldigt enkelt att jobba med matematiskt. Generellt gäller att värmeflödet per ytenhet är $q = - \kappa \nabla T$. Detta samband brukar kallas för Fouriers värmelag. Med ett homogent material i en dimension förenklas detta till
+
+\begin{equation}\boxed{ \; \; \;
+q = -\kappa \frac{dT}{dx} = -\frac{\kappa}{d}\left( T_2-T_1\right)
+\; \; \; }
 \end{equation}
 
-Överföringsmotstånd. Man påför sedan Rsi samt Rse, utsida samt insida. Beror på både strålnings samt konvektion. U-värdet beräknas som inversen av R-värdet. Har man olika material handlar det om att summera ihop 1/r.
+där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i bägge ändar av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{\kappa}{d}$, det vill säga $q = UdT = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet.
+
+Om materialet består av flera sammanfogade lager med olika konduktiviteter gäller att
+% Obs!! R-värden istället!
+\begin{equation}
+q = \sum_i q_i = \sum_i U_i \left( T_{1} - T_{end} \right)
+\end{equation} 
+
+% Hur man superponerar R-värden
+Värmeledningsförmågan påverkas av materialets densitet, porositet, temperatur samt fuktighet. Fuktkorrigering görs ibland, enligt vissa framställda värden.
+
+Utifrån Fouriers värmelag kan man härleda ytterligare ett viktigt samband, värmeledningsekvationen. Anta en infinitesimal volym, som varken utsätts för eller utför något arbete relativt omgivningen. Enligt grundläggande termodynamik kan då en godtyckligt liten förändring av värmeenergin (i $\unit{}{J/m^3}$) skrivas som $dQ = c_p \rho dT$.  I en dimension, över ett litet tidssteg $t-dt< \tau < t+dt$ och en liten sträcka $x-dx < l < x+dx$, fås att
+
+\begin{equation}
+dQ = c_p \rho \int_{x-dx}^{x+dx} \left[ T\left( l, t+dt\right) - T\left( l, t+dt\right)\right]dl = c_p \rho \int_{t-dt}^{t+dt} \int_{x-dx}^{x+dx} \frac{\partial T}{\partial \tau} dld\tau
+\end{equation}
+
+Från Fouriers värmelag blir för samma förändring
+
+\begin{equation}
+dQ = k\int_{t-dt}^{t+dt} \left[ \frac{\partial T}{\partial x}\left( x + dx, \tau \right) - \frac{\partial T}{\partial x}\left( x-dx, \tau \right)\right]d\tau = k\int_{t-dt}^{t+dt} \int_{x-dx}^{x+dx} \frac{\partial^2 T}{\partial \tau^2} dld\tau
+\end{equation}
+
+Kombinering av dessa och det faktum att det gäller för en godtycklig sträcka $dl$ samt tid $d\tau$, vilket innebär att integralen kan tas bort, ger att
+
+\begin{equation}\boxed{ \; \; \;
+c_p \rho \frac{\partial T}{\partial t} = k \frac{\partial^2 T}{\partial \tau^2} \Leftrightarrow \frac{\partial T}{\partial t} = \alpha \Delta T
+\; \; \; }
+\end{equation}
+
+Detta samband brukar kallas för värmeledningsekvationen.
