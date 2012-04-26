@@ -9,14 +9,19 @@ q = -\kappa \frac{dT}{dx} = -\frac{\kappa}{d}\left( T_2-T_1\right)
 
 där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i bägge ändar av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{\kappa}{d}$, det vill säga $q = UdT = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet.
 
-Om materialet består av flera sammanfogade lager med olika konduktiviteter gäller att
-% Obs!! R-värden istället!
+Om materialet består av $N$ sammanfogade lager med olika konduktiviteter gäller att
+
 \begin{equation}
-q = \sum_i q_i = \sum_i U_i \left( T_{1} - T_{end} \right)
+\sum_{i=1}^N R_i q_i = \sum_{i=1}^N R_i q_{total} = \left( T_{1} - T_{N} \right)
 \end{equation} 
 
-% Hur man superponerar R-värden
-Värmeledningsförmågan påverkas av materialets densitet, porositet, temperatur samt fuktighet. Fuktkorrigering görs ibland, enligt vissa framställda värden.
+och 
+
+\begin{equation}
+U_{total} = \frac{1}{R_{total}} = \frac{1}{\sum_{i=1}^N R_i}.
+\end{equation}
+
+Värmeledningsförmågan, och därmed även R- samt U-värden, påverkas av materialets densitet, porositet, temperatur samt fuktighet. Fuktkorrigering görs ibland, enligt vissa framställda värden.
 
 Utifrån Fouriers värmelag kan man härleda ytterligare ett viktigt samband, värmeledningsekvationen. Anta en infinitesimal volym, som varken utsätts för eller utför något arbete relativt omgivningen. Enligt grundläggande termodynamik kan då en godtyckligt liten förändring av värmeenergin (i $\unit{}{J/m^3}$) skrivas som $dQ = c_p \rho dT$.  I en dimension, över ett litet tidssteg $t-dt< \tau < t+dt$ och en liten sträcka $x-dx < l < x+dx$, fås att
 
