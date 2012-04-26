@@ -1,11 +1,18 @@
 \section{Värmeledning}\label{sec:heatconduction}
 
-Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $\kappa$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion. I denna rapport används den förstnämnda symbolen, $\kappa$. För att bestämma lambdavärdet för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Då värmeöverföring via konvektion samt strålning är så pass svår att behandla matematiskt så ingår dessa i lambdavärdet som är väldigt enkelt att jobba med matematiskt. Generellt gäller att värmeflödet per ytenhet är $q = - \kappa \nabla T$. Detta samband brukar kallas för Fouriers värmelag. Med ett homogent material i en dimension förenklas detta till $q = -\kappa \frac{dT}{dx} = -\frac{\kappa}{d}\left( T_2-T_1\right)$ där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i bägge ändar av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{\kappa}{d}$, det vill säga $q = UdT = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet.
+Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $\kappa$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion. I denna rapport används den förstnämnda symbolen, $\kappa$. För att bestämma lambdavärdet för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Då värmeöverföring via konvektion samt strålning är så pass svår att behandla matematiskt så ingår dessa i lambdavärdet som är väldigt enkelt att jobba med matematiskt. Generellt gäller att värmeflödet per ytenhet är $q = - \kappa \nabla T$. Detta samband brukar kallas för Fouriers värmelag. Med ett homogent material i en dimension förenklas detta till
+
+\begin{equation}\boxed{ \; \; \;
+q = -\kappa \frac{dT}{dx} = -\frac{\kappa}{d}\left( T_2-T_1\right)
+\; \; \; }
+\end{equation}
+
+där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i bägge ändar av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{\kappa}{d}$, det vill säga $q = UdT = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet.
 
 Om materialet består av flera sammanfogade lager med olika konduktiviteter gäller att
 % Obs!! R-värden istället!
 \begin{equation}
-q = \sum_i q_i = \sum_i U_i \left( T_{1} - T_{end}\right)
+q = \sum_i q_i = \sum_i U_i \left( T_{1} - T_{end} \right)
 \end{equation} 
 
 % Hur man superponerar R-värden
@@ -25,25 +32,9 @@ dQ = k\int_{t-dt}^{t+dt} \left[ \frac{\partial T}{\partial x}\left( x + dx, \tau
 
 Kombinering av dessa och det faktum att det gäller för en godtycklig sträcka $dl$ samt tid $d\tau$, vilket innebär att integralen kan tas bort, ger att
 
-\begin{equation}
+\begin{equation}\boxed{ \; \; \;
 c_p \rho \frac{\partial T}{\partial t} = k \frac{\partial^2 T}{\partial \tau^2} \Leftrightarrow \frac{\partial T}{\partial t} = \alpha \Delta T
+\; \; \; }
 \end{equation}
 
-\begin{figure}[htp]
-\begin{boxedminipage}{\textwidth}
-\begin{center}
-Fouriers värmelag:
-\end{center}
-\begin{equation}
-q = -\kappa \frac{dT}{dx}
-\end{equation}
-
-\begin{center}
-Värmeledningsekvationen:
-\end{center}
-\begin{equation}
-\frac{\partial T}{\partial t} = \alpha \Delta T
-\end{equation}
-
-\end{boxedminipage}
-\end{figure}
+Detta samband brukar kallas för värmeledningsekvationen.

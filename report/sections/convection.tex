@@ -42,7 +42,9 @@ vilket, om $dxdydz$ förkortas bort, kan förenklas som
 
 \begin{equation}
 \label{eq:convection:continuity}
+\boxed{ \; \; \;
 0 = \frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \mathbf{v} \right) 
+\; \; \; }
 \end{equation}
 
 Om inkompressibilitet antas ($\rho$ = konstant) reduceras denna ekvation ytterligare till
@@ -102,12 +104,17 @@ Summan av de på volymen verkande krafterna måste nu utvecklas. Dessa krafter u
 
 Vi har alltså ekvationssystemet
 
-\begin{eqnarray}
+\begin{equation}
 \label{eq:convection:momentum}
-\rho\left(\frac{\partial u}{\partial t} + \mathbf{v}\cdot \nabla u\right) & = & -\frac{\partial p}{\partial x} + \mu\Delta u \nonumber\\
-\rho\left(\frac{\partial v}{\partial t} + \mathbf{v}\cdot \nabla v\right) & = & -\frac{\partial p}{\partial y} + \mu\Delta v\\
-\rho\left(\frac{\partial w}{\partial t} + \mathbf{v}\cdot \nabla w\right) & = & -\rho g -\frac{\partial p}{\partial z} + \mu\Delta w\nonumber
-\end{eqnarray}
+\addtolength{\fboxsep}{10pt} 
+\boxed{ 
+\begin{split} 
+\rho\left(\frac{\partial u}{\partial t} + \mathbf{v}\cdot \nabla u\right) & = -\frac{\partial p}{\partial x} + \mu\Delta u\\
+\rho\left(\frac{\partial v}{\partial t} + \mathbf{v}\cdot \nabla v\right) & = -\frac{\partial p}{\partial y} + \mu\Delta v\\
+\rho\left(\frac{\partial w}{\partial t} + \mathbf{v}\cdot \nabla w\right) & = -\rho g -\frac{\partial p}{\partial z} + \mu\Delta w  
+\end{split} 
+} 
+\end{equation}
 
 % Energirelationen
 
@@ -147,9 +154,11 @@ och slutligen är $\rho_0$ referensdensiteten.
 
 % Denna kallas för convection-diffusion equation
 % Kan härledas mha kontinuitetsekvationen och Ficks lag
-\begin{equation}
+
+\begin{equation}\boxed{ \; \; \;
 \label{eq:convection:energy}
 \frac{\partial T}{\partial t} + \mathbf{v}\cdot\nabla T = \alpha\Delta T
+\; \; \; }
 \end{equation}
 
 \subsection{Boussinesq approximation}
