@@ -1,7 +1,8 @@
 \section{Optimering med Newton-Raphsons metod}
 
 När ett ekvationssystem är ickelinjärt kan ej exakta metoder som Gausseliminering användas
-för ekvationslösning.
+för ekvationslösning. Detta stötte vi till exempel på vid finita elementlösningen
+av Navier-Stokes ekvationer i avsnitt \ref{sec:femconvection}.
 I dessa fall måste approximativa optimeringsmetoder utnyttjas. En sådan
 metod är Newton-Raphsons metod. Denna bygger på trunkerad Taylorutveckling 
 av en funktion för att linjarisera ett ickelinjärt ekvationssystem
@@ -42,3 +43,5 @@ En svaghet med Newton-Raphson är att det i många fall ej är möjligt att anal
 jacobianen. Istället måste andra algoritmer untnyttjas som till exempel finita differensmetoden
 för beräkning av jacobianen. Omvägar som denna bidrar till att lösningsprocessen blir mycket
 mer omständig och processorintensiv. 
+
+\subsection{Konvergens samt konvergenskriterier}
