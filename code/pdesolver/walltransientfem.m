@@ -201,8 +201,8 @@ for t = Time(1):Time(2):Time(3)
     Qs = Qsun(t);
   end
   h = 25;
-  Q(1,1) = -(-h)/kappa(1); %T dependent neumann conditions
-  g(1,1) = (Qs+h*To + sigma*(0.8*To^4+0.2*(To-30)^4 - uLast(1)^4))/kappa(1); %Constant neumann conditions
+  Q(1,1) = -(-h); %T dependent neumann conditions
+  g(1,1) = (Qs+h*To + sigma*(0.8*To^4+0.2*(To-30)^4 - uLast(1)^4)); %Constant neumann conditions
 
   %Move dirichlet conditions to the RHS
   u(:) = 0;

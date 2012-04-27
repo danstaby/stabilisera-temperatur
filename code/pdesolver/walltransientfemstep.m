@@ -159,8 +159,8 @@ MinvA(Free,Free) = inv(M(Free,Free))*A(Free,Free);
 To = Tend + kelvin;
 
 h = 25;
-Q(1,1) = -(-h)/kappa(1); %T dependent neumann conditions
-g(1,1) = (h*To)/kappa(1); %Constant neumann conditions
+Q(1,1) = -(-h); %T dependent neumann conditions
+g(1,1) = (h*To); %Constant neumann conditions
 
 %Move dirichlet conditions to the RHS
 u(:) = 0;
