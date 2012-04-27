@@ -4,13 +4,16 @@ Vår uppdragsgivare vill undersöka hur inomhustemperaturen påverkas av vädret
 
 Väder är något som många pratar om och alla påverkas av. Begreppets vardagliga användningsområde är mycket brett och vi ska därför avgränsa vad vi avser med termen väder. 
 
-Kortfattat låter vi vädret definieras som det som vår väderstation mäter. Så som finns beskrivet i avsnitt \ref{subsec_weathertransmitter} mäter vi vädret med utrustning som tar in vindens hastighet och riktning, lufttemperaturen, lufttryck, relativ fuktighet samt regn och hagels varaktighet och intensitet. Vi kommer dock att bortse helt ifrån hagel då detta sker så sällan och i så korta perioder att det kan antas försumbart.  Dessutom finns en mätare för solen som tar in solens intensitet och varaktighet, se avsnitt \ref{subsec:sunmeter}. % Källa på hur ofta (sällan) det haglar i Sverige. % Finns det en solmätare?
+Kortfattat låter vi vädret definieras som det som vår väderstation mäter. Så som finns beskrivet i avsnitt \ref{subsec_weathertransmitter} mäter vi vädret med utrustning som tar in vindens hastighet och riktning, lufttemperaturen, lufttryck, relativ fuktighet samt regn och hagels varaktighet och intensitet. Vi kommer dock att bortse helt ifrån hagel då detta sker så sällan och i så korta perioder att det kan antas försumbart.  Dessutom finns en mätare för solen som tar in solens intensitet och varaktighet, se avsnitt \ref{subsec:sunmeter}. % Källa på hur ofta (sällan) det haglar i Sverige. 
 
 Tanken är att under en vindstilla natt värms luften närmast fastigheten upp av den värme som går ut ur huset genom väggen. Ligger solen på ökas uppvärmningen av husfasaden medan om det blåser så cirkulerar luften och hinner aldrig värmas upp. Tar man hänsyn till allt detta fås en annan temperatur att räkna som utomhustemperatur än den faktiska utomhustemperaturen som väderstationen mäter upp. Denna nya temperatur kallas free-running temperature, se avsnitt \ref{sec:freerunningtemp}. %vad svenska?
 % finns det parametrar som kyler så pass att vi kan få en lägre temperatur än den uppmätta?
 
-\subsection{Regn och luftfuktighet}
+\subsection{Luftfuktighet och regn}
 % Källor som säger att det är oviktigt? utöver vid mötet med Hagentoft?
+Från studier med hjälp av beräkningstjänsten Wolfram Alpha\cite{wolframalpha} av hur luftfuktighet kan påverkar luftens värmeledningsförmåga, får vi att det spelar ytterst liten roll. Man kan se en liten skillnad vid riktigt höga luftfuktigheter (upp emot 90 \%) vid de högre temperaturerna. Detta tordes vara försumbart eftersom det är en liten skillnad vid väderförhållanden som inträffar relativt sällan i vårt klimat.
+
+% Regn!!
 
 \subsection{Annat väder}
 En parameter som vi inte tar hänsyn till är snö. När snön har lagt sig på taket kan man anta att den har en isolerande effekt. Vi kan inte mäta om och i så fall hur mycket snö det ligger på taket. Enligt SMHI %(http://www.smhi.se/klimatdata/meteorologi/sno/Normalt-antal-dygn-med-snotacke-per-ar-1.7937)
