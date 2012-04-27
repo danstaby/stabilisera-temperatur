@@ -1,0 +1,117 @@
+\section{Finita element av värmeledningsekvationen}
+
+I detta avsnitt behandlas finita elementlösningen av värmeledningsekvationen.
+Det är från avsnitt \ref{sec:heatconduction} givet att differentialekvationen
+enligt ekvation \eqref{eq:femheateq} beskriver värmeflöde i ett material.
+
+\begin{equation}
+\label{eq:femheateq}
+c_p\rho\frac{\partial T}{\partial t} = \nabla\cdot(k\nabla T)
+\end{equation}
+
+\noindent
+För att finna en lösning integreras värmeledningsekvationen
+multiplicerat med en $L^2$ integrabel testfunktion $\phi(\mathbf{r})$ över hela
+definitionsmängden $\Omega$ vars rand benämns $\Gamma$.
+Detta kan ses i ekvation \eqref{eq:femheatweak}.
+Nu söks en funktion $T(\mathbf{r},t)$ som satisfierar nyss nämnda uttryck för
+alla $L^2$ integrabla testfunktioner $\phi(\mathbf{r})$.
+
+\begin{equation}
+\label{eq:femheatweak}
+\int_\Omega \left(c_p\rho\frac{\partial T}{\partial t} -
+\nabla\cdot(k\nabla T)\right)\phi(\mathbf{r})d\Omega = 0
+\end{equation}
+
+\noindent
+För att förenkla fortsatta beräkningar behövers det genomföras några
+omskrivningar av uttrycket. Divergensteoremet används först för att 
+eliminera divergensen i värmeledningsekvationens högerled. Detta ger då
+ekvation \eqref{eq:femheatweakfull}. Här är $\mathbf{n}$ normalen till randen.
+
+\begin{equation}
+\label{eq:femheatweakfull}
+\int_\Omega c_p\rho\frac{\partial T}{\partial t}\phi(\mathbf{r}) +
+k\nabla T\nabla\phi(\mathbf{r}) d\Omega =
+\int_\Gamma k\mathbf{n}\cdot\nabla Td\Gamma
+\end{equation}
+
+\noindent
+Härnäst skall galerkinformuleringen skissas. Detta genomförs
+genom att temperaturen $T$ samt tidsderivatan av temperaturen $\dot{T}$
+enligt ekvationerna \eqref{eq:femheatt} och \eqref{eq:femheattdot}.
+
+\begin{align}
+\label{eq:femheatt}
+T(\mathbf{r}) & \approx \sum_n T_n\phi(\mathbf{r}) \\
+\label{eq:femheattdot}
+\dot{T}(\mathbf{r}) & \approx \sum_n \dot{T}_n\phi(\mathbf{r})
+\end{align}
+
+\noindent
+Ansatsen ovan stoppas härnäst in i den svaga formuleringen i ekvation
+\eqref{eq:femheatweakfull} vilket ger ekvation \eqref{eq:femheatgalerkin}.
+För att kunna lösa problemet för definitionsmängder som består av olika
+homogena material väljs testfunktionen $\phi$ så att den försvinner vid
+alla andra material än ett och värmeledningskonstanten kan då benämnas $k_n$.
+Ekvationssystemet kan sedan skrivas i matrisform vilket kan ses i ekvation
+\eqref{eq:femheatmatrix}. Här är $M$ massmatrisen, $A$ är stelhetsmatrisen och
+$f$ är belastningsvektorn.
+
+\begin{align}
+\label{eq:femheatgalerkin}
+\sum_n \dot{T}_n \int_\Omega c_p\rho\phi_i(\mathbf{r})
+\phi_n(\mathbf{r})d\Omega
+& + \sum_n T_n \int_\Omega k_n \nabla\phi_n(\mathbf{r})\nabla\phi_n(\mathbf{r})
+d\Omega \\
+&= \int_\Gamma k_i\phi_i\mathbf{n}\cdot\nabla Td\Gamma \Leftrightarrow
+\nonumber
+\end{align}
+
+\begin{equation}
+\label{eq:femheatmatrix}
+M\dot{T} + AT = f \Rightarrow
+\end{equation}
+
+\begin{equation}
+\label{eq:femheatmatrix2}
+\dot{T} + M^{-1}AT = M^{-1}f
+\end{equation}
+
+\noindent
+Som kan ses så är ovanstående uttryck ett system av kopplade ordinära
+differentialekvationer vars lösning är trivial med hjälp av egenvärdesuppdelning.
+Vektorerna $\{v\}^n_{i=1}$ definieras som egenvektorerna av
+$M^{-1}A$ och $\lambda_i$ definieras som egenvärdena till samma matris.
+Systemets homogena lösning kan då skrivas som ekvation
+\eqref{eq:femheathom}.\cite{lay06}
+
+\begin{equation}
+\label{eq:femheathom}
+T_h(t) = \sum_n = c_n\mathbf{v}_ne^{-\lambda_nt}
+\end{equation}
+
+\noindent
+Då ekvationen är inhomogen så återstår det att lösa systemets
+partikulärlösning. Då inhomogeniteten är konstant så kan lämpligen
+en konstant ansättas som partikulärlösning. Detta ger att
+$T_p(t) = D$. Insättning i differentialekvationen ger
+ekvation \eqref{eq:femheatinstopp} vilket gör att vi kan bestämma
+$D$ genom ekvation \eqref{eq:femheatinstopp2}.
+
+\begin{align}
+\label{eq:femheatinstopp}
+M^{-1}AD &= M^{-1}b \Rightarrow\\
+\label{eq:femheatinstopp2}
+D &= A^{-1}b
+\end{align}
+
+\noindent
+Nu kan den fullständiga lösningen skissas som $T = T_h + T_p$ och om
+tiden sätts till noll så kan konstanterna $c_n$ bestämmas genom
+att $T$ sätts till problemets begynnelsevärden. För ett problem som
+saknar tidsberoende eller som har nått en jämviktspunkt måste
+tiden vara oändlig och de termer som innehar exponenter blir noll.
+Detta innebär att partikulärlösningen $T_p$ är den tidsoberoende lösningen
+till problemet. Detta kan enkelt verifieras genom att sätta $\dot{T} = 0$.
+Problemet som återstår är då $AT = b$ vars lösning är $T_p$.
