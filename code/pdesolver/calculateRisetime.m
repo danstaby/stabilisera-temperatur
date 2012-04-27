@@ -30,7 +30,8 @@ risetime = (t10-t90)/3600;
 
 disp(['Rise time of brick wall: ' num2str(risetime(1))])
 disp(['Rise time of insulated wall: ' num2str(risetime(2))])
-
+disp(['10% fall time of brick wall: ' num2str(t90(1)/3600)])
+disp(['10% fall time of insulated wall: ' num2str(t90(2)/3600)])
 %Plot data
 makePlot(step1, t10(1), t90(1), 1, 'Enbart tegel');
 makePlot(step2, t10(2), t90(2), 2, 'Tegel och mineralull');
