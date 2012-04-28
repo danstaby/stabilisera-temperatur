@@ -161,6 +161,30 @@ och slutligen är $\rho_0$ referensdensiteten.
 \; \; \; }
 \end{equation}
 
+\subsection{Vindens konvektionskoefficient}
+
+Då vinden blåser kommer en del värmeenergi överföras via konvektion, men istället för att lösa den invecklade konvektions-diffussionsekvationen används ofta något som kallas för vindens konvektionskoefficient, betecknat med $h$. I analogi med Fouriers värmelag, ekvation \ref{eq:conduction:fourier}, skrivs
+
+\begin{equation}\boxed{ \; \; \;
+q = hdT = h\left( T_{vägg} - T_{\infty}\right).
+\; \; \;}\end{equation}
+
+där h alltså ka jämföras med det ovan härledda U-värdet. 
+
+Denna konvektionskoefficient beskrivs ofta av en ekvation anpassad till empiriska resultat, och ett stort antal experiment har genomförts för att bestämma parametern, även om en helhetsbild saknas i dagsläget.
+
+Vid fri (naturlig) konvektion, det vill säga då vinden är försumbar och luftcirkulationen följer av stigande varm luft, brukar h fås till mellan 2 och $\unit{25}{Wm^{-2}K^{-2}}$. Vid forcerad konduktion, det vill säga då vinden inte är försumbar, kan h variera från 25 till $\unit{250}{Wm^{-2}K^{-2}}$. \cite{ASHRAE09}
+
+Traditionellt används ofta något som kallas för Nusselt-Jürges korrelation vid beräkning av konvektionskoefficienten, som lyder
+
+\begin{equation}
+h = 5.678 \left( a + b \left( \frac{965.42}{T_{ute}}\left(\mathbf{v}_{vind}\times \mathbf{n}\right) \right)^c \right)
+\end{equation}
+
+där $\mathbf{n}$ betecknar väggens normalvektor, och a, b samt c beror på väggens ytegenskaper. För en skrovlig yta med $\mathbf{v}_{vind}\times \mathbf{n} < \unit{4.88}{ms^{-1}}$ fås att $a=1.09$, $b=0.23$ samt $c=1$, medan starkare vind ger $a=0$, $b=0.53$ samt $c=0.78$. \cite{palyvos08}
+
+% Skapa graf över T och v beroende
+
 \subsection{Boussinesq approximation}
 
 För flytkraftsdrivet flöde kan det vara lämpligt att använda sig av
