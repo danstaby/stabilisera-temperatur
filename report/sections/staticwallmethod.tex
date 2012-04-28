@@ -82,9 +82,30 @@ Då linjärkombinationen bildas kommer energiflödena i mitten av väggen att
 vara noll. Detta överensstämmer väl med att vi har en statisk energifördelning
 utan interna värmekällor.
 Slutligen får vi ett ekvationsystem enligt ekvation
-\eqref{eq:staticwallmethod:full} som enkelt kan lösas. Matrisen $A$ är linjärkombinationen av nollpaddade versioner av \emph{\color{red} Skriv exempel som förklaring på nollpaddade och använd annat ord ex. 'med nollor utfyllda…' eller 'nollutfyllda'.}
-Notera att denna matris är singulär men då det är lika många
-obekanta som rangen av matrisen är detta inte ett problem.
+\eqref{eq:staticwallmethod:full} som enkelt kan lösas.
+Matrisen $A$ är linjärkombinationen av nollutfyllda versioner av matrisen i ekvation
+\eqref{eq:staticwalltheory:rodmatrix} enligt ekvation
+\eqref{eq:staticwallmethod:example}.
+
+\begin{equation}
+\label{eq:staticwallmethod:example}
+A = \frac{k_1}{L_1}
+\begin{pmatrix}
+1 & -1 & 0 &  \dots \\
+-1 & 1 & 0 &   \\
+0 & 0 & 0 &  \\
+\vdots & & & \ddots
+\end{pmatrix}
++
+\frac{k_2}{L_2}
+\begin{pmatrix}
+0 & 0 & 0 & 0 & \dots \\
+0 & 1 & -1 & 0 &  \\
+0 & -1 & 1 & 0 & \\
+0 & 0 & 0 & 0 & \\
+\vdots & & & & \ddots
+\end{pmatrix} + \dots
+\end{equation}
 
 \begin{equation}
 \label{eq:staticwallmethod:full}
