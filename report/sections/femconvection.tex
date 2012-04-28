@@ -1,6 +1,7 @@
 \section{Finita element av inkompressibel fluid}
 \label{sec:femconvection}
-För att lösa Navier-Stokes ekvationer kan lämpligen en datormodell användas.
+För att lösa Navier-Stokes ekvationer som återfanns i avsnitt
+\ref{section:convection} kan lämpligen en datormodell användas.
 Här består denna modell av ett system uppsatt med Galerkins metod.
 I denna lösning så begränsar vi dock oss till att enbart behandla statiska flöden
 vilket genomförs genom att sätta alla tidsderivator till noll.
@@ -66,20 +67,10 @@ som syftas att bli evaluerat.
 \mathbf{v}\cdot\nabla T - \alpha\Delta T &= 0
 \end{align}
 
-\subsection{Svag formulering}
-
-En finita elementlösning med Galerkins metod kräver att problemet reduceras till
-ett ekvivalent variationsproblem. 
-Här är $\mathbf{L}$ är differentialoperatorn
-som betecknar systemet av differentialekvationer \eqref{eq:femconvection:u}-
-\eqref{eq:femconvection:T} som $\mathbf{L}(T,u,w) = 0$.
-$\Phi$ är rummet av alla testfunktioner $\phi$ som är kontinuerliga i
-definitionsmängden $\Omega$ samt vars derivator är bitvis kontinuerliga på randen
-$\Gamma$. Testfunktionerna $\phi \in \Phi$ måste även vara $L^2$ integrabla.
-Variationsproblemet blir då: Sök $T\in\Phi$, $u\in\Phi$ och
-$w\in\Phi$ som uppfyller ekvation \eqref{eq:femconvection:variation}. Det är tydligt
-att alla $(u,w,T)$ som uppfyller $\mathbf{L}(u,w,T) = 0$ är ortogonala mot alla
-$L^2$ integrabla testfunktioner ty integranden kommer då alltid vara identiskt noll.
+\noindent
+Nu skapas en svag formulering som är ett variationsproblem där $(T,u,w)$ söks
+så de satisfierar ekvation \eqref{eq:femconvection:variation}. De okända funktionerna
+ska här vara en linjärkombination av testfunktionerna.
 
 \begin{equation}
 \label{eq:femconvection:variation}
@@ -89,33 +80,10 @@ $L^2$ integrabla testfunktioner ty integranden kommer då alltid vara identiskt 
 \noindent
 Då differentialekvationerna innehåller andra ordningens deriveringsoperatorer i form av
 partialderiveringsoperatorn samt divergensoperatorn behövs det lite analys.
-Divergensteoremet i två dimensioner \eqref{eq:femconvectiongausstheorem}
-med $\mathbf{A} = (uw, 0)$ eller $\mathbf{A} = (0, uw)$ ger då ekvation
-\eqref{eq:femconvection:partint}. Slutligen summeras uttrycket över alla
-$k$ för att få \eqref{eq:femconvection:green}. Här är $w$ utbytt mot $w_i$ med
-påståendet att $\mathbf{w} = (w_1, w_2) = \nabla v$. \cite{johnson2009}
-
-\begin{equation}
-\label{eq:femconvectiongausstheorem}
-\int_\Omega \nabla\cdot \mathbf{A} d\Omega = \int_\Gamma \mathbf{A}\cdot\mathbf{n} d\Gamma
-\end{equation} 
-
-\begin{equation}
-\label{eq:femconvection:partint}
-\int_\Omega w\frac{\partial u}{\partial x_k} d\Omega +
-\int_\Omega u\frac{\partial w}{\partial x_k} d\Omega =
-\int_\Gamma uwn_k d\Gamma\mbox{,   }k=1,2
-\end{equation}
-
-\begin{equation}
-\label{eq:femconvection:green}
-\int_\Omega u\Delta v d\Omega =
-\int_\Gamma u\nabla v\cdot\mathbf{n}d\Gamma-\int_\Omega \nabla v\cdot\nabla u d\Omega
-\end{equation}
-
-\noindent
-Med hjälp av ovanstående uttryck kan nu differentialekvationerna föras in i
-ekvation \eqref{eq:femconvection:variation} på ett meningsfullt sätt. Detta är genomfört i 
+Här används divergensteoremet för att eliminera en derivering. Efter detta
+förs differentialekvationerna in i den svaga formuleringen i ekvation
+\eqref{eq:femconvection:variation}.
+Detta är genomfört i 
 ekvationerna \eqref{eq:femconvection:weaku}-\eqref{eq:femconvection:weakT}.
 
 \begin{align}
@@ -142,9 +110,8 @@ n_z\phi\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}\right)d\Gamma
 \end{equation}
 
 
-
-\subsection{Galerkinformulering}
-
+\noindent
+Kvar är då faktiskt lösa problemet.
 Ansätt en lösning på formen \eqref{eq:femconvection:ansatz}.
 Då $\phi_k \in \Phi$, $k=1,2,..,N$ så uppfylls även att $u,w$ och $T$ tillhör
 $\Phi$ då dessa är en linjärkombination av basen $\phi_k$. Om konstanterna
@@ -206,32 +173,3 @@ detta galerkinformuleringen
 \int_\Gamma \alpha\phi_i\nabla w \cdot \mathbf{n} d\Gamma
 \end{align}
 
-\subsection{Spatial diskretisering}
-
-Lösningen av de galerkinformulerade ekvationerna kräver att en basfunktion väljs.
-Ett i populärt val i litteraturen är linjära triangulära element på grund av att de
-är lätta att använda. \cite{johnson2009}\cite{lewis04}\cite{reddy93}\cite{fem50} Området den
-partiella differentialekvationen skall lösas i delas upp i triangulära element.
-Trianglarnas hörn blir då noder. Elementen uppför sig genom att i en basfunktion
-är funktionen ett för noden som har samma nummer som basfunktionen. Denna funktion
-antar sedan värdet noll på alla motstående kanter på alla trianglar som innehar noden
-med samma nummer som basfunktionen. Mellan dessa positioner bildar basfunktionen
-linjära plan på det sätt att basfunktionen blir kontinuerlig med en bitvis kontinuerlig
-derivata.
-Utanför dessa trianglar är basfunktionen noll. \cite{johnson2009} 
-
-\subsection{Påtvingande av randvillkor}
-
-Två typer av randvillkor är relevanta för detta arbete. Det ena är dirichletvillkor som
-innebär att sökt funktion antar ett visst värde på randen. Det andra är neumannvillkor 
-vilket sätter derivatan i randnormalriktningen till ett värde. Tillvägagångssättet
-för påtvingande av dessa villkor i galerkins metod är lite olika. Dirichletvillkor
-påtvångas lättast genom att noderna som innehar denna typ av villkor sätts till ett värde
-och att ekvationerna uppdateras med detta värde. Neumannvillkor påtvingas istället
-genom att värdet på dessa rander sätts in i integralerna som går över randen. Då ekvationerna
-uppdateras med dessa villkor låts indexet $i$ i ekvationerna
-\eqref{eq:femconvection:galerkinu}-\eqref{eq:femconvection:galerkinT} löpa över alla fria noder.
-\footnote{Noder vars värde inte är kända tack vare dirichletvillkor} Nu finns det
-lika många ekvationer som fria noder och ekvationssystemet kan lösas. Problem
-kan uppkomma om för få randvillkor har införts. Detta kan innebära att ekvationssystemet
-får en trivial lösning.
