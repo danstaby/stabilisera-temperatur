@@ -74,22 +74,6 @@ Det sista högerledet kan skrivas om som
 \end{equation}
 
 Första termen inom hakparentes är kontinuitetsekvationen \eqref{eq:convection:continuity} och går alltså bort.
-\begin{comment}
-Den andra hakparentesen motsvarar något som kallas materiederivata. Man kan visa att 
-
-% OBS, blandat tensorer och vektorer
-\begin{equation}
-\label{eq:convection:material}
-\frac{d\mathbf{v}}{dt} = \frac{\partial \mathbf{v}}{\partial t} + \mathbf{v}_i\frac{\partial \mathbf{v}}{\partial x_i}
-\end{equation}
-
-och därmed reduceras \eqref{eq:convection:linear} till
-
-\begin{equation}
-\label{eq:convection:linearfinal}
-\sum \mathbf{F} = \rho \frac{d\mathbf{v}}{dt}dxdydz.
-\end{equation}
-\end{comment}
 
 Därmed reduceras \eqref{eq:convection:linear} till
 
@@ -118,7 +102,7 @@ Vi har alltså ekvationssystemet
 
 % Energirelationen
 
-Slutligen sätts i \ref{eq:convection:reynolds} $B=Q$ för att söka ett uttryck för energins bevarande (antagandet att volymen inte utför något arbete?).
+Slutligen sätts i \ref{eq:convection:reynolds} $B=E$ för att söka ett uttryck för energins bevarande. Med antagandet att volymen inte utför något arbete blir $E = Q$, där $Q$ betecknar värmeenergin, och på samma vis som i avsnitt\ref{sec:heatconduction} blir $Q = c_p \rho dT$, vilket ger följande:
 
 \begin{eqnarray}
 \label{reynoldsenergyone}
@@ -128,45 +112,36 @@ Slutligen sätts i \ref{eq:convection:reynolds} $B=Q$ för att söka ett uttryck
 & = & c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right)
 \end{eqnarray}
 
-Sista steget följer av att kontinuitetsekvationen bryts ut som i fallet med rörelsemängdsekvationen.
-För vänsterledet fås från Fouriers lag för en volym V att
-
-\begin{eqnarray}
-\label{reynoldsenergytwo}
-\frac{dQ}{dt} & = & -k \int_{\partial V} \nabla T \cdot \mathbf{n} dA \nonumber\\
-& = & -k \int_V \Delta T dV \nonumber \\
-& = & -k \Delta T dxdydz
-\end{eqnarray}
-
-vilket ger att
+Sista steget följer av att kontinuitetsekvationen bryts ut som i fallet med rörelsemängdsekvationen. För att utveckla vänsterledet betraktas återigen en infinetisemal volym såsom i figur \ref{fig:massflowcube}. Värmeenergiflödet in i volymen i x-led ges av $q_x dy dz$ medan utflödet ges av $\left[ q_x + \frac{\partial}{\partial x} \left( q_x\right)dx\right]dydz$ och analogt för y- respektive z-led. Totala ökningen av värmeenergi i kuben ges alltså av utflödet subtraherat från inflödet, vilket innebär att
 
 \begin{equation}
-\label{reynoldsenergyalmost}
--k \Delta T = c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right)
+\frac{dQ}{dt} = - \nabla \cdot \mathbf{q} dxdydz.
 \end{equation}
 
-För homogena inkompressibla fluider i två dimensioner gäller då ekvationerna
-\eqref{eq:convection:continuity}, \eqref{eq:convection:momentum} samt \eqref{eq:convection:energy}. Här
-är $\mathbf{v} = (u,w)$ hastighetsvektorn, $\alpha$ är den termiska
-diffusiviteten, $\nu$ är den kinematiska viskositeten, $p$ är trycket,
-$\rho$ är densiteten, $g$ är den lokala tyngdaccelerationen
-och slutligen är $\rho_0$ referensdensiteten.
+$\mathbf{q}$ fås från Fouriers värmelag (se avsnitt \ref{sec:heatconduction}) vilket ger att
 
-% Denna kallas för convection-diffusion equation
-% Kan härledas mha kontinuitetsekvationen och Ficks lag
-
-\begin{equation}\boxed{ \; \; \;
-\label{eq:convection:energy}
-\frac{\partial T}{\partial t} + \mathbf{v}\cdot\nabla T = \alpha\Delta T
-\; \; \; }
+\begin{equation}
+\label{reynoldsenergytwo}
+\frac{dQ}{dt} = \left( - \nabla \cdot \left( -k \nabla T \right) \right)dxdydz
 \end{equation}
+
+och detta i sin tur leder till resultatet
+
+\begin{equation}
+\label{eq:convection:energy}\boxed{ \; \; \;
+\nabla \cdot \left( k \nabla T \right) = c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right)
+\; \; \;}
+\end{equation}
+
+För homogena inkompressibla fluider i två dimensioner gäller alltså ekvationerna
+\eqref{eq:convection:continuityinc}, \eqref{eq:convection:momentum} samt \eqref{eq:convection:energy}.
 
 \subsection{Vindens konvektionskoefficient}
 
 Då vinden blåser kommer en del värmeenergi överföras via konvektion, men istället för att lösa den invecklade konvektions-diffussionsekvationen används ofta något som kallas för vindens konvektionskoefficient, betecknat med $h$. I analogi med Fouriers värmelag, ekvation \ref{eq:conduction:fourier}, skrivs
 
 \begin{equation}\boxed{ \; \; \;
-q = hdT = h\left( T_{vägg} - T_{\infty}\right).
+q = hdT = h\left( T_{wall} - T_{\infty}\right).
 \; \; \;}\end{equation}
 
 där h alltså ka jämföras med det ovan härledda U-värdet. 
@@ -178,7 +153,7 @@ Vid fri (naturlig) konvektion, det vill säga då vinden är försumbar och luft
 Traditionellt används ofta något som kallas för Nusselt-Jürges korrelation vid beräkning av konvektionskoefficienten, som lyder
 
 \begin{equation}
-h = 5.678 \left( a + b \left( \frac{965.42}{T_{ute}}\left(\mathbf{v}_{vind}\times \mathbf{n}\right) \right)^c \right)
+h = 5.678 \left( a + b \left( \frac{965.42}{T_{out}}\left(\mathbf{v}_{wind}\times \mathbf{n}\right) \right)^c \right)
 \end{equation}
 
 där $\mathbf{n}$ betecknar väggens normalvektor, och a, b samt c beror på väggens ytegenskaper. För en skrovlig yta med $\mathbf{v}_{vind}\times \mathbf{n} < \unit{4.88}{ms^{-1}}$ fås att $a=1.09$, $b=0.23$ samt $c=1$, medan starkare vind ger $a=0$, $b=0.53$ samt $c=0.78$. \cite{palyvos08}
