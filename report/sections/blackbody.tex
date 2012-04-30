@@ -1,11 +1,15 @@
+
 \section{Svartkroppsstrålning}
 \label{sec:blackbody}
 
-
-
-Alla objekt reflekterar, absorberar och transmitterar ljus. De kroppar som varken reflekterar eller transmitterar något ljus utan absorberar 100\% kallas konventionellt för svartkroppar. Detta är en teorektisk konstruktion då perfekta svartkroppar inte existerar men trots detta kan en sådan användas som en god modell i flera fysikaliska tillämpningar. Den energi som absorberats strålas ut i form av svartkroppsstråling vars frekvensspektum bestäms av kroppens temperatur när kroppen är i termisk jämvikt med sin omgivning. Den totala utstrålade energin per tidsenhet fås ur Stefan-Boltzmanns lag
-
-
+Alla objekt reflekterar, absorberar och transmitterar ljus. De kroppar som varken 
+reflekterar eller transmitterar något ljus utan absorberar 100\% kallas konventionellt för 
+svartkroppar. Detta är en teorektisk konstruktion då perfekta svartkroppar inte existerar 
+men trots detta kan en sådan användas som en god modell i flera fysikaliska 
+tillämpningar. Den energi som absorberats strålas ut i form av svartkroppsstråling vars 
+frekvensspektum bestäms av kroppens temperatur när kroppen är i termisk jämvikt med
+ sin omgivning. Den totala utstrålade energin per tidsenhet fås ur Stefan-Boltzmanns lag
+ 
 \begin{equation}\boxed{ \; \; \;
 j^{\star} = \sigma T^{4}
 \; \; \; }
@@ -33,7 +37,11 @@ Sedan görs ett litet hål i lådan, så att några av fotonerna kan slippa ut. 
 \caption{\label{fig:box}{Fotonerna som lämnar lådan har en liten stund tidigare befunnit sig i samma hemisfär inne i lådan.}}
 \end{figure}
 
-Den totala mängden strålning som kommer ut kan då beräknas genom att tänka sig att de fotoner som når fram till hålet under en kort tidsperiod, $\mathrm{d}t$, alla befann sig i samma hemisfär inne i lådan för en liten stund sedan, se figur \ref{fig:box}. Tjockleken på den tänkta hemisfären är $c\mathrm{d}t$. Hemisfärens radie, $R$, beror givetvis på hur långt bak i tiden vi tittar.
+Den totala mängden strålning som kommer ut kan då beräknas genom att tänka sig att 
+de fotoner som når fram till hålet under en kort tidsperiod, $\mathrm{d}t$, alla befann sig
+ i samma hemisfär inne i lådan för en liten stund sedan, se figur \ref{fig:box}. Tjockleken 
+ på den tänkta hemisfären är $c\mathrm{d}t$. Hemisfärens radie, $R$, beror givetvis på 
+ hur långt bak i tiden vi tittar.
 
 Ett volymelement av hemsfären ges av
 \begin{equation}
@@ -50,7 +58,8 @@ Men endast den andel av fotonerna som har rätt riktning kommer ut genom lådans
 P(\text{rätt riktning})=\frac{A\cos\theta}{4\pi R^2}
 \end{equation}
 
-där A är hålets area. Den totala energin som strålar ut ur hålet från det lilla volymselementet är alltså 
+där A är hålets area. Den totala energin som strålar ut ur hålet från det lilla 
+volymselementet är alltså 
 \begin{equation}
 \frac{A\cos\theta}{4\pi}\frac{U}{V} c\mathrm{d}t \sin\theta\mathrm{d}\theta \mathrm{d}\phi
 \end{equation}
@@ -60,3 +69,41 @@ vilket ger en total energiutstrålning på
 \frac{A}{4}\frac{U}{V}c \mathrm{d}t
 \end{equation}
 
+\subsection{Tillämpning}
+
+\begin{figure}[hpbt]
+\centering
+\includegraphics[height=0.3\textheight]{images/blackbody_surroundings.eps}
+\caption{\label{fig:surroundings}{Så stor andel av den mot väggen instrålande 
+svartkroppsstrålningen kommer från olika omgivningar. Den undersökta fastigheten på 
+Walleriusgatan t.v., och Johannebergskyrkans församlingshem t.h.}}
+\end{figure}
+
+För att uppskatta hur mycket svartkroppsstrålning som kommer mot väggen från olika 
+delar av omgivningen sattes en enkel modell upp. Där antas att Johannebergskyrkans 
+församlingshem ligger mitt emot vår undersökta fastighet på Walleriusgatan, att 
+församlingshemmet ligger 30 meter bort och är 40 meter högt samt att det är det ända 
+föremålet av betydande storlek i närheten, se figur \ref{fig:surroundings}. För varje punkt
+ på väggen beskrivs sedan hur stor andel av dess omgivning som upptas av marken, 
+ församlingshemmet respektive himlen, eller atmosfären med hjälp av ekvationerna
+
+\begin{equation}
+p_\text{gata}=\tan^{-1}(30/h)/180
+\end{equation}
+
+\begin{equation}
+p_\text{byggnad}= \left\{
+\begin{array}{rl}
+\tan^{-1}(\frac{30}{h-40})/180 & \text{om } h > 40 \\
+(\tan^{-1}(\frac{40-h}{30})+\tan^{-1}(\frac{h}{30}))/180 & \text{om } h < 40 \\
+\end{array} \right.
+\end{equation}
+
+\begin{equation}
+p_\text{atmosfär}=1-p_\text{gata}-p_\text{byggnad}.
+\end{equation}
+
+Medelvärdet då h går från 0 till 66 meter ger det genomsnittliga värdet för hur stor andel 
+av den instrålade svartkroppsstrålningen mot hela väggen som kommer från olika delar
+ av omgivningen. Detta ger resultatet att 26\% kommer från gata, 36\% från 
+ församlingshemmet och 38\% från atmosfären.
