@@ -1,13 +1,13 @@
 \section{Värmeledning}\label{sec:heatconduction}
 
-Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $k$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion. I denna rapport används den förstnämnda symbolen, $k$. För att bestämma lambdavärdet för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Då värmeöverföring via konvektion samt strålning är så pass svår att behandla matematiskt så ingår dessa i lambdavärdet som är väldigt enkelt att jobba med matematiskt. Generellt gäller att värmeflödet per ytenhet är $q = - k \nabla T$. Detta samband brukar kallas för Fouriers värmelag. Med ett homogent material i en dimension förenklas detta till
+Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $k$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion. I denna rapport används den förstnämnda symbolen, $k$. För att bestämma lambdavärdet för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Då värmeöverföring via konvektion samt strålning är så pass svår att behandla matematiskt så ingår dessa i lambdavärdet som är väldigt enkelt att jobba med matematiskt. Generellt gäller att värmeflödet per ytenhet är $\mathbf{q} = - k \nabla T$. Detta samband brukar kallas för Fouriers värmelag. Med ett homogent material i en dimension förenklas detta till
 
 \begin{equation}\label{eq:conduction:fourier}\boxed{ \; \; \;
-q = -k \frac{dT}{dx} = -\frac{k}{d}\left( T_2-T_1\right)
+q_x = -k \frac{dT}{dx} = -\frac{k}{d}\left( T_2-T_1\right)
 \; \; \; }
 \end{equation}
 
-där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i bägge ändar av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{k}{d}$, det vill säga $q = UdT = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet.
+där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i bägge ändar av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{k}{d}$, det vill säga $q_x = UdT = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet.
 
 En schematisk bild över en vägg i en dimension som består av $n$ olika material kan ses i figur \ref{fig:staticwallmethod:wall}. Med materialens värmeledningsförmåga, $k_i$, för $i=1,2\,,\,...\,,\,n$ samt längden på elementen, $L_i$, använder vi nu Fouriers värmeledningsekvation för att teckna värmeflödet och temperaturerna $T_i$, i punkterna mellan de olika delarna av väggen med randvillkoren $T_1 = T_H$ samt $T_{n+1} = T_L$.
 
@@ -59,7 +59,7 @@ dQ = k\int_{t-dt}^{t+dt} \left[ \frac{\partial T}{\partial x}\left( x + dx, \tau
 
 Kombinering av dessa och det faktum att det gäller för en godtycklig sträcka $dl$ samt tid $d\tau$, vilket innebär att integralen kan tas bort, ger att
 
-\begin{equation}\boxed{ \; \; \;
+\begin{equation}\label{eq:conduction:heateq}\boxed{ \; \; \;
 c_p \rho \frac{\partial T}{\partial t} = k \frac{\partial^2 T}{\partial \tau^2} \Leftrightarrow \frac{\partial T}{\partial t} = \alpha \Delta T
 \; \; \; }
 \end{equation}

@@ -1,8 +1,8 @@
 \section{Värmeflöde i vägg}
 
 För att beskriva ett värmeflöde används ekvationerna Fouriers värmeekvation
-\eqref{eq:staticwallmethod:fourier} och värmeledningsekvationen 
-\eqref{eq:staticwallmethod:heat}. 
+\eqref{eq:conduction:fourier} och värmeledningsekvationen 
+\eqref{eq:conduction:heateq}. 
 I dessa är
 $k$ värmeledningsförmågan\\i $\mbox{W}\mbox{m}^{-2}\mbox{K}^{-1}$ och
 $\alpha$ är termisk diffusivitet i $\mbox{m}^2\mbox{s}^{-1}$. \cite{physicshandbook}
@@ -13,13 +13,15 @@ $\Delta{}T = 0$. I en dimension blir detta $d^2T/dx^2 = 0$ vilket innebär
 att lösningen blir ett polynom av första ordningen.  
 
 \begin{equation}
-\label{eq:staticwallmethod:fourier}
-q_x = -k\frac{dT}{dx}
+%\label{eq:staticwallmethod:fourier}
+q_x = -k \frac{dT}{dx}
+\tag{\ref{eq:conduction:fourier}}
 \end{equation}
 
 \begin{equation}
-\label{eq:staticwallmethod:heat}
-\frac{\partial{}T}{\partial{}t} = \alpha\Delta{}T
+%\label{eq:staticwallmethod:heat}
+\frac{\partial T}{\partial t} = \alpha \Delta T
+\tag{\ref{eq:conduction:heateq}}
 \end{equation}
 
 \noindent
