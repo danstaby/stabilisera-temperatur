@@ -22,13 +22,6 @@ q_x = -k\frac{dT}{dx}
 \frac{\partial{}T}{\partial{}t} = \alpha\Delta{}T
 \end{equation}
 
-\begin{figure}
-\centering
-\includegraphics{images/wall.eps}
-\caption{Schematisk bild över en vägg som består av $n$ olika element med olika
-längd och värmeledningskapacitet.}\label{fig:staticwallmethod:wall}
-\end{figure}
-
 \noindent
 Vi vill nu beskriva det statiska värmeflödet genom en vägg som består
 av flera olika material. De enda värmekällorna som påverkar väggen
@@ -37,26 +30,7 @@ samt en isoterm $T = T_L$ på andra sidan av väggen.
 
 För att göra beräkningarna enklare
 ser vi väggen som en oändligt stor skiva. Detta innebär att vi kan räkna
-på ekvationen i en dimension. 
-En schematisk bild över en vägg i en dimension som består av
-$n$ olika material kan ses i figur \ref{fig:staticwallmethod:wall}.
-Med materialens värmeledningsförmåga, $k_i$, samt längden
-på elementen, $L_i$, använder vi nu Fouriers värmeledningsekvation för
-att teckna värmeflödet och temperaturerna $T_j$,  $j=0,\,1,\,...\,,\,n$, i punkterna
-mellan de olika delarna av väggen med randvillkoren $T_0 = T_H$ samt
-$T_n = T_L$.
-
-För varje del av väggen kan vi sätta upp ekvationer från Fouriers ekvation
-för värmeflöde. Vi får flöde in i en del enligt \eqref{eq:staticwallmethod:rod} och
-flödet ut genom väggen blir detsamma ty temperaturen är konstant. Dessa två
-ekvationer låter oss teckna ett ekvationssystem för varje del av väggen
-enligt \eqref{eq:staticwalltheory:rodmatrix}. \cite{lewis04}
-
-\begin{equation}
-\label{eq:staticwallmethod:rod}
-Q = -k\frac{T_{2}-T_{1}}{L}
-\end{equation}
-
+på ekvationen i en dimension. Med hjälp av det härledda sambandet i avsnitt \ref{sec:heatconduction} kan ett ekvationssystem bildas.
 
 \begin{equation}
 \label{eq:staticwalltheory:rodmatrix}
