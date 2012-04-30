@@ -1,4 +1,4 @@
-function ret = walltransientfem(Time, Nodes, Insulated, UseSun, StaticTemp)
+function ret = walltransientfemdecember(Time, Nodes, Insulated, UseSun, StaticTemp)
 % walltransientfem(Time, Nodes, Insulated, UseSun, StaticTemp)
 %
 % This Script calculates the transient temperatures in a wall with
@@ -12,8 +12,8 @@ bUseSun = UseSun;
 
 %Temperature inside
 
-PrepareInterpolation('sunintensity_april.txt');
-PrepareTempInterpolation([6, 6;16,9]);
+PrepareInterpolation('sunintensity_december.txt');
+PrepareTempInterpolation([6, -11;16,-5]);
 
 %t = [0:60:24*3600];
 %temp = zeros(1,size(t,2));
@@ -104,7 +104,7 @@ Pts(sum(NrNodes)+1) = PrevL;
 
 %Set initial value to the steady state solution
 if(size(Material,1) > 1)
-  [~, TempInit] = heatrod([7.5 Tin], Material(:, [1 3]));
+  [~, TempInit] = heatrod([-8 Tin], Material(:, [1 3]));
 end
 PrevEnd = 0;
 Tlast = 0;
@@ -207,7 +207,7 @@ for t = Time(1):Time(2):Time(3)
   end
   
   Qtot = Qw + 0.2*Qd;
-  h = 6.19;
+  h = 35;
   Rair = sigma*To^4*(1-0.261*exp(-7.77e-4*(273-To)^2));
   Raimb = sigma*To^4;
   Rtot = 0.4*Raimb + 0.6*Rair;
