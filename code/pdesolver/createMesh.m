@@ -12,8 +12,8 @@ function createMesh(fileName, refinements)
 
 tic; %Start timer to time how long the execution of this script takes
 
-border = [0,20,20,-5,0;
-         0,0,9+5/sqrt(3),9+5/sqrt(3),9];
+border = [0,20,20,-6,0;
+         0,0,22,22,18];
 
 fprintf(1,'Creating mesh...')
 gd = [2,max(size(border)), border(1,:), border(2,:)]';
