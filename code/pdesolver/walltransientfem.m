@@ -5,7 +5,10 @@ function ret = walltransientfem(Time, Nodes, Insulated, UseSun, StaticTemp)
 % a specified amount of nodes. Insulated = 0 means uninsulated wall
 % and Insulated = 1 mean that the wall is insulated.
 %StaticTemp = -999 means that the dynamic temperature is used instead.
+%UseSun = 0 means no sun, UseSun=1 means full sun, UseSun = 2 means cloudy
 
+global bUseSun
+bUseSun = UseSun;
 %Temperature inside
 
 PrepareInterpolation('sunintensity_april.txt');
@@ -183,7 +186,7 @@ MinvA(Free,Free) = inv(M(Free,Free))*A(Free,Free);
 
 
 n = 0;
-sigma = 1.3806503e-23;
+sigma = 5.670e-8;
 Tguess = Tout(0) + kelvin;
 Tolerance = 1e-3;
 for t = Time(1):Time(2):Time(3)
@@ -196,13 +199,21 @@ for t = Time(1):Time(2):Time(3)
     To = Tout(t)+kelvin;
   end
   
-  Qs = UseSun;
-  if(Qs ~= 0)
-    Qs = Qsun(t);
+  Qd = UseSun;
+  Qs = 0;
+  if(Qd ~= 0)
+    [Qw, Qd] = Qsun(t);
   end
-  h = 25;
+  
+  Qtot = Qw + 0.2*Qd;
+  h = 6.19;
+  Rair = sigma*To^4*(1-0.261*exp(-7.77e-4*(273-To)^2));
+  Raimb = sigma*To^4;
+  Rtot = 0.4*Raimb + 0.6*Rair;
+  
+
   Q(1,1) = -(-h); %T dependent neumann conditions
-  g(1,1) = (Qs+h*To + sigma*(0.8*To^4+0.2*(To-30)^4 - uLast(1)^4)); %Constant neumann conditions
+  g(1,1) = Qtot + h*To + Rtot - sigma*uLast(1)^4; %Constant neumann conditions
 
   %Move dirichlet conditions to the RHS
   u(:) = 0;
@@ -303,8 +314,8 @@ A(2*splineCount,[2, 2*splineCount]) = [1, -1];
 %Solve for X.
 TemperatureSpline = A\b;
 
-function ret = Qsun(Time)
-global SunResolution SplineInterpolation
+function [Qproj, Qdirect] = Qsun(Time)
+global SunResolution SplineInterpolation bUseSun
 
 t = mod(Time,24*3600);
 
@@ -325,15 +336,19 @@ if(projection < 0 || height < 0)
 end
 
 spline = floor(t/(3600*SunResolution))+1; %Calculate which spline that
- 
                                 %should be used
 
 
 I = [1, t/3600]*SplineInterpolation([2*spline-1 2*spline]);
 
 %Get the solar intensity normal to the sun rays.
-
-ret = I*projection;
+if(bUseSun == 1)
+  Qproj = I*projection;
+  Qdirect = I;
+elseif(bUseSun == 2)
+  Qproj = 0.2*I;
+  Qdirect = 0.2*I;
+end
 
 
 function ret = Tout(Time)
