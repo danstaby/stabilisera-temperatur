@@ -14,3 +14,23 @@ i figuren är strömlinjer och färgen indikerar beloppet av hastighetsvektorn. 
 sida i figuren. Färgen indikerar lufttryck och linjer ligger längs isobarer.
 Tryckskillnaderna på de olika sidorna av husen kommer att driva ofrivillig ventilation vilket leder till infiltrationsförluster.}
 \end{figure}
+
+
+\begin{figure}
+\centering
+\subfloat[Byggnad som vinden blåser direkt på.]{
+\includegraphics[width=60mm]{images/pressurewind.eps}}
+\vspace{5mm}
+\subfloat[Byggnad som ligger i lä av en annan byggnad.]{
+\includegraphics[width=60mm]{images/pressurenowind.eps}}
+
+\subfloat[Teoretisk approximation för lådformad byggnad.]{
+\includegraphics[width=60mm]{images/pressuretheory.eps}}
+\caption{Energiförlust per temperaturenhet med exponent 1 vilket motsvarar
+Darcys lag och med exponent $0,6$ vilket är en experimentellt uppmätt
+exponent. Dessa två kurvor kan motsvara högsta och minstagissningar för
+infiltrationsförluster i en byggnad. Trycken är framräknade för olika
+vindhsatigheter med Comsol och andra är teoretiskt framräknade med en approximation.
+Denna baserar sig på att tryckskillnaden mellan inne och ute är proportionerligt
+med vindhastiheten i kvadrat.}
+\end{figure}
