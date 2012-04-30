@@ -17,11 +17,13 @@ tic;
 kelvin = 273.15;
 
 dims = 1;
-border = [0,-20,-20, 32,32,12,  12,    0;
+border = [0,-40,-40, 52,52,12,  12,    0;
 	  0,  0,-30,-30, 0, 0,-0.5, -0.5];
-h = 100;
+h = 15.5;
 Ug = 2.4;
+kGranite = 2.2;
 Tref = 10+kelvin;
+Tin = 20+kelvin;
 Tout = 0+kelvin;
 
 Tlow = -30+kelvin;
@@ -63,16 +65,18 @@ Tmean = zeros(3,floor((Thigh-Tlow)/Tstep));
 pts = p(1:2, e(1,:)) - p(1:2, e(2,:));
 LengthBound = sqrt(diag(pts'*pts));
 
+Tsave = 0 + kelvin;
+
 for Tout = Tlow:Tstep:Thigh
   Q = sparse(pCount, pCount);
   G = sparse(pCount, 1);
   b = sparse(pCount, 1);
   u = sparse(pCount, 1);
   n = n + 1;
-  
-  neumannConditions =   [0  ,   0,   0, Ug*Tref, Ug*Tref, Ug*Tref, h*Tout, h*Tout];
-  neumannTConditions =  [NaN, NaN, NaN,     -Ug,     -Ug,     -Ug,     -h,  -h];
-  dirichletConditions = [NaN, NaN, NaN,    NaN,    NaN,    NaN, NaN, NaN];
+  Tref = mean([Tin, Tout])
+  neumannConditions =   [0  ,   NaN,   0, Ug*Tref, Ug*Tref, Ug*Tref, h*Tout, h*Tout]/kGranite;
+  neumannTConditions =  [NaN, NaN, NaN,     -Ug,     -Ug,     -Ug,     -h,  -h]/kGranite;
+  dirichletConditions = [NaN, kelvin + 8, NaN,    NaN,    NaN,    NaN, NaN, NaN];
 
   neunan = isnan(neumannConditions(e(5,:)));
   neuTnan = isnan(neumannTConditions(e(5,:)));
@@ -136,10 +140,14 @@ for Tout = Tlow:Tstep:Thigh
     
   end
   disp(['Tout = ' num2str(Tout) ', Tmean = ' num2str(Tmean(2,n))])
-
+  if(Tout == Tsave)
+    uSave = u;
+  end
 end
 
 Lengts = zeros(3,1);
+
+
 
 for eid = 1:3
     ind = find(~(e(5,:)-eid-boundoffs));
@@ -169,9 +177,9 @@ legend('Right side', 'Lower side', 'Left side')
 
 figure(2)
 plot((Tlow:Tstep:Thigh)-kelvin, TotalMean-kelvin)
-xlabel('T outside (degC)')
-ylabel('Mean Temperature (degC)')
-legend('Temperature relation')
+xlabel('Temperature ute (C)')
+ylabel('Grundens medeltemperatur (C)')
+xlim([-30, 30])
 %figure(2)
 %pdemesh(p,e,t)
 %tricontourf(p(1:2,:),t(1:3,:),u-kelvin)
@@ -180,11 +188,13 @@ OurU = abs(Ug*(10+kelvin-TotalMean)./(TotalMean-(Tlow:Tstep:Thigh)));
 
 figure(3)
 plot((Tlow:Tstep:Thigh)-kelvin, OurU)
-xlabel('Temperature Outside (degC)')
-ylabel('U value of the granite')
+xlabel('Temperatur ute (C)')
+ylabel('U av grunden')
 
 OurU = OurU(1)
 
 MeanLength = 2.2/OurU
 
 %figure(1)
+figure(4)
+tricontourf(p(1:2,:),t(1:3,:),uSave-kelvin)
