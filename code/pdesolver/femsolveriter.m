@@ -11,8 +11,7 @@ function ret = femsolveriter(fileName, Tout, VarName, Range)
 global TensX TensZ divxx divzz divzx divxz A QT LM alpha beta nu rho penalty Gu Gw GT
 
 
-h = 50;
-
+h = 100;
 g = 9.81;
 beta = 3.67e-3; %### NOTE #### T-dependent. Fix later
 alpha =1.9e-5; %Pressure and water dependant
@@ -79,13 +78,16 @@ for ourN = 1:size(Range,2)
   disp([VarName '=' num2str(VarN)])
   while(abs(meantemp - T0) > temperr) 
     T0 = newtemp;
-    bb = 0;%50 + sigma*(0.8*(Tref-30)^4 +  0.2*Tref^4 + 0.8*3*T0^4); %Q due to planck radiation
-    bbt = 0;%-0.8*4*sigma*T0^3; %T-dependance of Q due to planck radiation
+    %bb = 50 + sigma*(0.8*(0.7*(Tref-30)^4 +  0.3*Tref^4) + 0.8*3*T0^4); %Q due to planck radiation
+    %bbt = -0.8*4*sigma*T0^3; %T-dependance of Q due to planck radiation
 			     %(first order tayolor polynominal)
 
 			     %Boundary conditions. T = TdirichletConditions,
 			     % dT/dn = TneumannConditions +
                              % T*TneumannTConditions
+     bb = 100;
+     bbt = 0;
+
      TneumannConditions = [NaN, h*Tref, h*Tref, 0, Uvalue*Tin + bb]/kAir;
      TneumannTConditions = [NaN,-h, -h, NaN, -Uvalue + bbt]/kAir;
      TdirichletConditions = [Tref, NaN, NaN, NaN, NaN];
@@ -94,7 +96,7 @@ for ourN = 1:size(Range,2)
      UneumannConditions = [NaN, NaN, NaN, NaN, NaN];
      UneumannTConditions = [NaN, NaN, NaN, NaN, NaN];
 
-     WdirichletConditions = [0, 0, 0, 0, 0];
+     WdirichletConditions = [0, 0, 0, 0 ,0 ];
      WneumannConditions = [NaN, NaN, NaN, NaN, NaN];
      WneumannTConditions = [NaN, NaN, NaN, NaN, NaN];
 

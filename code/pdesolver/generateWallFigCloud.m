@@ -1,7 +1,10 @@
-function ret = generateWallFigApril(fileName)
+function ret = generateWallFigCloud(fileName)
 
 load(fileName);
 timeOffset = 28*24;
+
+data1 = datacloud1;
+data2 = datacloud2;
 
 ind = [28*24*3600/500-0.4:29*24*3600/500-0.2];
 time = (data1(ind,1)-data1(ind(1),1))/3600;
@@ -23,4 +26,4 @@ xlabel('Tid i timmar')
 ylabel('Kyleffekt (W m^{-2})')
 xlim([0 24])
 
-set(fig2, 'Position', [800 700 300 200])
+set(fig2, 'Position', [700 700 300 200])
