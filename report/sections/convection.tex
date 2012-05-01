@@ -152,11 +152,17 @@ Vid fri (naturlig) konvektion, det vill säga då vinden är försumbar och luft
 
 Traditionellt används ofta något som kallas för Nusselt-Jürges korrelation vid beräkning av konvektionskoefficienten, som lyder
 
-\begin{equation}
+\begin{equation}\label{Nusselt}
 h = 5.678 \left( a + b \left( \frac{965.42}{T_{out}}\left(|\mathbf{v}_{wind}\times \mathbf{n}|\right) \right)^c \right)
 \end{equation}
 
-där $\mathbf{n}$ betecknar väggens normalvektor, och a, b samt c beror på väggens ytegenskaper. För en skrovlig yta med $|\mathbf{v}_{vind}\times \mathbf{n}| < \unit{4.88}{ms^{-1}}$ fås att $a=1.09$, $b=0.23$ samt $c=1$, medan starkare vind ger $a=0$, $b=0.53$ samt $c=0.78$.
+där $\mathbf{n}$ betecknar väggens normalvektor, och a, b samt c beror på väggens ytegenskaper. För en skrovlig yta med $|\mathbf{v}_{vind}\times \mathbf{n}| < \unit{4.88}{ms^{-1}}$ fås att $a=1.09$, $b=0.23$ samt $c=1$, medan starkare vind ger $a=0$, $b=0.53$ samt $c=0.78$. Olika isotermer beräknade med detta samband kan ses i figur \ref{hvalues}.
+
+\begin{figure}[hpbt]
+\label{hvalues}\centering
+\includegraphics[scale=0.7]{images/hvalues.eps}
+\caption{Teoretiska konvektionskoefficienter (h-värden) beräknade med Nusselt-Jürges korrelation, \eqref{Nusselt}. De olika linjerna är isotermer där den lägst belägna motsvarar 30$^{\circ}C$ och den högsta motsvarar -20$^{\circ}C$ med 10$^{\circ}C$ skillnad mellan två linjer. Den svarta linjen motsvarar brytpunkten vid $\unit{4,88}{m/s}$ då konstanterna förändras}
+\end{figure}
 
 En mängd andra samband mellan konvektionskoefficienten och vindhastigheten har härletts, både teoritiskt och empiriskt, på grund av dess starka beroende av byggnadens ytegenskaper och area, men av anledningar som diskuteras i avsnitt \ref{sec:errors}.\cite{palyvos08}
 
