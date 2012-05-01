@@ -210,7 +210,7 @@ for t = Time(1):Time(2):Time(3)
   h = 6.19;
   Rair = sigma*To^4*(1-0.261*exp(-7.77e-4*(273-To)^2));
   Raimb = sigma*To^4;
-  Rtot = 0.4*Raimb + 0.6*Rair;
+  Rtot = 0.62*Raimb + 0.38*Rair;
   
 
   Q(1,1) = -(-h); %T dependent neumann conditions
