@@ -1,10 +1,10 @@
 \section{Solstrålning genom fönster}\label{sec:sunthroughwindowsmethod}
 
-För att beräkna den totala effekt solstrålning tillför byggnaden behövs fönstrenas vinkelberoende g-värden (presenterat i avsnitt \ref{gvalue}) och för att bestämma detta värde ur \eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
+För att beräkna den totala effekt solstrålning tillför byggnaden behövs fönstrenas vinkelberoende g-värden, presenterat i avsnitt \ref{gvalue}, och för att bestämma detta värde ur \eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
 
-En metod för att räkna ut solens position presenteras i \cite{walraven78} och en Matlabfunktion baserad på samma artikel kan ses i appendix \ref{app:sunposition}. Argumenten i denna funktion består av longitudinella och latitudinella koordinater för aktuella platsen (för Walleriusgatan ungefär 12 respektive 57,7 grader) samt datum och tidpunkt.
+En metod för att räkna ut solens position presenteras i \cite{walraven78} och en Matlabfunktion baserad på samma artikel kan ses i appendix \ref{app:sunposition}. Argumenten i denna funktion består av longitudinella och latitudinella koordinater för aktuella platsen samt datum och tidpunkt. För Walleriusgatan är koordinaterna ungefär $\unit[12]{^\circ}$ E respektive $\unit[58]{^\circ}$ N.
 
-När azimuthala och altitudinella vinklarna ($\beta$ respektive $\alpha$) relativt ett väderstreck respektive horisonten har beräknats relateras infallsvinkeln mot glaset, $\theta$, på följande vis:
+När azimuthala och altitudinella vinklarna, det vill säga $\beta$ respektive $\alpha$, relativt ett väderstreck respektive horisonten har beräknats relateras infallsvinkeln mot glaset, $\theta$, som
 
 \begin{equation} 
 \theta = \arccos{\left( \cos{\left(\beta - \gamma\right)}\cos{\left(\alpha\right)}\right)}
@@ -12,7 +12,7 @@ När azimuthala och altitudinella vinklarna ($\beta$ respektive $\alpha$) relati
 
 där $\gamma$ är vinkeln mellan fönstrets normal och väderstrecket mot vilken azimuthala vinkeln anges. Detta görs med funktionen angletheta i appendix \ref{app:sunwindows}.
 
-Med dessa samband tillgängliga kan effektflödet på grund av solstrålning genom fönster beräknas, vilket kan göras med funktionerna gvalue samt effekt från appendix \ref{app:sunwindows}. Nödvändiga argument för dessa funktioner är g-värdet vid vinkelrätt infallande strålning samt konstanterna p och q från \eqref{eq:gconstants}.
+Med dessa samband tillgängliga kan effektflödet på grund av solstrålning genom fönster beräknas, vilket kan göras med funktionerna \textit{gvalue} samt \textit{effekt} från appendix \ref{app:sunwindows}. Nödvändiga argument för dessa funktioner är g-värdet vid vinkelrätt infallande strålning samt konstanterna p och q från \eqref{eq:gconstants}. % Repetera ekvationen?
 
 För att ge ett exempel på hur effekten varierar med solintensiteten måste en approximativ funktion byggas upp som beskriver solens intensitet vid marknivå som funktion av vinkeln över horisonten. Om vi antar att intensiteten är $I_o = \unit[1370]{Wm^-2}$ utanför atmosfären kan detta beskrivas med ett exponentiellt samband, $I = I_oe^{-\mu x}$ där $\mu$ kallas för atmosfärens absorbtionskoefficient som sätts till $mu\approx \unit[4.6\cdot 10^{-5}]{m^{-1}}$ och x är atmosfärens tjocklek mellan betraktaren och solen, i meter. Atmosfären antas dessutom vara som en homogen heltäckande sfär runt jorden och ungefär $\unit[15]{km}$ tjock vertikalt uppåt överallt på jordens yta. x kan nu beskrivas med solens höjd över horisonten, och ges av
 
@@ -20,8 +20,7 @@ För att ge ett exempel på hur effekten varierar med solintensiteten måste en 
 x = R\cos{90+\alpha} + \sqrt{\left(R\cos{90+\alpha}\right)^2 + \left( R+15\right)^2 - R^2}
 \end{equation}
 
-där $\alpha$ är vinkeln mellan horisonten och solen och $R\approx\unit[6,731\cdot 10^3]{m}$ betecknar jordens radie \cite{physicshandbook}. Detta följer från cosinussatsen.
-%Källa på siffran mu?
+där $\alpha$ är vinkeln mellan horisonten och solen och $R\approx\unit[6,731\cdot 10^3]{m}$ betecknar jordens radie \cite{physicshandbook}. Detta följer från cosinussatsen. % Källa på siffran mu?
 
 \subsection{Inverkan av skuggor, rummets interiör och dylikt}
 
