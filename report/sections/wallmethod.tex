@@ -7,10 +7,7 @@ I dessa är
 $k$ värmeledningsförmågan\\i $\mbox{W}\mbox{m}^{-2}\mbox{K}^{-1}$ och
 $\alpha$ är termisk diffusivitet i $\mbox{m}^2\mbox{s}^{-1}$. \cite{physicshandbook}
 
-Vid statiskt värmeflöde kommer temperaturderivatan med avseende på tiden att vara noll.
-Detta innebär att värmeledningsekvationen övergår i Laplaces ekvation
-$\Delta{}T = 0$. I en dimension blir detta $d^2T/dx^2 = 0$ vilket innebär
-att lösningen blir ett polynom av första ordningen.  
+Vid statiskt värmeflöde kommer temperaturderivatan med avseende på tiden att vara noll. Detta innebär att värmeledningsekvationen, \eqref{eq:conduction:heateq}, övergår i Laplaces ekvation $\Delta T = 0$. I en dimension blir detta $d^2T/dx^2 = 0$ vilket innebär att lösningen blir ett polynom av första ordningen.  
 
 \begin{equation}
 %\label{eq:staticwallmethod:fourier}
@@ -25,14 +22,7 @@ q_x = -k \frac{dT}{dx}
 \end{equation}
 
 \noindent
-Vi vill nu beskriva det statiska värmeflödet genom en vägg som består
-av flera olika material. De enda värmekällorna som påverkar väggen
-är en isoterm $T = T_H$ på ena sidan av väggen
-samt en isoterm $T = T_L$ på andra sidan av väggen.
-
-För att göra beräkningarna enklare
-ser vi väggen som en oändligt stor skiva. Detta innebär att vi kan räkna
-på ekvationen i en dimension. Med hjälp av det härledda sambandet i avsnitt \ref{sec:heatconduction} kan ett ekvationssystem bildas.
+För att göra beräkningarna enklare ser vi väggen som en oändligt stor skiva. Detta innebär att ekvationen kan skrivas i en dimension. Med hjälp av det härledda sambandet i avsnitt \ref{sec:heatconduction} kan ett ekvationssystem bildas.
 
 \begin{equation}
 \label{eq:staticwalltheory:rodmatrix}
