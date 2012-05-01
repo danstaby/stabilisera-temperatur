@@ -85,11 +85,15 @@ for ourN = 1:size(Range,2)
 			     %Boundary conditions. T = TdirichletConditions,
 			     % dT/dn = TneumannConditions +
                              % T*TneumannTConditions
-     bb = 100;
-     bbt = 0;
+     
+     Rair = sigma*Tref^4*(1-0.261*exp(-7.77e-4*(273-Tref)));
+     Ramb = sigma*Tref^4;
+     
+     RwallT = -0.90*4*sigma*T0^3;
+     Rwall = 0.9*3*sigma*T0^4; 
 
-     TneumannConditions = [NaN, h*Tref, h*Tref, 0, Uvalue*Tin + bb]/kAir;
-     TneumannTConditions = [NaN,-h, -h, NaN, -Uvalue + bbt]/kAir;
+     TneumannConditions = [NaN, h*Tref, h*Tref, 0, Uvalue*Tin + 0.38*Rair+0.62*Ramb+Rwall]/kAir;
+     TneumannTConditions = [NaN,-h, -h, NaN, -Uvalue + RwallT]/kAir;
      TdirichletConditions = [Tref, NaN, NaN, NaN, NaN];
 
      UdirichletConditions = [0, 0, 0, 0, 0];
@@ -312,4 +316,34 @@ ylabel('h-value')
 ret = [Range', AirH];
 
 figure(2)
+hold off
 tricontourf(p(1:2,:),t(1:3,:),sqrt(uu.^2+wu.^2))
+
+xlabel('Position (m)')
+ylabel('Position (m)')
+title('Beloppet av luftens hastighetsvektor (m/s)')
+
+figure(3)
+hold off
+triquiver(p(1:2,:), t(1:3,:), uu, wu,20, [0 20], [0 22])
+hold on
+plot([0,20,20,-6,0,0], [0,0,22,22,18,0], 'k')
+hold off
+xlim([-6 20])
+ylim([0 22])
+xlabel('Position (m)')
+ylabel('Position (m)')
+title('Vindriktning')
+%figure(3)
+%hold off
+%sCount = 3;
+%tristreamline(p(1:2,:),t(1:3,:), uu, wu, [5], [16]);
+%triquiver(p(1:2,:), t(1:3,:), uu, wu,20, [3 17], [2 20])
+ %(22*[0:(sCount-1)]/(sCount-1)+1)')
+figure(4)
+hold off
+tricontourf(p(1:2,:),t(1:3,:),Tu-kelvin)
+
+xlabel('Position (m)')
+ylabel('Position (m)')
+title('Temperatur (C)')

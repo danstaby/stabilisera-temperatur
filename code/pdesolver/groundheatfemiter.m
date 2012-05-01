@@ -73,7 +73,7 @@ for Tout = Tlow:Tstep:Thigh
   b = sparse(pCount, 1);
   u = sparse(pCount, 1);
   n = n + 1;
-  Tref = mean([Tin, Tout])
+  Tref = mean([Tin, Tout]);
   neumannConditions =   [0  ,   NaN,   0, Ug*Tref, Ug*Tref, Ug*Tref, h*Tout, h*Tout]/kGranite;
   neumannTConditions =  [NaN, NaN, NaN,     -Ug,     -Ug,     -Ug,     -h,  -h]/kGranite;
   dirichletConditions = [NaN, kelvin + 8, NaN,    NaN,    NaN,    NaN, NaN, NaN];
@@ -198,3 +198,6 @@ MeanLength = 2.2/OurU
 %figure(1)
 figure(4)
 tricontourf(p(1:2,:),t(1:3,:),uSave-kelvin)
+xlabel('Position (m)')
+ylabel('Position (m)')
+title('Temperatur (C)')

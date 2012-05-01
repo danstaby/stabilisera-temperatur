@@ -52,3 +52,32 @@ $\unit[5]{m/s}$ paralellt med väggens yta. Beräkningarna är genomförda
 genom att väggen approximerats som en stav och därefter behandlats med
 finita elementmetoden.}
 \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/convectemperature.eps}
+\caption{Temperaturfördelningen utanför en vägg beräknad med finita element av penaltymetoden. Som kan ses så existerar anomala temperaturer längs nedre kanten vilket
+möljigen kan bero på valet av baselement. Ett bättre val skulle möjligtvis
+vara Streamline-Diffusion/Petrov Galerkin.}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat[Hastighetsfält]{
+\includegraphics[scale=0.5]{images/convecquiver.eps}
+}
+\subfloat[Beloppet av hastigheten]{
+\includegraphics[scale=0.5]{images/convecspeed.eps}
+}
+
+\subfloat[Konvektionsparametern mot referenstemperaturen]{
+\includegraphics[scale=0.5]{images/convech.eps}
+}
+
+\caption{Hastighetsfältet är beräknat med finita element av penalty metoden.
+Som kan ses så är hastigheterna orimligt små. Detta medför att konvektionsparametern
+blir väldigt liten. Tyvärr verkade det inte som att metodiken som användes för
+att framställa ovanstående data fungerade tillräckligt bra för att med någon noggrannhet studera fenomenet konvektion. \emph{\color{red} Dessa bilder måste göras om och deras planering måste funderas igenom.}}
+
+\end{figure}
+
