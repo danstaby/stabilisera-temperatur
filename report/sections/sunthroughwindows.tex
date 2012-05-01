@@ -26,11 +26,11 @@ g = g_0 \left( 1 - az^{\alpha} - bz^{\beta} - cz^{\gamma} \right)
 
 där $g_0$ är g-värdet då strålningen infaller vinkelrätt mot ytan, $a+b+c=1$ och $z=\theta/90$ då $\theta$ är vinkeln, mätt i grader, mellan fönstrets normal och solstrålningens riktning. Koefficienterna och exponenterna i \eqref{eq:radiationwindowstheory:gvalue} beror på typen av fönster, och kan sättas till
 
-\begin{eqnarray}
-a = 8, & b = 0.25/q, & c = (1-a-b) \nonumber \\
-\alpha = 5.2 + 0.7q, & \beta = 2, & \gamma = (5.26+0.06p) + (0.73+0.04p)q
-\end{eqnarray}
+\begin{align}\label{eq:gconstants}
+a & = 8, & b & = 0.25/q, & c & = (1-a-b) \nonumber \\
+\alpha & = 5.2 + 0.7q, & \beta & = 2, & \gamma & = (5.26+0.06p) + (0.73+0.04p)q
+\end{align}
 
-där p är antalet rutor i fönstret (treglasfönster $\Rightarrow$ p = 3) och q är en parameter, $1 \le q \le 10$, som varierar beroende på beläggningar på glasets yta. Exempelvis har ett treglasfönster utan beläggningar värdet $q=4$.
+där p är antalet rutor i fönstret (treglasfönster medför $p = 3$) och q är en parameter, $1 \le q \le 10$, som varierar beroende på beläggningar på glasets yta. Exempelvis har ett treglasfönster utan beläggningar värdet $q=4$.
 
-Det beräknade g-värdet kan sedan användas för att uppskatta energiflödet genom fönstret. Anta att en pyranometer anger solstrålningsintensiteten $\unit{I\, }{W/m^2}$. Då ges det totala energiflödet Q av sambandet $Q = g \cdot A \cdot I$, där A är fönstrets area.
+Det beräknade g-värdet kan sedan användas för att uppskatta energiflödet genom fönstret. Anta att en pyranometer anger solstrålningsintensiteten $\unit{I_0\, }{W/m^2}$. Då ges det totala energiflödet Q av sambandet $Q = g \cdot A \cdot I_0 \;\unit{}{W}$, där A är fönstrets area.
