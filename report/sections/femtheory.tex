@@ -115,11 +115,12 @@ Utanför dessa trianglar är basfunktionen noll. \cite{johnson2009}
 
 \subsection{Påtvingande av randvillkor}
 \label{subsec:boundaryenforcement}
-Två typer av randvillkor är relevanta för detta arbete. Det ena är dirichletvillkor som
+Två typer av randvillkor är relevanta för detta arbete främst i lösning med Galerkins 
+metod. Det ena är dirichletvillkor som
 innebär att sökt funktion antar ett visst värde på randen. Det andra är neumannvillkor
 vilket sätter derivatan i randnormalriktningen till ett värde. Tillvägagångssättet
-för påtvingande av dessa villkor i galerkins metod är lite olika. Dirichletvillkor
-påtvångas lättast genom att noderna som innehar denna typ av villkor sätts till ett värde
+för påtvingande av dessa villkor i Galerkins metod är lite olika. Dirichletvillkor
+påtvingas lättast genom att noderna som innehar denna typ av villkor sätts till ett värde
 och att ekvationerna uppdateras med detta värde. Neumannvillkor påtvingas istället
 genom att värdet på dessa rander sätts in i integralerna som går över randen. Det
 är viktigt att tillräckligt många randvillkor sätts. Om inte detta genomförs

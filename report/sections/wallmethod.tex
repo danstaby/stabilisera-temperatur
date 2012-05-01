@@ -1,4 +1,4 @@
-\section{Värmeflöde i vägg}
+\section{Värmeflöde genom vägg}
 
 För att beskriva ett värmeflöde används ekvationerna Fouriers värmeekvation
 \eqref{eq:conduction:fourier} och värmeledningsekvationen 
@@ -7,11 +7,12 @@ I dessa är
 $k$ värmeledningsförmågan\\i $\mbox{W}\mbox{m}^{-2}\mbox{K}^{-1}$ och
 $\alpha$ är termisk diffusivitet i $\mbox{m}^2\mbox{s}^{-1}$. \cite{physicshandbook}
 
-Vid statiskt värmeflöde kommer temperaturderivatan med avseende på tiden att vara noll. Detta innebär att värmeledningsekvationen, \eqref{eq:conduction:heateq}, övergår i Laplaces ekvation $\Delta T = 0$. I en dimension blir detta $d^2T/dx^2 = 0$ vilket innebär att lösningen blir ett polynom av första ordningen.  
+Vid statiskt värmeflöde kommer temperaturderivatan med avseende på tiden att vara noll. Detta innebär att värmeledningsekvationen, \eqref{eq:conduction:heateq}, övergår i Laplaces ekvation $\Delta T = 0$. I en dimension blir detta $\mathrm{d}
+^2T/\mathrm{d} x^2 = 0$ vilket innebär att lösningen blir ett polynom av första ordningen. 
 
 \begin{equation}
 %\label{eq:staticwallmethod:fourier}
-q_x = -k \frac{dT}{dx}
+q_x = -k \frac{\mathrm{d}T}{\mathrm{d}x}
 \tag{\ref{eq:conduction:fourier}}
 \end{equation}
 
@@ -22,7 +23,7 @@ q_x = -k \frac{dT}{dx}
 \end{equation}
 
 \noindent
-För att göra beräkningarna enklare ser vi väggen som en oändligt stor skiva. Detta innebär att ekvationen kan skrivas i en dimension. Med hjälp av det härledda sambandet i avsnitt \ref{sec:heatconduction} kan ett ekvationssystem bildas.
+För att göra beräkningarna enklare ser vi väggen som en oändligt stor skiva. Detta innebär att ekvationen kan skrivas i en dimension. Detta sambandet härleds i avsnitt \ref{sec:heatconduction} och utifrån det kan ett ekvationssystem bildas.
 
 \begin{equation}
 \label{eq:staticwalltheory:rodmatrix}
