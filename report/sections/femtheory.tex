@@ -38,7 +38,7 @@ $L^2$ integrabla testfunktioner ty integranden kommer då alltid vara identiskt 
 
 \begin{equation}
 \label{eq:femtheoryweak}
-\int_\Omega L(u)\phi(\mathbf{r}) d\Omega = 0
+\int_\Omega L(u)\phi(\mathbf{r}) \mathrm{d}\Omega = 0
 \end{equation}
 
 \noindent
@@ -55,20 +55,21 @@ påståendet att $\mathbf{w} = (w_1, w_2) = \nabla v$. \cite{johnson2009}
 
 \begin{equation}
 \label{eq:femtheorygausstheorem}
-\int_\Omega \nabla\cdot \mathbf{A} d\Omega = \int_\Gamma \mathbf{A}\cdot\mathbf{n} d\Gamma
+\int_\Omega \nabla\cdot \mathbf{A} \mathrm{d}\Omega = \int_\Gamma \mathbf{A}\cdot\mathbf{n}
+\mathrm{d}\Gamma
 \end{equation}
 
 \begin{equation}
 \label{eq:femtheory:partint}
-\int_\Omega w\frac{\partial u}{\partial x_k} d\Omega +
-\int_\Omega u\frac{\partial w}{\partial x_k} d\Omega =
-\int_\Gamma uwn_k d\Gamma\mbox{,   }k=1,2
+\int_\Omega w\frac{\partial u}{\partial x_k} \mathrm{d}\Omega +
+\int_\Omega u\frac{\partial w}{\partial x_k} \mathrm{d}\Omega =
+\int_\Gamma uwn_k \mathrm{d}\Gamma\mbox{,   }k=1,2
 \end{equation}
 
 \begin{equation}
 \label{eq:femtheory:green}
-\int_\Omega u\Delta v d\Omega =
-\int_\Gamma u\nabla v\cdot\mathbf{n}d\Gamma-\int_\Omega \nabla v\cdot\nabla u d\Omega
+\int_\Omega u\Delta v \mathrm{d}\Omega =
+\int_\Gamma u\nabla v\cdot\mathbf{n}\mathrm{d}\Gamma-\int_\Omega \nabla v\cdot\nabla u \mathrm{d}\Omega
 \end{equation}
 
 \noindent
@@ -77,8 +78,8 @@ till ekvation \eqref{eq:femtheorylaplacerecepie}.
 
 \begin{equation}
 \label{eq:femtheorylaplacerecepie}
-\int_\Omega \phi\Delta u d\Omega = -\int_\Omega \nabla\phi\nabla u d\Omega +
-\int_\Gamma \phi \mathbf{n}\cdot\nabla u d\Gamma
+\int_\Omega \phi\Delta u \mathrm{d}\Omega = -\int_\Omega \nabla\phi\nabla u \mathrm{d}\Omega +
+\int_\Gamma \phi \mathbf{n}\cdot\nabla u \mathrm{d}\Gamma
 \end{equation} 
 
 \noindent
