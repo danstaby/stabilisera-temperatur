@@ -20,7 +20,7 @@ alla $L^2$ integrabla testfunktioner $\phi(\mathbf{r})$.
 \begin{equation}
 \label{eq:femheatweak}
 \int_\Omega \left(c_p\rho\frac{\partial T}{\partial t} -
-\nabla\cdot(k\nabla T)\right)\phi(\mathbf{r})d\Omega = 0
+\nabla\cdot(k\nabla T)\right)\phi(\mathbf{r})\mathrm{d}\Omega = 0
 \end{equation}
 
 \noindent
@@ -32,8 +32,8 @@ ekvation \eqref{eq:femheatweakfull}. Här är $\mathbf{n}$ normalen till randen.
 \begin{equation}
 \label{eq:femheatweakfull}
 \int_\Omega c_p\rho\frac{\partial T}{\partial t}\phi(\mathbf{r}) +
-k\nabla T\nabla\phi(\mathbf{r}) d\Omega =
-\int_\Gamma k\mathbf{n}\cdot\nabla Td\Gamma
+k\nabla T\nabla\phi(\mathbf{r}) \mathrm{d}\Omega =
+\int_\Gamma k\mathbf{n}\cdot\nabla T\mathrm{d}\Gamma
 \end{equation}
 
 \noindent
@@ -61,10 +61,10 @@ $f$ är belastningsvektorn.
 \begin{align}
 \label{eq:femheatgalerkin}
 \sum_n \dot{T}_n \int_\Omega c_p\rho\phi_i(\mathbf{r})
-\phi_n(\mathbf{r})d\Omega
+\phi_n(\mathbf{r})\mathrm{d}\Omega
 & + \sum_n T_n \int_\Omega k_n \nabla\phi_i(\mathbf{r})\nabla\phi_n(\mathbf{r})
-d\Omega \\
-&= \int_\Gamma k_i\phi_i\mathbf{n}\cdot\nabla Td\Gamma \Leftrightarrow
+\mathrm{d}\Omega \\
+&= \int_\Gamma k_i\phi_i\mathbf{n}\cdot\nabla T\mathrm{d}\Gamma \Leftrightarrow
 \nonumber
 \end{align}
 
