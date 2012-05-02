@@ -45,9 +45,9 @@ finita elementmetoden.
 \end{figure}
 
 
-Även temperaturfödelningen utanför en vägg har beräknats. Det gjordes med finita element av penaltymetoden. % RESULTAT?
-% till diskussion? start
-Som kan ses i figur \ref{fig:temp_dist} så existerar anomala temperaturer längs nedre kanten vilket möjligen kan bero på valet av baselement. Ett bättre val skulle kunna vara Streamline-Diffusion/Petrov Galerkin. % till diskussion? slut
+Även temperaturfödelningen utanför en vägg har beräknats. Det gjordes med finita element metoden applicerad på penaltymetoden. Som kan ses i figur \ref{fig:temp_dist} är temperaturen så och så mycket högre vid väggen än % RESULTAT
+
+Dessutom kan vi notera att anomala temperaturer existerar längs nedre kanten vilket möjligen kan bero på valet av baselement. Ett bättre val skulle kunna vara Streamline-Diffusion eller Petrov Galerkin.
 
 \begin{figure}[hpbt]
 \centering
@@ -56,7 +56,12 @@ Som kan ses i figur \ref{fig:temp_dist} så existerar anomala temperaturer läng
 \end{figure}
 
 
-\textbf{\color{red} Om det inte blir bra resultat så ska det nog inte vara med!} Angående bilderna med hatighetsfältet m.m, \ref{fig:velocityfield}.
+Vidare har hastighetsfältet för temperaturens flöde beräknats med finita element metoden applicerad på penaltymetoden. Detta kan ses i figur \ref{fig:velocityfield} där också beloppet av hastighetsfältet finns och det kan noteras att hastigheterna orimligt små.
+
+Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten, se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes för att framställa ovanstående 
+data fungerade tillräckligt bra för att med någon noggrannhet studera fenomenet 
+konvektion. 
+
 
 \begin{figure}[hpbt]
 \centering
@@ -66,12 +71,12 @@ Som kan ses i figur \ref{fig:temp_dist} så existerar anomala temperaturer läng
 \subfloat[Beloppet av hastigheten]{
 \includegraphics[scale=0.5]{images/convecspeed.eps}
 }
+\caption{\label{fig:velocityfield} Hur luften vid husväggen flödar vid en temperaturskillnad.}
+
 
 \subfloat[Konvektionskoefficienten h mot referenstemperaturen]{
 \includegraphics[scale=0.5]{images/convech.eps}
 }
-\caption{\label{fig:velocityfield}Hastighetsfältet är beräknat med finita element av penalty metoden.}
-
 \subfloat[Konvektionskoefficienten h mot penaltyparametern]{
 \includegraphics[scale=0.5]{images/convecpenalty.eps}
 }\vspace{1cm}
@@ -79,10 +84,7 @@ Som kan ses i figur \ref{fig:temp_dist} så existerar anomala temperaturer läng
 \includegraphics[scale=0.5]{images/convecbeta.eps}
 }
 
-\caption{Hastighetsfältet är beräknat med finita element av penalty metoden.
-Som kan ses så är hastigheterna orimligt små. Detta medför att konvektionsparametern
-blir väldigt liten. Tyvärr verkade det inte som att metodiken som användes för
-att framställa ovanstående data fungerade tillräckligt bra för att med någon noggrannhet studera fenomenet konvektion. \emph{\color{red} Dessa bilder måste göras om och deras planering måste funderas igenom.}}
+\caption{\label{fig:konv_param} Konvektionsparametern k i förhållande till några andra storheter.\emph{\color{red} Dessa bilder måste göras om och deras planering måste funderas igenom.}}
 
 \end{figure}
 
