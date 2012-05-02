@@ -25,10 +25,10 @@ Den andra termen kan skrivas om med hjälp av Gauss sats (även kallad divergens
 \int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) \mathrm{d}A = \int_V \nabla \cdot \rho \mathbf{v} \mathrm{d}V
 \end{equation}
 
-\begin{figure}[hpbt]
-\centering
+\begin{figure}[hpbt]\centering
 \includegraphics[scale=1]{images/massflowcube.eps}
-\caption{\label{fig:massflowcube} Infinitesimal kontrollvolym för derivering av bevaranderelationer, här med massflödet exemplifierat}
+\caption{Infinitesimal kontrollvolym för derivering av bevaranderelationer, här med massflödet exemplifierat}
+\label{fig:massflowcube}
 \end{figure}
 
 Betrakta nu en infinitesimal kontrollvolym som den i figur \ref{fig:massflowcube}. Integralerna över V ersätts med den infinitesimala volymen $\mathrm{d}x\mathrm{d}y\mathrm{d}z$ och \eqref{eq:convection:masscon} reduceras till
@@ -158,13 +158,13 @@ h = 5,678 \left( a + b \left( \frac{965,42}{T_{out}}\left(|\mathbf{v}_{wind}\tim
 
 där $\mathbf{n}$ betecknar väggens normalvektor, och a, b samt c beror på väggens ytegenskaper. För en skrovlig yta med $|\mathbf{v}_{vind}\times \mathbf{n}| < \unit[4,88]{ms^{-1}}$ fås att $a=1,09$, $b=0,23$ samt $c=1$, medan starkare vind ger $a=0$, $b=0,53$ samt $c=0,78$. Olika isotermer beräknade med detta samband kan ses i figur \ref{hvalues}.
 
-\begin{figure}[hpbt]
-\label{hvalues}\centering
+\begin{figure}[hpbt]\centering
 \includegraphics[scale=0.7]{images/hvalues.eps}
 \caption{Teoretiska konvektionskoefficienter (h-värden) beräknade med Nusselt-Jürges korrelation, \eqref{Nusselt}. De olika linjerna är isotermer där den lägst belägna motsvarar $\unit[30]{^{\circ}C}$ och den högsta motsvarar $\unit[-20]{^{\circ}C}$ med $\unit[10]{^{\circ}C}$ skillnad mellan två linjer. Den svarta linjen motsvarar brytpunkten vid $\unit{4,88}{m s^{-1}}$ då konstanterna förändras}
+\label{hvalues}
 \end{figure}
 
-En mängd andra samband mellan konvektionskoefficienten och vindhastigheten har härletts, både teoritiskt och empiriskt, på grund av dess starka beroende av byggnadens ytegenskaper och area, men av anledningar som diskuteras i avsnitt \ref{sec:errors}.\cite{palyvos08}
+En mängd andra samband mellan konvektionskoefficienten och vindhastigheten har härletts, både teoritiskt och empiriskt, på grund av dess starka beroende av byggnadens ytegenskaper och area, men av anledningar som diskuteras i avsnitt \ref{sec:errors} använder vi oss av ekvation \ref{Nusselt} i denna rapport.\cite{palyvos08}
 
 % Skapa graf över T och v beroende
 
