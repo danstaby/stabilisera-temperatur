@@ -67,11 +67,21 @@ Som kan ses i figur \ref{fig:temp_dist} så existerar anomala temperaturer läng
 \includegraphics[scale=0.5]{images/convecspeed.eps}
 }
 
-\subfloat[Konvektionsparametern mot referenstemperaturen]{
+\subfloat[Konvektionskoefficienten h mot referenstemperaturen]{
 \includegraphics[scale=0.5]{images/convech.eps}
 }
 
+
 \caption{\label{fig:velocityfield}Hastighetsfältet är beräknat med finita element av penalty metoden.
+
+\subfloat[Konvektionskoefficienten h mot penaltyparametern]{
+\includegraphics[scale=0.5]{images/convecpenalty.eps}
+}\vspace{1cm}
+\subfloat[Konvektionskoefficienten h mot den volymetriska expansionskoefficienten.]{
+\includegraphics[scale=0.5]{images/convecbeta.eps}
+}
+
+\caption{Hastighetsfältet är beräknat med finita element av penalty metoden.
 Som kan ses så är hastigheterna orimligt små. Detta medför att konvektionsparametern
 blir väldigt liten. Tyvärr verkade det inte som att metodiken som användes för
 att framställa ovanstående data fungerade tillräckligt bra för att med någon noggrannhet studera fenomenet konvektion. \emph{\color{red} Dessa bilder måste göras om och deras planering måste funderas igenom.}}

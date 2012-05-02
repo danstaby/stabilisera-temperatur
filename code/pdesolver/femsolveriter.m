@@ -11,7 +11,7 @@ function ret = femsolveriter(fileName, Tout, VarName, Range)
 global TensX TensZ divxx divzz divzx divxz A QT LM alpha beta nu rho penalty Gu Gw GT
 
 
-h = 100;
+h = 6.61;
 g = 9.81;
 beta = 3.67e-3; %### NOTE #### T-dependent. Fix later
 alpha =1.9e-5; %Pressure and water dependant
