@@ -3,60 +3,56 @@
 %To regerenate the figures use /code/pdesolver/generateWallFigApril.m
 %with the argument /code/pdesolver/walldata.mat
 
+För att visualisera flödet genom en vägg vid konstant väder och utomhustemperatur görs beräkningar med finita elementmetoden och en konstant inomhustemperatur på $\unit[20]{^\circ C}$. Utomhusvädret är relativ konstant och är satt till antingen molning eller klart och utomhustemperaturen varierar mellan $\unit[6]{^\circ C}$ på natten och $\unit[9]{^\circ C}$ på dagen. Detta har gjorts för en vägg utan och en vägg med isolering, se figur \ref{fig:energyflow_stst}. Den oisolerade väggen består av $\unit[0,5]{m}$ tegel och den isolerade har dessutom $\unit[0,1]{m}$ mineralull. %RESULTAT ur graferna 
+
+
 \begin{figure}[hpbt]
 \centering
 
-\subfloat[Energiflöde en molnfri dag ut från insidan av en vägg med $0,5\mbox{m}$
-tegel.]{
-\includegraphics[width=6cm]{images/noinsulationapril.eps}
-}\vspace{5mm}
-\subfloat[Energiflöde en molnfri dag ut från insidan av en vägg med $0,5\mbox{m}$ tegel och
-$1\mbox{dm}$ tilläggsisolering bestående av mineralull.]{
+\subfloat[Energiflöde ut från insidan av en oisolerad vägg en klar dag.]{
+\includegraphics[width=6cm]{images/noinsulationapril.eps}}\vspace{5mm}
+
+\subfloat[Energiflöde ut från insidan av en isolerad vägg en klar dag.]{
 \includegraphics[width=6cm]{images/insulationapril.eps}}
 
-\subfloat[Energiflöde en molnig dag ut från insidan av en vägg med $0,5\mbox{m}$.]{
-\includegraphics[width=6cm]{images/noinsulationcloud.eps}
-}\vspace{5mm}
-\subfloat[Energiflöde en molnig dag ut från insidan av en vägg med $0,5\mbox{m}$ tegel och
-$1\mbox{dm}$ tilläggsisolering bestående av mineralull.]{
+\subfloat[Energiflöde ut från insidan av en oisoleradvägg en molnig dag.]{
+\includegraphics[width=6cm]{images/noinsulationcloud.eps}}\vspace{5mm}
+
+\subfloat[Energiflöde ut från insidan av isolerad vägg en molnig dag.]{
 \includegraphics[width=6cm]{images/insulationcloud.eps}
 }
 
-\caption{Energiflödena är tagna från en fiktiv dag som skulle motsvara en molnfri
-och en molnig
-15 april 2011. Här har temperaturen varierat mellan 6 grader Celsius på natten och
-9 grader Celsius på dagen. Beräkningen är genomförd med finita elementmetoden där
-temperaturen på insidan av väggen satts till konstanta $\unit[20]{^\circ C}$.}
+\caption{\label{fig:energyflow_stst} Energiflöden ut från insidan av en vägg en dag motsvarande en i mitten av april.
+Utomhustemperaturen varierar mellan $\unit[6]{^\circ C}$ på natten och $\unit[9]{^\circ C}$ på dagen. Inomhustemperaturen är satt konstant $\unit[20]{^\circ C}$.}
 \end{figure}
+
+
+Vidare har också energiflödena genom väggen en kall, molnig decemberdag undersökts, alltså en dag där energiflödena bör bli ganska stora. Detta kan ses som ett extremfall på nyår för Göteborg och är då en övre uppskattning på den energiåtgång fastigheten.
+ Temperaturen går från $\unit[-5]{^\circ C}$ på dagen till $\unit[-11]{^\circ C}$ Solinstrålningen denna dag är satt till $\unit[20]{\%}$ av vad den skulle varit den den sista december om det varit helt klart. Konvektionskoefficienten har satts till $h=35$ vilket motsvarar en vindhastighet $\unit[5]{m/s}$ parallellt med väggens yta. Beräkningarna är genomförda genom att väggen approximerats med en stav och därefter behandlats med
+finita elementmetoden.
 
 
 \begin{figure}[hpbt]
 \centering
-\subfloat[Energiflöde en molnig decemberdag från insidan av en vägg med $0,5\mbox{m}$
-tegel.]{
-\includegraphics[width=6cm]{images/noinsulationdec.eps}
-}
-\vspace{5mm}
-\subfloat[Energiflöde en molnig decemberdag från insidan av en vägg med
-$0,5\mbox{m}$ tegel och $1\mbox{dm}$ tilläggsisolering bestående av mineralull.]{
+\subfloat[Energiflöde en  decemberdag från insidan av en oisolerad vägg en molnig dag]{
+\includegraphics[width=6cm]{images/noinsulationdec.eps}}\vspace{5mm}
+
+\subfloat[Energiflöde från insidan av en isolerad vägg en molnig dag.]{
 \includegraphics[width=6cm]{images/insulationdec.eps}
 }
-\caption{Ovanstående energiflöden är beräknade en molnig dag där
-utomhus temperaturen går från $\unit[-5]{^\circ C}$ på dagen
-till $\unit[-11]{^\circ C}$ på natten. Solinstrålningen denna dag är
-räknad som $\unit[20]{\%}$ av vad den skulle varit den $31$ december $2011$.
-Detta kan ses som ett extremfall på nyår för Göteborg och är då en övre
-uppskattning på den energiåtgång fastigheten har vid denna årstid.
-Konvektionskoefficienten har här satts till $h=35$ som motsvarar
-$\unit[5]{m/s}$ paralellt med väggens yta. Beräkningarna är genomförda
-genom att väggen approximerats som en stav och därefter behandlats med
-finita elementmetoden.}
+\caption{Energiflöden ut från insidan av en vägg en dag motsvarande en i december.
+}
 \end{figure}
+
+
+Även temperaturfödelningen utanför en vägg har beräknats. Det gjordes med finita element metoden applicerad på penaltymetoden. Som kan ses i figur \ref{fig:temp_dist} är temperaturen så och så mycket högre vid väggen än % RESULTAT
+
+Dessutom kan vi notera att anomala temperaturer existerar längs nedre kanten vilket möjligen kan bero på valet av baselement. Ett bättre val skulle kunna vara Streamline-Diffusion eller Petrov Galerkin.
 
 \begin{figure}[hpbt]
 \centering
 \includegraphics{images/convectemperature.eps}
-\caption{Temperaturfördelningen i $^\circ\mbox{C}$ utanför en vägg beräknad med finita element av
+\caption{\label{fig:temp_dist}Temperaturfördelningen i $^\circ\mbox{C}$ utanför en vägg beräknad med finita element av
 penaltymetoden. Temperaturen inne har satts till $\unit[20]{^\circ C}$ och
 referenstemperaturen ute till $\unit[0]{^\circ C}$. Vid fri luft är det ett konvektionsvillkor med
 konvektionskoefficient som motsvarar stillastående luft. Energin som kommer ut från väggen motsvarar
@@ -64,6 +60,14 @@ $U = \unit[1,18]{Wm^{-2}K^{-1}}$. Som kan ses så existerar anomala temperaturer
 möljigen kan bero på valet av baselement. Ett bättre val skulle möjligtvis
 vara Streamline-Diffusion/Petrov Galerkin.}
 \end{figure}
+
+
+Vidare har hastighetsfältet för temperaturens flöde beräknats med finita element metoden applicerad på penaltymetoden. Detta kan ses i figur \ref{fig:velocityfield} där också beloppet av hastighetsfältet finns och det kan noteras att hastigheterna orimligt små.
+
+Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten, se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes för att framställa ovanstående 
+data fungerade tillräckligt bra för att med någon noggrannhet studera fenomenet 
+konvektion. 
+
 
 \begin{figure}[hpbt]
 \centering
@@ -73,11 +77,12 @@ vara Streamline-Diffusion/Petrov Galerkin.}
 \subfloat[Beloppet av hastigheten]{
 \includegraphics[scale=0.5]{images/convecspeed.eps}
 }
+\caption{\label{fig:velocityfield} Hur luften vid husväggen flödar vid en temperaturskillnad.}
+
 
 \subfloat[Konvektionskoefficienten h mot referenstemperaturen]{
 \includegraphics[scale=0.5]{images/convech.eps}
 }
-
 \subfloat[Konvektionskoefficienten h mot penaltyparametern]{
 \includegraphics[scale=0.5]{images/convecpenalty.eps}
 }\vspace{1cm}
@@ -85,10 +90,7 @@ vara Streamline-Diffusion/Petrov Galerkin.}
 \includegraphics[scale=0.5]{images/convecbeta.eps}
 }
 
-\caption{Hastighetsfältet är beräknat med finita element av penalty metoden.
-Som kan ses så är hastigheterna orimligt små. Detta medför att konvektionsparametern
-blir väldigt liten. Tyvärr verkade det inte som att metodiken som användes för
-att framställa ovanstående data fungerade tillräckligt bra för att med någon noggrannhet studera fenomenet konvektion. \emph{\color{red} Dessa bilder måste göras om och deras planering måste funderas igenom.}}
+\caption{\label{fig:konv_param} Konvektionsparametern k i förhållande till några andra storheter.\emph{\color{red} Dessa bilder måste göras om och deras planering måste funderas igenom.}}
 
 \end{figure}
 
