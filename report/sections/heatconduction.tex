@@ -1,19 +1,14 @@
 \section{Värmeledning}
 \label{sec:heatconduction}
 
-Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $k$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion. I denna rapport används den förstnämnda symbolen, $k$. För att bestämma lambdavärdet
-% Skriva k och kalla det lambda värde känns lite förvirrat!
- för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Då värmeöverföring via konvektion och strålning är så pass svår att behandla matematiskt så ingår dessa i lambdavärdet som är väldigt enkelt att jobba med matematiskt.
- % Hur/Varför är det enkelt?
- Generellt gäller att värmeflödet per ytenhet är $\mathbf{q} = - k \nabla T$. Detta samband brukar kallas för Fouriers värmelag. För ett homogent material i en dimension förenklas detta till
+Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $k$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion. I denna rapport används den förstnämnda symbolen, $k$. För att bestämma $k$ för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Generellt gäller att värmeflödet per ytenhet är $\mathbf{q} = - k \nabla T$. Detta samband brukar kallas för Fouriers värmelag. För ett homogent material i en dimension förenklas detta till
 
 \begin{equation}\label{eq:conduction:fourier}\boxed{ \; \; \;
 q_x = -k \frac{\mathrm{d}T}{\mathrm{d}x} = -\frac{k}{\mathrm{d}}\left( T_2-T_1\right)
 \; \; \; }
 \end{equation}
 
-där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i vardera änden av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{k}{\mathrm{d}}$, det vill säga $q_x = U\mathrm{d}T = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet, alltså $R=1/U$.
-% Varför vill man definiera dessa?
+där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i vardera änden av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{k}{\mathrm{d}}$, det vill säga $q_x = U\mathrm{d}T = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet, alltså $R=1/U$. Dessa två storheter är ofta användbara inom byggfysik och relaterade områden eftersom man med dem exempelvis kan jämföra olika väggars värmeledningsförmåga.
 
 En schematisk bild över en vägg i en dimension som består av $n$ olika material kan ses i figur \ref{fig:staticwallmethod:wall}. Med materialens värmeledningsförmåga, $k_i$, för $i=1,2\,,\,...\,,\,n$ samt längden på elementen, $L_i$, använder vi nu Fouriers värmeledningsekvation för att teckna värmeflödet och temperaturerna $T_i$, i punkterna mellan de olika delarna av väggen med randvillkoren $T_1 = T_H$ samt $T_{n+1} = T_L$.
 
@@ -21,7 +16,7 @@ En schematisk bild över en vägg i en dimension som består av $n$ olika materi
 \centering
 \includegraphics{images/wall.eps}
 \caption{Schematisk bild över en vägg som består av $n$ olika element med olika
-längd och värmeledningskapacitet.}\label{fig:staticwallmethod:wall}
+längd och värmeledningsförmåga.}\label{fig:staticwallmethod:wall}
 \end{figure}
 
 För varje del av väggen kan vi sätta upp ekvationer från Fouriers ekvation för värmeflöde. Vi får flöde in i en del enligt \eqref{eq:staticwallmethod:rod} och flödet ut genom väggen blir detsamma ty temperaturen är konstant. Dessa två ekvationer låter oss teckna ett ekvationssystem för varje del av väggen enligt \eqref{eq:staticwalltheory:rodmatrix}. \cite{lewis04}
