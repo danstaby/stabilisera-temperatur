@@ -74,7 +74,7 @@ ska här vara en linjärkombination av testfunktionerna.
 
 \begin{equation}
 \label{eq:femconvection:variation}
-\int_\Omega \mathbf{L}(T,u,w) \phi d\Omega = 0\mbox{,  } \forall \phi \in \Phi
+\int_\Omega \mathbf{L}(T,u,w) \phi \mathrm{d}\Omega = 0\mbox{,  } \forall \phi \in \Phi
 \end{equation}
 
 \noindent
@@ -89,23 +89,23 @@ ekvationerna \eqref{eq:femconvection:weaku}-\eqref{eq:femconvection:weakT}.
 \begin{align}
 \int_\Omega \left(\phi\mathbf{v}\cdot\nabla u +
 \frac{\partial \phi}{\partial x}\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}
-+\nu\nabla\phi\nabla u\right)d\Omega = \nonumber \\
++\nu\nabla\phi\nabla u\right)\mathrm{d}\Omega = \nonumber \\
 \int_\Gamma\left( \nu\phi\nabla u\cdot\mathbf{n} +
-n_x\frac{\lambda}{\rho_0}\phi\nabla\cdot\mathbf{v}\right)d\Gamma
+n_x\frac{\lambda}{\rho_0}\phi\nabla\cdot\mathbf{v}\right)\mathrm{d}\Gamma
 \label{eq:femconvection:weaku}
 \end{align}
 \begin{align}
 \int_\Omega\left(\phi\mathbf{v}\cdot\nabla w
 + \frac{\partial \phi}{\partial z} \frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}
-+ \nu\nabla\phi\cdot\nabla w + \phi g\beta(T_0-T)\right)d\Omega
++ \nu\nabla\phi\cdot\nabla w + \phi g\beta(T_0-T)\right)\mathrm{d}\Omega
 = \nonumber \\
 \int_\Gamma\left(\nu\phi\nabla w\cdot\mathbf{n} +
-n_z\phi\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}\right)d\Gamma
+n_z\phi\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}\right)\mathrm{d}\Gamma
 \label{eq:femconvection:weakw}
 \end{align}
 \begin{equation}
-\int_\Omega\left(\phi\mathbf{v}\cdot\nabla T + \alpha\nabla\phi\nabla T\right)d\Omega
-= \int_\Gamma \alpha\phi\nabla T\cdot\mathbf{n}d\Gamma
+\int_\Omega\left(\phi\mathbf{v}\cdot\nabla T + \alpha\nabla\phi\nabla T\right)\mathrm{d}\Omega
+= \int_\Gamma \alpha\phi\nabla T\cdot\mathbf{n}\mathrm{d}\Gamma
 \label{eq:femconvection:weakT}
 \end{equation}
 
@@ -140,36 +140,41 @@ detta galerkinformuleringen i ekvationerna
 
 \begin{align}
 \label{eq:femconvection:galerkinu}
-\sum^N_{j=1}\sum^N_{k=1}u_ju_k\int_\Omega \phi_i\phi_j\nabla\phi_k d\Omega &+
-\sum^N_{j=1}\sum^N_{k=1}w_ju_k\int_\Omega \phi_i\phi_j\nabla\phi_k d\Omega  \\ +
+\sum^N_{j=1}\sum^N_{k=1}u_ju_k\int_\Omega \phi_i\phi_j\nabla\phi_k \mathrm{d}\Omega &+
+\sum^N_{j=1}\sum^N_{k=1}w_ju_k\int_\Omega \phi_i\phi_j\nabla\phi_k \mathrm{d}\Omega  \\ +
 \nonumber
-\sum^N_{j=1} u_j\int_\Omega\frac{\lambda}{\rho_0}\frac{\partial \phi_i}{\partial x}\frac{\partial \phi_j}{\partial x} d\Omega &+
-\sum^N_{j=1} w_j\int_\Omega\frac{\lambda}{\rho_0}\frac{\partial \phi_i}{\partial x}\frac{\partial \phi_j}{\partial z} d\Omega  \\ +
+\sum^N_{j=1} u_j\int_\Omega\frac{\lambda}{\rho_0}
+\frac{\partial \phi_i}{\partial x}\frac{\partial \phi_j}{\partial x} \mathrm{d}\Omega &+
+\sum^N_{j=1} w_j\int_\Omega\frac{\lambda}{\rho_0}\frac{\partial \phi_i}{\partial x}
+\frac{\partial \phi_j}{\partial z} \mathrm{d}\Omega  \\ +
 \nonumber
-\sum^N_{j=1} u_j \int_\Omega \nu\nabla\phi_i\nabla\phi_j d\Omega &=
-\int_\Gamma \nu\phi_i\nabla u \cdot \mathbf{n} d\Gamma
+\sum^N_{j=1} u_j \int_\Omega \nu\nabla\phi_i\nabla\phi_j \mathrm{d}\Omega &=
+\int_\Gamma \nu\phi_i\nabla u \cdot \mathbf{n} \mathrm{d}\Gamma
 \end{align}
 
 \begin{align}
 \label{eq:femconvection:galerkinw}
-\sum^N_{j=1}\sum^N_{k=1}u_jw_k\int_\Omega \phi_i\phi_j\nabla\phi_k d\Omega &+
-\sum^N_{j=1}\sum^N_{k=1}w_jw_k\int_\Omega \phi_i\phi_j\nabla\phi_k d\Omega \\ +
+\sum^N_{j=1}\sum^N_{k=1}u_jw_k\int_\Omega \phi_i\phi_j\nabla\phi_k \mathrm{d}\Omega &+
+\sum^N_{j=1}\sum^N_{k=1}w_jw_k\int_\Omega \phi_i\phi_j\nabla\phi_k \mathrm{d}\Omega \\ +
 \nonumber
-\sum^N_{j=1} u_j\int_\Omega \frac{\lambda}{\rho_0}\frac{\partial \phi_i}{\partial z}\frac{\partial \phi_j}{\partial x} d\Omega &+
-\sum^N_{j=1} w_j\int_\Omega \frac{\lambda}{\rho_0}\frac{\partial \phi_i}{\partial z}\frac{\partial \phi_j}{\partial z} d\Omega \\ +
+\sum^N_{j=1} u_j\int_\Omega \frac{\lambda}{\rho_0}\frac{\partial \phi_i}{\partial z}
+\frac{\partial \phi_j}{\partial x} \mathrm{d}\Omega &+
+\sum^N_{j=1} w_j\int_\Omega \frac{\lambda}{\rho_0}
+\frac{\partial \phi_i}{\partial z}\frac{\partial \phi_j}{\partial z} \mathrm{d}\Omega \\ +
 \nonumber
-\sum^N_{j=1} w_j \int_\Omega \nu\nabla\phi_i\nabla\phi_j d\Omega &+
-\sum^N_{j=1}T_j \int_\Omega - g\beta\phi_i\phi_j d\Omega \\
+\sum^N_{j=1} w_j \int_\Omega \nu\nabla\phi_i\nabla\phi_j \mathrm{d}\Omega &+
+\sum^N_{j=1}T_j \int_\Omega - g\beta\phi_i\phi_j \mathrm{d}\Omega \\
 \nonumber
-= \int_\Gamma \nu\phi_i\nabla w \cdot \mathbf{n} d\Gamma &- \int_\Omega T_0g\beta\phi_id\Omega
+= \int_\Gamma \nu\phi_i\nabla w \cdot \mathbf{n} \mathrm{d}\Gamma &-
+\int_\Omega T_0g\beta\phi_i\mathrm{d}\Omega
 \end{align}
 
 \begin{align}
 \label{eq:femconvection:galerkinT}
-\sum^N_{j=1}\sum^N_{k=1}u_jT_k\int_\Omega \phi_i\phi_j\nabla\phi_k d\Omega &+
-\sum^N_{j=1}\sum^N_{k=1}w_jT_k\int_\Omega \phi_i\phi_j\nabla\phi_k d\Omega \\ +
+\sum^N_{j=1}\sum^N_{k=1}u_jT_k\int_\Omega \phi_i\phi_j\nabla\phi_k \mathrm{d}\Omega &+
+\sum^N_{j=1}\sum^N_{k=1}w_jT_k\int_\Omega \phi_i\phi_j\nabla\phi_k \mathrm{d}\Omega \\ +
 \nonumber
-\sum^N_{j=1} T_j \int_\Omega \alpha\nabla\phi_i\nabla\phi_j d\Omega &=
-\int_\Gamma \alpha\phi_i\nabla w \cdot \mathbf{n} d\Gamma
+\sum^N_{j=1} T_j \int_\Omega \alpha\nabla\phi_i\nabla\phi_j \mathrm{d}\Omega &=
+\int_\Gamma \alpha\phi_i\nabla w \cdot \mathbf{n} \mathrm{d}\Gamma
 \end{align}
 
