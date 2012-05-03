@@ -48,7 +48,7 @@ mer omständig och processorintensiv.
 
 För att enklare förstå några problem som kan uppstå med Newton-Raphsons metod kan det vara lämpligt
 att repetera beviset av dess kvadratiska konvergens. Definiera en funktion $f(x)$ enligt \eqref{eq:newtonproof}.
-Antag att den roten $f(x) = 0$ existerar för $x = \alpha$.
+Antag att den unika roten $f(x) = 0$ existerar för $x = \alpha$.
 
 \begin{align}
 f: & \mathbb{R} \to \mathbb{R} \nonumber \\
@@ -118,7 +118,7 @@ och kedjeregeln används för att skriva om uttrycket till något som är använ
 \frac{\partial g(k_n)}{\partial k_n}\,\bigg|_{k_n=0} & = 
 \left(\frac{\partial g(k_n)}{\partial (k_n\Delta x_n)}
 \frac{\partial k_n \Delta x_n}{\partial k_n}\right)\,\bigg|_{k_n=0} = \nonumber \\
-x_n \frac{\partial f(x_n- k_n\Delta x_n)}{\partial (k_n\Delta x_n)}\,\bigg|_{k_n=0} & = 
+\Delta x_n \frac{\partial f(x_n- k_n\Delta x_n)}{\partial (k_n\Delta x_n)}\,\bigg|_{k_n=0} & = 
 -\Delta x_n f^\prime(x_n) = - f(x_n)
 \label{eq:newtongmin}
 \end{align}
