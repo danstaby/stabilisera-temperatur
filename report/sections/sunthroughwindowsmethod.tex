@@ -26,8 +26,13 @@ där $\alpha$ är vinkeln mellan horisonten och solen och $R\approx\unit[6,731\c
 
 Sambanden ovan gäller då all strålning som passerar rutan stannar i rummet. Svårigheter uppstår när exempelvis persienner används. Dessutom har ingen hänsyn tagits till det faktum att omkringliggande byggnader kommer att blockera den direkta solstrålningen vid vissa tidpunkter.
 
-% Se ASHRAE
-% Hur mycket försvinner ut igen från rummet? Källa?
+Hur mycket av solinstrålningen som blockeras av persienner och gardiner är oerhört svårt att räkna ut. För det första hyser den parametern ett vinkelberoende, det vill säga beroende på persiennens konfiguration, färg och vinkel kommer olika mycket att reflekteras tillbaka ut ur fönstret. För det andra måste hänsyn tas till mänskliga faktorer. Naturligtvis kommer vinkeln på persiennen att förändras vid godtyckliga tidpunkter. För att modellera sådana anordningar kan man enligt \cite{ASHRAE09} lägga till en vinkelberoende faktor, $0 \le R_{ref}\left( \theta \right) \le 1$, i \eqref{eq:totalsun} så att den slutliga formeln för solinstrålning genom fönster blir
 
-% Beräkna för vilka vinklar skuggor faller över fönstren?
-Effekten av skuggorna som orsakas av grannbyggnader i området kan tas med i beräkningarna, men detta är ett tidsödande moment och kommer inte att göras i denna rapport.
+
+\begin{equation}\label{eq:totalsunblinds}
+Q = R_{ref}\left( \theta \right) \cdot g\left( \theta \right) \cdot A \cdot I_0 \cos{\theta} \unit[]{W}.
+\end{equation}
+
+Vid exempelberäkningarna i nästa avsnitt har dock ingen hänsyn tagits till denna koefficient, som satts konstant $R_{ref}$.
+
+Effekten av skuggorna som orsakas av grannbyggnader i området kan också tas med i beräkningarna genom att mäta geometrin på omgivande byggnader, men detta är ett tidsödande moment och görs inte i denna rapport.
