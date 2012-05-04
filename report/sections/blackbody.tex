@@ -9,7 +9,9 @@ tillämpningar. Den energi som absorberats strålas ut i form av svartkroppsstr�
 frekvensspektum bestäms av kroppens temperatur när kroppen är i termisk jämvikt med
  sin omgivning. Den totala utstrålade energin per tidsenhet fås ur Stefan-Boltzmanns lag
  
-\begin{equation}\boxed{ \; \; \;
+\begin{equation}
+\label{eq:boltzmanslag}
+\boxed{ \; \; \;
 j^{\star} = \sigma T^{4}
 \; \; \; }
 \end{equation}
@@ -23,10 +25,11 @@ där $\sigma$ är Stefan-Boltzmanns konstant som mäts i $\unit{s^{-1}m^{-2}K^{-
 % kolla i termoboken
 I en låda med fotoner kan den totala energin inne i lådan beskrivas som 
 \begin{equation}
+\label{eq:photonbox}
 \frac{U}{V}=\frac{8\pi^5}{15}\frac{(kT)^4}{(hc)^3}
 \end{equation}
 
-vilket fås ur Plancks spektrum.\cite{schroeder00}
+vilket fås ur Plancks spektrum.\cite[ss.~301-302]{schroeder00}
 
 Sedan görs ett litet hål i lådan, så att några av fotonerna kan slippa ut. Sannolikhet att fotoner med kort respektive lång våglängd ska slippa ut är samma som fördelningen mellan dem inne i lådan, eftersom de har samma hastighet.
 
@@ -65,8 +68,20 @@ volymselementet är alltså
 
 vilket ger en total energiutstrålning på
 \begin{equation}
-\frac{A}{4}\frac{U}{V}c \mathrm{d}t
+\frac{A}{4}\frac{U}{V}c \mathrm{d}t.
 \end{equation}
+
+Givetvis är utstrålningen beroende av både hålets area och tidsintervallet. Dividerar vi med dessa storheter får vi effekt per ytenhet, $j$,
+\begin{equation}
+j=\frac{c}{4}\frac{U}{V}. 
+\end{equation}
+
+Sätt in detta uttryck i ekvation \eqref{eq:photonbox} och ut fås det vi känner som Boltzmans lag, \eqref{eq:boltzmanslag}
+\begin{equation}
+j=\frac{2\pi^5}{15}{(kT)^4}{h^3c^2}=\sigma T^4
+\end{equation}
+
+där $\sigma=\frac{2\pi^5k^4}{15h^3c^2}$ är Boltzmans konstant.
 
 
 \subsection{Strålning från omgivningen}
