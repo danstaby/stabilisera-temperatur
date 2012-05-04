@@ -3,8 +3,13 @@
 %To regerenate the figures use /code/pdesolver/generateWallFigApril.m
 %with the argument /code/pdesolver/walldata.mat
 
-För att visualisera flödet genom en vägg vid konstant väder och utomhustemperatur görs beräkningar med finita elementmetoden och en konstant inomhustemperatur på $\unit[20]{^\circ C}$. Utomhusvädret är relativ konstant och är satt till antingen molning eller klart och utomhustemperaturen varierar mellan $\unit[6]{^\circ C}$ på natten och $\unit[9]{^\circ C}$ på dagen. Detta har gjorts för en vägg utan och en vägg med isolering, se figur \ref{fig:energyflow_stst}. Den oisolerade väggen består av $\unit[0,5]{m}$ tegel och den isolerade har dessutom $\unit[0,1]{m}$ mineralull. %RESULTAT ur graferna 
-
+För att visualisera flödet genom en vägg vid konstant väder och utomhustemperatur görs 
+beräkningar med finita elementmetoden och en konstant inomhustemperatur på 
+$\unit[20]{^\circ C}$. Utomhusvädret är relativ konstant och är satt till antingen molning 
+eller klart och utomhustemperaturen varierar mellan $\unit[6]{^\circ C}$ på natten och 
+$\unit[9]{^\circ C}$ på dagen. Detta har gjorts för en vägg utan och en vägg med 
+isolering, se figur \ref{fig:energyflow_stst}. Den oisolerade väggen består av 
+$\unit[0,5]{m}$ tegel och den isolerade har dessutom $\unit[0,1]{m}$ mineralull. 
 
 \begin{figure}[hpbt]
 \centering
@@ -24,10 +29,41 @@ För att visualisera flödet genom en vägg vid konstant väder och utomhustempe
 Utomhustemperaturen varierar mellan $\unit[6]{^\circ C}$ på natten och $\unit[9]{^\circ C}$ på dagen. Inomhustemperaturen är satt konstant $\unit[20]{^\circ C}$.}
 \end{figure}
 
+%RESULTAT ur graferna 
+I figurerna \ref{fig:energyflow_stst} kan vi se att energiflödet genom väggen minskar till 
+ungefär en fjärdedel med isolering. Under ett soligt dygn kommer det att flöda värme in i
+ fastigheten. På grund av fördröjningen i väggen sker detta främst under natten, 
+ ochmindre på dagen. Med isolering blir variationen mindre och ett mindre men jämnare 
+ energiflöde, under $\unit[1]{W m^{-2}}$, går i fastigheten under hela dygnet.
 
-Vidare har också energiflödena genom väggen en kall, molnig decemberdag undersökts, alltså en dag där energiflödena bör bli ganska stora. Detta kan ses som ett extremfall på nyår för Göteborg och är då en övre uppskattning på den energiåtgång fastigheten.
- Temperaturen går från $\unit[-5]{^\circ C}$ på dagen till $\unit[-11]{^\circ C}$ Solinstrålningen denna dag är satt till $\unit[20]{\%}$ av vad den skulle varit den den sista december om det varit helt klart. Konvektionskoefficienten har satts till $h=35$ vilket motsvarar en vindhastighet $\unit[5]{m/s}$ parallellt med väggens yta. Beräkningarna är genomförda genom att väggen approximerats med en stav och därefter behandlats med
-finita elementmetoden.
+Under en motsvarande fast molnig dag varierar energiflödet mellan 7 och 10 
+$\unit{W m^{-2}}$ till att röra sig mellan 2,1 och 2,3 $\unit{W m^{-2}}, dock ut ur 
+fastigheten. En isolering innebär ett minskat energiutflöde och därmed en minskad 
+energiförlust för fastigheten.
+
+Trots att energi flödar in i fastigheten den soliga dygnet så flödar ganska mycket energi 
+ut ur fastigheten under det molniga dygnet. Göteborg har 1800 solskenstimmar under ett
+ år av de totalt 4380 timmar som solen är över horisonten. Utifrån SMHI:s väderstatistik 
+ kan beräknas att ungefär 37\% av dessa sker under eldningssäsongen, oktober till april.
+  Detta motsvarar ungefär 8\% av dygnets alla timmar. Tyvärr så förlorar fastigheten mer
+   energi än vad den tjänar på att inte isolerat sett till hela eldningssäsongen.
+
+Under en fin sommardag kan det också tänkas att fastigheten värms över den önskade 
+temperaturen och energi istället måste läggas på kylning. Med en isolering minskas även 
+effekten av detta och energiflödena blir mindre om jämnare.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Vidare har också energiflödena genom väggen en kall, molnig decemberdag undersökts, 
+alltså en dag där energiflödena bör bli ganska stora. Detta kan ses som ett extremfall av
+nyår i Göteborg och är då en övre uppskattning på den energiåtgång fastigheten.
+
+ Temperaturen går från $\unit[-5]{^\circ C}$ på dagen till $\unit[-11]{^\circ C}$ 
+ Solinstrålningen denna dag är satt till $\unit[20]{\%}$ av vad den skulle varit den den 
+ sista december om det varit helt klart. Konvektionskoefficienten har satts till $h=35$ 
+ vilket motsvarar en vindhastighet $\unit[5]{m/s}$ parallellt med väggens yta. 
+ Beräkningarna är genomförda genom att väggen approximerats med en stav och 
+ därefter behandlats med finita elementmetoden.
 
 
 \begin{figure}[hpbt]
@@ -37,34 +73,50 @@ finita elementmetoden.
 \subfloat[Energiflöde från insidan av en isolerad vägg en molnig dag.]{
 \includegraphics[width=6cm]{images/insulationdec.eps}
 }
-\caption{Energiflöden ut från insidan av en vägg en dag motsvarande en i december.
+\caption{\label{fig:wall_dec} Energiflöden ut från insidan av en vägg en dag motsvarande en i december.
 }
 \end{figure}
 
+% Resultat
+Även i december blir energiflödet genom en isolerad vägg ungefär en fjädedel av det 
+genom en oisolerad dito, se figur \ref{fig:wall_dec}. Här minskar det dock från ungefär 33 
+till 7,9 $\unit{W m^{-2}}$ ut ur väggen. Vi ser också i figurerna att energiflödet också blir 
+jämnare med isolering – det varierar med mindre än 0,1 $\unit{W m^{-2}}$ över dygnet, 
+istället för över 1 $\unit{W m^{-2}}$, utan isolering. Detta är eftersträvansvärt om en jämn inomhustemperatur önskas.
 
-Även temperaturfödelningen utanför en vägg har beräknats. Det gjordes med finita element metoden applicerad på penaltymetoden. Som kan ses i figur \ref{fig:temp_dist} är temperaturen så och så mycket högre vid väggen än % RESULTAT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Dessutom kan vi notera att anomala temperaturer existerar längs nedre kanten vilket möjligen kan bero på valet av baselement. Ett bättre val skulle kunna vara Streamline-Diffusion eller Petrov Galerkin.
+Även temperaturfödelningen utanför en vägg har beräknats, vilket kan ses i figur \ref{fig:temp_dist}. Det gjordes med finita element metoden applicerad på penaltymetoden.
+
+Temperaturen inne har satts till $\unit[20]{^\circ C}$ och referenstemperaturen ute till 
+$\unit[0]{^\circ C}$. Vid fri luft är det ett konvektionsvillkor med konvektionskoefficient 
+som motsvarar stillastående luft. Energin som kommer ut från väggen motsvarar 
+$U = \unit[1,18]{Wm^{-2}K^{-1}}$. Som kan ses så existerar anomala temperaturer längs 
+nedre kanten vilket möjligen kan bero på valet av baselement. Ett bättre val skulle möjligtvis vara metoden Streamline-Diffusion eller Petrov Galerkin.
 
 \begin{figure}[hpbt]
 \centering
 \includegraphics{images/convectemperature.eps}
-\caption{\label{fig:temp_dist}Temperaturfördelningen i $^\circ\mbox{C}$ utanför en vägg beräknad med finita element av
-penaltymetoden. Temperaturen inne har satts till $\unit[20]{^\circ C}$ och
-referenstemperaturen ute till $\unit[0]{^\circ C}$. Vid fri luft är det ett konvektionsvillkor med
-konvektionskoefficient som motsvarar stillastående luft. Energin som kommer ut från väggen motsvarar
-$U = \unit[1,18]{Wm^{-2}K^{-1}}$. Som kan ses så existerar anomala temperaturer längs nedre kanten vilket
-möljigen kan bero på valet av baselement. Ett bättre val skulle möjligtvis
-vara Streamline-Diffusion/Petrov Galerkin.}
+\caption{\label{fig:temp_dist}Temperaturfördelningen i $^\circ\mbox{C}$ utanför en vägg, beräknad med finita element av penaltymetoden. Inomhustempertur $\unit[20]{^\circ C}$, utomhustemperatur $\unit[0]{^\circ C}$.}
 \end{figure}
 
+% RESULTAT
+Som kan ses i figuren \ref{fig:temp_dist} är luften närmast väggen upp till fem grader 
+högre än omgivningen. När det blåser försvinner den här temperaturskillnaden. Detta 
+visar tydligt hur viktigt det är att inte bara reglera efter utomhustemperaturen. 
 
-Vidare har hastighetsfältet för temperaturens flöde beräknats med finita element metoden applicerad på penaltymetoden. Detta kan ses i figur \ref{fig:velocityfield} där också beloppet av hastighetsfältet finns och det kan noteras att hastigheterna orimligt små.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten, se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes för att framställa ovanstående 
-data fungerade tillräckligt bra för att med någon noggrannhet studera fenomenet 
-konvektion. 
+Även hastighetsfältet för temperaturens flöde beräknats med finita element metoden 
+applicerad på penaltymetoden. Detta kan ses i figur \ref{fig:velocityfield} där också 
+beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimligt små.
 
+Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten, 
+se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes 
+för att framställa ovanstående data fungerade tillräckligt bra för att med någon 
+noggrannhet studera fenomenet konvektion. 
+
+Vi menar dock att formen på hastighetsflödet kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen.
 
 \begin{figure}[hpbt]
 \centering
