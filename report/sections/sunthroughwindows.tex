@@ -16,8 +16,7 @@ Solstrålning genom fönster orsakar snabba temperaturökningar i inomhusklimate
 
 \subsection{g-värden}\label{gvalue}
 
-För att ange transmittansen av solstrålning genom fönster brukar man använda vad som kallas för g-värden (ibland även kallat ''Solar Factor''). Detta värde, mellan noll och ett, anger hur mycket av vinkelrätt infallande solstrålning som släpps igenom. Men eftersom ett sådant värde också beror på strålningens infallsvinkel är den ofta svår att beräkna.
-% hur kan det både bero och inte bero av vinkeln?
+För att ange transmittansen av solstrålning genom fönster brukar man använda vad som kallas för g-värden (ibland även kallat ''Solar Factor''). Detta värde, mellan noll och ett, anger hur mycket av infallande solstrålnings normalprojektion som släpps igenom. Men eftersom ett sådant värde också beror på strålningens infallsvinkel (på grund av ökande reflektion med ökande vinkel) är den ofta svår att beräkna.
 
 Enligt \cite{karlssonroos99} förändras detta vinkelberoende främst med antalet glas (flerglasfönster) samt typ av eventuella beläggningar på glaset. I samma artikel visades också att g-värdenas vinkelberoende kan approximeras med ett polynom
 
@@ -25,8 +24,7 @@ Enligt \cite{karlssonroos99} förändras detta vinkelberoende främst med antale
 g = g_0 \left( 1 - az^{\alpha} - bz^{\beta} - cz^{\gamma} \right)
 \end{equation}
 
-där $g_0$ är g-värdet då strålningen infaller vinkelrätt mot ytan, $a+b+c=1$ och $z=\theta/90$ då $\theta$ är vinkeln, mätt i grader, mellan fönstrets normal och solstrålningens riktning. Koefficienterna och exponenterna i \eqref{eq:radiationwindowstheory:gvalue} beror på typen av fönster, och kan sättas till
-% Varför kan man sätta dem till det här? vad betyder det?
+där $g_0$ är g-värdet då strålningen infaller vinkelrätt mot ytan, $a+b+c=1$ och $z=\theta/90$ då $\theta$ är vinkeln, mätt i grader, mellan fönstrets normal och solstrålningens riktning. Koefficienterna och exponenterna i \eqref{eq:radiationwindowstheory:gvalue} beror på typen av fönster, och i \cite{karlssonroos99} har empiriska undersökningar lett till aproximationen
 
 \begin{align}\label{eq:gconstants}
 a & = 8, & b & = 0.25/q, & c & = (1-a-b) \nonumber \\
@@ -35,4 +33,10 @@ a & = 8, & b & = 0.25/q, & c & = (1-a-b) \nonumber \\
 
 där p är antalet rutor i fönstret (treglasfönster medför $p = 3$) och q är en parameter, $1 \le q \le 10$, som varierar beroende på beläggningar på glasets yta. Exempelvis har ett treglasfönster utan beläggningar värdet $q=4$.
 
-Det beräknade g-värdet kan sedan användas för att uppskatta energiflödet genom fönstret. Anta att en pyranometer anger solstrålningsintensiteten $I_0$ i $\unit{W m^{-2}}$. Då ges det totala energiflödet Q av sambandet $Q = g \cdot A \cdot I_0 \cos{\theta}$ i $\unit{W}$, där $A$ är fönstrets area och $\theta$ är vinkeln solen bildar mot ytans normal.
+Det beräknade g-värdet kan sedan användas för att uppskatta energiflödet genom fönstret. Anta att en pyranometer anger solstrålningsintensiteten $I_0$ i $\unit{W m^{-2}}$. Då ges det totala energiflödet Q av sambandet 
+
+\begin{equation}\label{eq:totalsun}
+Q = g \cdot A \cdot I_0 \cos{\theta} \unit{W},
+\end{equation}
+
+där $A$ är fönstrets area och $\theta$ är vinkeln solen bildar mot ytans normal.
