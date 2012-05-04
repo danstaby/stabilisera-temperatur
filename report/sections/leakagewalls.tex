@@ -23,7 +23,12 @@ Applicerat på fastigheten på Walleriusgatan betyder detta att södervindar ger
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Energiförlusterna har beräknats med EKVATION som beskriver energiförlusterna per grad där KONSTANT i exponenten sätts till 1 för att motsvara Darcys lag eller 0,6 vilket är ett experimentellt uppmätt värde. Energiförlusten har beräknats för en fastighet i lovart respektive en som ligger i lä av en annan byggnad, precis som byggnaderna i figur \ref{fig:windspeed} och \ref{fig:windpressure}, vilket motsvarar att det blåser på fastigheten på Walleriusgatan från söder respektive norr. Resultatet kan ses i figur \ref{fig:windenergyloss} för en byggnad i lovart och en i lä samt för ett teoretiskt framtaget hus. Dessa två olika kurvor, framtagna med Darcys lag samt med det experimentella värdet på 0,6, får motsvara högsta respektive minsta gissningar för infiltrationsförluster i en byggnad. 
+Energiförlusterna har beräknats med ekvationen
+\begin{equation}
+Q=\frac{-kA}{\mu} \frac{(P_b - P_a)^\kappa}{L} 
+\end{equation}
+
+som beskriver energiförlusterna per grad, där $\kappa$ i exponenten sätts till 1 för att motsvara Darcys lag eller 0,6 vilket är ett experimentellt uppmätt värde. Energiförlusten har beräknats för en fastighet i lovart respektive en som ligger i lä av en annan byggnad, precis som byggnaderna i figur \ref{fig:windspeed} och \ref{fig:windpressure}, vilket motsvarar att det blåser på fastigheten på Walleriusgatan från söder respektive norr. Resultatet kan ses i figur \ref{fig:windenergyloss} för en byggnad i lovart och en i lä samt för ett teoretiskt framtaget hus. Dessa två olika kurvor, framtagna med Darcys lag samt med det experimentella värdet på 0,6, får motsvara högsta respektive minsta gissningar för infiltrationsförluster i en byggnad. 
 
 Trycken är för figur \ref{fig:windenergylossa} och \ref{fig:windenergylossb} är framräknade för olika vindhastigheter med programmet Comsol medan det teoretiska modellen i figur \ref{fig:windenergylossc} är beräknat med med en approximation. Approximationen baserar sig på att tryckskillnaden mellan inne och ute är proportionerligt med vindhastigheten i kvadrat.
 
