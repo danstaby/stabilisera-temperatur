@@ -1,4 +1,4 @@
-function [outData, p, e, t, uLast] = groundheatfemtransient(refinements, showgrid, p,e,t,uSave)
+function [outData, p, e, t, uLast] = groundheatfemtransient(refinements, showgrid, displayOff)
 %groundheatfem(refinements, showgrid)
 %
 %Application to calculate the heat flow through the ground.
@@ -238,22 +238,25 @@ time = toc;
 disp(['Execution time: ' num2str(time) ' s']);
 disp(['Triangle count: ' num2str(tCount)])
 disp(['Degrees of freedom: ' num2str(max(size(Free)))])
-figure(1)
-%pdeplot(p,e,t,'xydata',u-kelvin,'mesh',showgrid);
-hold off
-plot(outData(:,1)/(365), outData(:,2)-kelvin)
-xlabel('Tid (år)')
-ylabel('Medeltemperatur (C)')
 
+if(displayOff == 0)
+  figure(1)
+  %pdeplot(p,e,t,'xydata',u-kelvin,'mesh',showgrid);
+  hold off
+  plot(outData(:,1)/(365), outData(:,2)-kelvin)
+  xlabel('Tid (år)')
+  ylabel('Medeltemperatur (C)')
+  
 
-figure(2)
-hold off
-plot(outData(:,1)/(365), outData(:,3))
-xlabel('Tid (År)')
-ylabel('Kyleffekt (W m^{-2})')
-figure(3)
-hold off
-tricontourf(p(1:2,:),t(1:3,:), uLast-kelvin);
+  figure(2)
+  hold off
+  plot(outData(:,1)/(365), outData(:,3))
+  xlabel('Tid (År)')
+  ylabel('Kyleffekt (W m^{-2})')
+  figure(3)
+  hold off
+  tricontourf(p(1:2,:),t(1:3,:), uLast-kelvin);
+end
 
 function ret = PrepareTempInterpolation(points)
 global BreakTimes TemperatureSpline
