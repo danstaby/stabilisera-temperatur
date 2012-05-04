@@ -13,7 +13,7 @@ bUseSun = UseSun;
 %Temperature inside
 
 PrepareInterpolation('sunintensity_april.txt');
-PrepareTempInterpolation([6, 6;16,9]);
+PrepareTempInterpolation([6, 6;16,9]); %[Time, T; Time, T]
 
 %t = [0:60:24*3600];
 %temp = zeros(1,size(t,2));
