@@ -44,9 +44,9 @@ energiförlust för fastigheten.
 Trots att energi flödar in i fastigheten den soliga dygnet så flödar ganska mycket energi 
 ut ur fastigheten under det molniga dygnet. Göteborg har 1800 solskenstimmar under ett
  år av de totalt 4380 timmar som solen är över horisonten. Utifrån SMHI:s väderstatistik 
- kan beräknas att ungefär 37\% av dessa sker under eldningssäsongen, oktober till april.
-  Detta motsvarar ungefär 8\% av dygnets alla timmar. Tyvärr så förlorar fastigheten mer
-   energi än vad den tjänar på att inte isolerat sett till hela eldningssäsongen.
+ kan beräknas att ungefär 37\% av dessa sker under eldningssäsongen, oktober till april. 
+ Detta motsvarar ungefär 8\% av dygnets alla timmar. Tyvärr så förlorar fastigheten mer 
+ energi än vad den tjänar på att inte isolerat sett till hela eldningssäsongen.
 
 Under en fin sommardag kan det också tänkas att fastigheten värms över den önskade 
 temperaturen och energi istället måste läggas på kylning. Med en isolering minskas även 
@@ -96,7 +96,7 @@ nedre kanten vilket möjligen kan bero på valet av baselement. Ett bättre val 
 
 \begin{figure}[hpbt]
 \centering
-\includegraphics{images/convectemperature.eps}
+\includegraphics[width=10cm]{images/convectemperature.eps}
 \caption{\label{fig:temp_dist}Temperaturfördelningen i $^\circ\mbox{C}$ utanför en vägg, beräknad med finita element av penaltymetoden. Inomhustempertur $\unit[20]{^\circ C}$, utomhustemperatur $\unit[0]{^\circ C}$.}
 \end{figure}
 
@@ -111,15 +111,8 @@ visar tydligt hur viktigt det är att inte bara reglera efter utomhustemperature
 applicerad på penaltymetoden. Detta kan ses i figur \ref{fig:velocityfield} där också 
 beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimligt små.
 
-Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten, 
-se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes 
-för att framställa ovanstående data fungerade tillräckligt bra för att med någon 
-noggrannhet studera fenomenet konvektion. 
-
-Vi menar dock att formen på hastighetsflödet kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen.
-
 \begin{figure}[hpbt]
-\centering
+\begin{center}
 \subfloat[Hastighetsfält]{
 \includegraphics[scale=0.5]{images/convecquiver.eps}
 }
@@ -127,14 +120,27 @@ Vi menar dock att formen på hastighetsflödet kan anses vara av rätt karaktär
 \includegraphics[scale=0.5]{images/convecspeed.eps}
 }
 \caption{\label{fig:velocityfield} Hur luften vid husväggen flödar vid en temperaturskillnad.}
+\end{center}
+\end{figure}
 
 
+Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten, 
+se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes 
+för att framställa ovanstående data fungerade tillräckligt bra för att med någon 
+noggrannhet studera fenomenet konvektion. 
+
+Vi menar dock att formen på hastighetsflödet kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen.
+
+
+\begin{figure}[hpbt]
+\centering
 \subfloat[Konvektionskoefficienten h mot referenstemperaturen]{
 \includegraphics[scale=0.5]{images/convech.eps}
 }
 \subfloat[Konvektionskoefficienten h mot penaltyparametern]{
 \includegraphics[scale=0.5]{images/convecpenalty.eps}
 }\vspace{1cm}
+
 \subfloat[Konvektionskoefficienten h mot den volymetriska expansionskoefficienten.]{
 \includegraphics[scale=0.5]{images/convecbeta.eps}
 }
