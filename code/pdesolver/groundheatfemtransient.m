@@ -42,12 +42,12 @@ fprintf(1,'Creating mesh...')
 gd = [2,max(size(border)), border(1,:), border(2,:)]';
 dl = decsg(gd);
 
-if(nargin == 2)
+%if(nargin == 2)
   [p, e, t] = initmesh(dl);
   for n = 1:refinements
     [p, e, t] = refinemesh(dl, p, e, t);
   end
-end
+%end
 %Initiate variables
 tCount = size(t,2);
 pCount = size(p,2);
@@ -93,11 +93,11 @@ Tsave = 0 + kelvin;
 Tref = 20 + kelvin;
 Uconc = 0.7/(0.45);
 
-if(nargin == 2)
+%if(nargin == 2)
   uLast = (9+kelvin)*sparse(ones(pCount,1));
-else
-  uLast = uSave;
-end
+%else
+%  uLast = uSave;
+%end
 dirichletConditions = [NaN, NaN, NaN,    NaN,    NaN,    NaN, NaN, NaN];
 dirnan = isnan(dirichletConditions(e(5,:)));
 dirichlet = e([1 2 5], find(~dirnan));
