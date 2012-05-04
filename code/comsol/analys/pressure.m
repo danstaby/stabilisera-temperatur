@@ -74,6 +74,10 @@ xlabel('Wind speed (m/s)')
 ylabel('Leakage driving number (Pa)isch')
 legend('House 1', 'House 2', 'Theoretical')
 
+
+house1(:,1)-x1
+house2(:,4)-x2
+
 figure(3)
 plot(wind, house1(:,1))
 hold on

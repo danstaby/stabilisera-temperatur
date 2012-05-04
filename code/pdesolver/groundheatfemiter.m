@@ -4,6 +4,10 @@ function ret = groundheatfemiter(refinements, showgrid)
 %Application to calculate the heat flow through the ground.
 %refinements indicate how many refinemesh that shoud be run.
 
+global tCoef
+
+tCoef = getMeanTemp(0);
+
 if(nargin < 2)
   showgrid = 'off'
 end
