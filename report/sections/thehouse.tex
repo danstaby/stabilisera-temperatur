@@ -13,6 +13,7 @@ Projektets uppdragsgivare har hand om energisystemet i en fastighet i Johanneber
 
 Fastigheten har idag 13 lägenheter och en kontorslokal på $\unit[225]{m^2}$. De utgör tillsammans $\unit[1450]{m^2}$ fördelat på sju våningar. Utöver detta finns det gemensamma utrymme, trapphus, förråd och apparatrum i den nedre källaren och Peter Särneö\cite{petersarneo} bedömmer att det totalt rör sig om ca $\unit[2000]{m^2}$. Sedan ett tag tillbaka har även en väderstation och en solintensitetsmätare installerats i förhoppningen att den ska kunna utnyttjas för att förbättra fastighetens klimat ytterligare, se avsnitt \ref{subsec_weathertransmitter}. Hur detta ska göras är det det här projektets uppgift att undersöka.
 
+Ett centralt begrepp för att göra fysikaliska beräkningar på värmeflödet genom fastighetens olika gränsytor var U-värdet. Dessa beräknas utifrån materialets tjocklek och värmeledningsförmåga, se avsnitt \ref{sec:heatconduction}. U-värdet kan ses som ett mått på väggens förmåga att släppa igenom värme. För en vägg med flera lager summeras U-värden på samma sätt som seriekopplade resistorer: $U_tot= 1/ (U_1+...+U_n)$. Det genomsnittliga U-värdet för fastighetens väggar, fönster och tak är 0,6.
 
 % De olika gränsytornas material och uppbyggnad.
 \subsection{Väggarna}
@@ -39,7 +40,7 @@ Fastigheten har idag 13 lägenheter och en kontorslokal på $\unit[225]{m^2}$. D
 \caption{\label{fig:thewalls} Väggarnas uppbyggnad.}
 \end{figure}
 
-Ytterväggarna bestod ursprungligen av 50 cm tegel, klätt med ett centimetertjockt lager av puts på insidan, se figur \ref{fig:sodervagg}. Norrväggen, som tilläggsisolerades i samband med renoveringen 1988, har dessutom 2 cm puts, 10 cm mineralull och ytterligare 2 cm puts utanpå tegelväggen, se figur \ref{fig:norrvagg}.\cite{kandidatarbete2010}\cite{petersarneo}
+Ytterväggarna bestod ursprungligen av 50 cm tegel, klätt med ett centimetertjockt lager av puts på insidan, se figur \ref{fig:sodervagg}. Norrväggen, som tilläggsisolerades i samband med renoveringen 1988, har dessutom 2 cm puts, 10 cm mineralull och ytterligare 2 cm puts utanpå tegelväggen, se figur \ref{fig:norrvagg}.\cite{kandidatarbete2010}\cite{petersarneo}. Då tegels värmeledningsförmåga är $\unit[0,593]{W/mK}$ och mineralulls är $\unit[0,037]{W/mK} fås att den isolerade norrväggen har ett U-värde på $\unit[0,3]{W/m^2}$ medan den oisolerade söderväggens U-värde är $\unit[1,2]{W/m^2}$
 
 \begin{figure}[hpbt]
 \centering
@@ -49,11 +50,10 @@ Ytterväggarna bestod ursprungligen av 50 cm tegel, klätt med ett centimetertjo
 
 Fastigheten ligger mellan två andra byggnader i liknande stil. Det öster om är lika högt som fastigheten medan det i väster är något lägre. Fastighetens yttervägg i väster är inte tilläggsisolerad och har samma uppbyggnad som söderväggen, se figur \ref{fig:sodervagg}.
 
-På söderväggen finns ett kopparklätt burspråk. Kopparn sitter direkt på en cementbunden spånskiva som följs av en luftspalt om ca 2,5 cm. Väggen innanför består av 1,6 cm gips, 5 cm minneralull och sedan ytterligare 2,4 cm gips, se figur \ref{fig:bursprak}.\cite{kandidatarbete2010} Enligt Peter Särneö\cite{petersarneo} är det burspråket som läcker mest energi.
-
+På söderväggen finns ett kopparklätt burspråk. Kopparn sitter direkt på en cementbunden spånskiva som följs av en luftspalt om ca 2,5 cm. Väggen innanför består av 1,6 cm gips, 5 cm minneralull och sedan ytterligare 2,4 cm gips, se figur \ref{fig:bursprak}.\cite{kandidatarbete2010} Burspråkets U-värdet är $\unit[0,4]{W/m^2}$.
 
 \subsection{Taket}
-Även taket lades om i samband med den stora renoveringen för minskad energiåtgång. Efter det bestod det av taktegel på underlagspapp ytterst, följt av 1,3 cm gips, 21 cm mineralull och innerst ytterligare 2,6 cm gips, se figur \ref{fig:taket}.\cite{kandidatarbete2010}
+Även taket lades om i samband med den stora renoveringen för minskad energiåtgång. Efter det bestod det av taktegel på underlagspapp ytterst, följt av 1,3 cm gips, 21 cm mineralull och innerst ytterligare 2,6 cm gips, se figur \ref{fig:taket}.\cite{kandidatarbete2010}. U-värdet för taket är $\unit[0,2]{W/m^2}$.
 
 \begin{figure}[hpbt]
 \centering
