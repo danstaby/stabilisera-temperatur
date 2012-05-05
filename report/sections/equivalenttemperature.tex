@@ -15,7 +15,7 @@ olika utomhustemperaturer, utan övrig väderpåverkan, och den temperatur som g
 samma energiflöde kallas ekvivalent temperatur. Denna kan sedan ersätta 
 utomhustemperaturen som indata till klimatsystemet och ge ett jämnare inomhusklimat. 
 
-Användingsområdet för free-running temperature och ekvivalent temperatur är det samma, det är bara två olika angreppssätt på samma problem. Nämligen att vädret spelar in på energiflödena genom en vägg i en byggnad.  Båda systemen kan enkelt implementeras i befintliga reglersystem och stora omkostnader kan därför undvikas. Skillanden är att  free-running temperature beskriver byggnadens reaktion på vädret medan ekvivalent temperatur beskriver hur ytterväggen påverkas. Båda varianterna är betydligt bättre än att bara titta på utomhustemperaturen, så som görs i många fastigheter idag.
+Användingsområdet för free-running temperature och ekvivalent temperatur är det samma, det är bara två olika angreppssätt på samma problem. De beskriver båda hur vädret spelar in på energiflödena genom en vägg i en byggnad.  Båda systemen kan enkelt implementeras i befintliga reglersystem och stora omkostnader kan därför undvikas. Skillanden är att free-running temperature är temperaturen inomhus medan ekvivalent temperatur är ytterväggens temperatur. Ekvivalent temperatur tar inte hänsyn till solinstrålning genom fönster vilket är möjligt med free-running temperature. Båda varianterna är dock betydligt bättre än att bara titta på utomhustemperaturen, så som görs i många fastigheter idag.
 
 \subsection{Beräkning av ekvivalent temperatur}
 
@@ -23,9 +23,18 @@ Energibalansen på utsidan av en vägg beror solinstrålning, strålning från o
 
 Detta kan sammanfattas i ekvationen 
 \begin{equation}
-\frac{mathrm{d}T_\text{vägg}}{mathrm{d}t} = 
-I\cdot \alpha_\text{abs} + (0,4 T_\text{atm}^4 + 0,6 T_\text{ute}^4 - T_\text{vägg}^4 )\sigma
-+ h (T_\text{ute} - T_\text{vägg} + U ( T_\text{vägg} - T_\text{inne} )
+\frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t} = 
+I\cdot \alpha_\text{abs} + (0,4 T_\text{atm}^4 + 0,6 T_\text{ute}^4 - T_\text{vägg}^4 )\sigma + (T_\text{ute} - T_\text{vägg}) h + ( T_\text{vägg} - T_\text{inne} ) U.
 \end{equation}
 
-När sedan $\frac{mathrm{d}T_\text{vägg}}{mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder.
+När sedan $\frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder. $h$ är konvektionsparametern för luft. $U$ är väggens U-värde, som i vårt fall är 1,2 för den oisloerade söderväggen respektive 0,3 för den isolerade norrväggen. $T_\text{atm}$ är atmosfärens temperatur och kan skrivas som\cite[ss.~54]{Hagentoft01}
+
+\begin{equation}
+T_\text{atm}= \left\{
+\begin{array}{rl}
+1,1T_\text{ute} -5, & \text{då klar himmel} \\
+T_\text{ute}, & \text{då molnigt} \\
+\end{array} \right.
+\end{equation}
+
+% lägg till vinden, se 2.4.1 Vindens konvektionskoefficient ekv. (2.4.16)
