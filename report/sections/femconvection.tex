@@ -10,8 +10,12 @@ För att hantera trycket i ekvationerna \eqref{eq:convection:continuity}-\eqref{
 samt penalty metoden för att göra hastighetsvektorn källfri och uppfylla
 kontinuitetsekvationen. Det finns således inget direkt behov av att räkna ut trycket.
 Vid användning av många sorters elementtyper som inte uppfyller Babuska-Brezzikriteriet
-är detta dessutom nödvändigt då det annars kan bildas oönskade trycknoder. 
-En annan möjlighet är att välja divergensfria element. \cite{babuska1973}\cite{segal2011}
+är detta dessutom nödvändigt då ekvationssystemet som skall lösas blir singulärt. 
+Detta beror på att trycket ej existerar i lika många ekvationer som hastighetskomponenterna.
+Finns det då fler okända trycknoder än hastighetsnoder så finns det ingen entydigt definierad lösning
+på ekvationssystemet. En annan möjlighet för att lösa problemet är att välja element som
+uppfyller Babuska-Brezzikriteriet som hjälper att få fler okända hasetighetspunkter än tryckpunkter.
+\cite{babuska1973}\cite{segal2011}
 
 Genom penaltymetoden beskrives här trycket som $p$ enligt ekvation
 \eqref{eq:femconvection:penalty}. Här är $p_s$ någon form av idealt statiskt
