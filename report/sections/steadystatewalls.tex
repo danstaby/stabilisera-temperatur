@@ -110,7 +110,7 @@ visar tydligt hur viktigt det är att inte bara reglera efter utomhustemperature
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Även hastighetsfältet för temperaturens flöde beräknats med finita element metoden 
+Även hastighetsfältet för temperaturens flöde, då det är vindstilla, har beräknats med finita element metoden 
 applicerad på penaltymetoden. Detta kan ses i figur \ref{fig:velocityfield} där också 
 beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimligt små.
 
@@ -126,32 +126,33 @@ beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimlig
 \end{center}
 \end{figure}
 
-
 Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten, 
 se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes 
 för att framställa ovanstående data fungerade tillräckligt bra för att med någon 
 noggrannhet studera fenomenet konvektion. 
 
-Vi menar dock att formen på hastighetsflödet kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen.
+Vi menar dock att formen på hastighetsflödet kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen. Också det generella formen av konvektionsparametern, som alltså beskriver hur mycket luften vid väggen rörs om, i förhållande till de andra storheterna, i figur \ref{fig:konv_param}, kan anses vara korrekt.
 
 
 \begin{figure}[hpbt]
 \centering
-\subfloat[Konvektionskoefficienten h mot referenstemperaturen]{
+\subfloat[\label{fig:h_reftemp}Konvektionskoefficienten h mot referenstemperaturen]{
 \includegraphics[scale=0.5]{images/convech.eps}
 }
-\subfloat[Konvektionskoefficienten h mot penaltyparametern]{
+\subfloat[\label{fig:h_penalty}Konvektionskoefficienten h mot penaltyparametern]{
 \includegraphics[scale=0.5]{images/convecpenalty.eps}
 }\vspace{1cm}
 
-\subfloat[Konvektionskoefficienten h mot den volymetriska expansionskoefficienten.]{
+\subfloat[\label{fig:h_volexp}Konvektionskoefficienten h mot den volymetriska expansionskoefficienten.]{
 \includegraphics[scale=0.5]{images/convecbeta.eps}
 }
 
 \caption{\label{fig:konv_param}Stabilitetsberäkningar av konvektionskoefficienten h mot några
 parametrar och naturkonstanter i finita elementsimuleringen av Navier-Stokes ekvationer.
 Inomhustemperaturen är satt till konstanta $\unit[20]{^\circ C}$ med en vägg vars U-värde är
-$\unit[1,18]{ Wm^{-2}K^{-1}}$.}
+$\unit[1,18]{ Wm^{-2}K^{-1}}$.} \textbf{\color{red} Vad för vägg har 1,18 i U-värde?}     
 
 \end{figure}
 
+% RESULTAT
+I figur \ref{fig:h_reftem} syns att konvektionsparametern, omrörningen, ökar med ökad utomhustemperatur. Vidare minskar den då den så kallade penaltyparametern ökar, se figur \ref{fig:h_penalty} och ökar med den volymetriska expansionskoefficienten, se figur \ref{fig:h_volexp}. \emph{\color{red} Vad innebär penaltyparametern? Vad säger det att h ökar med volymetriska expansionskoefficienten? Varför har vi valt de här storheterna?}
