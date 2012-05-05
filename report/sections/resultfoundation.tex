@@ -1,5 +1,31 @@
 \section{Energiflöde genom grunden}
 
-\input{sections/steadystatefoundation}
+% \input{sections/steadystatefoundation}
+% \input{sections/transientfoundation}
 
-\input{sections/transientfoundation}
+
+Vid beräkningen av energiflödet genom grunden användes geometrin som kan ses i figur \ref{fig:groundheat}. Källaren antas vara belägen en halv meter under marknivån. Iresonomanget nedan kommer det att visa sig att marken reagerar så pass långsamt på temperaturförändringar att jämviktsläget är det enda relevanta. Ett transient förlopp är helt enkelt långt ifrån verkligheten.
+
+Som kan ses i figur \ref{fig:cooling_ground} så varierar inte energiflödet mer än en dryg watt per kvadratmeter mellan årstiderna och i många applikationer antas det därför vara konstant. Då vår grund är ungefär $\unit[22]{m}\cdot\unit[13]{m}=\unit[286]{m^2}$ ger detta ett energiutflöde mellan $\unit[3,6]{kW}$ på våren och $\unit[3,2]{kW}$ under tidig höst. 
+
+\begin{figure}
+\centering
+\subfloat[Temperaturen i marken den första januari, $^\circ\mbox{C}$.]{
+\includegraphics[width=6cm]{images/groundheatdec.eps}
+}
+\subfloat[Temperaturen i marken den första juli, $^\circ\mbox{C}$.]{
+\includegraphics[width=6cm]{images/groundheatjune.eps}
+}
+\caption{\label{fig:groundheat}
+Temperaturen i marken under byggnaden, $\unit{^\circ C}$, beräknat utifrån månadsmedeltemperaturen de senaste 20 åren i Göteborg för två fiktiva dagar i juni respektive januari. Konvektionsparametern är satt till $h=15,5$. }
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics{images/groundcool.eps}
+\caption{\label{fig:cooling_ground}
+Kyleffekten per kvadratmeter från grunden för medelåret de senaste tjugo åren. Konvektionsparametern är satt till $h=15,5$. }
+
+\end{figure}
+
