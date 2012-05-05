@@ -17,7 +17,7 @@ beta = 3.67e-3; %### NOTE #### T-dependent. Fix later
 alpha =1.9e-5; %Pressure and water dependant
 rho = 1.2920; %Pressure and water dependant
 nu = 1.3e-5;%1.3e-5;%1.3e-5; %Temperature and pressure dependant
-penalty = 1e7; %Which penalty?
+penalty = 1e8; %Which penalty?
 sigma = 5.670373e-8;
 kelvin = 273.15;
 Tref = Tout+kelvin;
@@ -26,10 +26,11 @@ TL = -20+kelvin;
 Tin = 20 + kelvin;
 Uvalue = 1.1858; %U-Value of the south, east and west walls
 kAir = 0.0243;
-
+ps = 1.01e5;
 ITERMAX = 400; %Max iterations for Newton Raphsons method
 epsilon = 1e-5; %Break point for NR-convergence 
 
+Re = 30*0.01/(nu);
 
 WallID = 5; %Identifier of the edge that reresents the wall.
 
@@ -66,8 +67,8 @@ fprintf(1,'Loading problem ...');
 AirH = zeros(size(Range,2),1);
 iterN = 0;
 
-
-
+StressBound = ps*Re/2
+alp = 1;
 for ourN = 1:size(Range,2)
   VarN = Range(ourN);
   
@@ -92,17 +93,19 @@ for ourN = 1:size(Range,2)
      RwallT = -0.90*4*sigma*T0^3;
      Rwall = 0.9*3*sigma*T0^4; 
 
+
+
      TneumannConditions = [NaN, h*Tref, h*Tref, 0, Uvalue*Tin + 0.38*Rair+0.62*Ramb+Rwall]/kAir;
      TneumannTConditions = [NaN,-h, -h, NaN, -Uvalue + RwallT]/kAir;
      TdirichletConditions = [Tref, NaN, NaN, NaN, NaN];
 
-     UdirichletConditions = [0, 0, 0, 0, 0];
-     UneumannConditions = [NaN, NaN, NaN, NaN, NaN];
-     UneumannTConditions = [NaN, NaN, NaN, NaN, NaN];
+     UdirichletConditions = [0, NaN, 0, 0, 0];
+     UneumannConditions = [NaN, 0, NaN, NaN, NaN];
+     UneumannTConditions = [NaN, 0, NaN, NaN, NaN];
 
-     WdirichletConditions = [0, 0, 0, 0 ,0 ];
-     WneumannConditions = [NaN, NaN, NaN, NaN, NaN];
-     WneumannTConditions = [NaN, NaN, NaN, NaN, NaN];
+     WdirichletConditions = [0, 0, NaN, 0 ,0 ];
+     WneumannConditions = [NaN, NaN, 0, NaN, NaN];
+     WneumannTConditions = [NaN, NaN, 0, NaN, NaN];
 
      fu = sparse(pCount,1); %Load vectors
      fw = sparse(pCount, 1);
