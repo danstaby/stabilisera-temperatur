@@ -37,10 +37,24 @@ troligen något mindre.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Energiförlusterna på grund av drag har beräknats med ekvationen
+Energiförlusterna på grund av drag har beräknats med ekvationen \emph{\color{red} Nej. Den ekvationen har verkligen
+inte använts för att beräkna energiflödet. Enhetsanalys? Nedanstående ekvation är darcys lag som det ser ut. Då är Q
+ett luftlöde. Använd istället den nya formuleringen. Vid beräkning av trycket inomhus sätts 
+$\Phi_{in} = \Phi_{ut}$ och $C$ kan strykas om läckages är homogent fördelat över väggarna. Ska detta vara i teori föresten?
+Känns inte detta lite väl metodigt?}
+
 \begin{equation}
 Q=\frac{-kA}{\mu} \frac{(P_b - P_a)^\kappa}{L} 
 \end{equation}
+
+\begin{equation}
+\Phi = AC\Delta p^\kappa;
+\end{equation}
+
+\begin{equation}
+Q = \Phi\Delta T \rho c_p
+\end{equation}
+
 
 som beskriver förlusterna per grad, där $\kappa$ i exponenten sätts till 1 för att motsvara
  Darcys lag eller 0,6 vilket är ett experimentellt uppmätt värde. Energiförlusten har beräknats
@@ -55,7 +69,11 @@ olika vindhastigheter med programmet Comsol medan det teoretiska modellen i figu
 \ref{fig:windenergylossc} är beräknat med med en approximation. Approximationen baserar sig
  på att tryckskillnaden mellan inne och ute är proportionerligt med vindhastigheten i kvadrat. 
  Detta visar sig stämma väl för en fastighet som ligger i lä av andra byggnader vilket gäller för 
- väldigt många av de fastigheter som ligger inne i en stad.
+ väldigt många av de fastigheter som ligger inne i en stad. \emph{\color{red} Nej det kan vi inte säga.
+Det verkar stämma väl för DENNA fastighet som ligger i lä. Den säger inte om några andra. Det är väldigt
+beroende på geometri så att den teoretiska modellen stämmer väl för den byggnaden är bara slump. Stoppa in
+ett träd i bilden och sen kan det vara helt omkastat. Det enda den teoretiska modellen säger något om är lådformade
+byggnader som inte har några grannar. Correlation does not always imply causation.}
 
 \begin{figure}[hpbt]
 \centering
