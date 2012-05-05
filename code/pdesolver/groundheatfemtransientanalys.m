@@ -42,12 +42,21 @@ fprintf(1,'Creating mesh...')
 gd = [2,max(size(border)), border(1,:), border(2,:)]';
 dl = decsg(gd);
 
-%if(nargin == 2)
-  [p, e, t] = initmesh(dl);
-  for n = 1:refinements
-    [p, e, t] = refinemesh(dl, p, e, t);
-  end
-%end
+
+[p, e, t] = initmesh(dl);
+for n = 1:refinements
+  [p, e, t] = refinemesh(dl, p, e, t);
+end
+
+%figure(8)
+%pdemesh(p,e,t)
+%xlabel('Position (m)')
+%ylabel('Position (m)')
+%xlim([-40 52])
+%ylim([-30 0])
+%return
+
+
 %Initiate variables
 tCount = size(t,2);
 pCount = size(p,2);

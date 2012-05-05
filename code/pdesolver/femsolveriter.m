@@ -63,6 +63,13 @@ fprintf(1,'Loading problem ...');
  wu = sparse(pCount, 1);
  Tu = sparse(pCount, 1);
 
+%figure(7)
+%pdemesh(p,e,t)
+%xlabel('Position (m)')
+%ylabel('Position (m)')
+%xlim([-6 20])
+%ylim([0 22])
+%return
 
 AirH = zeros(size(Range,2),1);
 iterN = 0;
