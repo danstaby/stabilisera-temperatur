@@ -18,25 +18,14 @@ utomhustemperaturen som indata till klimatsystemet och ge ett jämnare inomhuskl
 Användingsområdet för free-running temperature och ekvivalent temperatur är det samma, det är bara två olika angreppssätt på samma problem. Nämligen att vädret spelar in på energiflödena genom en vägg i en byggnad.  Båda systemen kan enkelt implementeras i befintliga reglersystem och stora omkostnader kan därför undvikas. Skillanden är att  free-running temperature beskriver byggnadens reaktion på vädret medan ekvivalent temperatur beskriver hur ytterväggen påverkas. Båda varianterna är betydligt bättre än att bara titta på utomhustemperaturen, så som görs i många fastigheter idag.
 
 \subsection{Beräkning av ekvivalent temperatur}
-Ur \cite[ss.~53-54]{Hagentoft01} fås att den ekvivalenta temperaturen, $T_\text{ekv}$, är
+
+Energibalansen på utsidan av en vägg beror solinstrålning, strålning från omgivningen, konvektion med omgivande luft och värmeflöde innifrån.
+
+Detta kan sammanfattas i ekvationen 
 \begin{equation}
-T_\text{ekv}=T_\text{omgivning}+\frac{1}{\alpha_c+\alpha_r}(I_\text{sol} \cdot \alpha_\text{sol} + g \cdot r + (T_\text{atmosfär} - T_\text{omgivning})\cdot \alpha_r)
+\frac{mathrm{d}T_\text{vägg}}{mathrm{d}t} = 
+I\cdot \alpha_\text{abs} + (0,4 T_\text{atm}^4 + 0,6 T_\text{ute}^4 - T_\text{vägg}^4 )\sigma
++ h (T_\text{ute} - T_\text{vägg} + U ( T_\text{vägg} - T_\text{inne} )
 \end{equation}
 
-där 
-$I_\text{sol} \cdot \alpha_\text{sol}$ är instrålad solintensitet multiplicerad med väggen absorptionskoefficient.
-$\alpha_c+\alpha_r$ står för summan av konvektiva respektiva strålande ytans värmeöverförningsskoefficient.
-$\alpha_c$ för luft är 5 och 25 $\unit{W m^{-2}K^{-1}}$ för fri konvektion.
-$\alpha_r = 4 \epsilon \sigma \left(\frac{T_\text{omgivning}+T_\text{atmosfär}}{2}\right)^3$, där $\epsilon$ är hur god svartkroppsstrålare väggen är. $g\cdot r$ beskriver värmeförlusterna av avdunstning av fukt, vilka det här arbetet inte går närmare in på.
-
-där $T_\text{atmosfär}$ för en horisonell yta beskrivs av
-\begin{equation}
-T_\text{atmosfär}= \left\{
-\begin{array}{rl}
-1,2 \cdot T_\text{omgivning} - 14, & \text{en klar dag} \\
-T_\text{omgivning}, & \text{en mulen dag} \\
-\end{array} \right.
-\end{equation}
-
-\textbf{\color{red}Men innifrån då?!}
-
+När sedan $\frac{mathrm{d}T_\text{vägg}}{mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder.
