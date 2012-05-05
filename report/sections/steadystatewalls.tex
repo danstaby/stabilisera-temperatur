@@ -129,9 +129,10 @@ beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimlig
 Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten, 
 se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes 
 för att framställa ovanstående data fungerade tillräckligt bra för att med någon 
-noggrannhet studera fenomenet konvektion. 
-
-Vi menar dock att formen på hastighetsflödet kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen. Också det generella formen av konvektionsparametern, som alltså beskriver hur mycket luften vid väggen rörs om, i förhållande till de andra storheterna, i figur \ref{fig:konv_param}, kan anses vara korrekt.
+noggrannhet studera fenomenet konvektion.  Vi menar dock att formen på hastighetsflödet intill marken och väggen
+kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen. Dock kan randerna mot
+luft påverka då det ej var tillåtet för luften att passera de
+kanterna. Detta kan också vara en felkälla till den absurt låga konvektionsparametern.
 
 
 \begin{figure}[hpbt]
@@ -150,9 +151,19 @@ Vi menar dock att formen på hastighetsflödet kan anses vara av rätt karaktär
 \caption{\label{fig:konv_param}Stabilitetsberäkningar av konvektionskoefficienten h mot några
 parametrar och naturkonstanter i finita elementsimuleringen av Navier-Stokes ekvationer.
 Inomhustemperaturen är satt till konstanta $\unit[20]{^\circ C}$ med en vägg vars U-värde är
-$\unit[1,18]{ Wm^{-2}K^{-1}}$.} \textbf{\color{red} Vad för vägg har 1,18 i U-värde?}     
+$\unit[1,18]{ Wm^{-2}K^{-1}}$. Detta skall motsvara söderväggen på fastigheten som detta arbete behandlar.}
 
 \end{figure}
 
 % RESULTAT
-I figur \ref{fig:h_reftemp} syns att konvektionsparametern, omrörningen, ökar med ökad utomhustemperatur. Vidare minskar den då den så kallade penaltyparametern ökar, se figur \ref{fig:h_penalty} och ökar med den volymetriska expansionskoefficienten, se figur \ref{fig:h_volexp}. \emph{\color{red} Vad innebär penaltyparametern? Vad säger det att h ökar med volymetriska expansionskoefficienten? Varför har vi valt de här storheterna?}
+I figur \ref{fig:h_reftemp} har finita elementmodellens beteende studerats vid variation på några essentiella storheter i modellen.
+Först har penaltyparametern varierats i figur \ref{fig:h_penalty} och här kan det ses att modellens beteende förändras inte nämnvärt
+beroende på val av parameter när denna börjar vara i storleksordningen $\lambda = 10^7$. Det linjära förhållandet mellan
+konvektionskoefficienten och temperaturdifferansen är intressant men saknar stöd i litteraturen då den rimligtvis borde vara
+konstant eller nästan konstant. Slutligen varieras den volymetriska expansionskoefficienten
+i figur \ref{fig:h_volexp}. Det är denna storhet
+som gör att luften stiger när den blir varm och av denna anledning fenomenet fri konvektion uppstår. Konvektionskoefficienten
+ser ut att öka mer än logaritmiskt men däremot ej så snabbt. Anledningen till att denna parameter varierades var för
+att se hur stor den parametern skulle behöva bli innan konvektionen började få samma energitransporterande egenskaper
+som den borde ha. Som kan ses så kommer inte modellen ens i närheten vid en väldigt stort vald volymetrisk expansionskoefficient.
+
