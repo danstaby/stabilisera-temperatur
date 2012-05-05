@@ -1,89 +1,35 @@
 \section{Värmeflöde genom vägg}
 
-För att beskriva ett värmeflöde används ekvationerna Fouriers värmeekvation
-\eqref{eq:conduction:fourier} och värmeledningsekvationen 
-\eqref{eq:conduction:heateq}. 
-I dessa är
-$k$ värmeledningsförmågan\\i $\mbox{W}\mbox{m}^{-2}\mbox{K}^{-1}$ och
-$\alpha$ är termisk diffusivitet i $\mbox{m}^2\mbox{s}^{-1}$. \cite{physicshandbook}
+För att jämföra energiförluster genom en vägg med isolering och utan isolering används
+den tidigare beskrivna finita elementmetoden för värmeledningsekvationen i en dimension. Här approximeras
+väggen som oändligt lång för simplicitet i beräkningarna. För alla beräkningar så har ett tidssteg
+på $\Delta t = \unit[500]{s}$ använts med semidiskret MOL.
 
-Vid statiskt värmeflöde kommer temperaturderivatan med avseende på tiden att vara noll. Detta innebär att värmeledningsekvationen, \eqref{eq:conduction:heateq}, övergår i Laplaces ekvation $\Delta T = 0$. I en dimension blir detta $\mathrm{d}
-^2T/\mathrm{d} x^2 = 0$ vilket innebär att lösningen blir ett polynom av första ordningen. 
+I detta försök antags det att en perfekt värmeanläggning
+existerar så att temperaturen inomhus hålls till konstanta $\unit[20]{^\circ C}$. Efter detta specificeras energiflödet
+från utsidan av väggen genom vilka energiflöden som strömmar till väggen. Dessa är svartkroppsstrålning, solinstrålning
+samt konvektion. Beräkningarna är sedan genomförda med solinstrålningsdata från en molning nyårafton,
+en solig aprildag samt en molning aprildag.\emph{\color{red} Lägg till referenser/information om solinstrålning och svartkroppsstrålning}.
+Konvektionsparametern är sedan satt till $h=\unit[6,19]{Wm^{-2}K^{-1}}$ för aprildagen vilket motsvarar en helt vindstilla aprildag.
+För decemberdagen sattes konvektionsparametern till $h=\unit{35}{Wm^{-2}K^{-1}}$ vilket motsvarar en
+\emph{ \color{red} hur blåsig decemberdag?}.
+Under aprildagen varierade temperaturen linjärt från $T=\unit[6]{^\circ C}$ klockan 06:00 och $T=\unit[9]{^\circ C}$ 16:00.
+Samma värden för decemberdagen är $T = \unit[-11]{^\circ C}$ 06:00 respektive $T=\unit[-5]{^\circ C}$ 16:00.
 
-\begin{equation}
-%\label{eq:staticwallmethod:fourier}
-q_x = -k \frac{\mathrm{d}T}{\mathrm{d}x}
-\tag{\ref{eq:conduction:fourier}}
-\end{equation}
+Problemet har sedan satts upp för två olika väggar. Först en som enbart innehåller $\unit[5]{dm}$ tegel med
+en värmeledningsförmåga på $k_{tegel} = \unit[0.6]{Wm^{-1}K^{-1}}$ och volymetrisk värmekapacitet på
+$c_{p tegel}\rho_{tegel} = \unit[1,153846]{MJ kg^{-1}}$. Den andra väggen har först samma tegellager sedan
+har den tilläggsisolerats på utsidan med $\unit[1]{dm}$ mineralull. Denna mineralull har värmeledningsförmåga på
+$k = \unit[5,2\cdot 10^{-7}]{Wm^{-1}K^{-1}}$ och volymetrisk värmekapacitet på
+$c_{p isolering}\rho_{isolering} = \unit[58,8]{kJ kg^{-1}}$.
+\emph{\color{red} Källor på naturkonstanter}
 
-\begin{equation}
-%\label{eq:staticwallmethod:heat}
-\frac{\partial T}{\partial t} = \alpha \Delta T
-\tag{\ref{eq:conduction:heateq}}
-\end{equation}
+Under experimentens gång så har ett godtyckligt initialvärde valts för att sedan vänta tills
+lösningen stabiliserat sig för att då urläsa energiåtgången. Derivatan på insidan har slutligen beräknats
+och använts för att beräkna kyleffekten genom fouriers värmelag.
 
-\noindent
-För att göra beräkningarna enklare ser vi väggen som en oändligt stor skiva. Detta innebär att ekvationen kan skrivas i en dimension. Detta sambandet härleds i avsnitt \ref{sec:heatconduction} och utifrån det kan ett ekvationssystem bildas.
-
-\begin{equation}
-\label{eq:staticwalltheory:rodmatrix}
-\begin{pmatrix}
-Q \\
--Q
-\end{pmatrix} = 
-\frac{k}{L}\begin{pmatrix}
-1 & -1 \\
--1 & 1
-\end{pmatrix}
-\begin{pmatrix}
-T_1 \\
-T_2
-\end{pmatrix}
-\end{equation}
-
-\noindent
-Vi kan nu teckna dessa ekvationssystem för alla delar av väggen, som skrivs som 
-en matris och sedan fylla ut matriserna med nollelement för att slutligen bilda 
-en linjärkomination.
-Då linjärkombinationen bildas kommer energiflödena i mitten av väggen att
-vara noll. Detta överensstämmer väl med att vi har en statisk energifördelning
-utan interna värmekällor.
-Slutligen får vi ett ekvationsystem enligt ekvation
-\eqref{eq:staticwallmethod:full} som enkelt kan lösas.
-Matrisen $A$ är linjärkombinationen av nollutfyllda versioner av matrisen i ekvation
-\eqref{eq:staticwalltheory:rodmatrix} enligt ekvation
-\eqref{eq:staticwallmethod:example}.
-
-\begin{equation}
-\label{eq:staticwallmethod:example}
-A = \frac{k_1}{L_1}
-\begin{pmatrix}
-1 & -1 & 0 &  \dots \\
--1 & 1 & 0 &   \\
-0 & 0 & 0 &  \\
-\vdots & & & \ddots
-\end{pmatrix}
-+
-\frac{k_2}{L_2}
-\begin{pmatrix}
-0 & 0 & 0 & 0 & \dots \\
-0 & 1 & -1 & 0 &  \\
-0 & -1 & 1 & 0 & \\
-0 & 0 & 0 & 0 & \\
-\vdots & & & & \ddots
-\end{pmatrix} + \dots
-\end{equation}
-
-\begin{equation}
-\label{eq:staticwallmethod:full}
-\begin{pmatrix}
-Q\\0\\...\\0\\-Q
-\end{pmatrix} = A
-\begin{pmatrix}
-T_H\\T_1\\...\\T_{n-1}\\T_L
-\end{pmatrix}
-\end{equation}
-
-Här gör vi en jämförelse mellan en oisolerad, 50 cm tjock tegelvägg, motsvarande den som finns på fastighetens södersida, och en 50 cm tjock tegelvägg med 10 cm isolering, motsvarande den som finns på fastighetens norrsida.
-
-\input{sections/femheat}
+För att studera hur de olika väggarna beter sig vid ett stegsvar har ett sådant tillverkats. Experimentet
+har startats med att väggarna varit i jämvikt med en utomhustemperatur på $T = \unit[0]{^\circ C}$ för att
+sedan stiga till $T = \unit[10]{^\circ C}$ vid tiden $t=0$. Konvektionsparametern är här satt till
+$h = \unit[25]{W m^{-1}K^{-1}}$ \emph{\color{red} vilket motsvarar ?????}. Slutligen så kunde väggarnas
+tröghet studeras genom att den momentana kyleffekten beräknades för varje tidssteg. 
