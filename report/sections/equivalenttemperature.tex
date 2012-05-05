@@ -1,7 +1,7 @@
 \section{Ekvivalent temperatur  – en konceptuell beskrivning}
 \label{sec:ekv_temp}
 
-Ekvivalent temperatur är, precis som free-running temperature, ett begrepp som sammanfattar vädrets påverkan på en byggnad i en siffra. Kort sagt är ekvivalent temperatur det värde man ersätter utomhustemperaturen för att ta 
+Ekvivalent temperatur är, precis som free-running temperature, ett begrepp som sammanfattar vädrets påverkan på en byggnad i en siffra. Ekvivalent temperatur beskriver energibalansen på en yta och är det värde man ersätter utomhustemperaturen för att ta 
 hänsyn till fler väderparametrar än just utomhustemperaturen i styrningen av en 
 klimatanläggning.
 
@@ -15,14 +15,28 @@ olika utomhustemperaturer, utan övrig väderpåverkan, och den temperatur som g
 samma energiflöde kallas ekvivalent temperatur. Denna kan sedan ersätta 
 utomhustemperaturen som indata till klimatsystemet och ge ett jämnare inomhusklimat. 
 
-Användingsområdet för free-running temperature och ekvivalent temperatur är det samma, det är bara två olika angreppssätt på samma problem. Nämligen att vädret spelar in på energiflödena genom en vägg i en byggnad.  Båda systemen kan enkelt implementeras i befintliga reglersystem och stora omkostnader kan därför undvikas. Skillanden är att  free-running temperature beskriver byggnadens reaktion på vädret medan ekvivalent temperatur beskriver vädret. Ekvivalent temperatur är alltså inte ett byggnadsspecifikt värde utan beror enbart av vädret. Båda varianterna är dock betydligt bättre än att bara titta på utomhustemperaturen, så som görs i många fastigheter idag.
+Användingsområdet för free-running temperature och ekvivalent temperatur är det samma, det är bara två olika angreppssätt på samma problem. Nämligen att vädret spelar in på energiflödena genom en vägg i en byggnad.  Båda systemen kan enkelt implementeras i befintliga reglersystem och stora omkostnader kan därför undvikas. Skillanden är att  free-running temperature beskriver byggnadens reaktion på vädret medan ekvivalent temperatur beskriver hur ytterväggen påverkas. Båda varianterna är betydligt bättre än att bara titta på utomhustemperaturen, så som görs i många fastigheter idag.
 
+\subsection{Beräkning av ekvivalent temperatur}
+Ur \cite[ss.~53-54]{Hagentoft01} fås att den ekvivalenta temperaturen, $T_\text{ekv}$, är
+\begin{equation}
+T_\text{ekv}=T_\text{omgivning}+\frac{1}{\alpha_c+\alpha_r}(I_\text{sol} \cdot \alpha_\text{sol} + g \cdot r + (T_\text{atmosfär} - T_\text{omgivning})\cdot \alpha_r)
+\end{equation}
 
-% Tidigare text:
-%Antag att det bara finns ett sorts väder, där temperaturen är den enda variabeln. Det
-% skulle innebära att man kan hänföra hur mycket energi som går åt för att värma upp 
-% någonting direkt till utetemperaturen. Det finns oändligt antal olika vädertyper, och fler 
-% parametrar måste tas i beaktning då man räknar ut hur mycket energi som måste tillföras
-%  huset. En ekvivalent temperatur för en viss vädertyp skulle således motsvara den 
-%  temperaturen, i ett optimalt klimat, som kräver tillförsel av samma energimängd för att 
-%  upprätthålla efterfrågat klimat.
+där 
+$I_\text{sol} \cdot \alpha_\text{sol}$ är instrålad solintensitet multiplicerad med väggen absorptionskoefficient.
+$\alpha_c+\alpha_r$ står för summan av konvektiva respektiva strålande ytans värmeöverförningsskoefficient.
+$\alpha_c$ för luft är 5 och 25 $\unit{W m^{-2}K^{-1}}$ för fri konvektion.
+$\alpha_r = 4 \epsilon \sigma \left(\frac{T_\text{omgivning}+T_\text{atmosfär}}{2}\right)^3$, där $\epsilon$ är hur god svartkroppsstrålare väggen är. $g\cdot r$ beskriver värmeförlusterna av avdunstning av fukt, vilka det här arbetet inte går närmare in på.
+
+där $T_\text{atmosfär}$ för en horisonell yta beskrivs av
+\begin{equation}
+T_\text{atmosfär}= \left\{
+\begin{array}{rl}
+1,2 \cdot T_\text{omgivning} - 14, & \text{en klar dag} \\
+T_\text{omgivning}, & \text{en mulen dag} \\
+\end{array} \right.
+\end{equation}
+
+\textbf{\color{red}Men innifrån då?!}
+
