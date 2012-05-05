@@ -255,27 +255,35 @@ cConst = (cGamma+omega*bConst)./lambda;
 Const = Vinv*uLast-aConst-bConst;
 tNow = 0.5*pi/omega;
 
+Const(:) = 0; %Make the solution steady state
+Tmean = zeros(3,1);
 
-u(Free) = Vec*(Const.*exp(-lambda*tNow) +...
-	       aConst+bConst*cos(omega*tNow)+ cConst*sin(omega*tNow));
+outData = [0:(3600*24):365*3600*24]';
+outData = [outData, zeros(size(outData,1),1)];
+Lengths = zeros(3,1);
 
-%Calculate mean temp and save data.
-  
-%outData(n,2) = mean(u(find(~(e(5,:)-WallID))));
-%uLast = u;
-%fprintf(1, '\r%5g%%    ', 100*tNow/(365*10));
+for eid = 1:3
+    ind = find(~(e(5,:)-eid-boundoffs));
+    
+    Lengts(eid) = sum(LengthBound(ind));
+end
 
-%Tmean = zeros(3,1);
-%for eid = 1:3
-%  ind = find(~(e(5,:)-eid-boundoffs));
-%  
-%  Tmean(eid) = mean(u(ind));
-%end
+n = 0;
+for tNow = 0:(3600*24):365*3600*24
+  n = n +1;
+  u(Free) = Vec*(Const.*exp(-lambda*tNow) +...
+		 aConst+bConst*cos(omega*tNow)+ cConst*sin(omega*tNow));
 
-%outData(n,3) = -Uconc*(Lengts'*Tmean/sum(Lengts)-Tin);
+  for eid = 1:3
+    ind = find(~(e(5,:)-eid-boundoffs));
+    
 
+    Tmean(eid) = mean(u(ind));
+  end
+  outData(n,2) = -Uconc*(Lengts'*Tmean/sum(Lengts)-Tin);
 
-%Lengts = zeros(3,1);
+end
+
 
 
 
@@ -303,16 +311,18 @@ if(displayOff == 0)
   %ylabel('Medeltemperatur (C)')
   
 
-  %figure(2)
-  %hold off
-  %plot(outData(:,1)/(365), outData(:,3))
-  %xlabel('Tid (År)')
-  %ylabel('Kyleffekt (W m^{-2})')
-  figure(3)
+  figure(2)
   hold off
+  plot(outData(:,1)/(24*3600), outData(:,2))
+  xlabel('Tid (dygn)')
+  ylabel('Kyleffekt (W m^{-2})')
+  xlim([0 365])
+
+  %figure(3)
+  %hold off
   
   
-  tricontourf(p(1:2,:),t(1:3,:), Vec*(aConst + bConst)-kelvin);
+  %tricontourf(p(1:2,:),t(1:3,:), Vec*(aConst - bConst)-kelvin);
   
 end
 
