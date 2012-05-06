@@ -68,3 +68,27 @@ c_p \rho \frac{\partial T}{\partial t} = k \frac{\partial^2 T}{\partial \tau^2} 
 Detta samband brukar kallas för värmeledningsekvationen.
 
 \emph{\color{red} Nu åkte det lite ekvationer som inte låg här utan i teori. Filen är backupad och ligger i /report/sections/wallmethod.bak}
+
+\subsection{Darcys lag}
+\label{subsec:darcy}
+
+Darcys lag beskriver hur en fluid flödar och kan användas i en mängd olika tillämpningar. Sambandet kan fås ur Navier-Stokes ekvationer genom homogenisering så väl som genom experminent. I det här projektet används den för att beskriva hur luften tränger in i bygganden vid blåst. Lagen beskriver ett pågående flöde genom ett poröst material, $q$, i termer av fluidens viskositet, $\mu$, och tryckfallet, $P_b - P_a$, över ett givet avstånd, $L$.
+
+\begin{equation}
+q=\frac{-k}{\mu} \frac{(P_\text{in} - P_\text{ut})^\eta}{L}.
+\end{equation}
+    
+$k$ står för permeabiliteten hos materialet som fluiden flödar igenom och är en materialkonstant som beskriver hur genomsläppligt det är. Luftflödet $q$ mäts per kvadratmeter. Exponenten $\eta$ sätts till 1 för att motsvara Darcys lag. Ett alternativ är att sätta den till 0,6 som är ett experimentellt uppmätt värde. \emph{\color{red} Vad kommer det här värdet ifrån?}
+
+\begin{equation}
+\Phi = AC\Delta p^\kappa;
+\end{equation}
+
+\begin{equation}
+Q = \Phi\Delta T \rho c_p
+\end{equation}
+
+\emph{\color{red} kommer de här ekvationerna direkt ur Darcys lag? Vad är $\Phi$?}
+
+Vid beräkning av trycket inomhus sätts $\Phi_{in} = \Phi_{ut}$ och $C$ kan strykas om läckages är homogent fördelat över väggarna.
+
