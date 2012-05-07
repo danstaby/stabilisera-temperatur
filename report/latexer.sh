@@ -16,5 +16,4 @@ ps2pdf $1.ps
 else
 # otherwise give this output line with a list of available tex files
 echo no such file! Choose one of these:
-ls *.tex
 fi

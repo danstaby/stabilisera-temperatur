@@ -192,28 +192,37 @@ $T_0$ temperaturen som råder vid referensdensiteten $\rho_0$.
 \subsection{Tryckdrivet luftläckage}
 \label{subsec:darcy}
 
-Darcys lag beskriver hur en fluid flödar och den kan användas i en mängd olika tillämpningar. Sambandet kan fås ur Navier-Stokes ekvationer genom homogenisering så väl som genom experminent. I det här projektet används den för att beskriva hur luften tränger in i bygganden vid blåst. Lagen beskriver ett pågående flöde genom ett poröst material, $\Phi$, i termer av fluidens viskositet, $\mu$, och tryckfallet, $P_b - P_a$, över ett givet avstånd, $L$.
+För att beskriva tryckdrivet luftläckage, i vårt fall drag på grund av vind, kan till exempel Darcys lag användas. Den beskriver hur en fluid flödar genom ett poröst material och den kan användas i en mängd olika tillämpningar. Sambandet kan fås ur Navier-Stokes ekvationer genom homogenisering så väl som genom experminent. Lagen beskriver ett pågående flöde genom materialet, $\Phi$, i termer av fluidens viskositet, $\mu$, och tryckfallet, $P_b - P_a$, över ett givet avstånd, $L$.
 
 \begin{equation}
 \Phi=\frac{-k}{\mu} \frac{(P_\text{in} - P_\text{ut})^\eta}{L}.
 \end{equation}
     
-$k$ står för permeabiliteten hos materialet som fluiden flödar igenom och är en materialkonstant som beskriver hur genomsläppligt det är. Luftflödet $\Phi$ mäts per kvadratmeter. Exponenten $\eta$ sätts till 1 för att motsvara Darcys lag. Ett alternativ är att sätta den till 0,6 som är ett experimentellt uppmätt värde. \emph{\color{red} Vad kommer det här värdet ifrån?}
+$k$ står för permeabiliteten hos materialet som fluiden flödar igenom och är en 
+materialkonstant som beskriver hur genomsläppligt det är. Luftflödet $\Phi$ mäts per 
+kvadratmeter. Exponenten $\eta$ sätts till 1 för att motsvara Darcys lag. Hus är dock inte så
+ porösa och ett för högt värde fås oftast med den här metoden. För att åtgärda det behövs 
+ data från ett dörrtryckstest utföras. Detta utförs genom att man trycksätter huset genom 
+ dörren och ser vilket luftflöde som krävs för att upprätthålla ett givet tryck. Flödet och trycket 
+ ritas sedan upp i ett log-log-diagram. Vid låga tryck är kurvan konvex men rätas sedan ut till 
+ en rät linje vars lutning är $\eta$. Ett vanligt värde är då ungefär 0,6, men för en del hus blir 
+ det 0,75.\ref{sasic} Ett sådan här test är alltså essentiellt för att få veta hur byggnaden 
+ påverkas av vind.
+ 
+Sammanfattas alla konstanter fås istället ett uttryck på formen
 
 \begin{equation}
-\Phi = AC\Delta p^\eta;
+\Phi = C\Delta P^\eta
 \end{equation}
 
-Detta ger sedan energiflödet $Q$ enligt
+där $C=\frac{-k}{\mu \cdot L}$. Vid beräkning av trycket inomhus sätts $\Phi_{in} = \Phi_{ut}$ och $C=1$ om läckages är homogent fördelat över väggarna.
+
+Detta ger då energiflödet $Q$ enligt
 
 \begin{equation}
 Q = \Phi \Delta T \rho c_p
 \end{equation}
 
-där $\Delta T$ är temperaturskillanden mellan inomhus och utomhus.
+där $\Delta T$ är temperaturskillanden mellan inomhus och utomhus samt $\rho$ och $c_p$ är naturkonstanter för luft, närmare bestämt densitet respektive värmekapacitet.
 
-Dörrtryckstest ger kurva (log log), lutningen där är $\eta$ som beror av tryckskillnaden beror av vinden. Hus är inte poröst material. Rek. gör ett dörrtryckstest.
-
-
-Vid beräkning av trycket inomhus sätts $\Phi_{in} = \Phi_{ut}$ och $C$ kan strykas om läckages är homogent fördelat över väggarna.
 
