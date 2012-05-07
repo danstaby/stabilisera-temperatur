@@ -51,13 +51,23 @@ if( Insulated == 0)
   % Conductivity, Volumetric heat capacaty (density times specific heat)]
   
 
-else
+elseif( Insulated == 1)
   Material = [0.1, 0.037/(1400*840), 0.037, 840*70;
 	      0.5, 5.2e-7, 0.6, 1153846.15];
 
   %110 kg/m^3
   %840 J/K kg
   %0.037 W/mK
+elseif (Insulated == 2)
+  Material = [0.02, 0, 401, 390*8940;
+	      0.016, 0, 0.5, 1.3e6;
+	      0.016, 0, 0.25, 1090*800;
+	      0.05, 0, 0.037, 840*70;
+	      0.024, 0 ,0.25, 1090*800];
+
+
+  %http://www.engineering.com/Library/ArticlesPage/tabid/85/ArticleID/152/Thermal-Conductivity.aspx
+
 end
 
 
