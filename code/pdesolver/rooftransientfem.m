@@ -188,7 +188,7 @@ for t = Time(1):Time(2):Time(3)
 
   %Move dirichlet conditions to the RHS
   u(:) = 0;
-  %u(dirbc(1,:)) = dirbc(2,:)';
+  u(dirbc(1,:)) = dirbc(2,:)';
   b = f - A*u + g;
   
   %Calculate eigenspace and solve the equations
