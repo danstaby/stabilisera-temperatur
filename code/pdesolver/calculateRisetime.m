@@ -11,32 +11,37 @@ load(fileName);
 
 norm1 = normData(step1);
 norm2 = normData(step2);
+norm3 = normData(step3);
 
-t10 = [0,0];
-t90 = [0,0];
+t10 = [0,0,0];
+t90 = [0,0,0];
 
 %Find 10% point
 t10(1) = findTime(norm1, 0.1);
 t10(2) = findTime(norm2, 0.1);
+t10(3) = findTime(norm3, 0.1);
 
 %Find 90% point
 
 t90(1) = findTime(norm1, 0.9);
 t90(2) = findTime(norm2, 0.9);
+t90(3) = findTime(norm3, 0.9);
 
 risetime = (t10-t90)/3600;
 
 %Display data
 
-disp(['Rise time of brick wall: ' num2str(risetime(1))])
-disp(['Rise time of insulated wall: ' num2str(risetime(2))])
-disp(['10% fall time of brick wall: ' num2str(t90(1)/3600)])
-disp(['10% fall time of insulated wall: ' num2str(t90(2)/3600)])
+disp(['Rise time of brick wall: ' num2str(risetime(1)) ' hours'])
+disp(['Rise time of insulated wall: ' num2str(risetime(2)) ' hours'])
+disp(['Rise time of bay wall: ' num2str(risetime(3)*60) ' minutes'])
+disp(['10% fall time of brick wall: ' num2str(t90(1)/3600) ' houers'])
+disp(['10% fall time of insulated wall: ' num2str(t90(2)/3600) ' hours'])
+disp(['10% fall time of bay wall: ' num2str(t90(3)/60) ' minutes'])
 %Plot data
 makePlot(step1, t10(1), t90(1), 1, 'Enbart tegel');
 makePlot(step2, t10(2), t90(2), 2, 'Tegel och mineralull');
-
-
+makePlot(step3, t10(3), t90(3), 3, 'Utskjutande fasaddelar');
+xlim([0 5])
 
 function ret = makePlot(data, t10, t90, figId, strTitle)
 tOffset = 3600;
@@ -75,5 +80,5 @@ p1 = ind(1)-1;
 p2 = ind(1);
 
 %Make spline interpolation and return data
-time = data(p1,1) + (percentage-data(p1,2))*(data(p2,1)-data(p1,1))/(data(p2,2)-data(p1,2))
+time = data(p1,1) + (percentage-data(p1,2))*(data(p2,1)-data(p1,1))/(data(p2,2)-data(p1,2));
 
