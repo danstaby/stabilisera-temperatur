@@ -8,7 +8,7 @@ Problemet är behandlat med finita elementmetoden av värmeledningsekvationen.
 Geometrin av problemet och trianguleringen kan ses i figur \ref{fig:foundation:tri}.
 Randvärdena som är satt är att alla rander som går från berg till berg är adiabatiska.
 Detta kommer inte stämma i praktiken om inte definitionsmängden sätts till oändligt
-stor. För lösning av detta problem så kan det dock ses som en tillräckligt god
+stor. För lösning av detta problem kan det dock ses som en tillräckligt god
 approximation då definitionsmängden är stor och temperaturen ej varierar mycket
 från förväntat värde.
 
@@ -17,11 +17,16 @@ till $h = \unit[15,5]{Wm^{-2}K^{-1}}$. Detta är en siffra som motsvarar
 en vindhastighet på $v = \unit[2]{ms^{-1}}$. Utomhustemperaturen har valts
 som en minstakvadratanpassad trigonetrisk funktion av
 medeltemperaturen de senaste tjugo åren vilket kan ses i figur
-\ref{fig:foundation:meantemperature}. Anpassningen gör så att
+\ref{fig:foundation:meantemperature}. Anpassningen gör att
 differentialekvationerna av Galerkinformuleringen kan lösas analytiskt
 för alla tider istället för att systemet behöver lösas semidiskret.
 Detta minskade exekveringstiden dramatiskt vilket gav möjlighet att använda en
-mycket finare triangulering.
+mycket finare triangulering. Dessutom så kan alla termer i lösningen
+som går mot noll då tiden går mot oändligeheten sättas till noll. Detta innebär
+att få når ett transient jämviktsläge som liknar det jämviktsläge vi har i praktiken.
+Initialvärdena kommer således inte ha någon betydelse och dessa kan då väljas
+godtykligt. 
+För att uppnå detta med semidiskret MOL behövs väldigt många itereringar genom
 
 \begin{figure}
 \centering
