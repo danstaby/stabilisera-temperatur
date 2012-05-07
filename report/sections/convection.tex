@@ -137,11 +137,12 @@ För homogena inkompressibla fluider i två dimensioner gäller alltså ekvation
 \eqref{eq:convection:continuityinc}, \eqref{eq:convection:momentum} samt \eqref{eq:convection:energy}.
 
 \subsection{Vindens konvektionskoefficient}
+\label{subsec:windconv}
 
 Då vinden blåser kommer en del värmeenergi överföras via konvektion, men istället för att lösa den invecklade konvektions-diffussionsekvationen används ofta något som kallas för vindens konvektionskoefficient, betecknat med $h$. I analogi med Fouriers värmelag, ekvation \ref{eq:conduction:fourier}, skrivs
 
 \begin{equation}\boxed{ \; \; \;
-q = hdT = h\left( T_{wall} - T_{\infty}\right).
+q = hdT = h\left( T_\text{vägg} - T_\text{ute}\right).
 \; \; \;}\end{equation}
 
 där h alltså kan jämföras med det ovan härledda U-värdet. 
@@ -188,10 +189,10 @@ $T_0$ temperaturen som råder vid referensdensiteten $\rho_0$.
 \frac{\partial p}{\partial z} = -\rho_0g
 \end{equation}
 
-\subsection{Darcys lag}
+\subsection{Tryckdrivet luftläckage}
 \label{subsec:darcy}
 
-Darcys lag beskriver hur en fluid flödar och kan användas i en mängd olika tillämpningar. Sambandet kan fås ur Navier-Stokes ekvationer genom homogenisering så väl som genom experminent. I det här projektet används den för att beskriva hur luften tränger in i bygganden vid blåst. Lagen beskriver ett pågående flöde genom ett poröst material, $\Phi$, i termer av fluidens viskositet, $\mu$, och tryckfallet, $P_b - P_a$, över ett givet avstånd, $L$.
+Darcys lag beskriver hur en fluid flödar och den kan användas i en mängd olika tillämpningar. Sambandet kan fås ur Navier-Stokes ekvationer genom homogenisering så väl som genom experminent. I det här projektet används den för att beskriva hur luften tränger in i bygganden vid blåst. Lagen beskriver ett pågående flöde genom ett poröst material, $\Phi$, i termer av fluidens viskositet, $\mu$, och tryckfallet, $P_b - P_a$, över ett givet avstånd, $L$.
 
 \begin{equation}
 \Phi=\frac{-k}{\mu} \frac{(P_\text{in} - P_\text{ut})^\eta}{L}.
@@ -203,12 +204,15 @@ $k$ står för permeabiliteten hos materialet som fluiden flödar igenom och är
 \Phi = AC\Delta p^\eta;
 \end{equation}
 
-Detta ger sedan energiflödet $Q$
+Detta ger sedan energiflödet $Q$ enligt
 
 \begin{equation}
-Q = \Phi\Delta T \rho c_p
+Q = \Phi \Delta T \rho c_p
 \end{equation}
 
+där $\Delta T$ är temperaturskillanden mellan inomhus och utomhus.
+
+Dörrtryckstest ger kurva (log log), lutningen där är $\eta$ som beror av tryckskillnaden beror av vinden. Hus är inte poröst material. Rek. gör ett dörrtryckstest.
 
 
 Vid beräkning av trycket inomhus sätts $\Phi_{in} = \Phi_{ut}$ och $C$ kan strykas om läckages är homogent fördelat över väggarna.

@@ -19,23 +19,20 @@ Användingsområdet för free-running temperature och ekvivalent temperatur är 
 
 \subsection{Beräkning av ekvivalent temperatur}
 
-Energibalansen på utsidan av en vägg beror solinstrålning, strålning från omgivningen, konvektion med omgivande luft och värmeflöde innifrån.
+Energibalansen på utsidan av en vägg beror solinstrålning, strålning från omgivningen, konvektion med omgivande luft och värmeflöde inifrån.
 
-Detta kan sammanfattas i ekvationen 
+Strålningen från omgivningen kan enligt \cite{bb_atmosphere} skrivas som 
 \begin{equation}
+I_\text{omg}=\sigma\cdot T_\text{ute}^4(1-x \cdot e^{-d(273-T_\text{ute})^2})
+\end{equation}
+där $c=0,261$ och $d=7,77\cdot10^{-4}$ kommer ur statistiska data.
+
+Alla energiflödena kan sammanfattas i ekvationen 
+
+\begin{equation}\boxed{ \; \; \;
+\label{eq:ekvtemp}
 \frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t} = 
-I\cdot \alpha_\text{abs} + (0,4 T_\text{atm}^4 + 0,6 T_\text{ute}^4 - T_\text{vägg}^4 )\sigma + (T_\text{ute} - T_\text{vägg}) h + ( T_\text{vägg} - T_\text{inne} ) U.
-\end{equation}
+I\cdot \alpha_\text{abs} + I_\text{omg} + (T_\text{ute} - T_\text{vägg}) h +( T_\text{vägg} - T_\text{inne} ) U.
+\; \; \;}\end{equation}
 
-När sedan $\frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder. $h$ är konvektionsparametern för luft. $U$ är väggens U-värde, som i vårt fall är 1,2 för den oisloerade söderväggen respektive 0,3 för den isolerade norrväggen. $T_\text{atm}$ är atmosfärens temperatur och kan skrivas som\cite[ss.~54]{Hagentoft01}
-
-\begin{equation}
-T_\text{atm}= \left\{
-\begin{array}{rl}
-1,1T_\text{ute} -5, & \text{då klar himmel} \\
-T_\text{ute}, & \text{då molnigt} \\
-\end{array} \right.
-\end{equation}
-
-% lägg till vinden, se 2.4.1 Vindens konvektionskoefficient ekv. (2.4.16)
-% Vad innebär T_\inf? (ekv 2.4.15)
+När sedan $\frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder. $h$ är konvektionsparametern för luft, som varierar med vinden, se avsnitt \ref{subsec:windconv}. $U$ är väggens U-värde, som i vårt fall är 1,2 för den oisloerade söderväggen respektive 0,3 för den isolerade norrväggen.

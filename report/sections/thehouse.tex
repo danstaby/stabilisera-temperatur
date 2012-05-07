@@ -21,7 +21,7 @@ Det är också den fastighet som varit i fokus för det här arbetet. Byggnaden 
 
 Fastigheten har idag 13 lägenheter och en kontorslokal på $\unit[225]{m^2}$. De utgör tillsammans $\unit[1450]{m^2}$ fördelat på sju våningar. Utöver detta finns det gemensamma utrymme, trapphus, förråd och apparatrum i den nedre källaren och Peter Särneö\cite{petersarneo} bedömmer att det totalt rör sig om ca $\unit[2000]{m^2}$. Sedan ett tag tillbaka har även en väderstation och en solintensitetsmätare installerats i förhoppningen att den ska kunna utnyttjas för att förbättra fastighetens klimat ytterligare, se avsnitt \ref{subsec_weathertransmitter}. Hur detta ska göras är det det här projektets uppgift att undersöka.
 
-Ett centralt begrepp för att göra fysikaliska beräkningar på värmeflödet genom fastighetens olika gränsytor var U-värdet. Dessa beräknas utifrån materialets tjocklek och värmeledningsförmåga, se avsnitt \ref{sec:heatconduction}. U-värdet kan ses som ett mått på väggens förmåga att släppa igenom värme. För en vägg med flera lager summeras U-värden på samma sätt som seriekopplade resistorer: $U_tot= 1/ (U_1+...+U_n)$. Det genomsnittliga U-värdet för fastighetens väggar, fönster och tak är 0,6.
+Ett centralt begrepp för att göra fysikaliska beräkningar på värmeflödet genom fastighetens olika gränsytor var U-värdet. Dessa beräknas utifrån materialets tjocklek och värmeledningsförmåga, se avsnitt \ref{sec:heatconduction}. U-värdet kan ses som ett mått på väggens förmåga att släppa igenom värme. För en vägg med flera lager summeras U-värden på samma sätt som seriekopplade resistorer: $U_tot= 1/ (U_1+...+U_n)$. Det genomsnittliga U-värdet för fastigheten, grunden borträknad, är 0,6.
 
 % De olika gränsytornas material och uppbyggnad.
 \subsection{Väggarna}
@@ -63,13 +63,31 @@ På söderväggen finns ett kopparklätt burspråk. Kopparn sitter direkt på en
 \subsection{Taket}
 Även taket lades om i samband med den stora renoveringen för minskad energiåtgång. Efter det bestod det av taktegel på underlagspapp ytterst, följt av 1,3 cm gips, 21 cm mineralull och innerst ytterligare 2,6 cm gips, se figur \ref{fig:taket}.\cite{kandidatarbete2010}. U-värdet för taket är $\unit[0,2]{W/m^2}$.
 
-\emph{\color{red} Behöver fyllas ut. Hur ser vinden ut? Kallvind? Ventilerad? Isolering mellan lägenheter och vinden? Betong?}
+Direkt under taket finns en lägenhet som givetvis är uppvärmd. Precis under taknocken finns ett mindre utrymme, se figur \ref{fig:attic}, för till exempel kablar.
 
 \begin{figure}[hpbt]
 \centering
-\includegraphics[width=0.3\textheight]{images/taket.eps}
-\caption{\label{fig:taket}{Takets uppbyggnad. Alla mått är i mm.}}
+\subfloat[
+	\label{fig:taket}Takets uppbyggnad. Alla mått är i mm.
+	]{
+	\parbox[c]{7cm}{
+	\centering
+		\includegraphics[width=5cm]{images/taket.eps}
+	}
+}
+\subfloat[\label{fig:attic}Fastighetens översta våning, från ritningen\cite{ritningar_urspr}.]{
+	\parbox[c]{7cm}{
+		\raisebox{-4.5cm}{
+			\centering
+			\includegraphics[width=5cm]{images/attic.eps}
+			\begin{minipage}[c][2.0cm]{3cm}{~}
+			\end{minipage}
+		}
+	}
+}
+\caption{\label{fig:roof_attic} Takets och vindens uppbyggnader.}
 \end{figure}
+
 
 \subsection{Fönstren}
 
@@ -82,4 +100,4 @@ Huset är byggt på ett berg som sluttar kraftigt. I östra delen av fastigheten
 \subsection{Uppvärmning och ventilation}
 Idag värms huset av bergvärme från tre bergvärmepumpar. För att minska energiåtgången har ett flertal värmeväxlare installerats och värmen från all frånluft återanvänds i möjligaste mån.
 % Hur fungerar regleringen? Källa?
-% Se äldre kandidatarbeten och det vi fått veta mutligen av P.S.
+% Se äldre kandidatarbeten och det vi fått veta muntligen av P.S.
