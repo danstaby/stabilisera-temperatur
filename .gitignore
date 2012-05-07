@@ -20,7 +20,7 @@ report/images/*.pdf
 #Emacs temporary files
 
 *~
-
+\#*\#
 
 #Java compiled files
 

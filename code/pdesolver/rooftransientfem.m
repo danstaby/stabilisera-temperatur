@@ -118,8 +118,8 @@ lambda = zeros(Nodes,1); %Eigennumbers of the problem (inverse of
 Energy = zeros(floor((Time(3)-Time(1))/Time(2))+1,1);
 EnergyIn = zeros(floor((Time(3)-Time(1))/Time(2))+1,1);
 
-dirbc = [];%[NodeCount; %Column vectors with the dirichlet condition(s)
-	%Tin+kelvin];
+dirbc = [NodeCount; %Column vectors with the dirichlet condition(s)
+	Tin+kelvin];
 
 %Assemble stiffness matrix
 
@@ -134,7 +134,7 @@ for n = 1:(NodeCount-1)
 end
 
 
-Free = 1:(NodeCount); %Vector of the free nodes (i.e. the nodes
+Free = 1:(NodeCount-1); %Vector of the free nodes (i.e. the nodes
                         %without dirichlet conditions)
 
 Const = sparse(NodeCount,1); %Intermidiary solution vector
@@ -185,12 +185,10 @@ for t = Time(1):Time(2):Time(3)
   Q(1,1) = -(-h); %T dependent neumann conditions
   g(1,1) = Qtot + h*To + Rtot - sigma*uLast(1)^4; %Constant neumann conditions
 
-  Q(NodeCount,NodeCount) = -(-h);
-  g(NodeCount,1) = h*(Tin+kelvin);
 
   %Move dirichlet conditions to the RHS
   u(:) = 0;
-  %u(dirbc(1,:)) = dirbc(2,:)';
+  u(dirbc(1,:)) = dirbc(2,:)';
   b = f - A*u + g;
   
   %Calculate eigenspace and solve the equations
