@@ -188,4 +188,28 @@ $T_0$ temperaturen som råder vid referensdensiteten $\rho_0$.
 \frac{\partial p}{\partial z} = -\rho_0g
 \end{equation}
 
+\subsection{Darcys lag}
+\label{subsec:darcy}
+
+Darcys lag beskriver hur en fluid flödar och kan användas i en mängd olika tillämpningar. Sambandet kan fås ur Navier-Stokes ekvationer genom homogenisering så väl som genom experminent. I det här projektet används den för att beskriva hur luften tränger in i bygganden vid blåst. Lagen beskriver ett pågående flöde genom ett poröst material, $\Phi$, i termer av fluidens viskositet, $\mu$, och tryckfallet, $P_b - P_a$, över ett givet avstånd, $L$.
+
+\begin{equation}
+\Phi=\frac{-k}{\mu} \frac{(P_\text{in} - P_\text{ut})^\eta}{L}.
+\end{equation}
+    
+$k$ står för permeabiliteten hos materialet som fluiden flödar igenom och är en materialkonstant som beskriver hur genomsläppligt det är. Luftflödet $\Phi$ mäts per kvadratmeter. Exponenten $\eta$ sätts till 1 för att motsvara Darcys lag. Ett alternativ är att sätta den till 0,6 som är ett experimentellt uppmätt värde. \emph{\color{red} Vad kommer det här värdet ifrån?}
+
+\begin{equation}
+\Phi = AC\Delta p^\eta;
+\end{equation}
+
+Detta ger sedan energiflödet $Q$
+
+\begin{equation}
+Q = \Phi\Delta T \rho c_p
+\end{equation}
+
+
+
+Vid beräkning av trycket inomhus sätts $\Phi_{in} = \Phi_{ut}$ och $C$ kan strykas om läckages är homogent fördelat över väggarna.
 
