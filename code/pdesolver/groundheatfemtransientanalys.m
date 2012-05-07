@@ -1,35 +1,34 @@
-function [outData] = groundheatfemtransientanalys(refinements, showgrid, displayOff)
-%groundheatfem(refinements, showgrid)
+function [outData] = groundheatfemtransientanalys(refinements)
+%outData = groundheatfemtransientanalys(refinements)
 %
 %Application to calculate the heat flow through the ground.
 %refinements indicate how many refinemesh that shoud be run.
 
 global tCoef
 
-tCoef = getMeanTemp(0);
-
-if(nargin < 2)
-  showgrid = 'off'
-end
+tCoef = getMeanTemp(0); %Make sine interpolation of average
+                        %temperature data. tCoef = [a,b,c] with
+			%T = a + b*cos(k*t) + c*sin(k*t) which is
+                        %periodic for t = 365. 
 
 if(nargin < 1)
   refinements = 0;
 end
 
-tic;
+tic; %Start timer
+
 
 kelvin = 273.15;
 
 dims = 1;
-border = [0,-40,-40, 52,52,12,  12,    0;
-	  0,  0,-30,-30, 0, 0,-0.5, -0.5];
+border = [0,-40,-40, 52,52,12,  12,    0; %Create boundary.
+	  0,  0,-30,-30, 0, 0,-0.5, -0.5]; %[X coordinates; Y coordinates]
 
-PrepareTempInterpolation([6, 0;16,10]);
 
-h = 15.5;
-Ug = 2.4;
+
+h = 15.5; %Convective constant of the air
 kGranite = 2.2;
-alpha = kGranite/(790*2691);
+alpha = kGranite/(790*2691); %Thermal diffusivity of granite
 Tref = 10+kelvin;
 Tin = 20+kelvin;
 
@@ -42,19 +41,11 @@ fprintf(1,'Creating mesh...')
 gd = [2,max(size(border)), border(1,:), border(2,:)]';
 dl = decsg(gd);
 
-
+%Create mesh
 [p, e, t] = initmesh(dl);
 for n = 1:refinements
   [p, e, t] = refinemesh(dl, p, e, t);
 end
-
-%figure(8)
-%pdemesh(p,e,t)
-%xlabel('Position (m)')
-%ylabel('Position (m)')
-%xlim([-40 52])
-%ylim([-30 0])
-%return
 
 
 %Initiate variables
@@ -80,11 +71,12 @@ for k = 1:tCount
 						  t(1:3,k)));
 end
 
+%Calculate the area of the triangles
 for k = 1:tCount
   area(k,1) = triarea(p(:,t(1:3,k)));
 end
 
-
+%Prepare the mass matrix
 for k = 1:tCount
   M(t(1:3,k), t(1:3,k)) = M(t(1:3,k), t(1:3,k)) + area(k)*[2,1,1;1,2,1;1,1,2]/12;
 end
@@ -93,21 +85,23 @@ fprintf(1, ' done!\n')
 
 n = 0;
 Tmean = zeros(3,floor((Thigh-Tlow)/Tstep));
-
 pts = p(1:2, e(1,:)) - p(1:2, e(2,:));
 LengthBound = sqrt(diag(pts'*pts));
 
 Tsave = 0 + kelvin;
 
-Tref = 20 + kelvin;
-Uconc = 0.7/(0.45);
 
-%if(nargin == 2)
-  uLast = (9+kelvin)*sparse(ones(pCount,1));
-%else
-%  uLast = uSave;
-%end
-dirichletConditions = [NaN, NaN, NaN,    NaN,    NaN,    NaN, NaN, NaN];
+Tref = 20 + kelvin; %The temperature inside the building
+
+Uconc = 0.7/(0.45); %The U-value of the foundation
+
+
+uLast = (9+kelvin)*sparse(ones(pCount,1)); %Set initial values
+
+
+%Settings vetor for the dirichlet conditions
+
+dirichletConditions = [NaN, NaN, NaN,    NaN,    NaN,    NaN, NaN, NaN]; 
 dirnan = isnan(dirichletConditions(e(5,:)));
 dirichlet = e([1 2 5], find(~dirnan));
 Free=setdiff(1:pCount,unique(dirichlet));
@@ -115,38 +109,21 @@ Free=setdiff(1:pCount,unique(dirichlet));
 Minv(Free,Free) = inv(M(Free,Free));
 MinvA(Free,Free) = inv(M(Free,Free))*A(Free,Free);
 
-WallID = 2;
 
-n = 0;
-dt = 5*24*3600;
-
-outData = [(5:5:10*365)'];
-outData = [outData, zeros(size(outData,1),1)];
-outData = [outData, zeros(size(outData,1),1)];
 
 Q = sparse(pCount, pCount);
 g = sparse(pCount, 1);
 b = sparse(pCount, 1);
 u = sparse(pCount, 1);
 
-boundoffs = 3;
-Lengts = zeros(3,1);
-for eid = 1:3
-  ind = find(~(e(5,:)-eid-boundoffs));
-
-  Lengts(eid) = sum(LengthBound(ind));
-end
 
 
 
-  
-u(:) = 0;
-b(:) = 0;
-Q(:,:) = 0;
-g(:) = 0;
 
-n = n + 1;
-%To =Tout(tNow) + kelvin;
+%Settings vectors for the neumann conditions.
+% The coefficients are
+% dT/dn = neumannConditions + T*neumannTConditions +
+%neumannCosConditions*cos(omega*t) + neumannSinConditions*sin(omega*t)
 
 neumannConditions =   [0  ,   0,   0, Uconc*Tref, Uconc*Tref, Uconc*Tref, ...
 		    h*(tCoef(1)+kelvin), h*(tCoef(1)+kelvin)]/kGranite;
@@ -168,7 +145,6 @@ neumannT = e([1 2 5], find(~neuTnan));
 
 
 %Enforce neumann conditions
-
 
 for j = 1 :  size(neumann,2)
   g(neumann(1:2,j))=g(neumann(1:2,j)) + ... 
@@ -206,28 +182,29 @@ b = b - (A+Q) * u + g;
 %Solve system
 
 [VecTemp lambdaTemp] = eig(full(MinvA(Free,Free)+Minv(Free,Free)* ...
-				Q(Free,Free)));
+				Q(Free,Free))); %Calculate
+                                                %eigenvectors and
+                                                %eigennumbers of
+                                                %the problem
+
+
 Vec(Free,Free) = VecTemp;
 lambda(Free) = diag(lambdaTemp);
 Vinv = zeros(pCount,pCount);
 Vinv(Free,Free) = inv(Vec(Free,Free));
 
 
-
-
-Ce = sparse(pCount,1);
-Cf = sparse(pCount,1);
 eConst = sparse(pCount,1);
 fConst = sparse(pCount,1);
 
+
 neunanS = isnan(neumannSinConditions(e(5,:)));
 neunanC = isnan(neumannCosConditions(e(5,:)));
-
-
 neumannS = e([1 2 5], find(~neunanS));
 neumannC = e([1 2 5], find(~neunanC));
 
 
+%Enforce the sin and cos terms in the neumann conditions
 for j = 1 :  size(neumannC,2)
   eConst(neumannC(1:2,j))=eConst(neumannC(1:2,j)) + ... 
       norm(p(:,neumannC(1,j)) - ... 
@@ -244,154 +221,79 @@ end
 
 
 
+%We will calculate a method of lines solution on the form
+%T = Vec*(Y_h + Y_p)
+%with
+%Y_h =  Const*exp(-lambda*T)
+%Y_p = aConst+bConst*cos(omega*t)+cConst*sin(omega*t)
 
 
-%[p(1:2,e(1,:)); e(5,:)]
 
-cAlpha = Vinv*Minv*b;
+%We have the MOL differential equation:
+%T' + lambda*T = cAlpha + cBeta*cos(omega*t) + cGamma*sin(omega*t)
+cAlpha = Vinv*Minv*b; 
 cBeta = Vinv*Minv*eConst;
 cGamma = Vinv*Minv*fConst;
 
+%Calculate the coefficients in the particular solution.
 aConst = cAlpha./lambda;
-
 bConst = (lambda.*cBeta-omega*cGamma)./(omega^2+lambda.^2);
 cConst = (cGamma+omega*bConst)./lambda;
 
 
+Const = Vinv*uLast-aConst-bConst; %Set the constant before the
+                                  %exponential term to match the
+                                  %initial conditions.
 
-%Const(Free) = inv(Vec(Free,Free))*((uLast(Free)-ab(Free)));
-
-Const = Vinv*uLast-aConst-bConst;
-tNow = 0.5*pi/omega;
-
-Const(:) = 0; %Make the solution steady state
 Tmean = zeros(3,1);
-
-outData = [0:(3600*24):365*3600*24]';
+outData = [0:(3600*24):365*3600*24]'; %Initiate return data vectors
 outData = [outData, zeros(size(outData,1),1)];
-Lengths = zeros(3,1);
 
+Lengths = zeros(3,1);
+boundoffs = 3; %This is boundary dependant. Change if you're using
+               %a new boundary.
 for eid = 1:3
-    ind = find(~(e(5,:)-eid-boundoffs));
-    
-    Lengts(eid) = sum(LengthBound(ind));
+    ind = find(~(e(5,:)-eid-boundoffs)); %Calculate the lengths of
+    Lengts(eid) = sum(LengthBound(ind)); %the foundation boundaries
 end
 
 n = 0;
+
+
+%Calculate the solution for all each day in a year
 for tNow = 0:(3600*24):365*3600*24
   n = n +1;
-  u(Free) = Vec*(Const.*exp(-lambda*tNow) +...
-		 aConst+bConst*cos(omega*tNow)+ cConst*sin(omega*tNow));
-
+  u(Free) = Vec*(aConst+bConst*cos(omega*tNow)+ cConst*sin(omega*tNow));
+                        %Note that the exponential term has been
+                        %set to zero which is the limit when t->Inf
   for eid = 1:3
     ind = find(~(e(5,:)-eid-boundoffs));
-    
-
-    Tmean(eid) = mean(u(ind));
+    Tmean(eid) = mean(u(ind)); %Calculate the mean temperature
   end
-  outData(n,2) = -Uconc*(Lengts'*Tmean/sum(Lengts)-Tin);
 
+  
+  outData(n,2) = -Uconc*(Lengts*Tmean/sum(Lengts)-Tin); %Calculate
+                                                         %the
+                                                         %energy loss
 end
 
 
 
-
-%for eid = 1:3
-%    ind = find(~(e(5,:)-eid-boundoffs));
-%    
-%    Lengts(eid) = sum(LengthBound(ind));
-%end
-
-%TotalMean = Lengts'*Tmean/sum(Lengts);
-
 %Display
-time = toc;
+
+time = toc; %Stop timer
 
 disp(['Execution time: ' num2str(time) ' s']);
 disp(['Triangle count: ' num2str(tCount)])
 disp(['Degrees of freedom: ' num2str(max(size(Free)))])
 
-if(displayOff == 0)
-  %figure(1)
-  %pdeplot(p,e,t,'xydata',u-kelvin,'mesh',showgrid);
-  %hold off
-  %plot(outData(:,1)/(365), outData(:,2)-kelvin)
-  %xlabel('Tid (år)')
-  %ylabel('Medeltemperatur (C)')
-  
-
-  figure(2)
-  hold off
-  plot(outData(:,1)/(24*3600), outData(:,2))
-  xlabel('Tid (dygn)')
-  ylabel('Kyleffekt (W m^{-2})')
-  xlim([0 365])
-
-  %figure(3)
-  %hold off
-  
-  
-  %tricontourf(p(1:2,:),t(1:3,:), Vec*(aConst - bConst)-kelvin);
-  
-end
-
-function ret = PrepareTempInterpolation(points)
-global BreakTimes TemperatureSpline
-
-%Points is a matrix that contains the known
-%times in the first column and the assosciated temperatures
-%in the second column. The function should be periodic on 24h.
-
-splineCount = size(points,1)+1;
-A = zeros(splineCount*2, splineCount*2);
-b = zeros(splineCount*2,1);
-BreakTimes = points(:,1);
-
-%Prepare equation system
-
-for n=1:(splineCount-1)
-  A(2*n-1, [2*n-1, 2*n]) = [1, points(n,1)];
-  A(2*n, [2*(n+1)-1, 2*(n+1)]) = [1, points(n,1)];
-  b([2*n-1 2*n]) = points(n,2);
-end
-
-A(2*splineCount-1,[1,2,2*splineCount-1, 2*splineCount]) = ...
-    [1, 0,-1,-24];
-
-A(2*splineCount,[2, 2*splineCount]) = [1, -1];
-
-%Solve for X.
-TemperatureSpline = A\b;
 
 
-function ret = Tout(Time)
-global tCoef
-
-ret = tCoef(1)+tCoef(2)*cos(2*pi*Time/365)+tCoef(3)*sin(2*pi*Time/365);
-
-function ret = ToutDaily(Time)
-global BreakTimes TemperatureSpline
-
-t = mod(Time,24*3600)/3600;
+plot(outData(:,1)/(24*3600), outData(:,2))
+xlabel('Tid (dygn)')
+ylabel('Kyleffekt (W m^{-2})')
+xlim([0 365])
 
 
-foundSpline = 0;
-
-for n = 1:(size(BreakTimes,1)-1)
-
-  if((t > BreakTimes(n)) & (t < BreakTimes(n+1)))
-    foundSpline = n+1;
-  end
-end
-
-if(foundSpline == 0)
-
-  if(t<= BreakTimes(1))
-    foundSpline = 1;
-  else
-    foundSpline = size(BreakTimes,1)+1;
-  end
-end
 
 
-ret = [1,t]*TemperatureSpline(2*foundSpline+[-1:0]);
