@@ -1,14 +1,20 @@
 \section{Värmeledning}
 \label{sec:heatconduction}
 
-Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $k$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion i enheten $\unit{Wm^{-1}K^{-1}}$. I denna rapport används den förstnämnda symbolen, $k$. För att bestämma $k$ för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Generellt gäller att värmeflödet per ytenhet är $\mathbf{q} = - k \nabla T \unit{Wm^{-2}}$. Detta samband brukar kallas för Fouriers värmelag. För ett homogent material i en dimension förenklas detta till
+Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig rör sig eller flyttar sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $k$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion i enheten $\unit{Wm^{-1}K^{-1}}$. I denna rapport används den förstnämnda symbolen, $k$. För att bestämma $k$ för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Generellt gäller att värmeflödet per ytenhet är $\mathbf{q} = - \unit[k \nabla T]{Wm^{-2}}$. Detta samband brukar kallas för Fouriers värmelag. I en dimension förenklas detta till
 
 \begin{equation}\label{eq:conduction:fourier}\boxed{ \; \; \;
-q_x = -k \frac{\mathrm{d}T}{\mathrm{d}x} = -\frac{k}{\mathrm{d}}\left( T_2-T_1\right) \unit{Wm^{-2}}
+q_x = -k \frac{\mathrm{d}T}{\mathrm{d}x} \unit{Wm^{-2}}.
 \; \; \; }
 \end{equation}
 
-där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i vardera änden av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{k}{\mathrm{d}} \unit{Wm^{-2}K^{-1}}$, det vill säga $q_x = U\mathrm{d}T = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet, alltså $R=1/U \unit{m^2KW^{-1}}$. Dessa två storheter är ofta användbara inom byggfysik och relaterade områden eftersom man med dem exempelvis kan jämföra olika väggars värmeledningsförmåga.
+Vid termisk jämvikt och homogent material kan detta utvecklas till
+
+\begin{equation}
+q_x = -\frac{k}{\mathrm{d}}\left( T_2-T_1\right) \unit{Wm^{-2}},
+\end{equation}
+
+där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i vardera änden av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{k}{\mathrm{d}} \unit{Wm^{-2}K^{-1}}$, det vill säga $q_x = U\mathrm{d}T = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet, alltså $R=1/U \unit{m^2KW^{-1}}$. Observera att U- respektive R-värden endast kan användas vid termisk jämvikt, se härledningen nedan. Dessa två storheter är ofta användbara inom byggfysik och relaterade områden eftersom man med dem exempelvis kan jämföra olika väggars värmeledningsförmåga.
 
 En schematisk bild över en vägg i en dimension som består av $n$ olika material kan ses i figur \ref{fig:staticwallmethod:wall}. Med materialens värmeledningsförmåga, $k_i$, för $i=1,2\,,\,...\,,\,n$ samt längden på elementen, $d_i$, använder vi nu Fouriers värmeledningsekvation för att teckna värmeflödet och temperaturerna $T_i$, i punkterna mellan de olika delarna av väggen med randvillkoren $T_1 = T_H$ samt $T_{n+1} = T_L$.
 
@@ -19,14 +25,14 @@ En schematisk bild över en vägg i en dimension som består av $n$ olika materi
 längd och värmeledningsförmåga.}\label{fig:staticwallmethod:wall}
 \end{figure}
 
-För varje del av väggen kan vi sätta upp ekvationer från Fouriers ekvation för värmeflöde. Vi får flöde in i en del enligt \eqref{eq:staticwallmethod:rod} och flödet ut genom väggen blir detsamma ty temperaturen är konstant.
+För varje del av väggen kan vi sätta upp ekvationer från Fouriers ekvation för värmeflöde. Vid termisk jämvikt blir flödet in i en del lika stort som flödet ut ur samma del vilket leder till att
 
 \begin{equation}
 \label{eq:staticwallmethod:rod}
 q_i = -k_i\frac{T_{i+1}-T_{i}}{L_i} \, \Leftrightarrow \, \frac{L_i}{k_i}q_i = T_{i+1}-T_{i}
 \end{equation}
 
-Vid statiskt värmeflöde är $q_1 = \, ... \, = q_i = \, ... \, = q_n$, vilket innebär att
+Termisk jämvikt ger även att $q_1 = \, ... \, = q_i = \, ... \, = q_n$, vilket innebär att
 
 \begin{equation}
 \sum_{i=1}^n \frac{L_i}{k_i}q_i = q\sum_{i=1}^n \frac{L_i}{k_i} = q\sum_{i=1}^n R_i = \sum_{i=1}^n \left( T_{i}-T_{i+1} \right) = T_H - T_L 
@@ -35,10 +41,10 @@ Vid statiskt värmeflöde är $q_1 = \, ... \, = q_i = \, ... \, = q_n$, vilket 
 det vill säga
 
 \begin{equation}
-q R_\text{total} = T_H - T_L
+q R_\text{total} = T_H - T_L \Leftrightarrow q = U_\text{total} \left( T_H - T_L \right)
 \end{equation}
 
-och
+där
 
 \begin{equation}
 U_\text{total} = \frac{1}{R_\text{total}} = \frac{1}{\sum_{i=1}^N R_i}.

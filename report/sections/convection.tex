@@ -102,28 +102,28 @@ Vi har alltså ekvationssystemet
 
 % Energirelationen
 
-Slutligen sätts i \ref{eq:convection:reynolds} $B=E$ för att söka ett uttryck för energins bevarande. Med antagandet att volymen inte utför något arbete blir $E = Q$, där $Q$ betecknar värmeenergin, och på samma vis som i avsnitt
-\ref{sec:heatconduction} blir $Q = c_p \rho dT$, vilket ger följande:
+Slutligen sätts i \ref{eq:convection:reynolds} $B=E$ för att söka ett uttryck för energins bevarande. Med antagandet att volymen inte utför något arbete består $E$ enbart av värmeenergi, och på samma vis som i avsnitt
+\ref{sec:heatconduction} blir då $E = c_p \rho dT$, vilket ger följande:
 
 \begin{eqnarray}
 \label{reynoldsenergyone}
-\frac{dQ}{dt} & = & \frac{\partial}{\partial t} \int_V \frac{dQ}{dm}\rho dV + \int_{\partial V}\frac{dQ}{dm}\rho \mathbf{v} \cdot \mathbf{n} dA \nonumber\\
-& = & \frac{\partial}{\partial t} \int_V c_p T \rho dV + \int_{\partial V} c_p T \rho \mathbf{v} \cdot \mathbf{n} dA \nonumber\\
+\frac{\mathrm{d}E}{\mathrm{d}t} & = & \frac{\partial}{\partial t} \int_V \frac{\mathrm{d}E}{\mathrm{d}m}\rho \mathrm{d}V + \int_{\partial V}\frac{\mathrm{d}E}{\mathrm{d}m}\rho \mathbf{v} \cdot \mathbf{n} \mathrm{d}A \nonumber\\
+& = & \frac{\partial}{\partial t} \int_V c_p T \rho \mathrm{d}V + \int_{\partial V} c_p T \rho \mathbf{v} \cdot \mathbf{n} \mathrm{d}A \nonumber\\
 & = & \left(\frac{\partial}{\partial t} \left( c_p T \rho \right) + \nabla\cdot c_p T \rho \mathbf{v}\right) \mathrm{d}x\mathrm{d}y\mathrm{d}z \nonumber\\
 & = & c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right)
 \end{eqnarray}
 
-Sista steget följer av att kontinuitetsekvationen bryts ut som i fallet med rörelsemängdsekvationen. För att utveckla vänsterledet betraktas återigen en infinetisemal volym såsom i figur \ref{fig:massflowcube}. Värmeenergiflödet in i volymen i x-led ges av $q_x dy dz$ medan utflödet ges av $\left[ q_x + \frac{\partial}{\partial x} \left( q_x\right)dx\right]dydz$ och analogt för y- respektive z-led. Totala ökningen av värmeenergi i kuben ges alltså av utflödet subtraherat från inflödet, vilket innebär att
+Sista steget följer av att kontinuitetsekvationen bryts ut som i fallet med rörelsemängdsekvationen. För att utveckla vänsterledet betraktas återigen en infinetisemal volym såsom i figur \ref{fig:massflowcube}. Värmeflödet in i volymen i x-led ges av $q_x dy dz$ medan utflödet ges av $\left[ q_x + \frac{\partial}{\partial x} \left( q_x\right)dx\right]dydz$ och analogt för y- respektive z-led. Totala ökningen av värmeenergi i kuben ges alltså av utflödet subtraherat från inflödet, vilket innebär att
 
 \begin{equation}
-\frac{dQ}{dt} = - \nabla \cdot \mathbf{q} \mathrm{d}x\mathrm{d}y\mathrm{d}z.
+\frac{\mathrm{d}E}{\mathrm{d}t} = - \nabla \cdot \mathbf{q} \mathrm{d}x\mathrm{d}y\mathrm{d}z.
 \end{equation}
 
 $\mathbf{q}$ fås från Fouriers värmelag (se avsnitt \ref{sec:heatconduction}) vilket ger att
 
 \begin{equation}
 \label{reynoldsenergytwo}
-\frac{dQ}{dt} = \left( - \nabla \cdot \left( -k \nabla T \right) \right)\mathrm{d}x\mathrm{d}y\mathrm{d}z
+\frac{\mathrm{d}E}{\mathrm{d}t} = \left( - \nabla \cdot \left( -k \nabla T \right) \right)\mathrm{d}x\mathrm{d}y\mathrm{d}z
 \end{equation}
 
 och detta i sin tur leder till resultatet
@@ -143,7 +143,7 @@ För homogena inkompressibla fluider i två dimensioner gäller alltså ekvation
 Då vinden blåser kommer en del värmeenergi överföras via konvektion, men istället för att lösa den invecklade konvektions-diffussionsekvationen används ofta något som kallas för vindens konvektionskoefficient, betecknat med $h$. I analogi med Fouriers värmelag, ekvation \ref{eq:conduction:fourier}, skrivs
 
 \begin{equation}\boxed{ \; \; \;
-q = hdT = h\left( T_\text{vägg} - T_\text{ute}\right).
+q = h\mathrm{d}T = h\left( T_\text{vägg} - T_\text{ute}\right).
 \; \; \;}\end{equation}
 
 där h alltså kan jämföras med det ovan härledda U-värdet. 
