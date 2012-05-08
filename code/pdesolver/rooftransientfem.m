@@ -1,11 +1,14 @@
-function ret = rooftransientfem(Time, Nodes, SunFile, UseSun ,TBreak)
+function ret = rooftransientfem(Time, Nodes, SunFile, UseSun ,TBreak, Side)
 % walltransientfem(Time, Nodes, SunFile, UseSun, TBreak)
 %
 % This Script calculates the transient temperatures in a wall with
 % a specified amount of nodes. SunFile should contain a path to a
 % sun intensity file and UseSun = 0 for a cloudy day and UseSun=1
 % for a sunny day. TBreak should contain [Time, Temperature; t, T; ...].
+% side, 0=>south, 1=>north
 
+global bSide
+bSide=Side;
 
 global bUseSun
 bUseSun = UseSun;
@@ -28,7 +31,8 @@ plot(si(:,1)/3600,si(:,2))
 Tin = 20;
 
 
-Material = [0.21, 0.037/(1400*840), 0.037, 840*70];
+Material = [0.03,0.85/(920*1900*20),0.85,920*1900; ...
+   0.21, 0.037/(1400*840), 0.037, 840*70];
 
 % Material = [Width, Thermal Diffusivity (depricated), Thermal
 % Conductivity, Volumetric heat capacaty (density times specific heat)]
@@ -288,7 +292,7 @@ A(2*splineCount,[2, 2*splineCount]) = [1, -1];
 TemperatureSpline = A\b;
 
 function [Qproj, Qdirect] = Qsun(Time)
-global SunResolution SplineInterpolation bUseSun
+global SunResolution SplineInterpolation bUseSun bSide
 
 t = mod(Time,24*3600);
 
@@ -301,8 +305,16 @@ else
 end
 
 theta = mod(angle - (58+90),360);
+if bSide == 0
+    projection = cosd(theta)*cosd(height-90+atand(4/6));
+else
+    if height<atand(4/6)
+        projection=0;
+    else
+        projection = cosd(theta)*cosd(90-height+atand(4/6));
+    end
+end
 
-projection = cosd(theta)*cosd(height-90+atand(4/6));    
 
 if(projection < 0 || height < 0)
   projection = 0;
