@@ -1,7 +1,7 @@
 \section{Värmeflöde genom grunden}
 
 För att räkna på energin som flödar genom grunden är det av necessitet att räkna
-transient. Detta gå berget är väldigt långsamt på att ta ut sig värme. Detta
+transient. Detta gå berget är väldigt långsamt på att ta åt sig värme. Detta
 innebär att i parktiken så uppnås aldrig ett statiskt jämviktsläge.
 
 Problemet är behandlat med finita elementmetoden av värmeledningsekvationen.
@@ -12,6 +12,13 @@ stor. För lösning av detta problem kan det dock ses som en tillräckligt god
 approximation då definitionsmängden är stor och temperaturen ej varierar mycket
 från förväntat värde.
 
+Vid randerna mot grunden så ligger ett neumannvillkor som säger att energiflödet är produkten
+av temperaturdifferansen mellan temperaturen på randen och inomhustemperaturen på $\unit[20]{^\circ C}$.
+Grundens U-värde har här satts till $U = 0.7/0.45 \approx \unit[1,556]{ Wm^{-2}K^{-1}}$. Detta värde är
+baserat på att det ligger $\unit[25]{cm}$ betong mellan källaren och grunden och att det ligger $\unit[2]{dm}$
+betong mellan uppvärmda uttrymmen och källaren. Vidare antags det att det föreligger god omrörning i de båda
+luftskikten vilket gör att de har $R=0$. Detta antagande är dock inte helt giltigt vilket leder till att kyleffekten
+uppskattas vara något för hög.
 Vid randerna till luft är konvektionsparametern satt
 till $h = \unit[15,5]{Wm^{-2}K^{-1}}$. Detta är en siffra som motsvarar
 en vindhastighet på $v = \unit[2]{ms^{-1}}$. Utomhustemperaturen har valts
@@ -27,7 +34,7 @@ att få når ett transient jämviktsläge som liknar det jämviktsläge vi har i
 Initialvärdena kommer således inte ha någon betydelse och dessa kan då väljas
 godtykligt. 
 För att uppnå detta med semidiskret MOL behövs väldigt många itereringar för att
-nå konvergens.
+nå konvergens. Den resulterande koden kan ses i bilaga \ref{app:femfoundation}.
 
 \begin{figure}
 \centering
