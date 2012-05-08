@@ -67,8 +67,8 @@ fprintf(1,' done!\n');
 %Assemble stiffness matrix
 fprintf(1,'Assembling stiffness matrix...');
 for k = 1:tCount
-  A(t(1:3,k), t(1:3,k)) = A(t(1:3,k),t(1:3,k)) + alpha*laplacestiff(p(:, ...
-						  t(1:3,k)));
+  A(t(1:3,k), t(1:3,k)) = A(t(1:3,k),t(1:3,k)) ...
+                        + alpha*laplacestiff(p(:, t(1:3,k)));
 end
 
 %Calculate the area of the triangles
@@ -78,7 +78,8 @@ end
 
 %Prepare the mass matrix
 for k = 1:tCount
-  M(t(1:3,k), t(1:3,k)) = M(t(1:3,k), t(1:3,k)) + area(k)*[2,1,1;1,2,1;1,1,2]/12;
+  M(t(1:3,k), t(1:3,k)) = M(t(1:3,k), t(1:3,k)) ...
+                        + area(k)*[2,1,1;1,2,1;1,1,2]/12;
 end
 
 fprintf(1, ' done!\n')
@@ -126,11 +127,15 @@ u = sparse(pCount, 1);
 %neumannCosConditions*cos(omega*t) + neumannSinConditions*sin(omega*t)
 
 neumannConditions =   [0  ,   0,   0, Uconc*Tref, Uconc*Tref, Uconc*Tref, ...
-		    h*(tCoef(1)+kelvin), h*(tCoef(1)+kelvin)]/kGranite;
-neumannTConditions =  [0, 0, 0,     -Uconc,     -Uconc,     -Uconc,     -h,  -h]/kGranite;
+		       h*(tCoef(1)+kelvin), h*(tCoef(1)+kelvin)]/kGranite;
+neumannTConditions =  [0, 0, 0,-Uconc,-Uconc,-Uconc,-h,-h]/kGranite;
 
-neumannSinConditions = [NaN,NaN,NaN,NaN,NaN,NaN,h*tCoef(3),h*tCoef(3)]/kGranite;
-neumannCosConditions = [NaN,NaN,NaN,NaN,NaN,NaN,h*tCoef(2),h*tCoef(2)]/kGranite;
+neumannSinConditions = [NaN,NaN,NaN,NaN,NaN,NaN, ...
+		        h*tCoef(3),h*tCoef(3)]/kGranite;
+neumannCosConditions = [NaN,NaN,NaN,NaN,NaN,NaN,...
+		        h*tCoef(2),h*tCoef(2)]/kGranite;
+
+
 period = [0,0,0,0,0,0,365*24*3600, 365*24*3600];
 omega = 2*pi/(365*24*3600);
 
@@ -157,7 +162,8 @@ end
 for k = 1:size(neumannT,2)
   L = norm(p(:,neumannT(1,k)) - p(:,neumannT(2,k)));
   
-  Q(neumannT([1 2],k), neumannT([1 2],k)) = Q(neumannT([1 2],k),neumannT([1 2],k)) ...
+  Q(neumannT([1 2],k), neumannT([1 2],k)) = ...
+      Q(neumannT([1 2],k),neumannT([1 2],k)) ...
       - alpha*neumannTConditions(neumannT(3,k))*L*[2,1;1,2]/6;
 end
 
@@ -273,8 +279,8 @@ for tNow = 0:(3600*24):365*3600*24
 
   
   outData(n,2) = -Uconc*(Lengts*Tmean/sum(Lengts)-Tin); %Calculate
-                                                         %the
-                                                         %energy loss
+							%the
+							%energy loss
 end
 
 
