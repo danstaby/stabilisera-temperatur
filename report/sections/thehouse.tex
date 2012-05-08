@@ -9,8 +9,8 @@
 
 % Det är så här stort och har så här många rum, så här högt i tak o.s.v. 
 
-Projektets uppdragsgivare har hand om energisystemet i en fastighet i Johanneberg, Göteborg vilket kan ses i bild \ref{fig:thehouse:house}.
-Det är också den fastighet som varit i fokus för det här arbetet. Byggnaden uppfördes 1935\cite{ritningar_urspr} och sedan kom det att dröja ända till 1988 innan den första större ombyggnationen gjordes. Då gjordes två lägenheter om till kontor, stammar byttes och vinden byggdes om till lägenheter. Både taket, burspråken på södersidan och den norra fasaden tilläggsisolerades. I samband med detta installerades också nya värme- och ventialtionssystem och alla fönster byttes och tätades med expanderskum. Den främsta skillnaden för de boende blev minskat drag och bättre luftgenomströmmning.  Med det nya venitlationssystemet byts luften helt och hållet varannan timme. Enligt Peter Särneö\cite{petersarneo} förbrukar fastigheten idag mindre energi än ett nybyggt hus.
+Projektets uppdragsgivare har hand om energisystemet i en fastighet i Johanneberg, Göteborg som kan ses i bild \ref{fig:thehouse:house}.
+Det är den fastighet som varit i fokus för det här arbetet. Byggnaden uppfördes 1935\cite{ritningar_urspr} och sedan kom det att dröja ända till 1988 innan den första större ombyggnationen gjordes. Då gjordes två lägenheter om till kontor, stammar byttes och vinden byggdes om till lägenheter. Både taket, burspråken på södersidan och den norra fasaden tilläggsisolerades. I samband med detta installerades också nya värme- och ventialtionssystem och alla fönster byttes och tätades med expanderskum. Den främsta skillnaden för de boende blev minskat drag och bättre luftgenomströmmning.  Med det nya venitlationssystemet byts luften helt och hållet varannan timme. Enligt Peter Särneö\cite{petersarneo} förbrukar fastigheten idag mindre energi än ett nybyggt hus.
 
 \begin{figure}
 \centering
@@ -26,6 +26,30 @@ Ett centralt begrepp för att göra fysikaliska beräkningar på värmeflödet g
 \label{eq:uvalue}
 \frac{1}{U_{tot}}= (\frac{1}{U_1}+...+\frac{1}{U_n}).
 \end{equation}
+
+\begin{table}[hbtp]
+\centering
+\caption{Areor och U-värden för fastighetens klimatsköld.}
+\label{tbl:uvalue}
+
+\begin{tabular}
+{|l|l|l|}
+\hline
+\textbf{Del} & \textbf{Area, $\unit{m^2}$} & \parbox{2 cm}{\textbf{U-värde\\$\unit{Wm^{-2}K^{-1}}$}} \\
+\hlineSöderväggen &  151 & 1,2 \\ 
+Västerväggen & 61 & 1,2 \\
+Norrväggen & 290 & 0,3 \\
+Burspråket & 47 & 0,4 \\
+Tak & 257 & 0,2 \\
+\hline
+Fönster, söder & 109 & 1 \\
+Fönster, norr & 89 & 1 \\
+Fönster, tak & 8 & 1 \\
+\hline
+Totalt & 1012 & 0,6\\
+\end{tabular}
+\end{table}
+
 Det genomsnittliga U-värdet för fastigheten, grunden borträknad, är 0,6.
 
 % De olika gränsytornas material och uppbyggnad.
