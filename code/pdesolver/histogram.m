@@ -1,6 +1,9 @@
 clc
 clear all
 
+% S+V-väggar, S+V-väggar isolerade, norrväggen, burspråket, 
+% taket, solen, grunden, konstanta energiflöden => 8 st
+
 load rawwalldata.mat
 load roofsimulations.mat
     % nosunapril
@@ -11,8 +14,10 @@ load roofsimulations.mat
     % sundecsouth
 load sunpower.mat
 
-sunpowerapr5mod=sunpowerapril(2:174)
-sunpowerdec5mod=sunpowerapril(2:174)
+colors=colormap(summer(8));
+
+sunpowerapr5mod=-sunpowerapril(2:174);
+sunpowerdec5mod=-sunpowerapril(2:174);
 
 
 % APRIL MOLN
@@ -39,6 +44,7 @@ A3=47;
 aprnosun4mod=nosunapril(2:173);
 A4=257;
 
+
 aprnosun_mod1(:,2)=A1*aprnosun1mod(:,2)+A2*aprnosun2mod(:,2)+...
     A3*aprnosun3mod(:,2)+A4*aprnosun4mod(:,2);
 aprnosun_mod1i(:,2)=(A1+A2)*aprnosun2mod(:,2)+...
@@ -50,15 +56,15 @@ aprnosun_mod4(:,2)=A2*aprnosun2mod(:,2);
 
 
 figure(1)
-area(aprnosun1mod(:,1), aprnosun_mod1(:,2),'FaceColor',[.5 .9 .8])
+area(aprnosun1mod(:,1), aprnosun_mod1(:,2),'FaceColor',colors(8,:))
 hold on % söder och västerväggarna
-area(aprnosun1mod(:,1), aprnosun_mod1i(:,2),'FaceColor',[.5 .9 .6])
+area(aprnosun1mod(:,1), aprnosun_mod1i(:,2),'FaceColor',colors(7,:))
 hold on % söder och västerväggarna, isolerade
-area(aprnosun1mod(:,1), aprnosun_mod2(:,2),'FaceColor','r')
+area(aprnosun1mod(:,1), aprnosun_mod2(:,2),'FaceColor',colors(6,:))
 hold on % norrväggen
-area(aprnosun1mod(:,1), aprnosun_mod3(:,2),'FaceColor','m')
+area(aprnosun1mod(:,1), aprnosun_mod3(:,2),'FaceColor',colors(5,:))
 hold on % burspråket
-area(aprnosun1mod(:,1), aprnosun_mod4(:,2))
+area(aprnosun1mod(:,1), aprnosun_mod4(:,2),'FaceColor',colors(4,:))
             % taket
 title('April utan sol. summa vägg och tak','FontSize',14)
 Legend('Söder- och västväggarna','Söder- och västväggarna isolerade','Tak', 'Burspråk','Norrväggen', 'location', 'SW')

@@ -3,6 +3,9 @@ clear all
 
 % Producerar grafer över det totala energiflödet genom byggnaden över ett
 % dygn.
+% S+V-väggar, norrväggen, burspråket, 
+% taket, solen, grunden, konstanta energiflöden => 8 st
+% UT positivt - IN negativt
 
 load rawwalldata.mat
 load roofsimulations.mat
@@ -12,158 +15,172 @@ load roofsimulations.mat
     % sunaprilsouth
     % sundecnorth
     % sundecsouth
-load sunpower.mat
-    sunpowerapr5mod(:,2)=-sunpowerapril(2:174,2);
-    sunpowerdec5mod(:,2)=-sunpowerapril(2:174,2);
-    A5=109; % area av fönster genom vilka solen skiner
     
+% TIDEN
+length=length(aprnosun1);
+tiden=aprnosun2(length-172:length,1);
+tiden=tiden/3600-24*29;
+
+% SOL in gm fönster
+load sunpower.mat
+    aprsun5mod=-sunpowerapril(2:174,2);
+    decsun5mod=-sunpowerapril(2:174,2);
+
+% GRUNDEN och KONSTANT
+    foundationdec=3461;
+    foundationapr=3575;
+    constant=-10500;
+    ettor=ones(173,1);
+    apr6mod=ettor*(foundationapr+constant);
+    dec6mod=ettor*(foundationdec+constant);
+
+A1=151+61; % Area av söder + väster vägg
+A2=290; % Area av norrväggen
+A3=47; % Area burspråk
+A4=257; % Area taket
+A5=109; % area av fönster genom vilka solen skiner
+
+
 % APRIL MOLN
 % aprnosun1 oisolerad (s+v)
-length=length(aprnosun1);
-aprnosun1mod(:,1)=aprnosun1(length-173:length,1);
-aprnosun1mod(:,1)=aprnosun1mod(:,1)/3600-24*29;
-aprnosun1mod(:,2)=aprnosun1(length-173:length,2);
-A1=151+61;
+aprnosun1mod=aprnosun1(length-172:length,2);
 
 % aprnosun2 isolerad (norr)
-aprnosun2mod(:,1)=aprnosun2(length-173:length,1);
-aprnosun2mod(:,1)=aprnosun2mod(:,1)/3600-24*29;
-aprnosun2mod(:,2)=aprnosun2(length-173:length,2);
-A2=290;
+aprnosun2mod=aprnosun2(length-172:length,2);
 
 % aprnosun3 burspråket
-aprnosun3mod(:,1)=aprnosun3(length-173:length,1);
-aprnosun3mod(:,1)=aprnosun3mod(:,1)/3600-24*29;
-aprnosun3mod(:,2)=aprnosun3(length-173:length,2);
-A3=47;
+aprnosun3mod=aprnosun3(length-172:length,2);
 
 % nosunapril taket
-aprnosun4mod=nosunapril(2:173);
-A4=257;
+aprnosun4mod=nosunapril(2:174,2);
 
-aprnosun_mod(:,2)=A1*aprnosun1mod(:,2)+A2*aprnosun2mod(:,2)+A3*aprnosun3mod(:,2)+A4*aprnosun4mod(:,2);
-aprnosun_modi(:,2)=(A2+A1)*aprnosun2mod(:,2)+A3*aprnosun3mod(:,2)+A4*aprnosun4mod(:,2);
+% INGEN SOL
+
+% grunden och konstant
+apr6mod;
+
+aprnosun_mod=A1*aprnosun1mod+A2*aprnosun2mod+...
+    A3*aprnosun3mod+A4*aprnosun4mod+...
+    apr6mod;
+aprnosun_modi=(A2+A1)*aprnosun2mod+...
+    A3*aprnosun3mod+A4*aprnosun4mod+...
+    apr6mod;
 
 figure(1)
-plot(aprnosun1mod(:,1), aprnosun_mod(:,2))
+plot(tiden, aprnosun_mod)
 hold on
-plot(aprnosun1mod(:,1), aprnosun_modi(:,2), '-k')
-title('April utan sol. summa vägg och tak')
+plot(tiden, aprnosun_modi, '-k')
+title('April utan sol. summa energiflöden','FontSize',14)
+xlabel('Tid, h','FontSize',12)
+ylabel('Energiutflöde W','FontSize',12)
 Legend('Som idag', 'Med isolerad norr- och västervägg', 'location', 'SW')
 hold off
 
 
 % APRIL SOL
 % aprsun1 oisolerad (s+v)
-aprsun1mod(:,1)=aprsun1(length-172:length,1);
-aprsun1mod(:,1)=aprsun1mod(:,1)/3600-24*29;
-aprsun1mod(:,2)=aprsun1(length-172:length,2);
-A1=151+61;
+aprsun1mod=aprsun1(length-172:length,2);
 
 % aprsun2 isolerad (norr)
-aprsun2mod(:,1)=aprsun2(length-172:length,1);
-aprsun2mod(:,1)=aprsun2mod(:,1)/3600-24*29;
-aprsun2mod(:,2)=aprsun2(length-172:length,2);
-A2=290;
+aprsun2mod=aprsun2(length-172:length,2);
 
 % aprsun3 burspråket
-aprsun3mod(:,1)=aprsun3(length-172:length,1);
-aprsun3mod(:,1)=aprsun3mod(:,1)/3600-24*29;
-aprsun3mod(:,2)=aprsun3(length-172:length,2);
-A3=47;
+aprsun3mod=aprsun3(length-172:length,2);
 
 % nosunapril taket
-aprsun4smod=sunaprilsouth(2:172);
-aprsun4nmod=sunaprilnorth(2:172);
-A4=257;
+aprsun4smod=sunaprilsouth(2:174,2);
+aprsun4nmod=sunaprilnorth(2:174,2);
 
-aprsun_mod(:,2)=A1*aprsun1mod(:,2)+A2*aprsun2mod(:,2)+...
-    A3*aprsun3mod(:,2)+...
-    A4/2*aprsun4nmod(:,2)+A4/2*aprsun4smod(:,2)...
-    +A5*sunpowerapr5mod(:,2);
-aprsun_modi(:,2)=(A1+A2)*aprsun2mod(:,2)+...
-    A3*aprsun3mod(:,2)+...
-    A4/2*aprsun4nmod(:,2)+A4/2*aprsun4smod(:,2)...
-    +A5*sunpowerapr5mod(:,2);
+% SOL in gm fönster
+aprsun5mod;
+
+% GRUND och KONSTANT
+apr6mod;
+
+aprsun_mod=A1*aprsun1mod+A2*aprsun2mod+...
+    A3*aprsun3mod+A4/2*aprsun4nmod+A4/2*aprsun4smod...
+    +A5*aprsun5mod+apr6mod;
+aprsun_modi(:,2)=(A1+A2)*aprsun2mod+...
+    A3*aprsun3mod+A4/2*aprsun4nmod+A4/2*aprsun4smod+...
+    A5*aprsun5mod+apr6mod;
 
 figure(2)
-plot(aprsun1mod(:,1), aprsun_mod(:,2), '-r')
+plot(tiden, aprsun_mod, '-r')
 hold on
-plot(aprsun1mod(:,1), aprsun_modi(:,2), '-k')
+plot(tiden, aprsun_modi, '-k')
 Legend('Som idag', 'Med isolerad norr- och västervägg', 'location', 'SW')
-title('April med sol. summa vägg och tak')
-
+title('April med sol. summa energiflöden','FontSize',14)
+xlabel('Tid, h','FontSize',12)
+ylabel('Energiutflöde W','FontSize',12)
+hold off
 
 
 % DECEMBER MOLN
 % decnosun1 oisolerad (s+v);
-decnosun1mod(:,1)=decnosun1(length-172:length,1);
-decnosun1mod(:,1)=decnosun1mod(:,1)/3600-24*29;
-decnosun1mod(:,2)=decnosun1(length-172:length,2);
-A1=151+61;
+decnosun1mod=decnosun1(length-172:length,2);
 
 % decnosun2 isolerad (norr)
-decnosun2mod(:,1)=decnosun2(length-172:length,1);
-decnosun2mod(:,1)=decnosun2mod(:,1)/3600-24*29;
-decnosun2mod(:,2)=decnosun2(length-172:length,2);
-A2=290;
+decnosun2mod=decnosun2(length-172:length,2);
 
 % decnosun3 burspråket
-decnosun3mod(:,1)=decnosun3(length-172:length,1);
-decnosun3mod(:,1)=decnosun3mod(:,1)/3600-24*29;
-decnosun3mod(:,2)=decnosun3(length-172:length,2);
-A3=47;
+decnosun3mod=decnosun3(length-172:length,2);
 
 % nosunapril taket
-decnosun4mod=nosundec(2:173);
-A4=257;
+decnosun4mod=nosundec(2:174,2);
 
-decnosun_mod(:,2)=A1*decnosun1mod(:,2)+A2*decnosun2mod(:,2)+A3*decnosun3mod(:,2)+A4*decnosun4mod(:,2);
-decnosun_modi(:,2)=(A1+A2)*decnosun2mod(:,2)+A3*decnosun3mod(:,2)+A4*decnosun4mod(:,2);
+% INGEN SOL
+
+% GRUND och KONSTANT
+dec6mod;
+
+decnosun_mod=A1*decnosun1mod+A2*decnosun2mod+...
+    A3*decnosun3mod+A4*decnosun4mod+...
+    dec6mod;
+decnosun_modi=(A1+A2)*decnosun2mod+...
+    A3*decnosun3mod+A4*decnosun4mod+...
+    dec6mod;
 figure(3)
-plot(decnosun1mod(:,1), decnosun_mod(:,2), '-g')
+plot(tiden, decnosun_mod, '-g')
 hold on
-plot(decnosun1mod(:,1), decnosun_modi(:,2), '-k')
+plot(tiden, decnosun_modi, '-k')
 Legend('Som idag', 'Med isolerad norr- och västervägg', 'location', 'SW')
-title('December utan sol. summa vägg och tak')
-hold on
-
-
+title('December utan sol. summa energiflöden','FontSize',14)
+xlabel('Tid, h','FontSize',12)
+ylabel('Energiutflöde W','FontSize',12)
+hold off
 
 % DECEMBER SOL fig 4
 % decsun1 oisolerad (s+v)
-decsun1mod(:,1)=decsun1(length-172:length,1);
-decsun1mod(:,1)=decsun1mod(:,1)/3600-24*29;
-decsun1mod(:,2)=decsun1(length-172:length,2);
-A1=151+61;
+decsun1mod=decsun1(length-172:length,2);
 
 % decsun2 isolerad (norr)
-decsun2mod(:,1)=decsun2(length-172:length,1);
-decsun2mod(:,1)=decsun2mod(:,1)/3600-24*29;
-decsun2mod(:,2)=decsun2(length-172:length,2);
-A2=290;
+decsun2mod=decsun2(length-172:length,2);
 
 % decnosun3 burspråket
-decsun3mod(:,1)=decsun3(length-172:length,1);
-decsun3mod(:,1)=decsun3mod(:,1)/3600-24*29;
-decsun3mod(:,2)=decsun3(length-172:length,2);
-A3=47;
+decsun3mod=decsun3(length-172:length,2);
 
-decsun4smod=sundecsouth(2:172);
-decsun4nmod=sundecnorth(2:172);
-A4=257;
+% decnosun4 taket
+decsun4smod=sundecsouth(2:174,2);
+decsun4nmod=sundecnorth(2:174,2);
 
-decsun_mod(:,2)=A1*decsun1mod(:,2)+A2*decsun2mod(:,2)+...
-    A3*decsun3mod(:,2)+...
-    A4/2*decsun4nmod(:,2)+A4/2*decsun4smod(:,2)...
-    +A5*sunpowerdec5mod(:,2);
-decsun_modi(:,2)=(A1+A2)*decsun2mod(:,2)+...
-    A3*decsun3mod(:,2)+...
-    A4/2*decsun4nmod(:,2)+A4/2*decsun4smod(:,2)...
-    +A5*sunpowerapr5mod(:,2);
+% SOL in gm fönster
+decsun5mod;
+
+% GRUND och KONSTANT
+dec6mod;
+
+decsun_mod=A1*decsun1mod+A2*decsun2mod+...
+    A3*decsun3mod+A4/2*decsun4nmod+A4/2*decsun4smod+...
+    A5*decsun5mod+dec6mod;
+decsun_modi=(A1+A2)*decsun2mod+...
+    A3*decsun3mod+A4/2*decsun4nmod+A4/2*decsun4smod+...
+    A5*decsun5mod+dec6mod;
 figure(4)
-plot(decsun1mod(:,1), decsun_mod(:,2), '-m')
+plot(tiden, decsun_mod, '-m')
 hold on
-plot(decsun1mod(:,1), decsun_modi(:,2), '-k')
+plot(tiden, decsun_modi, '-k')
 Legend('Som idag', 'Med isolerad norr- och västervägg', 'location', 'SW')
-title('December med sol. summa vägg och tak')
+title('December med sol. summa energiflöden','FontSize',14)
+xlabel('Tid, h','FontSize',12)
+ylabel('Energiutflöde W','FontSize',12)
+hold off
