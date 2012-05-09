@@ -134,7 +134,7 @@ Genom burspråket ser energiflödet lite annorlunda ut, figur \ref{fig:bursprak_
 %%%%%%%%TAKET%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Taket}
 
-Energiflödet genom taket beräknas på samma sätt som energiflödet genom väggarna. Skillnaden, förutom materialet, är takets vinkel mot solen. I figur \ref{fig:rooffigures} visas energiflödet för alla tre fallen: solig aprildag, molnig aprildag och molnig decemberdag. Eftersom taket lutar har fallet solig aprildag har två olika flöden – ett genom norrsidan och ett genom sydsidan – solen skiner olika mycket på de olika lutade ytorna.
+Energiflödet genom taket beräknas på samma sätt som energiflödet genom väggarna. Skillnaden, förutom materialet, är takets vinkel mot solen. I figur \ref{fig:rooffiguressun} visas energiflödet för en solig april- respektive decemberdag. Eftersom taket lutar har nordsidan och sydsidan olika flöden ty solen skiner olika mycket på de olika lutade ytorna. Figur \ref{fig:rooffigurescloud} visar i sin tur situationen på molniga dagar, då ingen direkt solstrålning faller på taket.
 
 \begin{figure}[hpbt]
 \centering
@@ -145,6 +145,18 @@ Energiflödet genom taket beräknas på samma sätt som energiflödet genom väg
 	\includegraphics[width=6cm]{images/roofaprilsunnorth.eps}
 }
 
+\subfloat[\label{fig:roofdecsunsouth} Energiflödet från insidan av sydsidan på taket en klar decemberdag.]{
+	\includegraphics[width=6cm]{images/roofdecsunsouth.eps}
+}
+\subfloat[\label{fig:roofdecsunnorth} Energiflödet från insidan av nordsidan på taket en klar decemberdag.]{
+	\includegraphics[width=6cm]{images/roofdecsunnorth.eps}
+}
+
+\caption{\label{fig:rooffiguressun}Energiflödet genom taket, soliga dagar.}
+\end{figure}
+
+\begin{figure}[hpbt]
+\centering
 \subfloat[\label{fig:roofaprilnosun} Energiflödet från insidan av taket en molnig aprildag.]{
 	\includegraphics[width=6cm]{images/roofaprilnosun.eps}
 }
@@ -152,7 +164,7 @@ Energiflödet genom taket beräknas på samma sätt som energiflödet genom väg
 	\includegraphics[width=6cm]{images/roofdecnosun.eps}
 }
 
-\caption{\label{fig:rooffigures}Energiflödet genom taket.}
+\caption{\label{fig:rooffigurescloud}Energiflödet genom taket, molniga dagar.}
 \end{figure}
 
 Energiflödet genom taket en solig dag i april varierar mellan $\unit[5]{W m^{-2}}$ in och $\unit[4]{W m^{-5}}$ ut på sydsidan, se figur \ref{fig:roofaprilsunsouth}, och mellan 1 och $\unit[3]{W m^{-2}}$ ut på nordsidan, se figur \ref{fig:roofaprilsunnorth}. Detta kan vidare jämföras med en molnig aprilldag där utflödet varierar ytterligare lite mindre, bara mellan 1 och $\unit[3,5]{W m^{-2}}$, se figur \ref{fig:roofaprilnosun}. Solen har alltså stor påverkan på energiflödets variationer. En dag i december är energiutflödet endast något högre och varierar mellan 6 och $\unit[4]{W m^{-2}}$, se figur \ref{fig:roofdecnosun},
