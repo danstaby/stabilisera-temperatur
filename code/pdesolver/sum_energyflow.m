@@ -12,7 +12,10 @@ load roofsimulations.mat
     % sunaprilsouth
     % sundecnorth
     % sundecsouth
-
+load sunpower.mat
+    sunpowerapr5mod(:,2)=-sunpowerapril(2:174,2);
+    sunpowerdec5mod(:,2)=-sunpowerapril(2:174,2);
+    A5=109; % area av fönster genom vilka solen skiner
     
 % APRIL MOLN
 % aprnosun1 oisolerad (s+v)
@@ -47,8 +50,7 @@ hold on
 plot(aprnosun1mod(:,1), aprnosun_modi(:,2), '-k')
 title('April utan sol. summa vägg och tak')
 Legend('Som idag', 'Med isolerad norr- och västervägg', 'location', 'SW')
-hold on
-
+hold off
 
 
 % APRIL SOL
@@ -75,8 +77,14 @@ aprsun4smod=sunaprilsouth(2:172);
 aprsun4nmod=sunaprilnorth(2:172);
 A4=257;
 
-aprsun_mod(:,2)=A1*aprsun1mod(:,2)+A2*aprsun2mod(:,2)+A3*aprsun3mod(:,2)+A4/2*aprsun4nmod(:,2)+A4/2*aprsun4smod(:,2);
-aprsun_modi(:,2)=(A1+A2)*aprsun2mod(:,2)+A3*aprsun3mod(:,2)+A4/2*aprsun4nmod(:,2)+A4/2*aprsun4smod(:,2);
+aprsun_mod(:,2)=A1*aprsun1mod(:,2)+A2*aprsun2mod(:,2)+...
+    A3*aprsun3mod(:,2)+...
+    A4/2*aprsun4nmod(:,2)+A4/2*aprsun4smod(:,2)...
+    +A5*sunpowerapr5mod(:,2);
+aprsun_modi(:,2)=(A1+A2)*aprsun2mod(:,2)+...
+    A3*aprsun3mod(:,2)+...
+    A4/2*aprsun4nmod(:,2)+A4/2*aprsun4smod(:,2)...
+    +A5*sunpowerapr5mod(:,2);
 
 figure(2)
 plot(aprsun1mod(:,1), aprsun_mod(:,2), '-r')
@@ -145,8 +153,14 @@ decsun4smod=sundecsouth(2:172);
 decsun4nmod=sundecnorth(2:172);
 A4=257;
 
-decsun_mod(:,2)=A1*decsun1mod(:,2)+A2*decsun2mod(:,2)+A3*decsun3mod(:,2)+A4/2*decsun4nmod(:,2)+A4/2*decsun4smod(:,2);
-decsun_modi(:,2)=(A1+A2)*decsun2mod(:,2)+A3*decsun3mod(:,2)+A4/2*decsun4nmod(:,2)+A4/2*decsun4smod(:,2);
+decsun_mod(:,2)=A1*decsun1mod(:,2)+A2*decsun2mod(:,2)+...
+    A3*decsun3mod(:,2)+...
+    A4/2*decsun4nmod(:,2)+A4/2*decsun4smod(:,2)...
+    +A5*sunpowerdec5mod(:,2);
+decsun_modi(:,2)=(A1+A2)*decsun2mod(:,2)+...
+    A3*decsun3mod(:,2)+...
+    A4/2*decsun4nmod(:,2)+A4/2*decsun4smod(:,2)...
+    +A5*sunpowerapr5mod(:,2);
 figure(4)
 plot(decsun1mod(:,1), decsun_mod(:,2), '-m')
 hold on
