@@ -1,86 +1,55 @@
 \section{Sammanfattning av energiflöden: energibalanser}
 
-De olika energiflödena är alltså från fasta energikällor, flöde genom väggarna, burspråk och tak, genom grunden, på grund av solinstrålning genom fönster samt på grund av ofrivillig ventilation. Den sista punkten, som orsakas av vind, utelämnas i ett första steg.
+De olika energiflödena är alltså från fasta energikällor, flöde genom väggarna, burspråk och 
+tak, genom grunden, av solinstrålning in och strålning ut genom fönstren samt från ofrivillig 
+ventilation. Den sista punkten, som orsakas av vind, utelämnas i ett första steg.
 
 Från fasta energikällor fås alltid ett bidrag på totalt $\unit[10,5]{kW}$, se avsnitt \ref{sec:constsources}.
 
-Ur figurerna i avsnitt \ref{sec:steadystatewall} får vi energiflödena per kvadratmeter genom de olika avsnitten av klimatskalet och med hjälp av areorna i tabell \ref{tbl:uvalue} fås det totala energiutflödet genom husets hela klimatskal.
+Ur figurerna i avsnitt \ref{sec:steadystatewall} får vi energiflödena per kvadratmeter genom de 
+olika avsnitten av klimatskalet och med hjälp av areorna i tabell \ref{tbl:uvalue} fås det totala 
+energiutflödet genom husets hela klimatskal.
 
-Flödet genom grunden fås ur figur \ref{fig:cooling_ground} och solinstrålningen genom fönster en solig dag fås ur figur \ref{fig:effekt0415and1231}.
-area tak 257 m2
+Flödet genom grunden fås ur figur \ref{fig:cooling_ground} och solinstrålningen genom fönster
+ en solig dag fås ur figur \ref{fig:effekt0415and1231}. Strålningen ut genom fönstren beräknas 
+ som svartkroppsstrålning med en transmissionskoefficient i fönstret på 0.9.
 
-\paragraph{I december:}
-UTFLÖDET\\
-Summa vägg, utan isolering –\\
-\textbf{kl 5:} 6*257+6386+893+1994+6826=17641 W\\
-\textbf{kl 15:} 4.5*257+5150+795+2001+7060=16162 W\\
+Alla dessa energiflöden har sammanfattats i figur \ref{fig:energyflow_sum} för våra fyra olika 
+fall – molnig respektive soligt aprildygn och  molnig respektive soligt decemberdygn. Här visas 
+summeras av de positiva respektive de negativa flödena på grafens positiva respektive 
+negativa axel. De summeras sedan och visas med en kraftiare svart linje. Det översta röda 
+området som syns tydligt på december-bilderna, figur \ref{fig:sum_decnosun} och \ref
+{fig:sum_decsun} visar hur mycket störra energiutflödet blir när man, som idag, inte isolerar 
+söder- och västväggarna.
 
-Summa vägg, med isolering –\\
-\textbf{kl 5:} 6*257+6386+893+1994+1671=12486 W\\
-\textbf{kl 15:} 4.5*257+5150+795+2001+1680=10782 W\\
+\begin{figure}[hpbt]
+\centering
+\subfloat[\label{fig:sum_aprnosun} Molnigt aprildygn]{
+	\includegraphics[width=0.45\textwidth]{images/aprnosun_sum.eps}
+}
+\subfloat[\label{fig:sum_aprsun} Aprildygn med solig dag]{
+	\includegraphics[width=0.45\textwidth]{images/aprsun_sum.eps}
+}
 
-I december är energiutflödet genom grunden ungefär 12,1 W/m2. Grunden är 286 m2.\\
-Energiutflödet genom grunden är 3461 W.
+\subfloat[\label{fig:sum_decnosun} Molnigt decemberdygn]{
+	\includegraphics[width=0.45\textwidth]{images/decnosun_sum.eps}
+}
+\subfloat[\label{fig:sum_decsun} Decemberdygn med solig dag]{
+	\includegraphics[width=0.45\textwidth]{images/decsun_sum.eps}
+}
 
-En molning dag i december sätts till 20\% av maximal instrålning, vilket ger $\unit[60]{Wm^{-2}}$. Utstrålning ur fönster?
+\caption{\label{fig:energyflow_sum} Totala energiflöden genom bygganden, där utflöden
+ betecknas positivt, och inflöden negativt. Den bredare svarta linjen markerar summering av 
+ positiva och negativa energiflöden. Notera att skalan på y-axeln är $\cdot10^4$.}
+\end{figure}
 
-Detta ger ett totalt energiflöde ut ur fastigheten en molnig, vindstilla, dag i december \textbf{kl 5:}\\
-10500 - 16099 - 3461 = -9060 utan isolering.\\
-10500 - 10944 - 3461 = -3905 med isolering.\\
+Det mest framträdande i bilderna är solens påverkan. Den andra är att fönstren läcker väldigt 
+mycket energi. Under en solig aprildag, är det genom fönstren som den mesta energin 
+kommer in när solen skiner och samtidigt som fönstren är den största energitjuven under 
+resten av dygnet. Vi ser också att det under april knappast lönar sig att ha tilläggsisolerat syd-
+ och västfasaderna, det gör det däremot i december. Fönstren är dock den enskilt största 
+ källan till energiläckage.
 
-Detta ger ett totalt energiflöde ut ur fastigheten en molnig, vindstilla, dag i december \textbf{kl 15:}\\
-10500 -15006 - 3461 = -7967 utan isolering.\\
-10500 - 9626 - 3461 = -2587 med isolering.\\
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\paragraph{I april, soligt:}
-UTFLÖDET\\
-Summa vägg och tak, utan isolering –\\
-\textbf{kl 5:} 3*127+3.2*127+2884+470-228-1060 = 2853 W\\
-\textbf{kl 15:} -5*127+1*127+2266-705-101+212 = 1164 W\\
-
-Summa vägg, med isolering –\\
-\textbf{kl 5:} 3*127+3.2*127 + 2884+470-228-191 = 3722 W\\
-\textbf{kl 15:} -5*127+1*127+ 2266-705-101-85 = 867 W\\
-
-I april är energiutflödet genom grunden ungefär 12,5 W/m2. Grunden är 286 m2.\\
-Energiutflödet genom grundxen är 3575 W.
-
-En solig dag i april sker ingen solinstrålning kl 5, men 540 W/m2 kl 15. Det motsvarar 0 W kl 5 respektive 81540 W in genom fönstren på södersidan.
-
-Detta ger ett totalt energiflöde ut ur fastigheten en (solig) vindstilla, dag i april \textbf{kl 5:}\\
-10500 - 2066 - 3575 =  4859 W, utan isolering.\\
-10500 - 2935 - 3575 =  3990 W, med isolering.\\
-
-Detta ger ett totalt energiflöde ut ur fastigheten en solig, dag i april \textbf{kl 15:}\\
-10500 - 1672 - 3575 + 81540 = 86793 W utan isolering.\\
-10500 - 1375 - 3575 + 81540  =  87090 W med isolering.\\
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\paragraph{I april, molnigt:}
-UTFLÖDET\\
-Summa vägg, utan isolering –\\ 
-\textbf{kl 5:} 3.5*257+2884+470-228-1060=2965 W\\
-\textbf{kl 15:} 1.5*257+2266-705-101+212=2058 W\\
-
-Summa vägg, med isolering –\\
-\textbf{kl 5:} 3.5*257+2884+470-228-191=3835 W\\
-\textbf{kl 15:} 1.5*257+2266-705-101-85=1761 W\\
-
-I april är energiutflödet genom grunden ungefär 12,5 W/m2. Grunden är 286 m2.\\
-Energiutflödet genom grunden är 3575 W.
-
-En molning dag sker ingen solinstrålning genom rutan.
-
-Detta ger ett totalt energiflöde ut ur fastigheten en solig, vindstilla, dag i april \textbf{kl 5:}\\
-10500 - 2066 - 3575 =  4859 W, utan isolering.\\
-10500 - 2935 - 3575 =  3990 W, med isolering.\\
-
-Detta ger ett totalt energiflöde ut ur fastigheten en solig, dag i april \textbf{kl 15:}\\
-10500 - 1672 - 3575 = 5253 W utan isolering.\\
-10500 - 1375 - 3575  =  5550 W med isolering.\\
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Vid vind fås ytterligare energiförluster. Med en vindmätare mäts de enkelt i varje ögonblick och 
+energiförlusten beräknas enligt avsnitt \ref{sec:leakagewall} och adderas till befintligt energiflöde.
+ 
