@@ -43,6 +43,43 @@ där $A$ är fönstrets area och $\theta$ är vinkeln solen bildar mot ytans nor
 
 \subsection{Långvågig strålning ut}
 
-När ytorna inne i byggnaden är varmare än ytorna utomhus resulterar detta i ett utflöde av långvågig strålning vars storlek kan approximeras med Stefan-Boltzmanns lag, \ref{eq:boltzmanslag}. Antag att interiören håller en konstant temperatur på $T_{in} = \unit[20]{^{\circ}C}$ och att de för interiören genom fönstrena synliga utomhusytorna håller en konstant temperatur på $T_{out} = \unit[6]{^{\circ}C}$. Detta leder till ett flöde $j^{\star} = \sigma \left( T_{in}^{4}-T_{out}^4\right) = \sigma \left( 293^4-279^4 \right) \approx \unit[74]{Wm^{2}}$ Med antagandet att den effektiva ytan, det vill säga den yta som ''syns'' genom fönstren, av ett rum är \textcolor{red}{hur stora är fönstrena osv???}. Genom ett fönster fås då utstrålningen $Q_{IR}=A\cdot\unit[74]{W}$. Vidare måste hänsyn tas till att glasrutorna reflekterar en andel av långvågsstrålningen. För glas utan beläggningar gäller då att en normal fönsterruta reflekterar i grova drag $10\%$ av den utgående strålningen \cite{gelin05}.
+När ytorna inne i byggnaden är varmare än ytorna utomhus resulterar detta i ett utflöde av långvågig strålning vars storlek kan approximeras med Stefan-Boltzmanns lag, \ref{eq:boltzmanslag}. Antag att interiören håller en konstant temperatur på $T_{in} = \unit[20]{^{\circ}C}$ och att de för interiören genom fönstrena synliga utomhusytorna håller en konstant temperatur på $T_{out} = \unit[6]{^{\circ}C}$. Detta leder till ett flöde $j^{\star} = \sigma \left( T_{in}^{4}-T_{out}^4\right) = \sigma \left( 293^4-279^4 \right) \approx \unit[74]{Wm^{2}}$. Genom ett fönster fås då utstrålningen $Q_{IR}=A\cdot\unit[74]{W}$, där $A$ är fönstrets area. Vidare måste hänsyn tas till att glasrutorna reflekterar en andel av långvågsstrålningen. För en ensam glasruta utan beläggningar gäller då att en normal fönsterruta reflekterar i grova drag $10\%$ av den utgående strålningen \cite{gelin05}.
 
-\textcolor{red}{Härledning av långvåg genom treglas här!}
+\begin{figure}[hpbt]
+\centering
+\includegraphics[scale=2]{images/tripleglazing.eps}
+\caption{Visualisering av variabelnamnen använda vid härledning av reflektionsparametern för treglasfönster.}
+\label{fig:tripleglazing}
+\end{figure}
+
+För en treglasruta gäller en något mer komplicerad annan reflektionsparameter. Betrakta figur \ref{fig:tripleglazing}. För $I_1$, den intensitet som släpps igenom första rutan, gäller att 
+
+\begin{equation}
+I_1=I_{in}\left( 1-a \right).
+\end{equation}
+
+På grund av en oändlig följd av reflektioner, även från den del av $I_3$ som passerar ruta 2 igen, blir $I_2 = \left( 1-a \right) I_1 \sum_{n=0}^{\infty} a^{2n} + a \left( 1-a \right)^2 I_3 \sum_{n=0}^{\infty} a^{2n}$. Men samtidigt måste också $I_3 = aI_2\sum_{n=0}^{\infty} a^{2n}$ vilket, om $I_2$ bryts ut, ger att
+
+\begin{equation}
+I_2 = \frac{\left( 1-a \right) I_1 \sum_{n=0}^{\infty} a^{2n}}{1-\left( 1-a \right)^2a^2\left(\sum_{n=0}^{\infty} a^{2n}\right)^2}.
+\end{equation}
+
+Detta tillsammans med det faktum att 
+
+\begin{equation}
+I_{ut} = \left( 1-a \right)I_2\sum_{n=0}^{\infty} a^{2n}
+\end{equation}
+
+ger, då dessa tre samband kombineras, att
+
+\begin{equation}
+I_{ut} = \frac{\left( 1-a \right)^3\left( \sum_{n=0}^{\infty} a^{2n}\right)^2}{1-\left( 1-a \right)^2a^2\left(\sum_{n=0}^{\infty} a^{2n}\right)^2}I_{in}.
+\end{equation}
+
+Notera nu att $\sum_{n=0}^{\infty} a^{2n} = \frac{1}{1-a^2}$ på grund av geometriska seriers egenskaper. Sätt in detta och förenkla så fås tillslut att
+
+\begin{equation}
+I_{ut} = \frac{\left( 1-a \right)^3}{\left(\left( 1-a^2\right)^2 - \left(1-a\right)^2 a^2\right)}I_{in} = 0,75 \cdot I_{in}
+\end{equation}
+
+då $a=0.1$.
