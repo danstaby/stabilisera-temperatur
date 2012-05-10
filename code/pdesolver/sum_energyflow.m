@@ -26,10 +26,8 @@ tiden=tiden/3600-24*29;
 
 % SOL in gm fönster
 load sunpower.mat
-    aprsun5mod=-sunpowerapril(2:174,2);
-    aprsun=-sunpowerapril(2:174,2);
-    decsun5mod=-sunpowerapril(2:174,2);
-    decsun=-sunpowerapril(2:174,2);
+    aprsun=-1.2*sunpowerapril(2:174,2);
+    decsun=-1.2*sunpowerapril(2:174,2);
 
 % strålning UT gm fönaster.
 sigma=5.67*10^(-8);
@@ -37,8 +35,8 @@ intemp=ones(173,1)*(273+20);
 utetemp=temperature();
 tempapr=utetemp(:,1)+273;
 tempdec=utetemp(:,2)+273;
-utapr=0.9*sigma.*(intemp.^4-tempapr.^4);
-utdec=0.9*sigma.*(intemp.^4-tempdec.^4);
+utapr=0.75*sigma.*(intemp.^4-tempapr.^4);
+utdec=0.75*sigma.*(intemp.^4-tempdec.^4);
 
 % GRUNDEN och KONSTANT
     foundationdec=3461;
@@ -84,17 +82,17 @@ constant;
 
 % Positiva energiflöden (UT)
 % norrväggen, söder- och västerväggen, burspråket, taket, grunden, fönstern
-summaUt1=foundation+window+roof+bWall+nWall+swWall;
-summaUt2=foundation+window+roof+bWall+nWall+swWalli;
-summaUt3=foundation+window+roof+bWall+nWall;
-summaUt4=foundation+window+roof+bWall;
-summaUt5=foundation+window+roof;
-summaUt6=foundation+window;
-summaUt7=foundation;
+summaUt1=(foundation+window+roof+bWall+nWall+swWall)/1000;
+summaUt2=(foundation+window+roof+bWall+nWall+swWalli)/1000;
+summaUt3=(foundation+window+roof+bWall+nWall)/1000;
+summaUt4=(foundation+window+roof+bWall)/1000;
+summaUt5=(foundation+window+roof)/1000;
+summaUt6=(foundation+window)/1000;
+summaUt7=(foundation)/1000;
 
 % Negativa energiflöden (IN)
 % solinstrålning, konstanta värmekällor
-summaIn1=constant;
+summaIn1=constant/1000;
 
 % Totalt
 total=summaUt1+summaIn1;
@@ -110,17 +108,16 @@ area(tiden, summaUt6,'FaceColor',colors(6,:));
 area(tiden, summaUt7,'FaceColor',colors(7,:));
 area(tiden, summaIn1,'FaceColor',colors(8,:));
 plot(tiden, total, '-k','linewidth', 3);
+plot(tiden, zeros(size(tiden)), '--k','linewidth', 3);
 
 Legend('Som idag','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','location', 'SE')
+    'Grunden', 'Konstant','location', 'SW')
 title('April utan sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
-ylabel('Energiutflöde W','FontSize',12)
+ylabel('Energiutflöde kW','FontSize',12)
 
 hold off
-
-
 
 
 
@@ -209,23 +206,23 @@ constant;
 
 % Positiva energiflöden (UT)
 % norrväggen, söder- och västerväggen, burspråket, taket, grunden, fönstern
-summaUt1=foundation+windowPos+roofPos+bWallPos+nWallPos+swWallPos;
-summaUt2=foundation+windowPos+roofPos+bWallPos+nWallPos+swWalliPos;
-summaUt3=foundation+windowPos+roofPos+bWallPos+nWallPos;
-summaUt4=foundation+windowPos+roofPos+bWallPos;
-summaUt5=foundation+windowPos+roofPos;
-summaUt6=foundation+windowPos;
-summaUt7=foundation;
+summaUt1=(foundation+windowPos+roofPos+bWallPos+nWallPos+swWallPos)/1000;
+summaUt2=(foundation+windowPos+roofPos+bWallPos+nWallPos+swWalliPos)/1000;
+summaUt3=(foundation+windowPos+roofPos+bWallPos+nWallPos)/1000;
+summaUt4=(foundation+windowPos+roofPos+bWallPos)/1000;
+summaUt5=(foundation+windowPos+roofPos)/1000;
+summaUt6=(foundation+windowPos)/1000;
+summaUt7=(foundation)/1000;
 
 % Negativa energiflöden (IN)
 % solinstrålning, konstanta värmekällor
-summaIn1=constant+windowNeg+roofNeg+bWallNeg+nWallNeg+swWallNeg;
-summaIn2=constant+windowNeg+roofNeg+bWallNeg+nWallNeg+swWalliNeg;
-summaIn3=constant+windowNeg+roofNeg+bWallNeg+nWallNeg;
-summaIn4=constant+windowNeg+roofNeg+bWallNeg;
-summaIn5=constant+windowNeg+roofNeg;
-summaIn6=constant+windowNeg;
-summaIn7=windowNeg;
+summaIn1=(constant+windowNeg+roofNeg+bWallNeg+nWallNeg+swWallNeg)/1000;
+summaIn2=(constant+windowNeg+roofNeg+bWallNeg+nWallNeg+swWalliNeg)/1000;
+summaIn3=(constant+windowNeg+roofNeg+bWallNeg+nWallNeg)/1000;
+summaIn4=(constant+windowNeg+roofNeg+bWallNeg)/1000;
+summaIn5=(constant+windowNeg+roofNeg)/1000;
+summaIn6=(constant+windowNeg)/1000;
+summaIn7=(windowNeg)/1000;
 
 % Totalt
 total=summaUt1+summaIn1;
@@ -249,17 +246,15 @@ area(tiden, summaIn5,'FaceColor',colors2(5,:));
 area(tiden, summaIn6,'FaceColor',colors2(8,:));
 area(tiden, summaIn7,'FaceColor',colors2(6,:)); % Konstanter
 plot(tiden, total, '-k','linewidth', 3);
-
+plot(tiden, zeros(size(tiden)), '--k','linewidth', 3);
 Legend('Som idag','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','location', 'SE')
+    'Grunden', 'Konstant','location', 'SW')
 title('April med sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
-ylabel('Energiutflöde W','FontSize',12)
+ylabel('Energiutflöde kW','FontSize',12)
 
 hold off
-
-
 
 
 
@@ -289,17 +284,17 @@ const=dec6mod;
 
 % Positiva energiflöden (UT)
 % norrväggen, söder- och västerväggen, burspråket, taket, grunden, fönstern
-summaUt1=foundation+window+roof+bWall+nWall+swWall;
-summaUt2=foundation+window+roof+bWall+nWall+swWalli;
-summaUt3=foundation+window+roof+bWall+nWall;
-summaUt4=foundation+window+roof+bWall;
-summaUt5=foundation+window+roof;
-summaUt6=foundation+window;
-summaUt7=foundation;
+summaUt1=(foundation+window+roof+bWall+nWall+swWall)/1000;
+summaUt2=(foundation+window+roof+bWall+nWall+swWalli)/1000;
+summaUt3=(foundation+window+roof+bWall+nWall)/1000;
+summaUt4=(foundation+window+roof+bWall)/1000;
+summaUt5=(foundation+window+roof)/1000;
+summaUt6=(foundation+window)/1000;
+summaUt7=(foundation)/1000;
 
 % Negativa energiflöden (IN)
 % solinstrålning, konstanta värmekällor
-summaIn1=constant;
+summaIn1=constant/1000;
 
 % Totalt
 total=summaUt1+summaIn1;
@@ -315,13 +310,14 @@ area(tiden, summaUt6,'FaceColor',colors(6,:));
 area(tiden, summaUt7,'FaceColor',colors(7,:));
 area(tiden, summaIn1,'FaceColor',colors(8,:));
 plot(tiden, total, '-k','linewidth', 3);
+plot(tiden, zeros(size(tiden)), '--k','linewidth', 3);
 
 Legend('Som idag','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','location', 'SE')
+    'Grunden', 'Konstant','location', 'SW')
 title('December utan sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
-ylabel('Energiutflöde W','FontSize',12)
+ylabel('Energiutflöde kW','FontSize',12)
 
 hold off
 
@@ -367,18 +363,18 @@ constant;
 
 % Positiva energiflöden (UT)
 % norrväggen, söder- och västerväggen, burspråket, taket, grunden, fönstern
-summaUt1=foundation+windowPos+roof+bWall+nWall+swWall;
-summaUt2=foundation+windowPos+roof+bWall+nWall+swWalli;
-summaUt3=foundation+windowPos+roof+bWall+nWall;
-summaUt4=foundation+windowPos+roof+bWall;
-summaUt5=foundation+windowPos+roof;
-summaUt6=foundation+windowPos;
-summaUt7=foundation;
+summaUt1=(foundation+windowPos+roof+bWall+nWall+swWall)/1000;
+summaUt2=(foundation+windowPos+roof+bWall+nWall+swWalli)/1000;
+summaUt3=(foundation+windowPos+roof+bWall+nWall)/1000;
+summaUt4=(foundation+windowPos+roof+bWall)/1000;
+summaUt5=(foundation+windowPos+roof)/1000;
+summaUt6=(foundation+windowPos)/1000;
+summaUt7=(foundation)/1000;
 
 % Negativa energiflöden (IN)
 % solinstrålning, konstanta värmekällor
-summaIn1=constant+windowNeg;
-summaIn2=windowNeg;
+summaIn1=(constant+windowNeg)/1000;
+summaIn2=(windowNeg)/1000;
 
 % Totalt
 total=summaUt1+summaIn1;
@@ -395,12 +391,13 @@ area(tiden, summaUt7,'FaceColor',colors(7,:));
 area(tiden, summaIn1,'FaceColor',colors(8,:));
 area(tiden, summaIn2,'FaceColor',colors(6,:));
 plot(tiden, total, '-k','linewidth', 3);
+plot(tiden, zeros(size(tiden)), '--k','linewidth', 3);
 
 Legend('Som idag','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','location', 'NE')
+    'Grunden', 'Konstant','location', 'SW')
 title('December med sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
-ylabel('Energiutflöde W','FontSize',12)
+ylabel('Energiutflöde kW','FontSize',12)
 
 hold off
