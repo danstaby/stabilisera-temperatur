@@ -18,11 +18,10 @@ Samma värden för decemberdagen är $T = \unit[-11]{^\circ C}$ 06:00 respektive
 
 Problemet har sedan satts upp för två olika väggar. Först en som enbart innehåller $\unit[5]{dm}$ tegel med
 en värmeledningsförmåga på $k = \unit[0.6]{Wm^{-1}K^{-1}}$ och volymetrisk värmekapacitet på
-$c_{p}\rho = \unit[1,153846]{MJ kg^{-1}}$. Den andra väggen har först samma tegellager sedan
+$c_{p}\rho = \unit[1,153846]{MJm^{-3}}$. Den andra väggen har först samma tegellager sedan
 har den tilläggsisolerats på utsidan med $\unit[1]{dm}$ mineralull. Denna mineralull har värmeledningsförmåga på
 $k = \unit[5,2\cdot 10^{-7}]{Wm^{-1}K^{-1}}$ och volymetrisk värmekapacitet på
-$c_{p}\rho = \unit[58,8]{kJ kg^{-1}}$.
-\emph{\color{red} Källor på naturkonstanter}
+$c_{p}\rho = \unit[58,8]{kJ m^{-3}}$. \cite{kandidatarbete2010}\cite{engineeringtoolboxdensity}\cite{bkvthermal}\cite{engineeringtoolboxspecificheat}
 
 Under experimentens gång så har ett godtyckligt initialvärde valts för att sedan vänta tills
 lösningen stabiliserat sig för att då urläsa energiåtgången. Derivatan på insidan har slutligen beräknats
@@ -35,4 +34,21 @@ $h = \unit[25]{W m^{-2}K^{-1}}$ vilket kommer av en vind på
 $v = \unit[5]{ms^{-1}}$ paralellt med väggens yta. Slutligen så kunde väggarnas
 tröghet studeras genom att den momentana kyleffekten beräknades för varje tidssteg. 
 
-För burspråk och tak har ungefär samma metod följts som för väggen, med simuleringar motsvarande soliga och molniga december- respektive aprildagar. Samma temperaturförändringar som beskrivits ovan har använts för respektive fall. Skillnaden ligger för det första i vilka material de olika byggnadsdelarna är uppbyggda av. Burspråket har, som i \ref{fig:bursprak}, simulerats med \textcolor{red}{vilka material togs med?}. Taket består däremot, , av omkring tre centimeter tegelpannor ($k = 0.85$, $c_p\rho = 920*1900$) och 21 centimeter mineralull. Den lilla påverkan som gipset medför har försummats. Den andra skillnaden härstammar från det faktum att solstrålningens normalprojektion är annorlunda på taket jämfört med vertikala ytor, något som tagits med i beräkningarna. Dessutom blir denna projektion olika beroende på om man betraktar nordsidan eller sydsidan av taket, varför dessa två delar har simulerats separat på de klara dagarna. De molniga dagarna har däremot antagandet att en femtedel av maximala solintensiteten infaller på samtliga ytor.
+För burspråk och tak har ungefär samma metod följts som för väggen, med simuleringar motsvarande soliga och
+molniga december- respektive aprildagar. Samma temperaturförändringar som beskrivits ovan har använts för
+respektive fall. Skillnaden ligger för det första i vilka material de olika byggnadsdelarna är uppbyggda av.
+Burspråket har, som i \ref{fig:bursprak}, simulerats med materialen och tjocklekarna angivna för burspråken i avsnitt \ref{subsec:thehouse}.
+Här har kopparens värmeledningsförmåga satts till $k=\unit[401]{Wm^{-1}K^{-1}}$, koppars volymetriska värmekapacitet
+$\rho c_p = \unit[3,49]{MJm^{-3}}$, spånskivans värmeledningsförmåga $k = \unit[0.5]{Wm^{-1}K^{-1}}$, spånskivans volymetriska
+värmekapacitet $\rho c_p = \unit[1,3]{MJm^{-3}}$, puts värmeledningsförmåga $k = \unit[0.25]{Wm^{-1}K^{-1}}$, puts volymetriska
+värmekapacitet $\rho c_p = \unit[872]{kJm^{-3}}$ och slutligen mineralullens värden
+enligt tidigare stycken.
+\cite{engineeringcom}\cite{kandidatarbete2010}\cite{engineeringtoolboxthermalconductivity}\cite{engineeringtoolboxspecificheat}
+
+Taket består
+däremot av omkring tre centimeter tegelpannor ($k = \unit[0,85]{Wm^{-1}K^{-1}}$, $c_p\rho = \unit[920\cdot 1900]{Jm^{-3}}$)
+\emph{\color{red} Källor} och 21 centimeter mineralull. Den lilla påverkan som gipset medför har försummats. Den andra skillnaden härstammar från det faktum att solstrålningens normalprojektion är annorlunda på taket jämfört med vertikala ytor, något som tagits med i beräkningarna. Dessutom blir denna projektion olika beroende på om man betraktar nordsidan eller sydsidan av taket, varför dessa två delar har simulerats separat på de klara dagarna. De molniga dagarna har däremot antagandet att en femtedel av maximala solintensiteten infaller på samtliga ytor.
+
+
+
+\emph{\color{red} Ska vi lägga alla naturkonstanter i detta avsnitt i en tabell? Det känns som att texten är ganska svår att följa.}
