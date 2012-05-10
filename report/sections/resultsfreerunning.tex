@@ -1,29 +1,55 @@
 \section{Sammanfattning av energiflöden: energibalanser}
 
-De olika energiflödena är alltså från fasta energikällor, flöde genom väggarna, burspråk och tak, genom grunden, på grund av solinstrålning genom fönster samt på grund av ofrivillig ventilation. Den sista punkten, som orsakas av vind, utelämnas i ett första steg.
+De olika energiflödena är alltså från fasta energikällor, flöde genom väggarna, burspråk och 
+tak, genom grunden, av solinstrålning in och strålning ut genom fönstren samt från ofrivillig 
+ventilation. Den sista punkten, som orsakas av vind, utelämnas i ett första steg.
 
 Från fasta energikällor fås alltid ett bidrag på totalt $\unit[10,5]{kW}$, se avsnitt \ref{sec:constsources}.
 
-Ur figurerna i avsnitt \ref{sec:steadystatewall} får vi energiflödena per kvadratmeter genom de olika avsnitten av klimatskalet och med hjälp av areorna i tabell \ref{tbl:uvalue} fås det totala energiutflödet genom husets hela klimatskal.
+Ur figurerna i avsnitt \ref{sec:steadystatewall} får vi energiflödena per kvadratmeter genom de 
+olika avsnitten av klimatskalet och med hjälp av areorna i tabell \ref{tbl:uvalue} fås det totala 
+energiutflödet genom husets hela klimatskal.
 
-Flödet genom grunden fås ur figur \ref{fig:cooling_ground} och solinstrålningen genom fönster en solig dag fås ur figur \ref{fig:effekt0415and1231}.
+Flödet genom grunden fås ur figur \ref{fig:cooling_ground} och solinstrålningen genom fönster
+ en solig dag fås ur figur \ref{fig:effekt0415and1231}. Strålningen ut genom fönstren beräknas 
+ som svartkroppsstrålning med en transmissionskoefficient i fönstret på 0.9.
 
+Alla dessa energiflöden har sammanfattats i figur \ref{fig:energyflow_sum} för våra fyra olika 
+fall – molnig respektive soligt aprildygn och  molnig respektive soligt decemberdygn. Här visas 
+summeras av de positiva respektive de negativa flödena på grafens positiva respektive 
+negativa axel. De summeras sedan och visas med en kraftiare svart linje. Det översta röda 
+området som syns tydligt på december-bilderna, figur \ref{fig:sum_decnosun} och \ref
+{fig:sum_decsun} visar hur mycket störra energiutflödet blir när man, som idag, inte isolerar 
+söder- och västväggarna.
 
 \begin{figure}[hpbt]
 \centering
 \subfloat[\label{fig:sum_aprnosun} Molnigt aprildygn]{
 	\includegraphics[width=0.45\textwidth]{images/aprnosun_sum.eps}
 }
-\subfloat[\label{fig:sum_aprsun} Solig aprildag]{
+\subfloat[\label{fig:sum_aprsun} Aprildygn med solig dag]{
 	\includegraphics[width=0.45\textwidth]{images/aprsun_sum.eps}
 }
 
-\subfloat[\label{fig:sum_decnosun} Molnig decemberdag.]{
+\subfloat[\label{fig:sum_decnosun} Molnigt decemberdygn]{
 	\includegraphics[width=0.45\textwidth]{images/decnosun_sum.eps}
 }
-\subfloat[\label{fig:sum_decsun} Solig decemberdag.]{
+\subfloat[\label{fig:sum_decsun} Decemberdygn med solig dag]{
 	\includegraphics[width=0.45\textwidth]{images/decsun_sum.eps}
 }
 
-\caption{\label{fig:energyflow_sum} Totala energiflöden genom bygganden. Den bredare svarta linjen markerar summering av positiva och negativa energiflöden.}
+\caption{\label{fig:energyflow_sum} Totala energiflöden genom bygganden, där utflöden
+ betecknas positivt, och inflöden negativt. Den bredare svarta linjen markerar summering av 
+ positiva och negativa energiflöden. Notera att skalan på y-axeln är $\cdot10^4$.}
 \end{figure}
+
+Det mest framträdande i bilderna är solens påverkan. Den andra är att fönstren läcker väldigt 
+mycket energi. Under en solig aprildag, är det genom fönstren som den mesta energin 
+kommer in när solen skiner och samtidigt som fönstren är den största energitjuven under 
+resten av dygnet. Vi ser också att det under april knappast lönar sig att ha tilläggsisolerat syd-
+ och västfasaderna, det gör det däremot i december. Fönstren är dock den enskilt största 
+ källan till energiläckage.
+
+Vid vind fås ytterligare energiförluster. Med en vindmätare mäts de enkelt i varje ögonblick och 
+energiförlusten beräknas enligt avsnitt \ref{sec:leakagewall} och adderas till befintligt energiflöde.
+ 
