@@ -225,7 +225,7 @@ summaIn3=constant+windowNeg+roofNeg+bWallNeg+nWallNeg;
 summaIn4=constant+windowNeg+roofNeg+bWallNeg;
 summaIn5=constant+windowNeg+roofNeg;
 summaIn6=constant+windowNeg;
-summaIn7=constant;
+summaIn7=windowNeg;
 
 % Totalt
 total=summaUt1+summaIn1;
@@ -246,8 +246,8 @@ area(tiden, summaIn2,'FaceColor',colors2(2,:));
 area(tiden, summaIn3,'FaceColor',colors2(3,:));
 area(tiden, summaIn4,'FaceColor',colors2(4,:));
 area(tiden, summaIn5,'FaceColor',colors2(5,:));
-area(tiden, summaIn6,'FaceColor',colors2(6,:));
-area(tiden, summaIn7,'FaceColor',colors2(8,:)); % Konstanter
+area(tiden, summaIn6,'FaceColor',colors2(8,:));
+area(tiden, summaIn7,'FaceColor',colors2(6,:)); % Konstanter
 plot(tiden, total, '-k','linewidth', 3);
 
 Legend('Som idag','Med isolering',...
@@ -392,13 +392,13 @@ area(tiden, summaUt4,'FaceColor',colors(4,:));
 area(tiden, summaUt5,'FaceColor',colors(5,:));
 area(tiden, summaUt6,'FaceColor',colors(6,:));
 area(tiden, summaUt7,'FaceColor',colors(7,:));
-area(tiden, summaIn1,'FaceColor',colors(9,:));
+area(tiden, summaIn1,'FaceColor',colors(8,:));
 area(tiden, summaIn2,'FaceColor',colors(6,:));
 plot(tiden, total, '-k','linewidth', 3);
 
 Legend('Som idag','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','Fönster','location', 'NE')
+    'Grunden', 'Konstant','location', 'NE')
 title('December med sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
 ylabel('Energiutflöde W','FontSize',12)
