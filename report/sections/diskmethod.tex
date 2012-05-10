@@ -8,9 +8,23 @@ I början av projektet fanns det förhoppningar att fastighetens väderstation s
 Ganska snart insågs dock att detta inte skulle bli verklighet och helt analytiska modeller blev istället vår metod. Senare visade sig att statistiken hade varit bra för att närmare kunna undersöka hur stor inverkan olika väderparametrar har vid just fastigheten på Walleriusgatan. 
 Detta fick istället lösas med statistik från SMHIs hemsida, som tyvärr var något otillräcklig.
 
-För att sätta upp de analytiska modellerna behövdes också värden för ett antal materialkonstanter för luft och för tegel. 
+För att sätta upp de fysikaliska modellerna behövdes också värden för ett antal materialkonstanter för luft och för tegel. 
 Dessa beror dock av en eller flera väderparametrar så som tryck, temperatur och fukt och således är det tveksamt om de överhuvudtaget bör kallas konstanter. 
 Det visade sig dock vara mycket svårt att få fram tillförlitlig och tillräckligt högupplöst data som visade detta än mindre uttryck av ekvationskaraktär.
 Vid diskussion med sakkunniga fick vi uppfattningen att det finns en tydlig konsensus inom branchen vad som är relevant och inte, men ingen tydlig dokumentation på området.
+
+Vid lösning av de rådande differentialekvationerna behövdes problemgeometri samt randvillkor sättas upp. För
+att förenkla beräkningarna har ofta problemen reducerats i dimensioner. Bland annat så har väggarna antagits vara oändligt
+långa vilket är ekvivalent med att de är perfekt isolerade på alla andra sidor än utsidan och insidan. Detta stämmer inte
+i praktiken och kan således vara en källa till fel. En liknande approximation genomfördes för grunden där fastigheten
+antagits vara oändligt lång. I det här fallet så är den undersökta fastigheten mittendelen av en lång fastighet vilket
+gör att approximationen är giltig men ändock en källa till fel. Bergets material har antagits varit homogen granit vilket
+heller inte är helt korrekt. 
+
+I alla lösningar har differentialekvationernas beteende utanför definitionsmängderna approximerats. Beteendet på randerna
+är väldigt beroende på omgivningen och detta kommer även vara en stor källa till fel. Här har bland annat svartkroppsstrålning,
+solinstrålning och konvektionsparametern approximerats. Dessa approximationer är en nödvändighet om det inte är önskvärt att
+simulera hela stadsdelen eller till och med staden vilket kommer bli väldigt beräkningsintensivt. Vi hoppas ändock att våra
+värden ger en idé om hur det kan se ut i verkligheten och att det ger en god idé om hur stora energiflödena är i jämförelse med varandra.
 
 Som ett extra steg har olika förslag på energibesparande åtgärder tagits fram och dessa har jämförts med att ta hänsyn till väderparametrar på det sätt som projektet fått fram. För att sätta dessa i proportion till varandra har även konstnader för de olika åtgärderna tagits fram. Det har dock varit svårt att få exakta värden på kostnader då projektet är tredje part och inte direkt företräder fastighetens ansvariga.
