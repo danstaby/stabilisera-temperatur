@@ -2,12 +2,14 @@ function ret = reflections(TTL)
 global WindowCount Intensity a
 
 a = 0.1;
+k = 1/(1-a^2);
 WindowCount = 3;
 
 Intensity = 0;
 doWindow(1-a, 1, 0, TTL);
 
-Intensity
+disp(['Numerical result: ' num2str(Intensity)])
+disp(['Analytical result: ' num2str((1-a)^3*k^2/(1-k^2*a^2*(1-a)^2))])
 
 function doWindow(Iin, wID, lwID, TTL)
 global WindowCount Intensity a
