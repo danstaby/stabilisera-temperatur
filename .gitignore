@@ -29,3 +29,6 @@ report/images/*.pdf
 #Mac OS X folder settings
 
 .DS_Store
+
+#Miscelleneous files
+*.swp
