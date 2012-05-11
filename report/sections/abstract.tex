@@ -11,7 +11,9 @@ Fastigheten har delats upp i byggnadsskalet med väggar, tak och fönster och gr
 Termisk energi överförs genom strålning, konvektion och ledning och i varje beräkning av fastighetens energiflöde är det viktigt att undersöka dem alla. För detta har vi använt både analytiska beräkningsmetoder och simuleringar i Matlab och i Comsol. En återkommande beräkningsmetod är finita elementmetoden och givetvis är även värmeledningsekvationen en central del.
 
 % vilka resultat som erhölls samt 
-Det visade sig att den främsta källan till energiförluster är fönstren och att det går att spara upp till 22\% på att ta hänsyn till solinstrålningen.
+Det visade sig att de främsta källorna till energiförluster är fönstren och vinden. Det går att spara upp till 22\% på att ta hänsyn till solinstrålningen. Vinden sänker temperaturen och att ta hänsyn till den kan ge en jämnare inomhustemperatur men inte nödvändigtvis en minskning i energiåtgång. För att avgöra exakt hur mycket energi som försvinner vid vind behöver ett trycktest göras.
+
+Det kom också fram att de olika väggarna har extremt olika tidskonstanter, de varierade från under fyra till över hundra och det behöver man ta hänsyn till i injusteringen av sitt reglersystem. 
 
 % vilka slutsatser som dragits
 
@@ -24,7 +26,13 @@ Det visade sig att den främsta källan till energiförluster är fönstren och 
 \selectlanguage{english}
 \begin{abstract}
 
-% På engelska här
+The purpose of this project was to investigate the flow of energy through a building due to the effect of the weather. Another objective with this investigation is, if possible, to reduce the heating costs of the building and to get a more stable indoor climate. Hence, there is also an included comparison of some other energy saving methods. Weather forecast based control of the heating system is a commercial product created by for example SMHI. Other considerations investigated for reducing heating costs are to insulate the walls, or mount electrical thermostat devices on the radiators in the building.
+
+The different parts of the building have been separated to wall, windows, roof and foundation. This made the quantification of energies easier to compute. Solar irradiation through windows and infiltration losses due to involuntary ventilation have also been handled separately. 
+
+Thermal energy is transmitted through radiation, convection and heat conduction. These three fundamental physical properties have been used in the investigation of every subflow. To evaluate the differential equations and physical properties, both analytical and numerical methods have been used. These include the finite element method which has been implemented ad hoc in Matlab. The software \textit{Comsol - Multiphysics} have also been used to evaluate differential equations with the finite element method. 
+
+The models in this Bachelor’s thesis showed that the primary sources of energy expense is radiation through windows and infiltration losses. It is also possible to save up to $\unit[22]{\%}$ energy by modifying the building's heating system to account for solar irradiation.
 
 \end{abstract}
 
