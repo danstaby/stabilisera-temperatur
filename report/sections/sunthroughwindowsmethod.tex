@@ -1,5 +1,48 @@
 \section{Strålning genom glas}\label{sec:sunthroughwindowsmethod}
 
+
+\subsection{Soltimmar under dygnet}
+
+Under året så varierar antalet soltimmar. Detta kommer av att jordens axel ej är paralell
+med jordens rotationsaxel kring solen. I praktiken innebär detta att det är mindre soltimmar
+under vinterhalvåret och fler under sommarhalvåret. Då jordens bana kring solen är nästan
+cirkulär kan vi approximera antalet soltimmar per dygn som en trigonometrisk funktion.
+För Göteborg approximerar vi att årets kortaste dag är $\unit[6]{ timmar}$ och årets längsta
+dag är $\unit[18]{ timmar}$. \emph{\color{red} Källor!} Sedan noterar vi att dagen är som kortast runt den $20$
+december.
+Detta tillåter oss då att teckna dygnets soltimmar $\tau$ som ekvation \eqref{eq:sunhours}. Här
+är $t$ tiden i månader där $t=0$ motsvarar första januari och $t$ är periodiskt över $12$ månader.
+
+\begin{equation}
+\label{eq:sunhours}
+\tau = 12 - 6\cos\left[\frac{\pi}{6}\left(t-\frac{1}{3}\right)\right]
+\end{equation}
+
+\noindent
+Fastigheten somdetta arbete undersökerhar en eldningsperiod som går från början av oktober
+till slutet av april. Av denna anledning önskasdet attberäknahur många soltimmar detsnitt är per
+dag. För detta syfte tecknas medelvärdet $\bar{\tau}$ enligt
+
+\begin{equation}
+\label{eq:taubar}
+\bar{\tau}= \frac{ \int^{16}_9 12 - 6\cos\left[\frac{\pi}{6}\left(t-
+\frac{1}{3}\right)\right]\mathrm{d}t}{\int^{16}_9 \mathrm{dt}}
+\end{equation}
+
+\noindent
+När \eqref{eq:sunhours}och \eqref{eq:taubar} evaluerades gavs 
+resultatet som kan ses i figur \ref{fig:sunhours}.
+Medelvärdet harhär beräknats vara $\bar{\tau}=\unit[9,13]{~timmar~per~dygn}$.
+\begin{figure}
+\centering
+\includegraphics{images/sunhours.eps}
+\caption{Antal timmar i ett dygn då solen är ovanför horisonten beräknat för månaderna under eldningsperioden.
+Här är medelvärdet markerat med en streckad linje. Medelvärdet har beräknats vara
+$\bar{\tau}=\unit[9,13]{~timmar~per~dygn}$.}
+\label{fig:sunhours}
+\end{figure}
+
+
 \subsection{Solinstrålning}
 För att beräkna den totala effekt solstrålning tillför byggnaden behövs fönstrenas vinkelberoende g-värden, presenterat i avsnitt \ref{gvalue}, och för att bestämma detta värde ur \eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
 
