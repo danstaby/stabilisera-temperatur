@@ -105,7 +105,7 @@ plot(wind, lk*(house1(:,1)-x1).^0.6,'r')
 
 hold off
 xlabel('Vindhastighet ortogonalt mot huset (ms^{-1})')
-ylabel('Kyleffekt (WK^{-1})')
+ylabel('Kyleffekt (Wm^{-2}K^{-1})')
 title('Hus i lovart')
 legend('Darcys lag','Exponent 0,6', 'location', 'best')
 xlim([0 24])
@@ -116,7 +116,7 @@ hold on
 plot(wind, lk*(house2(:,4)-x2).^0.6,'r')
 hold off
 xlabel('Vindhastighet ortogonalt mot huset (ms^{-1})')
-ylabel('Kyleffekt (WK^{-1})')
+ylabel('Kyleffekt (Wm^{-2}K^{-1})')
 legend('Darcys lag','Exponent 0,6','location','best')
 title('Vindskyddat hus')
 xlim([0 24])
@@ -127,7 +127,7 @@ hold on
 plot(wind, lk*(0.25*rhoair*wind.^2).^0.6, 'r')
 hold off
 xlabel('Vindhastighet ortogonalt mot huset (ms^{-1})')
-ylabel('Kyleffekt (WK^{-1})')
+ylabel('Kyleffekt (Wm^{-2}K^{-1})')
 legend('Darcys lag','Exponent 0,6', 'location', 'best')
 title('Teoretisk approximation')
 xlim([0 24])
