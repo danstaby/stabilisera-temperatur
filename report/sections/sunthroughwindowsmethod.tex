@@ -42,6 +42,27 @@ $\bar{\tau}=\unit[9,13]{~timmar~per~dygn}$.}
 \label{fig:sunhours}
 \end{figure}
 
+\noindent
+För att estimera hur mycket energi som det går att spara på att ta hänsyn till solen kommer arbetet
+senare att behandla en decemberdag. Denna dag har sedan behandlats med antagandet att den är solig samt
+med antagandet att den är molning. Vi benämner energiåtgången för den molniga dagen som $Q_H$ och
+$Q_L$ som energiåtgången den soliga dagen. Värden på dessa kommer sedan att användas tillsammans med
+ovanstående beräkningar för att estimera totala mängden energi som det går att spara. 
+
+Från SMHIs väderstatistik går det att utläsa att $\unit[8]{\%}$ av eldningsperiodens timmar är soliga.\cite{SMHIdata}
+Detta motsvarar då $\unit[1,92]{~soliga~timmar}$ i snitt per dygn. Härnäst betecknas andelen timmar som är molniga som
+$p = 1,92/9,13 = \unit[21]{\%}$. Nu beräknas medelenergiåtgången per dygn $Q$ enligt
+
+\begin{equation}
+Q = pQ_H + (1-p)Q_L
+\end{equation}
+
+\noindent
+Slutligen kan kvoten $Q/Q_H$ beräknas vilket ger ett uttryck för hur mycket energi det går att spara
+
+\begin{equation}
+\frac{Q}{Q_H} = \frac{pQ_H + (1-p)Q_L}{Q_H} = p+(1-p)\frac{Q_L}{Q_H}
+\end{equation}
 
 \subsection{Solinstrålning}
 För att beräkna den totala effekt solstrålning tillför byggnaden behövs fönstrenas vinkelberoende g-värden, presenterat i avsnitt \ref{gvalue}, och för att bestämma detta värde ur \eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
