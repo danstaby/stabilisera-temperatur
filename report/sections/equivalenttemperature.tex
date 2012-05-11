@@ -22,13 +22,7 @@ Användingsområdet för free-running temperature och ekvivalent temperatur är 
 
 Energibalansen på utsidan av en vägg beror solinstrålning, strålning från omgivningen, konvektion med omgivande luft och värmeflöde inifrån.
 
-Strålningen från omgivningen en klar dag kan enligt \cite{bb_atmosphere} skrivas som 
-\begin{equation}
-I_\text{atmosfär}=\sigma\cdot T_\text{ute}^4(1-c \cdot e^{-d(273-T_\text{ute})^2})
-\end{equation}
-där $c=0,261$ och $d=7,77\cdot10^{-4}$ kommer ur statistiska data. En helt molnig dag kan atmosfärens temperatur $T_\text{ute}$, det vill säga $c=0$. Omgivningens strålning fås sedan, enligt avsnitt \ref{sec:bb_sur} som 38\% från atmosfärer och resterande från omgivningen, som antas ha utomhustemperatur.
-
-Alla energiflödena kan sammanfattas i ekvationen 
+Alla energiflödena kan sammanfattas med Fouriers värmelag i ekvationen 
 
 \begin{equation}\boxed{ \; \; \;
 \label{eq:ekvtemp}
@@ -36,4 +30,4 @@ Alla energiflödena kan sammanfattas i ekvationen
 I\cdot \alpha_\text{abs} + I_\text{omg} + (T_\text{ute} - T_\text{vägg}) h +( T_\text{vägg} - T_\text{inne} ) U.
 \; \; \;}\end{equation}
 
-När sedan $\frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder. $h$ är konvektionsparametern för luft, som varierar med vinden, se avsnitt \ref{subsec:windconv}. $U$ är väggens U-värde, som i vårt fall är 1,2 för den oisloerade söderväggen respektive 0,3 för den isolerade norrväggen.
+När sedan $\frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder. $h$ är konvektionsparametern för luft, som varierar med vinden, se avsnitt \ref{subsec:windconv}. $U$ är väggens U-värde, som i vårt fall är 1,2 för den oisloerade söderväggen respektive 0,3 för den isolerade norrväggen. $I_\text{omg}$ är all svartkroppsstrålning från omgivningen, som kan delas upp i strålning från atmosfären och från allt annat, se avsnitt \ref{sec:bb_sur}.
