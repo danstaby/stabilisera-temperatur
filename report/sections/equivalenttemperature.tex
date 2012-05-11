@@ -25,12 +25,12 @@ Energibalansen på utsidan av en vägg beror solinstrålning, strålning från o
 Alla energiflödena kan sammanfattas med Fouriers värmelag i ekvationen 
 
 \begin{equation}
-\label{eq:ekvtemp}
+\label{eq:walltemp}
 \frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t} = 
 I\cdot \alpha_\text{abs} + I_\text{omg} + (T_\text{ute} - T_\text{vägg}) h +( T_\text{vägg} - T_\text{inne} ) U - I_\text{vind}.
 \end{equation}
 
-När sedan $\frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder. $h$ är konvektionsparametern för luft, som varierar med vinden, se avsnitt \ref{subsec:windconv}. I avsnitt \label{subsec:darcy} beskrivs $I_\text{vind}$.
+När sedan $\frac{\mathrm{d}T_\text{vägg}}{\mathrm{d}t}=0$ fås en jämviktslösning för väggens temperatur vid olika väder. $h$ är konvektionsparametern för luft, som varierar med vinden, se avsnitt \ref{subsec:windconv}. I avsnitt \ref{subsec:darcy} beskrivs $I_\text{vind}$.
 $U$ är väggens U-värde, som i vårt fall är 1,2 för den oisloerade söderväggen respektive 0,3 för den isolerade norrväggen. $I_\text{omg}$ är all svartkroppsstrålning från omgivningen, som kan delas upp i strålning från atmosfären och från allt annat, se avsnitt \ref{sec:bb_sur}. Vid detta jämviktsläge är $T_\text{vägg}$ ekvivalent temperatur.
 
 \begin{equation}\boxed{ \; \; \;

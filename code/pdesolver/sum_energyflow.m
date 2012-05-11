@@ -299,6 +299,9 @@ summaIn1=constant/1000;
 
 % Totalt
 total=summaUt1+summaIn1;
+% Maximal energibesparing för isolerad vägg
+max((swWall-swWalli)./1000./total)
+decutan=sum(total)*500
 
 figure(3)
 area(tiden, summaUt1,'FaceColor',colors(1,:));
@@ -379,6 +382,7 @@ summaIn2=(windowNeg)/1000;
 
 % Totalt
 total=summaUt1+summaIn1;
+decmed=sum(total)*500
 
 figure(4)
 area(tiden, summaUt1,'FaceColor',colors(1,:));
