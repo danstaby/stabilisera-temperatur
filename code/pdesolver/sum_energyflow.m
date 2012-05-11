@@ -26,8 +26,8 @@ tiden=tiden/3600-24*29;
 
 % SOL in gm fönster
 load sunpower.mat
-    aprsun=-1.2*sunpowerapril(2:174,2);
-    decsun=-1.2*sunpowerapril(2:174,2);
+    aprsun=-sunpowerapril(2:174,2);
+    decsun=-sunpowerapril(2:174,2);
 
 % strålning UT gm fönaster.
 sigma=5.67*10^(-8);
@@ -107,15 +107,15 @@ area(tiden, summaUt5,'FaceColor',colors(5,:));
 area(tiden, summaUt6,'FaceColor',colors(6,:));
 area(tiden, summaUt7,'FaceColor',colors(7,:));
 area(tiden, summaIn1,'FaceColor',colors(8,:));
-plot(tiden, total, '-k','linewidth', 3);
-plot(tiden, zeros(size(tiden)), '--k','linewidth', 3);
+plot(tiden, total, '--k','linewidth', 2);
+plot(tiden, zeros(size(tiden)), '-k','linewidth', 3);
 
 Legend('Utan isolering','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','location', 'SW')
+    'Grunden', 'Konstant','Totalt flöde','location', 'SW')
 title('April utan sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
-ylabel('Energiutflöde kW','FontSize',12)
+ylabel('Energiutflöde, kW','FontSize',12)
 
 hold off
 
@@ -238,6 +238,7 @@ area(tiden, summaUt6,'FaceColor',colors(6,:));
 area(tiden, summaUt7,'FaceColor',colors(7,:)); % Grunden
 
 area(tiden, summaIn7,'FaceColor',colors2(8,:)); % Konstanter
+plot(tiden, total, '--k','linewidth', 3);
 area(tiden, summaIn1,'FaceColor',colors2(1,:));
 area(tiden, summaIn2,'FaceColor',colors2(2,:));
 area(tiden, summaIn3,'FaceColor',colors2(3,:));
@@ -245,14 +246,14 @@ area(tiden, summaIn4,'FaceColor',colors2(4,:));
 area(tiden, summaIn5,'FaceColor',colors2(5,:));
 area(tiden, summaIn6,'FaceColor',colors2(8,:));
 area(tiden, summaIn7,'FaceColor',colors2(6,:)); % Konstanter
-plot(tiden, total, '-k','linewidth', 3);
-plot(tiden, zeros(size(tiden)), '--k','linewidth', 3);
+plot(tiden, total, '--k','linewidth', 2);
+plot(tiden, zeros(size(tiden)), '-k','linewidth', 3);
 Legend('Utan isolering','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','location', 'SW')
+    'Grunden', 'Konstant','Totalt flöde','location', 'SW')
 title('April med sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
-ylabel('Energiutflöde kW','FontSize',12)
+ylabel('Energiutflöde, kW','FontSize',12)
 
 hold off
 
@@ -309,15 +310,15 @@ area(tiden, summaUt5,'FaceColor',colors(5,:));
 area(tiden, summaUt6,'FaceColor',colors(6,:));
 area(tiden, summaUt7,'FaceColor',colors(7,:));
 area(tiden, summaIn1,'FaceColor',colors(8,:));
-plot(tiden, total, '-k','linewidth', 3);
-plot(tiden, zeros(size(tiden)), '--k','linewidth', 3);
+plot(tiden, total, '--k','linewidth', 2);
+plot(tiden, zeros(size(tiden)), '-k','linewidth', 3);
 
 Legend('Utan isolering','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','location', 'SW')
+    'Grunden', 'Konstant','Totalt flöde','location', 'SW')
 title('December utan sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
-ylabel('Energiutflöde kW','FontSize',12)
+ylabel('Energiutflöde, kW','FontSize',12)
 
 hold off
 
@@ -389,15 +390,16 @@ area(tiden, summaUt5,'FaceColor',colors(5,:));
 area(tiden, summaUt6,'FaceColor',colors(6,:));
 area(tiden, summaUt7,'FaceColor',colors(7,:));
 area(tiden, summaIn1,'FaceColor',colors(8,:));
+plot(tiden, total, '--k','linewidth', 2);
 area(tiden, summaIn2,'FaceColor',colors(6,:));
-plot(tiden, total, '-k','linewidth', 3);
-plot(tiden, zeros(size(tiden)), '--k','linewidth', 3);
+plot(tiden, total, '--k','linewidth', 2);
+plot(tiden, zeros(size(tiden)), '-k','linewidth', 3);
 
 Legend('Utan isolering','Med isolering',...
     'Norrväggen', 'Burspårket', 'Taket', 'Fönster',...
-    'Grunden', 'Konstant','location', 'SW')
+    'Grunden', 'Konstant','Totalt flöde','location', 'SW')
 title('December med sol. Summering av energiflöden','FontSize',14)
 xlabel('Tid, h','FontSize',12)
-ylabel('Energiutflöde kW','FontSize',12)
+ylabel('Energiutflöde, kW','FontSize',12)
 
 hold off
