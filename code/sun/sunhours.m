@@ -13,11 +13,11 @@ plot(months, TotalHours(months),'r')
 hold on
 plot(months, avg*ones(1,size(months,2)), '--', 'Color', 'k')
 ylabel('Soltimmar per dygn')
-xlabel('Manad')
+xlabel('Månad')
 set(gca, 'Xtick', Warm(1):Warm(2), ...
 	 'XTickLabel', strMonths(mod((Warm(1):Warm(2)),12)+1))
 hold off
-legend('Soltimmar', 'Medel', 'Location', 'best')
+legend('Soltimmar', 'Medelvärde', 'Location', 'best')
 set(h, 'Position', [100,100,400,200])
 xlim(Warm)
 ret = avg;
