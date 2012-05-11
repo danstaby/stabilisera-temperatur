@@ -23,7 +23,7 @@ xlim(Warm)
 ret = avg;
 
 function val = TotalHours(t)
-val = 12-(6+32/60)*cos(pi*(t+1/3)/6);
+val = 12-(6-32/60)*cos(pi*(t+1/3)/6);
 
 function val = Primitive(t)
-val = 12*t-6*(6+32/60)*sin(pi*(t+1/3)/6)/pi;
+val = 12*t-6*(6-32/60)*sin(pi*(t+1/3)/6)/pi;

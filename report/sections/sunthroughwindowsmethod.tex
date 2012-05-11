@@ -7,8 +7,8 @@ Under året så varierar antalet soltimmar. Detta kommer av att jordens axel ej 
 med jordens rotationsaxel kring solen. I praktiken innebär detta att det är mindre soltimmar
 under vinterhalvåret och fler under sommarhalvåret. Då jordens bana kring solen är nästan
 cirkulär kan vi approximera antalet soltimmar per dygn som en trigonometrisk funktion.
-För Göteborg approximerar vi att årets kortaste dag är $\unit[6]{ timmar}$ och årets längsta
-dag är $\unit[18]{ timmar}$. \emph{\color{red} Källor!} Sedan noterar vi att dagen är som kortast runt den $20$
+För Göteborg approximerar vi att årets kortaste dag är $\unit[6]{ timmar}$ och $\unit[32]{minuter}$ och årets längsta
+dag är $\unit[17]{ timmar}$ och $\unit[28]{ minuter}$. \cite{sunup} Sedan noterar vi att dagen är som kortast runt den $20$
 december.
 Detta tillåter oss då att teckna dygnets soltimmar $\tau$ som ekvation \eqref{eq:sunhours}. Här
 är $t$ tiden i månader där $t=0$ motsvarar första januari och $t$ är periodiskt över $12$ månader.
@@ -25,20 +25,20 @@ dag. För detta syfte tecknas medelvärdet $\bar{\tau}$ enligt
 
 \begin{equation}
 \label{eq:taubar}
-\bar{\tau}= \frac{ \int^{16}_9 12 - 6\cos\left[\frac{\pi}{6}\left(t-
-\frac{1}{3}\right)\right]\mathrm{d}t}{\int^{16}_9 \mathrm{dt}}
+\bar{\tau}= \frac{ \int^{16}_9 \left(12 - \left[6-\frac{32}{60}\right]\cos\left[\frac{\pi}{6}\left(t+
+\frac{1}{3}\right)\right]\right)\mathrm{d}t}{\int^{16}_9 \mathrm{dt}}
 \end{equation}
 
 \noindent
 När \eqref{eq:sunhours}och \eqref{eq:taubar} evaluerades gavs 
 resultatet som kan ses i figur \ref{fig:sunhours}.
-Medelvärdet harhär beräknats vara $\bar{\tau}=\unit[9,13]{~timmar~per~dygn}$.
+Medelvärdet harhär beräknats vara $\bar{\tau}=\unit[9,39]{~timmar~per~dygn}$.
 \begin{figure}
 \centering
 \includegraphics{images/sunhours.eps}
 \caption{Antal timmar i ett dygn då solen är ovanför horisonten beräknat för månaderna under eldningsperioden.
 Här är medelvärdet markerat med en streckad linje. Medelvärdet har beräknats vara
-$\bar{\tau}=\unit[9,13]{~timmar~per~dygn}$.}
+$\bar{\tau}=\unit[9,39]{~timmar~per~dygn}$.}
 \label{fig:sunhours}
 \end{figure}
 
@@ -51,7 +51,7 @@ ovanstående beräkningar för att estimera totala mängden energi som det går 
 
 Från SMHIs väderstatistik går det att utläsa att $\unit[8]{\%}$ av eldningsperiodens timmar är soliga.\cite{SMHIdata}
 Detta motsvarar då $\unit[1,92]{~soliga~timmar}$ i snitt per dygn. Härnäst betecknas andelen timmar som är molniga som
-$p = 1,92/9,13 = \unit[21]{\%}$. Nu beräknas medelenergiåtgången per dygn $Q$ enligt
+$p = 1,92/9,32 = \unit[20,45]{\%}$. Nu beräknas medelenergiåtgången per dygn $Q$ enligt
 
 \begin{equation}
 Q = pQ_H + (1-p)Q_L
