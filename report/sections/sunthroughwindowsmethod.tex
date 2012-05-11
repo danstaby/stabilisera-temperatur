@@ -1,5 +1,6 @@
-\section{Solstrålning genom fönster}\label{sec:sunthroughwindowsmethod}
+\section{Strålning genom glas}\label{sec:sunthroughwindowsmethod}
 
+\subsection{Solinstrålning}
 För att beräkna den totala effekt solstrålning tillför byggnaden behövs fönstrenas vinkelberoende g-värden, presenterat i avsnitt \ref{gvalue}, och för att bestämma detta värde ur \eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
 
 En metod för att räkna ut solens position presenteras i \cite{walraven78} och en Matlabfunktion baserad på samma artikel kan ses i appendix \ref{app:sunposition}. Argumenten i denna funktion består av longitudinella och latitudinella koordinater för aktuella platsen samt datum och tidpunkt. För Walleriusgatan är koordinaterna ungefär $\unit[12]{^\circ}$ E respektive $\unit[58]{^\circ}$ N.
@@ -36,3 +37,12 @@ Q = R_{ref}\left( \theta \right) \cdot g\left( \theta \right) \cdot A \cdot I_0 
 Vid exempelberäkningarna i nästa avsnitt har dock ingen hänsyn tagits till denna koefficient, som satts konstant $R_{ref}$.
 
 Effekten av skuggorna som orsakas av grannbyggnader i området kan också tas med i beräkningarna genom att mäta geometrin på omgivande byggnader, men detta är ett tidsödande moment och görs inte i denna rapport.
+
+\subsection{Långvågsstrålning}
+
+Vid beräkning av energiflödet på grund av långvågig strålning antas att luften precis innanför fönstret håller konstant temperatur, $\unit[20]{^{\circ}C}$ och att de ''synliga'' ytorna utanför fönstret håller en temperatur motsvarande utomhustemperaturen, $T_{ute}$. Enligt beräkningen i avsnitt \ref{IR} kommer 75\% av den incidenta strålningen passera ett treglasfönster. Med detta i åtanke leder Stefan-Boltzmanns lag, \eqref{eq:boltzmanslag}, till, om det antas stråla som en svartkropp, att $q_{IR} = 0,75 \cdot \sigma \unit[\left( 293^4 - T_{ute}^4\right)]{Wm^{-2}}$. Den totala effekt som flödar ut på grund av svartkroppsstrålning blir då $\unit[q_{IR}\cdot A]{W}$, där $A$ är totala arean av fönsterglas på byggnaden.
+
+\subsection{Övriga strålningseffekter}
+
+Då solen skiner kommer en viss andel direkt solstrålning att reflekteras från omgivande byggnader, växtlighet och dylikt för att sedan öka på intesiteten mot fönsterrutorna. Eftersom en andel av den direkt infallande solstrålningen genom fönsterrutorna även kommer att reflekteras mot rummens interiör och stråla ut igen har vi valt att inte ta hänsyn till dessa flöden, som beror starkt på omgivningens respektive interiörens utformning.
+
