@@ -1,4 +1,4 @@
-function h = tricontourf(p,t,u)
+function h = tricontourf(p,t,u, axisLims)
 %h = tricountourf(p,t,u)
 %
 %This function plots a filled countour of the data in u aligned in
@@ -75,6 +75,10 @@ end
 Z = reshape(Z,size(X,1),size(X,2));
 
 [Co Ho] = contourf(X,Y,Z);
+if(nargin == 4)
+  caxis(axisLims)
+end
+
 %clabel(Co,Ho)
 colorbar('location','southoutside')
 

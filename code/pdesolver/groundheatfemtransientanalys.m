@@ -294,12 +294,21 @@ disp(['Triangle count: ' num2str(tCount)])
 disp(['Degrees of freedom: ' num2str(max(size(Free)))])
 
 
-
+figure(1)
 plot(outData(:,1)/(24*3600), outData(:,2))
 xlabel('Tid (dygn)')
 ylabel('Kyleffekt (W m^{-2})')
 xlim([0 365])
 
-
-
-
+figure(2)
+tricontourf(p(1:2,:), t(1:3,:), Vec*(aConst+bConst)-kelvin, ...
+	    [1 17]);
+xlabel('Position(m)')
+ylabel('Position(m)')
+title('Temperatur (C)')
+figure(3)
+tricontourf(p(1:2,:), t(1:3,:), Vec*(aConst-bConst)-kelvin, ...
+	    [1 17]);
+xlabel('Position(m)')
+ylabel('Position(m)')
+title('Temperatur (C)')
