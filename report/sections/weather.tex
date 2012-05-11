@@ -32,17 +32,17 @@ I rapporten låter vi de parametrar som väderstationen tar in definiera vädret
  & \textbf{Noggrannhet} % accuracy
  & \textbf{Upplösning} \\ % resolution
 \hline
-\rule{0pt}{3ex}Vindhastighet & $\unit[0\mhyphen 60]{m/s}$ & $\pm 3\mhyphen 5\%$ & $\unit[0,1]{m/s}$ \\ 
+\rule{0pt}{3ex}Vindhastighet & $\unit[0\mhyphen 60]{m s^{-1}}$ & $\pm 3\mhyphen 5\%$ & $\unit[0,1]{m s^{-1}}$ \\ 
 \rule{0pt}{3ex}Vindriktning & alla riktningar & $\pm 3^{\circ}$ & $1^{\circ}$ \\
 \rule{0pt}{3ex}Temperatur & $\unit[-52\mhyphen +60]{^{\circ}C}$ & & $\unit[0,1]{^{\circ}C}$ \\
 \rule{0pt}{3ex}Lufttryck & $\unit[600\mhyphen 1100]{hPa}$ & $\unit[0,5\mhyphen 1]{hPa}$ & $\unit[0,1]{hPa}$ \\
 \rule{0pt}{3ex}Luftfuktighet & $\unit[0\mhyphen 100]{\%RH}$ & $\unit[\pm3\mhyphen 5]{\%RH}$ & $\unit[0,1]{\%RH}$ \\
 \rule{0pt}{3ex}Regn &  & $\unit[5]{\%}$ & \unit[0,01]{mm} \\
 ~varaktighet & & & $\unit[10]{s}$\\
-~intensitet & $\unit[0\mhyphen 200]{mm/h}$ & & $\unit[0,1]{mm/h}$ \\
-\rule{0pt}{3ex}Hagel &  &  & 0,1 träffar/$\unit{cm^2}$ \\
+~intensitet & $\unit[0\mhyphen 200]{mm h^{-1}}$ & & $\unit[0,1]{mm h^{-1}}$ \\
+\rule{0pt}{3ex}Hagel &  &  & 0,1 träffar per $cm^2$ \\
 ~varaktighet & & från första träffen & 10 s\\
-~intensitet & & & 0,1 träffar/$\unit{cm^2h}$\\
+~intensitet & & & 0,1 träffar per $cm^2$ och timme\\
 \hline
 \end{tabular}
 \end{center}
@@ -50,7 +50,7 @@ I rapporten låter vi de parametrar som väderstationen tar in definiera vädret
 \end{table}
 
 \subsection{Solintensitetsmätaren}\label{subsec:sunmeter}
-Mätaren för solintensitet som finns monterad på fastigheten är en Pyranometer CMP3 av märket Kipp \& Zonen. Den mäter våglängder från 300 till 2800 nm, vilket täcker in större delen av den solstrålning som når jorden. Ur databladet fås också att osäkerhet för en dag kan väntas vara under 10\%. Den maximala instrålningen den klarar av att mäta är $\unit[2000]{W/m^2}$ vilket är väl över maximala möjliga värde på jorden om man enbart mäter strålning från solen. Den uppfyller gott och väl behoven för studien.\cite{datasheet_sun}
+Mätaren för solintensitet som finns monterad på fastigheten är en Pyranometer CMP3 av märket Kipp \& Zonen. Den mäter våglängder från $300$ till $\unit[2800]{nm}$, vilket täcker in större delen av den solstrålning som når jorden. Ur databladet fås också att osäkerhet för en dag kan väntas vara under 10\%. Den maximala instrålningen den klarar av att mäta är $\unit[2000]{W m^{-2}}$ vilket är väl över maximala möjliga värde på jorden om man enbart mäter strålning från solen. Den uppfyller gott och väl behoven för studien.\cite{datasheet_sun}
 
 
 
