@@ -1,11 +1,11 @@
 \section{Studie av konvektionsparametern}
 
 Finita element har använts även för att studera konvektionsparametern. Hastigeterna har alla
-sats till noll på randerna med $h=\unit[6,19]{Wm^{-2}K^{-1}}$ vilket motsvarar en helt vindstilla dag.
+sats till noll på randerna med $h=\unit[6,19]{W~m^{-2}~K^{-1}}$ vilket motsvarar en helt vindstilla dag.
 Husets tak är adiabadiskt
 och problemet är studerat under en natt i jämviktsläge, det vill säga en evig natt, med
 $T_{ref} = \unit[0]{^\circ C}$ som referenstemperatur och $T_{inne} = \unit[20]{^\circ C}$ inomhus.
-Väggens U-värde är satt till $U = \unit[1,19]{Wm^{-2}K^{-1}}$ vilket motsvarar den oisolerade söderväggen på fastigheten på Walleriusgatan. Penaltyparametern är satt till $\lambda = 10^7$.
+Väggens U-värde är satt till $U = \unit[1,19]{W~m^{-2}~K^{-1}}$ vilket motsvarar den oisolerade söderväggen på fastigheten på Walleriusgatan. Penaltyparametern är satt till $\lambda = 10^7$.
 
 \begin{figure}
 \centering
@@ -50,14 +50,14 @@ ustempertur $\unit[20]{^\circ C}$, utomhustemperatur $\unit[0]{^\circ C}$.}
 \end{figure}
 
 % RESULTAT                                                                                                                                    
-Denna metod har slutligen verifierats. Som kan ses i figuren \ref{fig:temp_dist} är luften närmast väggen upp till fem grader 
+Denna metod har slutligen verifierats. Som kan ses i figuren~\ref{fig:temp_dist} är luften närmast väggen upp till fem grader 
 högre än omgivningen. När det blåser försvinner den här temperaturskillnaden. Detta
 visar tydligt hur viktigt det är att inte bara reglera efter utomhustemperaturen.
 Här finns dock anomala temperaturer vid nedre randen. Detta tyder på problem med
 metodiken.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                                                                  
 Även hastighetsfältet för temperaturens flöde, då det är vindstilla, har beräknats med finita element metoden
-applicerad på penaltymetoden. Detta kan ses i figur \ref{fig:velocityfield} där också
+applicerad på penaltymetoden. Detta kan ses i figur~\ref{fig:velocityfield} där också
 beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimligt små.
 
 \begin{figure}[hpbt]
@@ -74,7 +74,7 @@ beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimlig
 \end{figure}
 
 Då sedan konvektionsparametern beräkats utifrån detta blir den väldigt liten,
-se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes
+se figur~\ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes
 för att framställa ovanstående data fungerade tillräckligt bra för att med någon
 noggrannhet studera fenomenet konvektion. Vi menar dock att formen på hastighetsflödet intill marken och väggen
 kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen. Randerna mot
@@ -96,17 +96,17 @@ luft kan påverka då det inte var tillåtet för luften att passera där, vilke
 \caption{\label{fig:konv_param}Stabilitetsberäkningar av konvektionskoefficienten h mot några
 parametrar och naturkonstanter i finita elementsimuleringen av Navier-Stokes ekvationer.
 Inomhustemperaturen är satt till konstanta $\unit[20]{^\circ C}$ med en vägg vars U-värde är
-$\unit[1,19]{ Wm^{-2}K^{-1}}$. Detta skall motsvara söderväggen på fastigheten som detta arbete behandlar.}
+$\unit[1,19]{ W~m^{-2}~K^{-1}}$. Detta skall motsvara söderväggen på fastigheten som detta arbete behandlar.}
 
 \end{figure}
 
 % RESULTAT                                                                                                                                    
-I figur \ref{fig:h_reftemp} har finita elementmodellens beteende studerats vid variation på några essentiella storheter i modellen.
-Först har penaltyparametern varierats i figur \ref{fig:h_penalty} och här kan det ses att modellens beteende förändras inte nämnvärt
+I figur~\ref{fig:h_reftemp} har finita elementmodellens beteende studerats vid variation på några essentiella storheter i modellen.
+Först har penaltyparametern varierats i figur~\ref{fig:h_penalty} och här kan det ses att modellens beteende förändras inte nämnvärt
 beroende på val av parameter när denna börjar vara i storleksordningen $\lambda = 10^7$. Det linjära förhållandet mellan
 konvektionskoefficienten och temperaturdifferansen är intressant men saknar stöd i litteraturen då den rimligtvis borde vara
 konstant eller nästan konstant. Slutligen varieras den volymetriska expansionskoefficienten
-i figur \ref{fig:h_volexp}. Det är denna storhet
+i figur~\ref{fig:h_volexp}. Det är denna storhet
 som gör att luften stiger när den blir varm och av denna anledning fenomenet fri konvektion uppstår. Konvektionskoefficienten
 ser ut att öka mer än logaritmiskt men däremot ej så snabbt. Anledningen till att denna parameter varierades var för
 att se hur stor den parametern skulle behöva bli innan konvektionen började få samma energitransporterande egenskaper

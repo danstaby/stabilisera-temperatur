@@ -18,7 +18,7 @@ kandidatuppsats är Galerkins metod.
 En finita elementlösning med Galerkins metod kräver att problemet reduceras till
 ett ekvivalent variationsproblem.
 Här är $L$ differentialoperatorn
-som betecknar differentialekvationen i \eqref{eq:femtheoryprob}.
+som betecknar differentialekvationen i~\eqref{eq:femtheoryprob}.
 Här är $u = u(\mathbf{r},t)$ en funktion av de spatiala koordinaterna samt tiden.
 
 \begin{equation}
@@ -32,7 +32,7 @@ $\Phi$ definieras sedan som rummet av alla testfunktioner $\phi$ vilka
 definitionsmängden $\Omega$ samt vars derivator är bitvis kontinuerliga på randen
 $\Gamma$. Testfunktionerna $\phi \in \Phi$ måste även vara $L^2$ integrabla.
 Variationsproblemet blir då: Sök $u\in\Phi$
-som uppfyller ekvation \eqref{eq:femtheoryweak}. Det är tydligt
+som uppfyller ekvation~\eqref{eq:femtheoryweak}. Det är tydligt
 att alla $u$ som uppfyller $L(u) = 0$ är ortogonala mot alla
 $L^2$ integrabla testfunktioner ty integranden kommer då alltid vara identiskt noll.
 Detta variationsproblem brukar normalt kallas för den svaga formuleringen.
@@ -46,12 +46,12 @@ Detta variationsproblem brukar normalt kallas för den svaga formuleringen.
 Om differentialekvationen innehåller andra ordningens deriveringsoperatorer behövs
 det lite analys. Vissa testfunktinoner som ibland används klarar ej att deriveras
 två gånger. Dessutom så ger kommande beräkningar oss en trevlig metod syftad
-till att implementera Neumannvillkor (se sektion \ref{subsec:boundaryenforcement}).
+till att implementera Neumannvillkor (se sektion~\ref{subsec:boundaryenforcement}).
 
-Divergensteoremet i två dimensioner \eqref{eq:femtheorygausstheorem}
+Divergensteoremet i två dimensioner~\eqref{eq:femtheorygausstheorem}
 med $\mathbf{A} = (uw, 0)$ eller $\mathbf{A} = (0, uw)$ ger då ekvation
 \eqref{eq:femtheory:partint}. Slutligen summeras uttrycket över alla
-$k$ för att få \eqref{eq:femtheory:green}. Här är $w$ utbytt mot $w_i$ med
+$k$ för att få~\eqref{eq:femtheory:green}. Här är $w$ utbytt mot $w_i$ med
 påståendet att $\mathbf{w} = (w_1, w_2) = \nabla v$. \cite{johnson2009}
 
 \begin{equation}
@@ -90,7 +90,7 @@ konstanterna i linjärkombinationen av testfunktioner plockas ut ur integralerna
 och integralerna av testfunktionerna evalueras. Genom detta så kan
 sedan konstanterna lösas ut genom lösning av ekvationssystemet som
 fås då man låter den fria testfunktionen löpa över alla okända noder.
-För exempel på dessa beräkningar se avsnitten \ref{sec:femconvection} och
+För exempel på dessa beräkningar se avsnitten~\ref{sec:femconvection} och
 \ref{sec:femheat}.
 
 \begin{equation}

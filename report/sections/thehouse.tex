@@ -10,7 +10,7 @@
 % Det är så här stort och har så här många rum, så här högt i tak o.s.v. 
 
 Projektets uppdragsgivare har hand om energisystemet i en fastighet i Johanneberg,
-Göteborg som kan ses i bild \ref{fig:thehouse:house}. Figur \ref{fig:thehouse:map}
+Göteborg som kan ses i bild~\ref{fig:thehouse:house}. Figur~\ref{fig:thehouse:map}
 visar fastighetens geografiska orientering.
 Det är den fastighet som varit i fokus för det här arbetet. Byggnaden uppfördes 1935\cite{ritningar_urspr}
 och sedan kom det att dröja ända till 1988 innan den första större ombyggnationen gjordes.
@@ -37,9 +37,9 @@ ost-västlig riktning.}
 \label{fig:thehouse:map}
 \end{figure}
 
-Fastigheten har idag 13 lägenheter och en kontorslokal på $\unit[225]{m^2}$. De utgör tillsammans $\unit[1450]{m^2}$ fördelat på sju våningar. Utöver detta finns det gemensamma utrymmen, trapphus, förråd och apparatrum i den nedre källaren och Peter Särneö\cite{petersarneo} bedömer att den totala ytan är cirka $\unit[2000]{m^2}$. Sedan ett tag tillbaka har även en väderstation och en solintensitetsmätare installerats, se avsnitt \ref{subsec_weathertransmitter}, i förhoppningen att de ska kunna utnyttjas för att förbättra fastighetens klimat ytterligare- Det är det här projektets uppgift att undersöka hur det ska kunna genomföras.
+Fastigheten har idag 13 lägenheter och en kontorslokal på $\unit[225]{m^2}$. De utgör tillsammans $\unit[1450]{m^2}$ fördelat på sju våningar. Utöver detta finns det gemensamma utrymmen, trapphus, förråd och apparatrum i den nedre källaren och Peter Särneö\cite{petersarneo} bedömer att den totala ytan är cirka $\unit[2000]{m^2}$. Sedan ett tag tillbaka har även en väderstation och en solintensitetsmätare installerats, se avsnitt~\ref{subsec_weathertransmitter}, i förhoppningen att de ska kunna utnyttjas för att förbättra fastighetens klimat ytterligare- Det är det här projektets uppgift att undersöka hur det ska kunna genomföras.
 
-För att göra beräkningar av värmeflödet genom väggarna vid olika väderförhållanden har U-värdet varit ett centralt begrepp. De beräknas utifrån materialets tjocklek och värmeledningsförmåga, se avsnitt \ref{sec:heatconduction}. U-värdet är ett mått på väggens förmåga att släppa igenom värme och mäts i $\unit{Wm^{-2}K^{-1}}$. För en vägg med flera lager summeras U-värden på samma sätt som resistansen parallellkopplade resistorer:
+För att göra beräkningar av värmeflödet genom väggarna vid olika väderförhållanden har U-värdet varit ett centralt begrepp. De beräknas utifrån materialets tjocklek och värmeledningsförmåga, se avsnitt~\ref{sec:heatconduction}. U-värdet är ett mått på väggens förmåga att släppa igenom värme och mäts i $\unit{W~m^{-2}~K^{-1}}$. För en vägg med flera lager summeras U-värden på samma sätt som resistansen parallellkopplade resistorer:
 \begin{equation}
 \label{eq:uvalue}
 \frac{1}{U_{tot}}= (\frac{1}{U_1}+...+\frac{1}{U_n}).
@@ -54,7 +54,7 @@ Väggarnas olika U-värden presenteras i tabell \ref{tbl:uvalue}.
 \begin{tabular}
 {|l|r|r|}
 \hline
-\textbf{Del} & \textbf{Area $[\unit{m^2}]$} & \parbox[c][1.2cm][c]{2 cm}{\textbf{U-värde\\$[\unit{Wm^{-2}K^{-1}}]$}} \\
+\textbf{Del} & \textbf{Area $[\unit{m^2}]$} & \parbox[c][1.2cm][c]{2 cm}{\textbf{U-värde\\$[\unit{W~m^{-2}~K^{-1}}]$}} \\
 \hline
 Söderväggen &  151 & 1,186 \\ 
 Västerväggen & 61 & 1,186 \\
@@ -71,7 +71,7 @@ Fönster, tak & 8 & 1,0 \\
 \end{tabular}
 \end{table}
 
-Det genomsnittliga U-värdet för fastigheten, grunden borträknad, är 0,6.
+Det genomsnittliga U-värdet för fastigheten, grunden borträknad, är $\unit[0,6]{W~m^{-2}~K^{-1}}$
 
 % De olika gränsytornas material och uppbyggnad.
 \subsection{Väggarna}
@@ -100,11 +100,11 @@ Det genomsnittliga U-värdet för fastigheten, grunden borträknad, är 0,6.
 \end{figure}
 
 Ytterväggarna bestod ursprungligen av \unit[0,5]{m} tegel, klätt med ett centimetertjockt lager av puts på insidan,
-se figur \ref{fig:sodervagg}. Norrväggen, som tilläggsisolerades i samband med renoveringen 1988, har dessutom puts och ett decimetertjockt lager mineralull följt av ett lager puts utanpå tegelväggen,
-se figur \ref{fig:norrvagg}.\cite{kandidatarbete2010}\cite{petersarneo}. Då värmeledningsförmågan hos tegel är
-$\unit[0,593]{Wm^{-1}K^{-1}}$ och den för mineralull är $\unit[0,037]{Wm^{-1}K^{-1}}$
-fås att den isolerade norrväggen har ett U-värde på $\unit[0,279]{Wm^{-2}K^{-1}}$
-medan den oisolerade söderväggens U-värde är $\unit[1,186]{Wm^{-2}K^{-1}}$.
+se figur~\ref{fig:sodervagg}. Norrväggen, som tilläggsisolerades i samband med renoveringen 1988, har dessutom puts och ett decimetertjockt lager mineralull följt av ett lager puts utanpå tegelväggen,
+se figur~\ref{fig:norrvagg}.\cite{kandidatarbete2010}\cite{petersarneo}. Då värmeledningsförmågan hos tegel är
+$\unit[0,593]{W~m^{-1}~K^{-1}}$ och den för mineralull är $\unit[0,037]{W~m^{-1}~K^{-1}}$
+fås att den isolerade norrväggen har ett U-värde på $\unit[0,279]{W~m^{-2}~K^{-1}}$
+medan den oisolerade söderväggens U-värde är $\unit[1,186]{W~m^{-2}~K^{-1}}$.
 
 \begin{figure}[hpbt]
 \centering
@@ -112,14 +112,14 @@ medan den oisolerade söderväggens U-värde är $\unit[1,186]{Wm^{-2}K^{-1}}$.
 \caption{\label{fig:bursprak}{Burspråket på söderväggen, utifrån och in från vänster till höger. Alla mått är i mm.}}
 \end{figure}
 
-Fastigheten ligger mellan två andra byggnader i liknande stil. Den till öster är lika hög som fastigheten medan den i väster är något lägre. Fastighetens yttervägg i väster är inte tilläggsisolerad och har samma konstruktion som söderväggen, se figur \ref{fig:sodervagg}.
+Fastigheten ligger mellan två andra byggnader i liknande stil. Den till öster är lika hög som fastigheten medan den i väster är något lägre. Fastighetens yttervägg i väster är inte tilläggsisolerad och har samma konstruktion som söderväggen, se figur~\ref{fig:sodervagg}.
 
-På söderväggen finns ett kopparklätt burspråk. Kopparn sitter direkt på en cementbunden spånskiva som följs av en luftspalt. Väggen innanför består av gips, isolerade mineralull och sedan mer gips, se figur \ref{fig:bursprak}.\cite{kandidatarbete2010} Burspråkets U-värde är $\unit[0,393]{Wm^{-2}K^{-1}}$.
+På söderväggen finns ett kopparklätt burspråk. Kopparn sitter direkt på en cementbunden spånskiva som följs av en luftspalt. Väggen innanför består av gips, isolerade mineralull och sedan mer gips, se figur~\ref{fig:bursprak}.\cite{kandidatarbete2010} Burspråkets U-värde är $\unit[0,393]{W~m^{-2}~K^{-1}}$.
 
 \subsection{Taket}
-Även taket lades om i samband med den stora renoveringen. Därefter bestod det av taktegel på underlagspapp ytterst, följt av gips, isolerande mineralull och innerst ytterligare ett lager gips, se figur \ref{fig:taket}.\cite{kandidatarbete2010}. U-värdet för taket är $\unit[0,171]{Wm^{-2}K^{-1}}$.
+Även taket lades om i samband med den stora renoveringen. Därefter bestod det av taktegel på underlagspapp ytterst, följt av gips, isolerande mineralull och innerst ytterligare ett lager gips, se figur~\ref{fig:taket}.\cite{kandidatarbete2010}. U-värdet för taket är $\unit[0,171]{W~m^{-2}~K^{-1}}$.
 
-Direkt under taket finns en lägenhet som givetvis är uppvärmd. Precis under taknocken finns ett mindre utrymme, se figur \ref{fig:attic}, som bland annat kan användas för kablar.
+Direkt under taket finns en lägenhet som givetvis är uppvärmd. Precis under taknocken finns ett mindre utrymme, se figur~\ref{fig:attic}, som bland annat kan användas för kablar.
 
 \begin{figure}[hpbt]
 \centering
@@ -147,7 +147,7 @@ Direkt under taket finns en lägenhet som givetvis är uppvärmd. Precis under t
 
 \subsection{Fönstren}
 
-Byggnadens fönster sattes in 1988 och är av treglastyp utan ytbeläggningar. De två yttersta rutorna är isolerglas, det vill säga de två rutorna avgränsar ett hermetiskt tillslutet utrymme, och den inneslutna volymen är fylld med argon för att minska värmeledningsförmågan. Totalt har fönstren ett U-värde på ungefär $\unit[1]{Wm^{-2}K^{-1}}$.
+Byggnadens fönster sattes in 1988 och är av treglastyp utan ytbeläggningar. De två yttersta rutorna är isolerglas, det vill säga de två rutorna avgränsar ett hermetiskt tillslutet utrymme, och den inneslutna volymen är fylld med argon för att minska värmeledningsförmågan. Totalt har fönstren ett U-värde på ungefär $\unit[1]{W~m^{-2}~K^{-1}}$.
 
 \subsection{Grunden}
 

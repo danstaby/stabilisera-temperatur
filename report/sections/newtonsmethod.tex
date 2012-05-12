@@ -2,7 +2,7 @@
 
 När ett ekvationssystem är ickelinjärt kan ej exakta metoder som Gausseliminering användas
 för ekvationslösning. Detta stötte vi till exempel på vid finita elementlösningen
-av Navier-Stokes ekvationer i avsnitt \ref{sec:femconvection}.
+av Navier-Stokes ekvationer i avsnitt~\ref{sec:femconvection}.
 I dessa fall måste approximativa optimeringsmetoder utnyttjas. En sådan
 metod är Newton-Raphsons metod. Denna bygger på trunkerad Taylorutveckling 
 av en funktion för att linjarisera ett ickelinjärt ekvationssystem
@@ -56,7 +56,7 @@ f: & \mathbb{R} \to \mathbb{R} \nonumber \\
 \end{align}
 
 \noindent
-Härnäst genomförs en taylorutveckling av funktionen $f(x)$ i ekvation \eqref{eq:newtonprooftaylor}.
+Härnäst genomförs en taylorutveckling av funktionen $f(x)$ i ekvation~\eqref{eq:newtonprooftaylor}.
 Den kvadratiska termen är här Lagranges restterm med parametern $\xi_n \in [\alpha, x_n]$.
 
 \begin{equation}
@@ -67,7 +67,7 @@ f(\alpha) = f(x_n) + f^\prime(x_n)(x_n-\alpha) + \frac{f^{\prime\prime}(\xi_n)}{
 \noindent
 Nu kan förstaderivatan av $f(x_n)$ divideras över samt $f(\alpha)$ är känt att vara noll.
 Efter detta identifieras $f(x_n)/f^\prime(x_n) = x_n-x_{n+1}$ och ersätts. Slutligen så ses
-det i ekvation \eqref{eq:newtonqed} att $x_{n+1}-\alpha \propto (x_{n}-\alpha)^2$.
+det i ekvation~\eqref{eq:newtonqed} att $x_{n+1}-\alpha \propto (x_{n}-\alpha)^2$.
 
 \begin{equation}
 0 = \frac{f(x_n)}{f^\prime(x_n)} + \alpha - x_n + \frac{f^{\prime\prime}(\xi_n)}{2f^\prime(x_n)}(x_n-\alpha)^2
@@ -93,7 +93,7 @@ att metoden förlorar sin kvadratiska konvergens.
 
 En metod för att hantera att metoden hoppar över rötter är att i varje steg försöka minimera $|f(x_{n+1})|$.
 Rent praktiskt innbär detta att vi väljer en konstant $0 \le k_n \le 1$ och genomför ett modifierat
-Newtonsteg enligt ekvation \eqref{eq:newtonmodified}.
+Newtonsteg enligt ekvation~\eqref{eq:newtonmodified}.
 
 \begin{equation}
 \label{eq:newtonmodified}
@@ -103,7 +103,7 @@ x_{n+1} = x_n - k_n\frac{f(x_n)}{f^\prime(x_n)}
 \noindent
 För att identifiera det optimala valet av $k_n$ kan godtycklig linjesökningsalgoritm användas. Ett val av metod
 är att behandla det analytiskt för att göra metoden mindre processorintensiv. En ny funktion definieras
-enligt ekvation \eqref{eq:newtong} med $\Delta x_n = f(x_n)/f^\prime(x_n)$.
+enligt ekvation~\eqref{eq:newtong} med $\Delta x_n = f(x_n)/f^\prime(x_n)$.
 
 \begin{equation}
 \label{eq:newtong}
@@ -111,7 +111,7 @@ g(k_n) = f(x_n- k_n\Delta x_n)
 \end{equation}
 
 \noindent
-I ekvation \eqref{eq:newtongmin} deriveras funktionen med avseende på $k_n$ i punkten $k_n=0$
+I ekvation~\eqref{eq:newtongmin} deriveras funktionen med avseende på $k_n$ i punkten $k_n=0$
 och kedjeregeln används för att skriva om uttrycket till något som är användbart.
 
 \begin{align}
@@ -126,7 +126,7 @@ och kedjeregeln används för att skriva om uttrycket till något som är använ
 \noindent
 Ett förslag på algoritm är nu att i varje iterationssteg först beräkna det fulla newtonsteget motsvarande $k_n=1$.
 Är då $f(x_{n+1}) < f(x_n)$ så kan steget godtagas. Stämmer inte detta så beräkas derivatan av $g(k_n)$ och
-funktionen $g(k_n)$ ansätts vara ett polynom av andra ordningen enligt ekvation \eqref{eq:newtonfit}.
+funktionen $g(k_n)$ ansätts vara ett polynom av andra ordningen enligt ekvation~\eqref{eq:newtonfit}.
 
 \begin{equation}
 \label{eq:newtonfit}
@@ -142,7 +142,7 @@ hitta den optimala parametern $k_n$.
 Om denna metod skall användas för att lösa ett ekvationssystem istället för en realvärd funktion i en dimension
 så behövs något mått sättas upp. Problemet som önskas att lösas är $\mathbf{F}(\mathbf{x}) = 0$.
 Funktionen som skall minimeras kan då med fördel väljas till $f(\mathbf{x}) = \mathbf{F}(\mathbf{x})^2/2$.
-På ett analogt sätt ovan så beräknas derivatan av funktionen $g(k)$ till ekvation \eqref{eq:newtonvecg}.\cite{fortran77}
+På ett analogt sätt ovan så beräknas derivatan av funktionen $g(k)$ till ekvation~\eqref{eq:newtonvecg}.\cite{fortran77}
 
 \begin{equation}
 \label{eq:newtonvecg}

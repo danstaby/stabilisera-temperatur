@@ -2,17 +2,17 @@
 \label{sec:leakagewall}
 
 När det blåser på fastigheten får det luften kring fastigheten att cirkulera och även tränga in i 
-byggnaden. När vinden ligger på med $\unit[3]{m/s}$, vinkelrätt mot nord- eller sydfasaden fås 
-ett flöde som det i figur \ref{fig:windspeed} och trycket som då uppstår visas i figur 
+byggnaden. När vinden ligger på med $\unit[3]{m~s^{-1}}$, vinkelrätt mot nord- eller sydfasaden fås 
+ett flöde som det i figur~\ref{fig:windspeed} och trycket som då uppstår visas i figur~
 \ref{fig:windpressure}. Tryckskillnaderna på de olika sidorna av husen kommer att driva 
 ofrivillig ventilation vilket leder till energiförluster i form av infiltration.
 
 \begin{figure}[hpbt]
 \centering
 \includegraphics[width=127mm,height=76mm]{images/wind3mshdpi.eps}
-\caption{\label{fig:windspeed}Vindhastiheten när vind i $\unit[3]{m/s}$ blåser mot fastigheten 
+\caption{\label{fig:windspeed}Vindhastiheten när vind i $\unit[3]{m~s^{-1}}$ blåser mot fastigheten 
 från vänster sida i figuren. Linjerna är strömlinjer och färgen indikerar farten. Värdena är 
-framräknade med Comsol. Enhet m/s.}
+framräknade med Comsol. Enhet $\unit{m~s^{-1}}$.}
 \end{figure}
 
 
@@ -20,16 +20,16 @@ framräknade med Comsol. Enhet m/s.}
 \centering
 \includegraphics[width=127mm,height=76mm]{images/pressure3mshdpi.eps}
 
-\caption{\label{fig:windpressure}Lufttrycket när vind i $\unit[3]{m/s}$ blåser mot fastigheten från vänster sida i figuren. Linjerna är isobarer, färgen indikerar lufttryck. Värdena är framräknade med Comsol. Enhet Pa.}
+\caption{\label{fig:windpressure}Lufttrycket när vind i $\unit[3]{m~s^{-1}}$ blåser mot fastigheten från vänster sida i figuren. Linjerna är isobarer, färgen indikerar lufttryck. Värdena är framräknade med Comsol. Enhet Pa.}
 \end{figure}
 
 % Resultat
-Ur figur \ref{fig:windspeed} fås att det hus som ligger i lä utsätts inte för någon vind att tala om.
- Vidare fås ur figur \ref{fig:windpressure} att huset i lä utsätts för en betydligt mindre 
+Ur figur~\ref{fig:windspeed} fås att det hus som ligger i lä utsätts inte för någon vind att tala om.
+ Vidare fås ur figur~\ref{fig:windpressure} att huset i lä utsätts för en betydligt mindre 
  tryckskillnad, än den byggnad som det blåser direkt på. I vårt exempel här, med en 
- vindhastighet runt $\unit[3]{m/s}$ fås en maximal tryckskillnad mellan norr- och sönderväggen 
- på 40 Pa, för fastigheten i lovart. Denna ökar när vindhastigheten ökar och vid 10 m/s fås en 
- tryckskillnad på 340 Pa för fastigheten i lovart. 
+ vindhastighet runt $\unit[3]{m~s^{-1}}$ fås en maximal tryckskillnad mellan norr- och sönderväggen 
+ på 40 Pa, för fastigheten i lovart. Denna ökar när vindhastigheten ökar och vid $\unit[10]{m~s^{-1}}$ fås en 
+ tryckskillnad på $\unit[340]{Pa}$ för fastigheten i lovart. 
 
 Applicerat på fastigheten på Walleriusgatan betyder detta att södervindar ger upphov till 
 betydligt mer infiltrationsförluster än nordvindar. Till den aktuella byggnades fördel ska nämnas 
@@ -38,16 +38,16 @@ troligen något mindre.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Energiförlusterna på grund av drag har beräknats utifrån att en fix mängd energi per grad finns lagrad i en viss volym luft. Luftflödet genom väggen har beräknats på flera sätt. Både med Darcys lag och med byggfysikformeln, se avsnitt \ref{subsec:darcy}.
+Energiförlusterna på grund av drag har beräknats utifrån att en fix mängd energi per grad finns lagrad i en viss volym luft. Luftflödet genom väggen har beräknats på flera sätt. Både med Darcys lag och med byggfysikformeln, se avsnitt~\ref{subsec:darcy}.
 
 Energiförlusten har beräknats
   för en fastighet i lovart respektive en som ligger i lä av en annan byggnad, precis som 
-  byggnaderna i figur \ref{fig:windspeed} och \ref{fig:windpressure}, vilket motsvarar att det 
-  blåser på fastigheten på Walleriusgatan från söder respektive norr. Resultatet kan ses i figur 
+  byggnaderna i figur~\ref{fig:windspeed} och \ref{fig:windpressure}, vilket motsvarar att det 
+  blåser på fastigheten på Walleriusgatan från söder respektive norr. Resultatet kan ses i figur~
   \ref{fig:windenergyloss} för en byggnad i lovart och en i lä samt för ett teoretiskt framtaget hus. Dessa två olika kurvor, framtagna med Darcys lag samt med en experimentell variant av densamma, får motsvara högsta respektive minsta gissningar för infiltrationsförluster i en byggnad.
 
-Trycken är för figur \ref{fig:windenergylossa} och \ref{fig:windenergylossb} är framräknade för 
-olika vindhastigheter med programmet Comsol medan det teoretiska modellen i figur 
+Trycken är för figur~\ref{fig:windenergylossa} och \ref{fig:windenergylossb} är framräknade för 
+olika vindhastigheter med programmet Comsol medan det teoretiska modellen i figur~
 \ref{fig:windenergylossc} är beräknat med med en approximation. 
 
 Approximationen baserar sig
@@ -71,10 +71,10 @@ Framtaget med Comsol (a och b) och teoretiskt framräknade med en approximation 
 
 % Resultat
 Vilken kyleffekt vinden har på fastigheten är mer osäkert vid högre vindhastigheter. När vinden
- ligger på med upp emot 25 m/s kan kyleffekten variera från några tiotal $\unit{W m^{-2} K^{-1}}$ upp 
- emot drygt hundra. Motsvarande kan kyleffekt för ett hus i lä vara mellan några $\unit{W m^{-2} K^{-1}}$ upp mot knappt trettio. För det teoretiskt beräknade huset fås även där att kyleffekten 
- kan vara mellan några $\unit{W m^{-2} K^{-1}}$ upp mot knappt trettio dito. När vi har mer normala $\unit[10]{m s^{-1}}$ ser vi istället att kyleffekten kan vara från några få upp emot $\unit[20]{W m^{-2} K^{-1}}$ för en byggnad i 
+ ligger på med upp emot $\unit[25]{m~s^{-1}}$ kan kyleffekten variera från några tiotal $\unit{W~m^{-2}~K^{-1}}$ upp 
+ emot drygt hundra. Motsvarande kan kyleffekt för ett hus i lä vara mellan några $\unit{W~m^{-2}~K^{-1}}$ upp mot knappt trettio. För det teoretiskt beräknade huset fås även där att kyleffekten 
+ kan vara mellan några $\unit{W~m^{-2}~K^{-1}}$ upp mot knappt trettio dito. När vi har mer normala $\unit[10]{m~s^{-1}}$ ser vi istället att kyleffekten kan vara från några få upp emot $\unit[20]{W~m^{-2}~K^{-1}}$ för en byggnad i 
  lovart, och ungefär en fjärdedel av det för en byggnad i lovart.
  
-För fasighetens norrvägg, den som ligger i lä av en annan fastighet, har arena $\unit[379]{m^2}$ fås där infiltrationsförluster upp till $\unit[28]{kW}$ vid $\unit[10]{m s^{-1}}$ och temperaturen $\unit[5]{^\circ C}$. För söderväggen, som ligger mer fritt och har arean $\unit[307]{m^2}$ fås förluster upp till $\unit[115]{kW}$ vid samma vindhastighet. Detta är dock extremt högt räknat och det är mycket otroligt att huset läcker så mycket.
+För fasighetens norrvägg, den som ligger i lä av en annan fastighet, har arena $\unit[379]{m^2}$ fås där infiltrationsförluster upp till $\unit[28]{kW}$ vid $\unit[10]{m~s^{-1}}$ och temperaturen $\unit[5]{^\circ C}$. För söderväggen, som ligger mer fritt och har arean $\unit[307]{m^2}$ fås förluster upp till $\unit[115]{kW}$ vid samma vindhastighet. Detta är dock extremt högt räknat och det är mycket otroligt att huset läcker så mycket.
 
