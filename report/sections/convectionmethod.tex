@@ -1,11 +1,11 @@
 \section{Studie av konvektionsparametern}
 
-Finita element har använts för att studera konvektionsparametern. Hastigeterna är alla
-satta till noll på randerna med $h=\unit[6,19]{Wm^{-2}K^{-1}}$ vilket motsvrar en helt vindstilla dag.
-på de öppna randerna. Husets tak är adiabadiskt
-och problemet är studerat under en natt i jämviktsläge (det vill säga en evig natt) med
+Finita element har använts även för att studera konvektionsparametern. Hastigeterna har alla
+sats till noll på randerna med $h=\unit[6,19]{Wm^{-2}K^{-1}}$ vilket motsvarar en helt vindstilla dag.
+Husets tak är adiabadiskt
+och problemet är studerat under en natt i jämviktsläge, det vill säga en evig natt, med
 $T_{ref} = \unit[0]{^\circ C}$ som referenstemperatur och $T_{inne} = \unit[20]{^\circ C}$ inomhus.
-Väggens U-värde är satt till $U = \unit[1,19]{Wm^{-2}K^{-1}}$ vilket motsvarar söderväggen på fastigheten på Walleriusgatan. Penaltyparametern är satt til $\lambda = 10^7$.
+Väggens U-värde är satt till $U = \unit[1,19]{Wm^{-2}K^{-1}}$ vilket motsvarar den oisolerade söderväggen på fastigheten på Walleriusgatan. Penaltyparametern är satt till $\lambda = 10^7$.
 
 \begin{figure}
 \centering
@@ -15,22 +15,23 @@ Väggens U-värde är satt till $U = \unit[1,19]{Wm^{-2}K^{-1}}$ vilket motsvara
 
 Svartkroppsstrålningen approximeras med första ordningens Taylorutveckling och
 för varje steg löses det slutgiltiga ekvationssystemet med den
-modifierade Newton-Raphson metoden. När systemet har blivit löst beräknas
-medeltemperaturen på väggen. Denna används då som gissning och utvecklingspunkt
+modifierade Newton-Raphson metoden. När systemet har lösts beräknas
+medeltemperaturen på väggen. Denna används sedan som gissning och utvecklingspunkt
 för ovan nämnda taylorutveckling. Denna process upprepas tills medeltemperaturen
-ligger tillräckligt nära gissningen. Således så genomförs en rad Newtonsteg
+ligger tillräckligt nära gissningen. Således genomförs en rad Newtonsteg
 för att hitta hur mycket som strålar från fastigheten genom svartkroppsstrålning.
 
 Sist beräknas konvektionsparametern genom att vi vet mängden energi som transporteras
-genom luften. I jämvikt gäller ekvation \eqref{eq:convectionmethod:balance}.
-Här är $Q_v$ energin som flödar genom väggen, $Q_{sk}$ är energin från
-svartkroppsstrålning och $Q_k$ är då energin som konvektion transporterar
-för att jämvikt skall uppstå.
+genom luften. I jämvikt gäller
 
 \begin{equation}
 \label{eq:convectionmethod:balance}
 Q_v + Q_{sk} = Q_k
 \end{equation}
+
+Här är $Q_v$ energin som flödar genom väggen, $Q_{sk}$ är energin från
+svartkroppsstrålning och $Q_k$ är då energin som transporteras med konvektion
+för att jämvikt skall uppstå.
 
 Medeltemperaturen $\bar{T}$ på väggen och referenstemperaturen $T_\infty$ är kända
 vilket ger att h-värdet kan beräknas enligt
@@ -49,7 +50,7 @@ ustempertur $\unit[20]{^\circ C}$, utomhustemperatur $\unit[0]{^\circ C}$.}
 \end{figure}
 
 % RESULTAT                                                                                                                                    
-Denna metod har slutligen verifierats. Som kan ses i figuren \ref{fig:temp_dist} är luften närmast väggen upp till fem grader
+Denna metod har slutligen verifierats. Som kan ses i figuren \ref{fig:temp_dist} är luften närmast väggen upp till fem grader 
 högre än omgivningen. När det blåser försvinner den här temperaturskillnaden. Detta
 visar tydligt hur viktigt det är att inte bara reglera efter utomhustemperaturen.
 Här finns dock anomala temperaturer vid nedre randen. Detta tyder på problem med
@@ -72,13 +73,12 @@ beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimlig
 \end{center}
 \end{figure}
 
-Då vi i sedan utifrån detta beräknar konvektionsparametern blir den därför väldigt liten,
+Då sedan konvektionsparametern beräkats utifrån detta blir den väldigt liten,
 se figur \ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes
 för att framställa ovanstående data fungerade tillräckligt bra för att med någon
-noggrannhet studera fenomenet konvektion.  Vi menar dock att formen på hastighetsflödet intill marken och väggen
-kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen. Dock kan randerna mot
-luft påverka då det ej var tillåtet för luften att passera de
-kanterna. Detta kan också vara en felkälla till den absurt låga konvektionsparametern.
+noggrannhet studera fenomenet konvektion. Vi menar dock att formen på hastighetsflödet intill marken och väggen
+kan anses vara av rätt karaktär och visar på hur luften rör sig vid husväggen. Randerna mot
+luft kan påverka då det inte var tillåtet för luften att passera där, vilket också kan vara en felkälla till den absurt låga konvektionsparametern.
 
 \begin{figure}[hpbt]
 \centering
@@ -112,15 +112,10 @@ ser ut att öka mer än logaritmiskt men däremot ej så snabbt. Anledningen til
 att se hur stor den parametern skulle behöva bli innan konvektionen började få samma energitransporterande egenskaper
 som den borde ha. Som kan ses så kommer inte modellen ens i närheten vid en väldigt stort vald volymetrisk expansionskoefficient.
 
-Slutligen kan vi bara konstatera att det ej gick att använda denna metod för att stude\
-ra konvektionsparametern $h$. Litteraturen
-som har använts som grund till detta har använt sig av Streamline-Upwind/Petrov-Galerk\
-in (SUPG). \cite{heinrich88}\cite{roy05} Ovanstående metod är dock
-Standard Galerkin med linjära triangulära element. Det är känt att Standard Galerkin kan leda till korsvindsproblem oc\
-h lösningar som ej är
+Slutligen kan vi bara konstatera att det inte gick att använda denna metod för att studera konvektionsparametern $h$. Litteraturen
+som har använts som grund till detta har använt sig av Streamline-Upwind/Petrov-Galerkin (SUPG). \cite{heinrich88}\cite{roy05} Ovanstående metod är dock
+Standard Galerkin med linjära triangulära element. Det är känt att Standard Galerkin kan leda till korsvindsproblem och lösningar som ej är
 exakta och stabila.\cite{segal2011}
-En misstanke är att det är detta problem vi ser trots att detta ej verifieras genom at\
-t titta på hastighetsfältet. Andra
-möjliga orsaker kan vara randvillkor, för liten vald definitionsmängd eller något fel \
-i den matematiska beskrivningen alternativt
-matlab-implementeringen.
+En misstanke är att det är detta problem vi ser trots att detta ej verifieras genom att titta på hastighetsfältet. Andra
+möjliga orsaker kan vara randvillkor, för liten vald definitionsmängd eller något fel i den matematiska beskrivningen alternativt
+vid implementeringen i Matlab.

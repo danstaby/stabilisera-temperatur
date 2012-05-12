@@ -1,21 +1,18 @@
-\section{Finita element av värmeledningsekvationen}
+\section{Finita elementlösning av värmeledningsekvationen}
 \label{sec:femheat}
-I detta avsnitt behandlas finita elementlösningen av värmeledningsekvationen.
+För att beräkna energiflödena har värmeledningsekvationen används.
 Det är från avsnitt \ref{sec:heatconduction} givet att differentialekvationen
 enligt ekvation \eqref{eq:femheateq} beskriver värmeflöde i ett material.
-
+För att lösa den har  finita elementmetoden tillämpats.
+ 
 \begin{equation}
 \label{eq:femheateq}
 c_p\rho\frac{\partial T}{\partial t} = \nabla\cdot(k\nabla T)
 \end{equation}
 
-\noindent
-För att finna en lösning integreras värmeledningsekvationen
-multiplicerat med en $L^2$ integrabel testfunktion $\phi(\mathbf{r})$ över hela
-definitionsmängden $\Omega$ vars rand benämns $\Gamma$.
-Detta kan ses i ekvation \eqref{eq:femheatweak}.
-Nu söks en funktion $T(\mathbf{r},t)$ som satisfierar nyss nämnda uttryck för
-alla $L^2$ integrabla testfunktioner $\phi(\mathbf{r})$.
+För att finna en lösning integreras värmeledningsekvationen,
+multiplicerat med en $L^2$ integrabel testfunktion $\phi(\mathbf{r})$, över hela
+definitionsmängden $\Omega$ vars rand benämns $\Gamma$, alltså
 
 \begin{equation}
 \label{eq:femheatweak}
@@ -23,11 +20,13 @@ alla $L^2$ integrabla testfunktioner $\phi(\mathbf{r})$.
 \nabla\cdot(k\nabla T)\right)\phi(\mathbf{r})\mathrm{d}\Omega = 0
 \end{equation}
 
-\noindent
-För att förenkla fortsatta beräkningar behövers det genomföras några
-omskrivningar av uttrycket. Divergensteoremet används först för att 
+Nu söks en funktion $T(\mathbf{r},t)$ som satisfierar nyss nämnda uttryck för
+alla $L^2$ integrabla testfunktioner $\phi(\mathbf{r})$.
+
+För att förenkla fortsatta beräkningar genomförs några
+omskrivningar av uttrycket. Först används divergensteoremet för att 
 eliminera divergensen i värmeledningsekvationens högerled. Detta ger då
-ekvation \eqref{eq:femheatweakfull}. Här är $\mathbf{n}$ normalen till randen.
+ekvation 
 
 \begin{equation}
 \label{eq:femheatweakfull}
@@ -36,27 +35,21 @@ k\nabla T\nabla\phi(\mathbf{r}) \mathrm{d}\Omega =
 \int_\Gamma k\mathbf{n}\cdot\nabla T\mathrm{d}\Gamma
 \end{equation}
 
-\noindent
+där $\mathbf{n}$ är normalen till randen.
+
 Härnäst skall galerkinformuleringen skissas. Detta genomförs
 genom att temperaturen $T$ samt tidsderivatan av temperaturen $\dot{T}$
-enligt ekvationerna \eqref{eq:femheatt} och \eqref{eq:femheattdot}.
+enligt
 
 \begin{align}
 \label{eq:femheatt}
 T(\mathbf{r}) & \approx \sum_n T_n\phi(\mathbf{r}) \\
 \label{eq:femheattdot}
-\dot{T}(\mathbf{r}) & \approx \sum_n \dot{T}_n\phi(\mathbf{r})
+\dot{T}(\mathbf{r}) & \approx \sum_n \dot{T}_n\phi(\mathbf{r}).
 \end{align}
 
-\noindent
 Ansatsen ovan stoppas härnäst in i den svaga formuleringen i ekvation
-\eqref{eq:femheatweakfull} vilket ger ekvation \eqref{eq:femheatgalerkin}.
-För att kunna lösa problemet för definitionsmängder som består av olika
-homogena material väljs testfunktionen $\phi$ så att den försvinner vid
-alla andra material än ett och värmeledningskonstanten kan då benämnas $k_n$.
-Ekvationssystemet kan sedan skrivas i matrisform vilket kan ses i ekvation
-\eqref{eq:femheatmatrix}. Här är $M$ massmatrisen, $A$ är stelhetsmatrisen och
-$f$ är belastningsvektorn.
+\eqref{eq:femheatweakfull} vilket ger
 
 \begin{align}
 \label{eq:femheatgalerkin}
@@ -68,6 +61,11 @@ $f$ är belastningsvektorn.
 \nonumber
 \end{align}
 
+För att kunna lösa problemet för definitionsmängder som består av olika
+homogena material väljs testfunktionen $\phi$ så att den försvinner vid
+alla material utom ett utvalt och värmeledningskonstanten kan då benämnas $k_n$.
+Ekvationssystemet kan sedan skrivas i matrisform
+
 \begin{equation}
 \label{eq:femheatmatrix}
 M\dot{T} + AT = f \Rightarrow
@@ -78,26 +76,24 @@ M\dot{T} + AT = f \Rightarrow
 \dot{T} + M^{-1}AT = M^{-1}f
 \end{equation}
 
-\noindent
+där $M$ är massmatrisen, $A$ är stelhetsmatrisen och $f$ är belastningsvektorn.
+
 Som kan ses så är ovanstående uttryck ett system av kopplade ordinära
 differentialekvationer vars lösning är trivial med hjälp av egenvärdesuppdelning.
 Vektorerna $\{v\}^n_{i=1}$ definieras som egenvektorerna av
 $M^{-1}A$ och $\lambda_i$ definieras som egenvärdena till samma matris.
-Systemets homogena lösning kan då skrivas som ekvation
-\eqref{eq:femheathom}.\cite{lay06}
+Systemets homogena lösning kan då skrivas som\cite{lay06}
 
 \begin{equation}
 \label{eq:femheathom}
 T_h(t) = \sum_n = c_nv_ne^{-\lambda_nt}
 \end{equation}
 
-\noindent
 Då ekvationen är inhomogen så återstår det att lösa systemets
 partikulärlösning. Då inhomogeniteten är konstant så kan lämpligen
 en konstant ansättas som partikulärlösning. Detta ger att
 $T_p(t) = D$. Insättning i differentialekvationen ger
-ekvation \eqref{eq:femheatinstopp} vilket gör att vi kan bestämma
-$D$ genom ekvation \eqref{eq:femheatinstopp2}.
+ekvation
 
 \begin{align}
 \label{eq:femheatinstopp}
@@ -106,7 +102,8 @@ M^{-1}AD &= M^{-1}b \Rightarrow\\
 D &= A^{-1}b
 \end{align}
 
-\noindent
+där $D$ kan bestämmas med ekvationen till höger om implikationspilen.
+
 Nu kan den fullständiga lösningen skissas som $T = T_h + T_p$ och om
 tiden sätts till noll så kan konstanterna $c_n$ bestämmas genom
 att $T$ sätts till problemets begynnelsevärden. För ett problem som
@@ -117,26 +114,26 @@ till problemet. Detta kan enkelt verifieras genom att sätta $\dot{T} = 0$.
 Problemet som återstår är då $AT = b$ vars lösning är $T_p$.
 
 \subsection{Lösning av problem med tidsberoende randvillkor}
+\label{subsec:mol}
 
-För att studera vädrets påverkan så är det i många fall tvunget att behandla
-tidsberoende randvillkor. I detta arbete används framförallt två metoder för detta.
-Method-of-lines (MOL) och semidiskret MOL. Den förstnämnda metoden går ut på att
-systemet av första ordningens ordinära differentialekvationer löses analytiskt för
-alla $t>0$. I den semidiskreta varianten approximerar man istället randvillkoren för
-ett visst tillfälle som en lätt hanterbar funktion som bara är giltig vid
-en viss tidpunkt. Efter detta löser man differentialekvationerna upprepade gånger
-med den förra itererings värden som nya initialvärden och de nya uppdaterade
-randvillkoren. Denna metod är väldigt användbar då det går att behandla nästan godtycklig
-funktion så länge man har processorkraft att lägga på små tidssteg i jämförelse med
+För att studera vädrets påverkan är det i många fall tvunget att behandla
+tidsberoende randvillkor. I detta arbete används framförallt två metoder för detta:
+Method-of-lines, MOL, och semidiskret MOL. Den förstnämnda metoden går ut på att
+ett system av första ordningens ordinära differentialekvationer löses analytiskt för
+alla $t>0$. I den semidiskreta varianten approximeras istället randvillkoren vid
+ett visst tillfälle till en lätthanterlig funktion som endast är giltig vid
+den valda tidpunkten. Efter detta löser man differentialekvationerna upprepade gånger
+med den förra itereringens värden som nya initialvärden och de nya uppdaterade
+randvillkorenen. Denna metod är väldigt användbar det är möjligt att behandla en näsintill godtycklig
+funktion med den, så länge det finns  processorkraft att lägga på små tidssteg i jämförelse med
 randvillkorens förändringshastiget.
 
 För att lösa differentialekvationerna analytiskt för alla tider behöver man först
-sätta upp en funktion som beskriver randvillkorens beteende. Efter detta insätts
-dessa villkor i galerkinformuleringen. Dessa villkor kommer att hamna som en inhomogenitet
+sätta upp en funktion som beskriver randvillkorens beteende. Efter detta sätts
+dessa villkor i galerkinformuleringen. Dessa villkor kommer att bilda en inhomogenitet
 i systemet av differentialekvationer. Metoden för lösning av dessa blir då på analogt sätt
-som avsnittet ovan där systemet först diagonaliseras med till exempel egenvärdesdiagonalisering. Efter
-detta är det bara att lösa systemet som vilka vanliga differentialekvationer som helst för att sedan
-återinföras till rätt storhet. Detta genomförs genom att diagonaliseringen inverseras.
+som avsnittet ovan där systemet först diagonaliseras med till exempel egenvärdesdiagonalisering. Sedan är det bara att lösa systemet som vilka vanliga differentialekvationer som helst, för att sedan
+återföras till rätt storhet. Detta genomförs genom att diagonaliseringen inverseras.
 
 Receptet för lösning blir då följande. Sätt upp ekvationssystemet
 
@@ -145,7 +142,6 @@ Receptet för lösning blir då följande. Sätt upp ekvationssystemet
 \dot{T}(t) + AT(t) = b(t)
 \end{equation}
 
-\noindent
 Diagonalisera systemet genom att definiera $V$ som matrisen av egenvektorer av $A$ och $D$ som den
 diagonala matrisen vars element är egenvärdena av $A$. Från elementär linjär algebra\cite{lay06} ges att
 
@@ -154,7 +150,6 @@ diagonala matrisen vars element är egenvärdena av $A$. Från elementär linjä
 A = VDV^{-1}
 \end{equation}
 
-\noindent
 För att fortsätta beräkningarna skall ett variabelbyte genomföras. Ansätt att
 
 \begin{equation}
@@ -162,7 +157,6 @@ För att fortsätta beräkningarna skall ett variabelbyte genomföras. Ansätt a
 T = VY
 \end{equation}
 
-\noindent
 Nu kan ekvationerna \eqref{eq:femheat:vdv} och \eqref{eq:femheat:vy} sättas in i differentialekvationen
 \eqref{eq:femheat:ourdiff}. Efter att termer flyttats och strukits ges
 
@@ -170,12 +164,12 @@ Nu kan ekvationerna \eqref{eq:femheat:vdv} och \eqref{eq:femheat:vy} sättas in 
 \dot{Y}(t) + DY(t) = V^{-1}b(t)
 \end{equation}
 
-\noindent
 Slutligen söks den homogena lösningen $Y_h$ samt partikulärlösningen $Y_p$ och en linjärkombination bildas.
-Lösningen uttryckt som $T$ blir då ekvation \eqref{eq:femheat:solution} där koefficienterna dimensioneras så att
-begynelsevillkoret satisfieras.
+Lösningen uttryckt som $T$ blir då
 
 \begin{equation}
 \label{eq:femheat:solution}
 T(t) = V(Y_h+Y_p)
 \end{equation}
+
+där koefficienterna dimensioneras så att begynelsevillkoret uppfylls.

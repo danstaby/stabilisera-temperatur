@@ -1,29 +1,29 @@
 \section{Strålning genom glas}\label{sec:sunthroughwindowsmethod}
 
-I följande avsnitt presenteras de metoder som använts vid beräkning av energiflöde genom fönster i byggnaden. Vi börjar med att beskriva hur direkt solinstrålning genom fönster kan beräknas. Därefter följer ett kort stycke med redogörelser över hur vi går tillväga för att beräkna energiflödet via svartkroppsstrålning mellan rummet och omgivningen. Notera särskilt avsnitt \ref{subsec:otherradiation} som kortfattat beskriver ett par strålningssituationer som försummats. Avslutningsvis presenteras en metod som används för att uppskatta hur mycket energi man kan spara genom att ta hänsyn till den direkta solinstrålningen.
+Flera olika metoder har använts vid beräkning av energiflöde genom fönster i byggnaden. Först beskrivs hur direkt solinstrålning genom fönster kan beräknas. Därefter följer ett kort stycke med redogörelser över hur man kan går tillväga för att beräkna energiflödet via svartkroppsstrålning mellan rummet och omgivningen. I avsnitt \ref{subsec:otherradiation} beskrivs ett par strålningssituationer som har försummats kortfattat. Avslutningsvis presenteras en metod som används för att uppskatta hur mycket energi man kan spara genom att ta hänsyn till den direkta solinstrålningen.
 
 \subsection{Solinstrålning}
-För att beräkna den totala effekt solstrålning tillför byggnaden via fönster behövs fönstrenas vinkelberoende g-värden, presenterat i avsnitt \ref{gvalue}, och för att bestämma detta värde ur \eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta kan göras genom att utgå från aktuellt datum och tid på dygnet.
+För att beräkna den totala effekt solstrålning tillför byggnaden via fönster behövs fönstrenas vinkelberoende g-värden, presenterat i avsnitt \ref{gvalue}. För att bestämma detta värde ur ekvation \eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta görs genom att utgå från aktuellt datum och tid på dygnet.
 
 En metod för att räkna ut solens position presenteras i \cite{walraven78} och en Matlabfunktion baserad på samma artikel kan ses i appendix \ref{app:sunposition}. Argumenten i denna funktion består av longitudinella och latitudinella koordinater för aktuella platsen samt datum och tidpunkt. För Walleriusgatan är koordinaterna ungefär $\unit[12]{^\circ}$ E respektive $\unit[58]{^\circ}$ N.
 
-När azimuthala och altitudinella vinklarna, det vill säga $\beta$ respektive $\alpha$, relativt ett väderstreck respektive horisonten har beräknats relateras infallsvinkeln mot glaset, $\theta$, som
+När azimuthala och altitudinella vinklarna, det vill säga $\beta$ och $\alpha$, relativt ett väderstreck respektive horisonten har beräknats, relateras infallsvinkeln mot glaset, $\theta$, som
 
 \begin{equation} 
 \theta = \arccos{\left( \cos{\left(\beta - \gamma\right)}\cos{\left(\alpha\right)}\right)}
 \end{equation}
 
-där $\gamma$ är vinkeln mellan fönstrets normal och väderstrecket mot vilken azimuthala vinkeln anges. Detta görs med funktionen angletheta i appendix \ref{app:sunwindows}.
+där $\gamma$ är vinkeln mellan fönstrets normal och väderstrecket mot vilken den azimuthala vinkeln anges. Detta görs med funktionen angletheta i appendix \ref{app:sunwindows}.
 
-Med dessa samband tillgängliga kan effektflödet på grund av solstrålning genom fönster beräknas, vilket kan göras med funktionerna \textit{gvalue} samt \textit{effekt} från appendix \ref{app:sunwindows}. Nödvändiga argument för dessa funktioner är g-värdet vid vinkelrätt infallande strålning samt konstanterna p och q från \eqref{eq:gconstants}. % Repetera ekvationen?
+Med dessa samband tillgängliga kan effektflödet på grund av solstrålning genom fönster beräknas, vilket kan göras med funktionerna \textit{gvalue} samt \textit{effekt} från appendix \ref{app:sunwindows}. Nödvändiga argument för dessa funktioner är g-värdet vid vinkelrätt infallande strålning samt konstanterna p och q från ekvation \eqref{eq:gconstants}. % Repetera ekvationen?
 
-För att ge ett exempel på hur effekten varierar med solintensiteten måste en approximativ funktion byggas upp som beskriver solens intensitet vid marknivå som funktion av vinkeln över horisonten. Om vi antar att intensiteten är $I_o = \unit[1370]{Wm^-2}$ utanför atmosfären kan detta beskrivas med ett exponentiellt samband, $I = I_oe^{-\mu x}$ där $\mu$ kallas för atmosfärens absorbtionskoefficient som sätts till $mu\approx \unit[4.6\cdot 10^{-5}]{m^{-1}}$ och x är atmosfärens tjocklek mellan betraktaren och solen, i meter. Atmosfären antas dessutom vara som en homogen heltäckande sfär runt jorden och ungefär $\unit[15]{km}$ tjock vertikalt uppåt överallt på jordens yta. x kan nu beskrivas med solens höjd över horisonten, och ges av
+För att ge ett exempel på hur effekten varierar med solintensiteten måste det byggas upp en approximativ funktion som beskriver solens intensitet vid marknivå som funktion av vinkeln över horisonten. Om vi antar att intensiteten är $I_o = \unit[1370]{Wm^{-2}}$ utanför atmosfären kan detta beskrivas med ett exponentiellt samband, $I = I_oe^{-\mu x}$ där $\mu$ kallas för atmosfärens absorbtionskoefficient som sätts till $\mu\approx \unit[4.6\cdot 10^{-5}]{m^{-1}}$ och $x$ är atmosfärens tjocklek mellan betraktaren och solen, i meter. Atmosfären antas dessutom vara som en homogen heltäckande sfär runt jorden och ungefär $\unit[15]{km}$ tjock vertikalt uppåt överallt på jordens yta. $x$ kan nu beskrivas med solens höjd över horisonten, och ges av
 
 \begin{equation}
 x = R\cos{90+\alpha} + \sqrt{\left(R\cos{90+\alpha}\right)^2 + \left( R+15\right)^2 - R^2}
 \end{equation}
 
-där $\alpha$ är vinkeln mellan horisonten och solen och $R\approx\unit[6,731\cdot 10^3]{m}$ betecknar jordens radie \cite{physicshandbook}. Detta följer från cosinussatsen. % Källa på siffran mu?
+där $\alpha$ är vinkeln mellan horisonten och solen och $R\approx\unit[6,731\cdot 10^3]{m}$ betecknar jordens radie \cite{physicshandbook}. Detta följer ur cosinussatsen. % Källa på siffran mu?
 
 \paragraph{Inverkan av skuggor, rummets interiör och dylikt}
 
@@ -38,7 +38,7 @@ Q = R_{ref}\left( \theta \right) \cdot g\left( \theta \right) \cdot A \cdot I_0 
 
 Vid exempelberäkningarna i nästa avsnitt har dock ingen hänsyn tagits till denna koefficient, som satts konstant $R_{ref}$.
 
-Effekten av skuggorna som orsakas av grannbyggnader i området kan också tas med i beräkningarna genom att mäta geometrin på omgivande byggnader, men detta är ett tidsödande moment och görs inte i denna rapport.
+Effekten av skuggorna som orsakas av grannbyggnader i området kan också tas med i beräkningarna genom att mäta geometrin på omgivande byggnader, men detta är ett tidsödande moment och tas inte upp i denna rapport.
 
 \subsection{Långvågsstrålning}\label{subsec:IRmethod}
 
@@ -51,13 +51,13 @@ Då solen skiner kommer en viss andel direkt solstrålning att reflekteras från
 \subsection{Soltimmar under dygnet}
 \label{subsec:sunhours}
 Under året så varierar antalet soltimmar. Detta kommer av att jordens axel ej är paralell
-med jordens rotationsaxel kring solen. I praktiken innebär detta att det är mindre soltimmar
+med jordens rotationsaxel kring solen. I praktiken innebär detta att det är färre soltimmar
 under vinterhalvåret och fler under sommarhalvåret. Då jordens bana kring solen är nästan
 cirkulär kan vi approximera antalet soltimmar per dygn som en trigonometrisk funktion.
 För Göteborg approximerar vi att årets kortaste dag är $\unit[6]{ timmar}$ och $\unit[32]{minuter}$ och årets längsta
-dag är $\unit[17]{ timmar}$ och $\unit[28]{ minuter}$. \cite{sunup} Sedan noterar vi att dagen är som kortast runt den $20$
+dag är $\unit[17]{ timmar}$ och $\unit[28]{ minuter}$. \cite{sunup} Sedan noterar vi att dagen är som kortast vid vid vintersolståndet, runt den $20$
 december.
-Detta tillåter oss då att teckna dygnets soltimmar $\tau$ som ekvation \eqref{eq:sunhours}. Här
+Detta tillåter oss då att teckna dygnets soltimmar, $\tau$, som ekvation \eqref{eq:sunhours}. Här
 är $t$ tiden i månader där $t=0$ motsvarar första januari och $t$ är periodiskt över $12$ månader.
 
 \begin{equation}
@@ -65,10 +65,7 @@ Detta tillåter oss då att teckna dygnets soltimmar $\tau$ som ekvation \eqref{
 \tau = 12 - \left(6-\frac{32}{60}\right)\cos\left[\frac{\pi}{6}\left(t+\frac{1}{3}\right)\right]
 \end{equation}
 
-\noindent
-Fastigheten somdetta arbete undersökerhar en eldningsperiod som går från början av oktober
-till slutet av april. Av denna anledning önskasdet attberäknahur många soltimmar detsnitt är per
-dag. För detta syfte tecknas medelvärdet $\bar{\tau}$ enligt
+Fastigheten som detta arbete undersöker har en eldningsperiod som går från början av oktober till slutet av april. Därför önskas det att beräkna hur många soltimmar det i snitt är per dag under denna period. För detta syfte tecknas medelvärdet $\bar{\tau}$ enligt
 
 \begin{equation}
 \label{eq:taubar}
@@ -76,10 +73,9 @@ dag. För detta syfte tecknas medelvärdet $\bar{\tau}$ enligt
 \frac{1}{3}\right)\right]\right)\mathrm{d}t}{\int^{16}_9 \mathrm{dt}}
 \end{equation}
 
-\noindent
 När \eqref{eq:sunhours}och \eqref{eq:taubar} evaluerades gavs 
 resultatet som kan ses i figur \ref{fig:sunhours}.
-Medelvärdet harhär beräknats vara $\bar{\tau}=\unit[9,39]{~timmar~per~dygn}$.
+Medelvärdet har här beräknats till $\bar{\tau}=\unit[9,39]{~timmar~per~dygn}$.
 \begin{figure}
 \centering
 \includegraphics{images/sunhours.eps}
@@ -90,23 +86,21 @@ $\bar{\tau}=\unit[9,39]{~timmar~per~dygn}$.}
 \end{figure}
 
 \noindent
-För att estimera hur mycket energi som det går att spara på att ta hänsyn till solen kommer arbetet
-senare att behandla en decemberdag. Denna dag har sedan behandlats med antagandet att den är solig samt
-med antagandet att den är molning. Vi benämner energiåtgången för den molniga dagen som $Q_H$ och
-$Q_L$ som energiåtgången den soliga dagen. Värden på dessa kommer sedan att användas tillsammans med
-ovanstående beräkningar för att estimera totala mängden energi som det går att spara. 
+För att estimera hur mycket energi som går att spara genom att ta hänsyn till solen kommer arbetet
+senare att behandla en decemberdag. Denna dag har behandlats under de två antagandena att den är solig och att den är molning. Vi benämner energiåtgången för att värma fastigheten för den molniga dagen som $Q_H$ och
+$Q_L$ som energiåtgången för uppvärmning den soliga dagen. Värden på dessa kommer sedan att användas tillsammans med
+ovanstående beräkningar för att uppskatta den totala mängden energi som kan sparas. 
 
 Från SMHIs väderstatistik går det att utläsa att $\unit[8]{\%}$ av eldningsperiodens timmar är soliga.\cite{SMHIdata}
 Detta motsvarar då $\unit[1,92]{~soliga~timmar}$ i snitt per dygn. Härnäst betecknas andelen timmar som är molniga som
 $p = 1,92/9,32 = \unit[20,45]{\%}$. Nu beräknas medelenergiåtgången per dygn $Q$ enligt
 
 \begin{equation}
-Q = pQ_H + (1-p)Q_L
+Q = p\cdot Q_H + (1-p)\cdot Q_L
 \end{equation}
 
-\noindent
 Slutligen kan kvoten $Q/Q_H$ beräknas vilket ger ett uttryck för hur mycket energi det går att spara
 
 \begin{equation}
-\frac{Q}{Q_H} = \frac{pQ_H + (1-p)Q_L}{Q_H} = p+(1-p)\frac{Q_L}{Q_H}
+\frac{Q}{Q_H} = \frac{p\cdot Q_H + (1-p)\cdot Q_L}{Q_H} = p+(1-p)\frac{Q_L}{Q_H}
 \end{equation}

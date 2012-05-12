@@ -1,46 +1,43 @@
 \section{Finita element av inkompressibel fluid}
 \label{sec:femconvection}
-För att lösa Navier-Stokes ekvationer som återfanns i avsnitt
+För att lösa Navier-Stokes ekvationer som återfinns i avsnitt
 \ref{section:convection} kan lämpligen en datormodell användas.
 Här består denna modell av ett system uppsatt med Galerkins metod.
-I denna lösning så begränsar vi dock oss till att enbart behandla statiska flöden
+Denna lösning begränsas dock till att enbart behandla statiska flöden
 vilket genomförs genom att sätta alla tidsderivator till noll.
 
 För att hantera trycket i Navier-Stokes ekvationer
 används den tidigare nämnda Boussinesq approximation
-samt penalty metoden för att göra hastighetsvektorn källfri och uppfylla
-kontinuitetsekvationen. Det finns således inget direkt behov av att räkna ut trycket.
-Vid användning av många sorters elementtyper som inte uppfyller Babuska-Brezzikriteriet
+och penalty-metoden. De göra hastighetsvektorn källfri och att
+kontinuitetsekvationen uppfylls. Det finns således inget direkt behov av att räkna ut trycket.
+Vid användning av många olika sorters elementtyper som inte uppfyller Babuska-Brezzikriteriet
 är detta dessutom nödvändigt då ekvationssystemet som skall lösas blir singulärt. 
-Detta beror på att trycket ej existerar i lika många ekvationer som hastighetskomponenterna.
-Finns det då fler okända trycknoder än hastighetsnoder så finns det ingen entydigt definierad lösning
-på ekvationssystemet. En annan möjlighet för att lösa problemet är att välja element som
-uppfyller Babuska-Brezzikriteriet som hjälper att få fler okända hasetighetspunkter än tryckpunkter.
+Detta beror på att trycket inte existerar i lika många ekvationer som hastighetskomponenterna.
+Finns det då fler okända trycknoder än hastighetsnoder finns det ingen entydigt definierad lösning
+till ekvationssystemet. En annan möjlighet för att lösa problemet är att välja element som
+uppfyller Babuska-Brezzikriteriet och det fås fler okända hasetighetspunkter än tryckpunkter.
 \cite{babuska1973}\cite{segal2011}
 
-Genom penaltymetoden beskrives här trycket som $p$ enligt ekvation
-\eqref{eq:femconvection:penalty}. Här är $p_s$ någon form av idealt statiskt
-tryck som är önskat. Detta tryck följer Boussinesq approximation.
-\cite{heinrich88}\cite{taylor79}
-Som kan ses leder den godtyckliga penaltyparametern $\lambda$ till att justera trycket
-om hastighetsfältets divergens ej är identiskt noll. I viss litteratur anges 
-det att penaltyparametern skall vara i storleksordningen $10^7$ men att den
-är väldigt applikationsberoende. En för liten vald penaltyparameter leder till att
-trycket inte elimineras. Andra problem uppstår vid en för stor parameter. Ekvationssystemet
-kan bli svårlöst och få stabilitetsproblem när parametern blir
-för stor i jämförelse med de andra delarna i differentialekvationen.\cite{reddy93}\cite{roy05}\cite{basak04}\cite{segal2011}
+Genom penaltymetoden beskrivs här trycket som $p$ enligt 
 
 \begin{equation}
 \label{eq:femconvection:penalty}
-p = p_s - \lambda\nabla\cdot\mathbf{v}
+p = p_s - \lambda\nabla\cdot\mathbf{v}.
 \end{equation}
 
-\noindent
+Här är $p_s$ någon form av önska, idealt. statiskt
+tryck. Detta tryck följer Boussinesq approximation.
+\cite{heinrich88}\cite{taylor79}
+Som kan ses leder den godtyckliga penaltyparametern $\lambda$ till att justera trycket
+om hastighetsfältets divergens inte är identiskt noll. I viss litteratur anges 
+det att penaltyparametern skall vara i storleksordningen $10^7$ men att den
+är väldigt applikationsberoende. En för liten vald penaltyparameter leder till att
+trycket inte elimineras. Andra problem uppstår vid en för stor parameter så som att ekvationssystemet
+kan bli svårlöst och få stabilitetsproblem när parametern blir
+för stor i jämförelse med de andra delarna i differentialekvationen.\cite{reddy93}\cite{roy05}\cite{basak04}\cite{segal2011}
+
 Fortsatt skall trycket deriveras med avseende på de rumsliga variablerna vilket möjliggör
-att eliminera trycket från differentialekvationerna. Dessa deriveringar kan ses i ekvation
-\eqref{eq:femconvection:partx} samt \eqref{eq:femconvection:partz}.
-Notera att det statiska trycket
-$p_s$ ej beror på $x$ vilket resulterar i att derivatan är noll.
+att eliminera trycket från differentialekvationerna, vilket resulterar i
 
 \begin{align}
 \label{eq:femconvection:partx}
@@ -54,10 +51,10 @@ $p_s$ ej beror på $x$ vilket resulterar i att derivatan är noll.
 -g\rho_0 - \frac{\partial}{\partial z} \lambda\nabla\cdot\mathbf{v}
 \end{align}
 
-\noindent
-Detta förs in i momentekvationerna vilket ger ekvationerna \eqref{eq:femconvection:u} -
-\eqref{eq:femconvection:T} vilket är det ekvationssystem $\mathbf{L}(u,w,T) = 0$
-som syftas att bli evaluerat.
+Notera att det statiska trycket
+$p_s$ ej beror på $x$ vilket resulterar i att derivatan är noll.
+
+Detta förs in i momentekvationerna vilket ger ekvationerna
 
 \begin{align}
 \label{eq:femconvection:u}
@@ -72,24 +69,26 @@ som syftas att bli evaluerat.
 \mathbf{v}\cdot\nabla T - \alpha\Delta T &= 0
 \end{align}
 
-\noindent
+vilket är det ekvationssystem $\mathbf{L}(u,w,T) = 0$
+som syftas att bli evaluerat.
+
+%%%%
 Nu skapas en svag formulering som är ett variationsproblem där $(T,u,w)$ söks
-så de satisfierar ekvation \eqref{eq:femconvection:variation}. De okända funktionerna
-ska här vara en linjärkombination av testfunktionerna.
+så att de satisfierar
 
 \begin{equation}
 \label{eq:femconvection:variation}
 \int_\Omega \mathbf{L}(T,u,w) \phi \mathrm{d}\Omega = 0\mbox{,  } \forall \phi \in \Phi
 \end{equation}
 
-\noindent
+De okända funktionerna ska här vara en linjärkombination av testfunktionerna.
+
 Då differentialekvationerna innehåller andra ordningens deriveringsoperatorer i form av
-partialderiveringsoperatorn samt divergensoperatorn behövs det lite analys.
+partialderiveringsoperatorn och divergensoperatorn behövs lite analys.
 Här används divergensteoremet för att eliminera en derivering. Efter detta
 förs differentialekvationerna in i den svaga formuleringen i ekvation
 \eqref{eq:femconvection:variation}.
-Detta är genomfört i 
-ekvationerna \eqref{eq:femconvection:weaku}-\eqref{eq:femconvection:weakT}.
+Det ger
 
 \begin{align}
 \int_\Omega \left(\phi\mathbf{v}\cdot\nabla u +
@@ -115,13 +114,8 @@ n_z\phi\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}\right)\mathrm{d}\Gamma
 \end{equation}
 
 
-\noindent
-Kvar är då faktiskt lösa problemet.
-Ansätt en lösning på formen \eqref{eq:femconvection:ansatz}.
-Då $\phi_k \in \Phi$, $k=1,2,..,N$ så uppfylls även att $u,w$ och $T$ tillhör
-$\Phi$ då dessa är en linjärkombination av basen $\phi_k$. Om konstanterna
-är dimensionerade så att dessa uppfyller $\mathbf{L}(u,w,T) = 0$ är detta
-en lösning till variationsproblemet. \cite{johnson2009}\cite{heath2002}\cite{lewis04}
+Kvar är då att faktiskt lösa problemet.
+Ansätt en lösning på formen
 
 \begin{align}
 u(x,z) &= \sum^N_{k=1}u_k\phi_k(x,z)
@@ -132,7 +126,11 @@ T(x,z) &= \sum^N_{k=1}T_k\phi_k(x,z)
 \label{eq:femconvection:ansatz}
 \end{align}
 
-\noindent
+Då $\phi_k \in \Phi$, $k=1,2,..,N$ så uppfylls även att $u,~w$ och $T$ tillhör
+$\Phi$ då dessa är en linjärkombination av basen $\phi_k$. Om konstanterna
+är dimensionerade så att dessa uppfyller $\mathbf{L}(u,w,T) = 0$ är detta
+en lösning till variationsproblemet. \cite{johnson2009}\cite{heath2002}\cite{lewis04}
+
 Ansatsen kan nu sättas in i den svaga formuleringen.
 Alla förekomster av $\phi$ byts ut mot $\phi_i$ med $i=1,2,..,N$. Då
 kontinuitetskriteriet \eqref{eq:convection:continuity} säger att
@@ -141,7 +139,6 @@ ena termen i högerhandsintegralerna som ekvation \eqref{eq:femconvection:weaku}
 \eqref{eq:femconvection:weakw}
 försvinner. Slutligen ger
 detta galerkinformuleringen i ekvationerna
-\eqref{eq:femconvection:galerkinu}-\eqref{eq:femconvection:galerkinT}.
 
 \begin{align}
 \label{eq:femconvection:galerkinu}
