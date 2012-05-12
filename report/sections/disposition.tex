@@ -1,40 +1,40 @@
 \section{Dokumentets disposition}
 
-För att göra beräkningar av energiflödena genom fastigheten använder vi oss av några olika beräkningsmodeller. Dessa leder sedan, via våra metoder, fram till resultaten. Nedan finner du en beskrivning av hur.
+För att göra beräkningar av energiflödena genom fastigheten använder vi oss av några olika beräkningsmodeller. Dessa leder sedan via våra metoder fram till resultaten. Nedan återfinns en beskrivning av hur detta går till.
 
 Efter en inledning med beskrivning av utgångspunkterna för arbetet kommer en del med
  delvis ganska tung teori. Där beskrivs de olika sätt värme kan överföras på – konvektion,
   ledning och strålning – och hur man kan räkna på dem i våra applikationer på 
   energiflödena genom en fastighet. Här beskrivs kort hur de olika delarna av teorin 
-  kopplar till våra metoder och resultat. Det är inte alltid nödvändigt för läsaren att 
+  knyter an till våra metoder och resultat. Det är inte nödvändigt för läsaren att 
   tillgodogöra sig all teori för att kunna ta del av resultatet i rapporten. Vi hoppas ändå att 
   det ska kunna visa på att våra resultat står på en gedigen grund.
 
-Strålningen, både från solen och från objekt med avvikande temperatur, beskrivs som 
+Strålningen, både från solen och från omgivningen när den har en annan temperatur än fastigheten, beskrivs som 
 svartkroppsstrålning. Vi har speciellt tagit upp när solen skiner in genom ett fönster och då 
-modellerat det hela ganska enkelt utifrån solsystemets geometri. På så sätt får vi veta hur 
+modellerat det hela relativt enkelt från solsystemets geometri. På så sätt får vi veta hur 
 mycket inomhusluften och väggen värms upp vid soligt väder.
 
 För värmeledning och konvektion är den främsta beräkningsmetoden finita 
 elementmetoden. För att räkna på konvektionen använder man Navier-Stokes ekvationer 
 som modellerar luftflöden. De används även av beräkningsprogrammet Comsol när vi 
 modellerar luftflödena i ofrivillig ventilation. Det ekvationssystem som fås ur finita
- elementmetoden optimeras sedan med Newton Raphsons metod.
+ elementmetoden optimeras sedan med Newton-Raphsons metod.
 
-De olika energiflödena kan sedan beräknas vid olika väderförhållanden. Läggs de 
+De olika energiflödena kan med utgångspunkt i dessa metoder beräknas vid olika väderförhållanden. Läggs de 
 sedan samman fås en bild av hur mycket energi som måste tillföras fastigheten för att 
 bibehålla en konstant inomhustemperatur.
 
 De begrepp som sammanfattar energiflödena är free-running temperature – som visar på 
 vilken temperatur fastigheten skulle ha om man nyttjade den som idag men utan 
-uppvärmning, och ekvivalent temperatur – som sammanfattar vädret i en ny utomhustemperatur. Dessa båda blir givetvis olika för olika väderförhållanden.
+uppvärmning; och ekvivalent temperatur – som sammanfattar vädret i en ny utomhustemperatur. Dessa båda blir givetvis olika för olika väderförhållanden.
 
 I och med vår uppdelning kan vi se var byggnadens största energitjuvar finns och 
 olika energibesparande åtgärder kan vägas mot varandra. Om det läcker mest energi ur
- en del av byggnaden är det ofördelaktigt att åtgärda en annan del där det läcker betydligt
+ en del av byggnaden är det inte optimalt att åtgärda en annan del där det läcker betydligt
   mindre. Vi kan också se vilka väderförhållanden som påverkar energiflödet mest. 
 Exempelvis om ett väderförhållande som stjäl mycket energi inträffar relativt sällan tjänar
  man kanske mindre på att åtgärda det än ett som stjäl mindre energi men inträffar väldigt 
  ofta.
 
-Slutligen diskuterar vi var husets största problem, ur energisynpunkt, finns och hur lämpliga olika åtgärder är.
+Slutligen diskuterar vi var husets största problem ur energisynpunkt finns och hur lämpliga olika åtgärder är.

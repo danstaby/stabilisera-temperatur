@@ -18,32 +18,33 @@ Då gjordes två lägenheter om till kontor, stammar byttes och vinden byggdes o
 Både taket, burspråken på södersidan och den norra fasaden tilläggsisolerades.
 I samband med detta installerades också nya värme- och ventialtionssystem och alla
 fönster byttes och tätades med expanderskum. Den främsta skillnaden för de boende
-blev minskat drag och bättre luftgenomströmmning.  Med det nya venitlationssystemet
-byts luften helt och hållet varannan timme. Enligt Peter Särneö\cite{petersarneo}
+blev minskat drag vid blåst och bättre ventilation.  Med det nya ventilationssystemet
+byts luften helt och hållet varannan timme och den friska luften värmeväxlas också med den gamla för att minska energiförlusterna. Enligt Peter Särneö\cite{petersarneo}
 förbrukar fastigheten idag mindre energi än ett nybyggt hus.
 
 \begin{figure}
 \centering
 \includegraphics[width=130mm,height=87mm]{images/house.eps}
-\caption{Fastigheten Johanneberg 7:8 på Walleriusgatan i Göteborg}
+\caption{Fastigheten Johanneberg 7:8 på Walleriusgatan i Göteborg.}
 \label{fig:thehouse:house}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=1.67in,height=1.67in]{images/map.eps}
-\caption{Kartbild över fastigheten markerad med \textbf{\color{blue}+}. Fasaden som vätter mot söder är vinklad $\unit[32]{^\circ}$ från
+\caption{Kartbild över fastigheten, som är markerad med \textbf{\color{blue}+}. Fasaden som vätter mot söder är vinklad $\unit[32]{^\circ}$ från
 ost-västlig riktning.}
 \label{fig:thehouse:map}
 \end{figure}
 
-Fastigheten har idag 13 lägenheter och en kontorslokal på $\unit[225]{m^2}$. De utgör tillsammans $\unit[1450]{m^2}$ fördelat på sju våningar. Utöver detta finns det gemensamma utrymme, trapphus, förråd och apparatrum i den nedre källaren och Peter Särneö\cite{petersarneo} bedömmer att det totalt rör sig om ca $\unit[2000]{m^2}$. Sedan ett tag tillbaka har även en väderstation och en solintensitetsmätare installerats i förhoppningen att den ska kunna utnyttjas för att förbättra fastighetens klimat ytterligare, se avsnitt \ref{subsec_weathertransmitter}. Hur detta ska göras är det det här projektets uppgift att undersöka.
+Fastigheten har idag 13 lägenheter och en kontorslokal på $\unit[225]{m^2}$. De utgör tillsammans $\unit[1450]{m^2}$ fördelat på sju våningar. Utöver detta finns det gemensamma utrymmen, trapphus, förråd och apparatrum i den nedre källaren och Peter Särneö\cite{petersarneo} bedömer att den totala ytan är cirka $\unit[2000]{m^2}$. Sedan ett tag tillbaka har även en väderstation och en solintensitetsmätare installerats, se avsnitt \ref{subsec_weathertransmitter}, i förhoppningen att de ska kunna utnyttjas för att förbättra fastighetens klimat ytterligare- Det är det här projektets uppgift att undersöka hur det ska kunna genomföras.
 
-Ett centralt begrepp för att göra fysikaliska beräkningar på värmeflödet genom fastighetens olika gränsytor var U-värdet. Dessa beräknas utifrån materialets tjocklek och värmeledningsförmåga, se avsnitt \ref{sec:heatconduction}. U-värdet kan ses som ett mått på väggens förmåga att släppa igenom värme. För en vägg med flera lager summeras U-värden på samma sätt som parallellkopplade resistorer
+För att göra beräkningar av värmeflödet genom väggarna vid olika väderförhållanden har U-värdet varit ett centralt begrepp. De beräknas utifrån materialets tjocklek och värmeledningsförmåga, se avsnitt \ref{sec:heatconduction}. U-värdet är ett mått på väggens förmåga att släppa igenom värme och mäts i $\unit{Wm^{-2}K^{-1}}$. För en vägg med flera lager summeras U-värden på samma sätt som resistansen parallellkopplade resistorer:
 \begin{equation}
 \label{eq:uvalue}
 \frac{1}{U_{tot}}= (\frac{1}{U_1}+...+\frac{1}{U_n}).
 \end{equation}
+Väggarnas olika U-värden presenteras i tabell \ref{tbl:uvalue}.
 
 \begin{table}[hbtp]
 \centering
@@ -53,13 +54,13 @@ Ett centralt begrepp för att göra fysikaliska beräkningar på värmeflödet g
 \begin{tabular}
 {|l|r|r|}
 \hline
-\textbf{Del} & \textbf{Area, $\unit{m^2}$} & \parbox[c][1.2cm][c]{2 cm}{\textbf{U-värde,\\$\unit{Wm^{-2}K^{-1}}$}} \\
+\textbf{Del} & \textbf{Area $[\unit{m^2}]$} & \parbox[c][1.2cm][c]{2 cm}{\textbf{U-värde\\$[\unit{Wm^{-2}K^{-1}}]$}} \\
 \hline
 Söderväggen &  151 & 1,186 \\ 
 Västerväggen & 61 & 1,186 \\
 Norrväggen & 290 & 0,279 \\
 Burspråket & 47 & 0,393 \\
-Tak & 257 & 0,171 \\
+Taket & 257 & 0,171 \\
 \hline
 Fönster, söder & 109 & 1,0 \\
 Fönster, norr & 89 & 1,0 \\
@@ -95,14 +96,13 @@ Det genomsnittliga U-värdet för fastigheten, grunden borträknad, är 0,6.
 }
 }
 
-\caption{\label{fig:thewalls} Väggarnas uppbyggnad.}
+\caption{\label{fig:thewalls} Väggarnas konstruktion.}
 \end{figure}
 
-Ytterväggarna bestod ursprungligen av 50 cm tegel, klätt med ett centimetertjockt lager av puts på insidan,
-se figur \ref{fig:sodervagg}. Norrväggen, som tilläggsisolerades i samband med renoveringen 1988, har dessutom
-$\unit[2]{ cm}$ puts, $\unit[10]{ cm}$ mineralull och ytterligare $\unit[2]{ cm}$ puts utanpå tegelväggen,
-se figur \ref{fig:norrvagg}.\cite{kandidatarbete2010}\cite{petersarneo}. Då tegels värmeledningsförmåga är
-$\unit[0,593]{Wm^{-1}K^{-1}}$ och mineralulls är $\unit[0,037]{Wm^{-1}K^{-1}}$
+Ytterväggarna bestod ursprungligen av \unit[0,5]{m} tegel, klätt med ett centimetertjockt lager av puts på insidan,
+se figur \ref{fig:sodervagg}. Norrväggen, som tilläggsisolerades i samband med renoveringen 1988, har dessutom puts och ett decimetertjockt lager mineralull följt av ett lager puts utanpå tegelväggen,
+se figur \ref{fig:norrvagg}.\cite{kandidatarbete2010}\cite{petersarneo}. Då värmeledningsförmågan hos tegel är
+$\unit[0,593]{Wm^{-1}K^{-1}}$ och den för mineralull är $\unit[0,037]{Wm^{-1}K^{-1}}$
 fås att den isolerade norrväggen har ett U-värde på $\unit[0,279]{Wm^{-2}K^{-1}}$
 medan den oisolerade söderväggens U-värde är $\unit[1,186]{Wm^{-2}K^{-1}}$.
 
@@ -112,19 +112,19 @@ medan den oisolerade söderväggens U-värde är $\unit[1,186]{Wm^{-2}K^{-1}}$.
 \caption{\label{fig:bursprak}{Burspråket på söderväggen, utifrån och in från vänster till höger. Alla mått är i mm.}}
 \end{figure}
 
-Fastigheten ligger mellan två andra byggnader i liknande stil. Det öster om är lika högt som fastigheten medan det i väster är något lägre. Fastighetens yttervägg i väster är inte tilläggsisolerad och har samma uppbyggnad som söderväggen, se figur \ref{fig:sodervagg}.
+Fastigheten ligger mellan två andra byggnader i liknande stil. Den till öster är lika hög som fastigheten medan den i väster är något lägre. Fastighetens yttervägg i väster är inte tilläggsisolerad och har samma konstruktion som söderväggen, se figur \ref{fig:sodervagg}.
 
-På söderväggen finns ett kopparklätt burspråk. Kopparn sitter direkt på en cementbunden spånskiva som följs av en luftspalt om ca 2,5 cm. Väggen innanför består av 1,6 cm gips, 5 cm minneralull och sedan ytterligare 2,4 cm gips, se figur \ref{fig:bursprak}.\cite{kandidatarbete2010} Burspråkets U-värdet är $\unit[0,393]{Wm^{-2}K^{-1}}$.
+På söderväggen finns ett kopparklätt burspråk. Kopparn sitter direkt på en cementbunden spånskiva som följs av en luftspalt. Väggen innanför består av gips, isolerade mineralull och sedan mer gips, se figur \ref{fig:bursprak}.\cite{kandidatarbete2010} Burspråkets U-värde är $\unit[0,393]{Wm^{-2}K^{-1}}$.
 
 \subsection{Taket}
-Även taket lades om i samband med den stora renoveringen för minskad energiåtgång. Efter det bestod det av taktegel på underlagspapp ytterst, följt av 1,3 cm gips, 21 cm mineralull och innerst ytterligare 2,6 cm gips, se figur \ref{fig:taket}.\cite{kandidatarbete2010}. U-värdet för taket är $\unit[0,171]{Wm^{-2}K^{-1}}$.
+Även taket lades om i samband med den stora renoveringen. Därefter bestod det av taktegel på underlagspapp ytterst, följt av gips, isolerande mineralull och innerst ytterligare ett lager gips, se figur \ref{fig:taket}.\cite{kandidatarbete2010}. U-värdet för taket är $\unit[0,171]{Wm^{-2}K^{-1}}$.
 
-Direkt under taket finns en lägenhet som givetvis är uppvärmd. Precis under taknocken finns ett mindre utrymme, se figur \ref{fig:attic}, för till exempel kablar.
+Direkt under taket finns en lägenhet som givetvis är uppvärmd. Precis under taknocken finns ett mindre utrymme, se figur \ref{fig:attic}, som bland annat kan användas för kablar.
 
 \begin{figure}[hpbt]
 \centering
 \subfloat[
-	\label{fig:taket}Takets uppbyggnad. Alla mått är i mm.
+	\label{fig:taket}Takets konstruktion. Alla mått är i mm.
 	]{
 	\parbox[c]{7cm}{
 	\centering
@@ -141,17 +141,17 @@ Direkt under taket finns en lägenhet som givetvis är uppvärmd. Precis under t
 		}
 	}
 }
-\caption{\label{fig:roof_attic} Takets och vindens uppbyggnader.}
+\caption{\label{fig:roof_attic} Takets och vindens respektive konstruktioner.}
 \end{figure}
 
 
 \subsection{Fönstren}
 
-Byggnadens fönster sattes in 1988 och är av treglastyp utan ytbeläggningar. De två yttersta rutorna är isolerglas, det vill säga de två fönstrena är hermetiskt tillslutna, och den inslutna volymen är fyllt med argon för att minska värmeledningsförmågan. Totalt får fönstren ett U-värde på ungefär $\unit[1]{Wm^{-2}K^{-1}}$, se avsnitt \ref{sec:heatconduction} för definition. 
+Byggnadens fönster sattes in 1988 och är av treglastyp utan ytbeläggningar. De två yttersta rutorna är isolerglas, det vill säga de två rutorna avgränsar ett hermetiskt tillslutet utrymme, och den inneslutna volymen är fylld med argon för att minska värmeledningsförmågan. Totalt har fönstren ett U-värde på ungefär $\unit[1]{Wm^{-2}K^{-1}}$.
 
 \subsection{Grunden}
 
-Huset är byggt på ett berg som sluttar kraftigt. I östra delen av fastigheten ligger huset direkt på berget med endast ett lager av makadam emellan\cite{petersarneo}. I västra halvan har huset en undre källare, det är där apparat- och fläktrummen finns. Där är det betydligt större avstånd ned till berget, uppskattningsvis ett par meter. % Mer exakt? Källa?
+Huset är byggt på ett berg som sluttar kraftigt. I östra delen av fastigheten ligger huset direkt på berget med endast ett lager av makadam emellan\cite{petersarneo}. I västra halvan har huset en undre källare där apparat- och fläktrummen finns. Där är det betydligt större avstånd ned till berget, uppskattningsvis ett par meter. % Mer exakt? Källa?
 
 \subsection{Uppvärmning och ventilation}
-Idag värms huset av bergvärme från tre bergvärmepumpar. För att minska energiåtgången har ett flertal värmeväxlare installerats och värmen från all frånluft återanvänds i möjligaste mån. Utifrån vad Peter Särneö har sagt har bedömningen att detta är ett tämligen effektivt energiförsörjningssytem gjorts. Det är inte här de stora energivinsterna kan göras i den här fastigheten. Varifrån energin för uppvärmning av fastigheten är inte heller något som behandlas inom det här arbetet.
+Idag värms huset av bergvärme från tre bergvärmepumpar. För att minska energiåtgången har ett flertal värmeväxlare installerats och värmen från all frånluft återanvänds i möjligaste mån. Peter Särneö gör bedömningen att detta är ett tämligen effektivt energiförsörjningssytem. Det är inte här de stora energivinsterna kan göras i den här fastigheten. Varifrån energin för uppvärmning av fastigheten kommer är inte heller något som behandlas inom det här arbetet.
