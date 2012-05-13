@@ -92,15 +92,15 @@ $Q_\text{L}$. Värden på dessa kommer sedan att användas tillsammans med
 ovanstående beräkningar för att uppskatta den totala mängden energi som kan sparas. 
 
 Från SMHI:s väderstatistik går det att utläsa att $\unit[8]{\%}$ av eldningsperiodens timmar är soliga\cite{SMHIdata}.
-Detta motsvarar då $\unit[1,92]{~soliga~timmar}$ i snitt per dygn. Härnäst betecknas andelen timmar som är molniga som
-$p = 1,92/9,32 = \unit[20,45]{\%}$. Nu beräknas medelenergiåtgången per dygn $Q$ enligt
+Detta motsvarar då $\unit[1,92]{~soliga~timmar}$ i snitt per dygn. Härnäst betecknas andelen timmar som är soliga som
+$p = 1,92/\bar{\tau} = 1,92/9,39 = \unit[20,45]{\%}$. Nu beräknas medelenergiåtgången per dygn $Q$ enligt
 
 \begin{equation}
-Q = p\cdot Q_\text{H} + (1-p)\cdot Q_\text{L}.
+Q = (1-p)\cdot Q_\text{H} + p\cdot Q_\text{L}.
 \end{equation}
 
 Slutligen kan kvoten $Q/Q_\text{H}$ beräknas vilket ger ett uttryck för hur stor andel av energin det går att spara
 
 \begin{equation}
-\frac{Q}{Q_\text{H}} = \frac{p\cdot Q_\text{H} + (1-p)\cdot Q_\text{L}}{Q_\text{H}} = p+(1-p)\frac{Q_\text{L}}{Q_\text{H}}.
+\frac{Q}{Q_\text{H}} = \frac{(1-p)\cdot Q_\text{H} + p\cdot Q_\text{L}}{Q_\text{H}} = 1-p + p+p\frac{Q_\text{L}}{Q_\text{H}}.
 \end{equation}
