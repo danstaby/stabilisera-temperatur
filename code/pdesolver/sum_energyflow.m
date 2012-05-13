@@ -38,10 +38,10 @@ tempdec=utetemp(:,2)+273;
 utapr=0.75*sigma.*(intemp.^4-tempapr.^4)+(intemp-tempapr);
 utdec=0.75*sigma.*(intemp.^4-tempdec.^4)+(intemp-tempdec);
 
-figure(5)
-plot(tiden, utapr)
-figure(6)
-plot(tiden, utdec)
+%figure(5)
+%plot(tiden, utapr)
+%figure(6)
+%plot(tiden, utdec)
 
 % GRUNDEN och KONSTANT
     foundationdec=3461;
