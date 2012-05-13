@@ -107,9 +107,11 @@ dirnan = isnan(dirichletConditions(e(5,:)));
 dirichlet = e([1 2 5], find(~dirnan));
 Free=setdiff(1:pCount,unique(dirichlet));
 
-Minv(Free,Free) = inv(M(Free,Free));
-MinvA(Free,Free) = inv(M(Free,Free))*A(Free,Free);
 
+fprintf(1, 'Inversing matrices... ')
+Minv(Free,Free) = inv(M(Free,Free));
+MinvA(Free,Free) = Minv(Free,Free)*A(Free,Free);
+fprintf(1, 'done!\n')
 
 
 Q = sparse(pCount, pCount);
@@ -186,6 +188,7 @@ b = b - (A+Q) * u + g;
 
 
 %Solve system
+fprintf(1,'Creating eigen value decomoposition... ')
 
 [VecTemp lambdaTemp] = eig(full(MinvA(Free,Free)+Minv(Free,Free)* ...
 				Q(Free,Free))); %Calculate
@@ -198,7 +201,7 @@ Vec(Free,Free) = VecTemp;
 lambda(Free) = diag(lambdaTemp);
 Vinv = zeros(pCount,pCount);
 Vinv(Free,Free) = inv(Vec(Free,Free));
-
+fprintf(1, ' done!\n')
 
 eConst = sparse(pCount,1);
 fConst = sparse(pCount,1);
@@ -237,6 +240,9 @@ end
 
 %We have the MOL differential equation:
 %T' + lambda*T = cAlpha + cBeta*cos(omega*t) + cGamma*sin(omega*t)
+
+fprintf(1, 'Evaluating method of lines ODE...')
+
 cAlpha = Vinv*Minv*b; 
 cBeta = Vinv*Minv*eConst;
 cGamma = Vinv*Minv*fConst;
@@ -250,6 +256,8 @@ cConst = (cGamma+omega*bConst)./lambda;
 Const = Vinv*uLast-aConst-bConst; %Set the constant before the
                                   %exponential term to match the
                                   %initial conditions.
+
+fprintf(1, ' done!\n')
 
 Tmean = zeros(3,1);
 outData = [0:(3600*24):365*3600*24]'; %Initiate return data vectors
@@ -265,7 +273,7 @@ end
 
 n = 0;
 
-
+fprintf(1, 'Iterating time steps... ')
 %Calculate the solution for all each day in a year
 for tNow = 0:(3600*24):365*3600*24
   n = n +1;
@@ -283,6 +291,7 @@ for tNow = 0:(3600*24):365*3600*24
 							%energy loss
 end
 
+fprintf(1, 'done!\n')
 
 
 %Display
