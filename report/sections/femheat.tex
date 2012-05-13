@@ -1,6 +1,6 @@
 \section{Finita elementlösning av värmeledningsekvationen}
 \label{sec:femheat}
-För att beräkna energiflödena har värmeledningsekvationen används.
+För att beräkna energiflödena har värmeledningsekvationen använts.
 Det är från avsnitt \ref{sec:heatconduction} givet att differentialekvationen
 enligt ekvation \eqref{eq:femheateq} beskriver värmeflöde i ett material.
 För att lösa den har  finita elementmetoden tillämpats.
@@ -10,9 +10,9 @@ För att lösa den har  finita elementmetoden tillämpats.
 c_p\rho\frac{\partial T}{\partial t} = \nabla\cdot(k\nabla T)
 \end{equation}
 
-För att finna en lösning integreras värmeledningsekvationen,
-multiplicerat med en $L^2$ integrabel testfunktion $\phi(\mathbf{r})$, över hela
-definitionsmängden $\Omega$ vars rand benämns $\Gamma$, alltså
+För att finna en lösning integreras värmeledningsekvationen
+multiplicerat med en $L^2$-integrerbar testfunktion $\phi(\mathbf{r})$ över hela
+definitionsmängden $\Omega$ vars rand benämns $\Gamma$ alltså
 
 \begin{equation}
 \label{eq:femheatweak}
@@ -21,12 +21,11 @@ definitionsmängden $\Omega$ vars rand benämns $\Gamma$, alltså
 \end{equation}
 
 Nu söks en funktion $T(\mathbf{r},t)$ som satisfierar nyss nämnda uttryck för
-alla $L^2$ integrabla testfunktioner $\phi(\mathbf{r})$.
+alla $L^2$-integrerbara testfunktioner $\phi(\mathbf{r})$.
 
 För att förenkla fortsatta beräkningar genomförs några
 omskrivningar av uttrycket. Först används divergensteoremet för att 
 eliminera divergensen i värmeledningsekvationens högerled. Detta ger då
-ekvation 
 
 \begin{equation}
 \label{eq:femheatweakfull}
@@ -37,8 +36,8 @@ k\nabla T\nabla\phi(\mathbf{r}) \mathrm{d}\Omega =
 
 där $\mathbf{n}$ är normalen till randen.
 
-Härnäst skall galerkinformuleringen skissas. Detta genomförs
-genom att temperaturen $T$ samt tidsderivatan av temperaturen $\dot{T}$
+Härnäst skall galerkinformuleringen skissas (för detaljer kring galerikinformulering och den svaga formuleringen se avsnitt \ref{sec:femtheory}). Detta genomförs
+genom att temperaturen $T$ och dess tidsderivata $\dot{T}$ definieras
 enligt
 
 \begin{align}
@@ -63,13 +62,13 @@ Ansatsen ovan stoppas härnäst in i den svaga formuleringen i ekvation
 
 För att kunna lösa problemet för definitionsmängder som består av olika
 homogena material väljs testfunktionen $\phi$ så att den försvinner vid
-alla material utom ett utvalt och värmeledningskonstanten kan då benämnas $k_n$.
+alla material utom ett visst utvalt och värmelednings\-konstanten kan då benämnas $k_n$.
 Ekvationssystemet kan sedan skrivas i matrisform
 
-\begin{equation}
+\begin*{equation}
 \label{eq:femheatmatrix}
 M\dot{T} + AT = f \Rightarrow
-\end{equation}
+\end*{equation}
 
 \begin{equation}
 \label{eq:femheatmatrix2}
@@ -79,21 +78,20 @@ M\dot{T} + AT = f \Rightarrow
 där $M$ är massmatrisen, $A$ är stelhetsmatrisen och $f$ är belastningsvektorn.
 
 Som kan ses så är ovanstående uttryck ett system av kopplade ordinära
-differentialekvationer vars lösning är trivial med hjälp av egenvärdesuppdelning.
+differential\-ekvationer vars lösning är trivial med hjälp av egenvärdes\-uppdelning.
 Vektorerna $\{v\}^n_{i=1}$ definieras som egenvektorerna av
 $M^{-1}A$ och $\lambda_i$ definieras som egenvärdena till samma matris.
 Systemets homogena lösning kan då skrivas som\cite{lay06}
 
 \begin{equation}
 \label{eq:femheathom}
-T_h(t) = \sum_n = c_nv_ne^{-\lambda_nt}
+T_h(t) = \sum_n = c_nv_ne^{-\lambda_nt}.
 \end{equation}
 
-Då ekvationen är inhomogen så återstår det att lösa systemets
+Då ekvationen är inhomogen så återstår det att finna systemets
 partikulärlösning. Då inhomogeniteten är konstant så kan lämpligen
 en konstant ansättas som partikulärlösning. Detta ger att
-$T_p(t) = D$. Insättning i differentialekvationen ger
-ekvation
+$T_{p}(t) = D$. Insättning i differentialekvationen ger
 
 \begin{align}
 \label{eq:femheatinstopp}
@@ -102,7 +100,7 @@ M^{-1}AD &= M^{-1}b \Rightarrow\\
 D &= A^{-1}b
 \end{align}
 
-där $D$ kan bestämmas med ekvationen till höger om implikationspilen.
+där $D$ kan bestämmas med ekvationen efter implikationspilen.
 
 Nu kan den fullständiga lösningen skissas som $T = T_h + T_p$ och om
 tiden sätts till noll så kan konstanterna $c_n$ bestämmas genom
