@@ -1,12 +1,10 @@
 \section{Svartkroppsstrålning}
 \label{sec:blackbody}
 
-Alla objekt reflekterar, absorberar och transmitterar ljus. De kroppar som varken 
-reflekterar eller transmitterar något ljus utan absorberar $\unit[100]{\%}$ kallas konventionellt för 
-svartkroppar. Detta är en teorektisk konstruktion då perfekta svartkroppar inte existerar 
-men trots detta kan en sådan användas som en god modell i flera fysikaliska 
-tillämpningar. Den energi som absorberats strålas ut i form av svartkroppsstråling vars 
-frekvensspektum bestäms av kroppens temperatur när kroppen är i termisk jämvikt med
+Alla objekt reflekterar, absorberar eller transmitterar ljus. De kroppar som varken 
+reflekterar eller transmitterar något ljus utan absorberar $\unit[100]{\%}$ kallas konventionellt för svartkroppar. Detta är dock en teoretisk konstruktion då perfekta svartkroppar inte existerar men modellen kan ändå användas som en god modell i flera fysikaliska 
+tillämpningar. Den energi som absorberats av kroppen strålas ut i form av svartkroppsstrålning vars 
+frekvensspektrum bestäms av kroppens temperatur när kroppen är i termisk jämvikt med
  sin omgivning. Den totala utstrålade energin per tidsenhet fås ur Stefan-Boltzmanns lag
  
 \begin{equation}
@@ -29,9 +27,13 @@ I en låda med fotoner kan den totala energin inne i lådan beskrivas som
 \frac{U}{V}=\frac{8\pi^5}{15}\frac{(kT)^4}{(hc)^3}
 \end{equation}
 
-vilket fås ur Plancks spektrum.\cite[ss.~301-302]{schroeder00}
+där $U$ är  och $V$ är lådans volym. Ekvationen fås ur Plancks spektrum.\cite[ss.~301-302]{schroeder00} % Ev. förtydliga mer om vad som fås ur Plancks spektrum och vad U är.
 
-Sedan görs ett litet hål i lådan, så att några av fotonerna kan slippa ut. Sannolikhet att fotoner med kort respektive lång våglängd ska slippa ut är samma som fördelningen mellan dem inne i lådan, eftersom de har samma hastighet.
+Sedan görs ett litet hål i lådan, så att några av fotonerna kan slippa ut. Sannolikheten för att fotoner med kort respektive lång våglängd ska slippa ut är densamma som fördelningen mellan dem inne i lådan, eftersom de har samma hastighet.
+
+Den totala mängden strålning som kommer ut kan då beräknas genom att tänka sig att 
+de fotoner som når fram till hålet under en kort tidsperiod, $\mathrm{d}t$, alla befann sig
+ på samma hemisfäriskt skal inne i lådan för en liten stund sedan, se figur \ref{fig:box}. Tjockleken på detta tänkta hemisfäriska skal är $c\mathrm{d}t$. Hemisfärens radie, $R$, beror givetvis på hur långt bakåt i tiden vi tittar.
 
 \begin{figure}[hpbt]
 \centering
@@ -39,29 +41,24 @@ Sedan görs ett litet hål i lådan, så att några av fotonerna kan slippa ut. 
 \caption{\label{fig:box}{Fotonerna som lämnar lådan har en liten stund tidigare befunnit sig i samma hemisfär inne i lådan.}}
 \end{figure}
 
-Den totala mängden strålning som kommer ut kan då beräknas genom att tänka sig att 
-de fotoner som når fram till hålet under en kort tidsperiod, $\mathrm{d}t$, alla befann sig
- i samma hemisfär inne i lådan för en liten stund sedan, se figur \ref{fig:box}. Tjockleken 
- på den tänkta hemisfären är $c\mathrm{d}t$. Hemisfärens radie, $R$, beror givetvis på 
- hur långt bak i tiden vi tittar.
 
-Ett volymelement av hemsfären ges av
+Ett volymelement av det hemsfäriska skalet ges av
 \begin{equation}
 V=(R\mathrm{d}\theta) \times (R\sin\theta\mathrm{d}\phi) \times (c \mathrm{d}t).
 \end{equation}
 
-Energitäthetenför fotonerna i volymelementet är således
+Energitätheten för fotonerna i volymelementet är således
 \begin{equation}
 E_\text{v.e.}=\frac{U}{V} c \mathrm{d}t R^2 \sin\theta \mathrm{d}\theta \mathrm{d}\phi.
 \end{equation}
 
-Men endast den andel av fotonerna som har rätt riktning kommer ut genom lådans öppning. Sannoliketen för att en foton har rätt riktning är
+Men endast den andel av fotonerna som har rätt riktning kommer ut genom lådans öppning. Sannolikheten för att en foton har rätt riktning är
 \begin{equation}
 P(\text{rätt riktning})=\frac{A\cos\theta}{4\pi R^2}
 \end{equation}
 
 där A är hålets area. Den totala energin som strålar ut ur hålet från det lilla 
-volymselementet är alltså 
+volymelementet är alltså 
 \begin{equation}
 \frac{A\cos\theta}{4\pi}\frac{U}{V} c\mathrm{d}t \sin\theta\mathrm{d}\theta \mathrm{d}\phi
 \end{equation}
@@ -76,12 +73,12 @@ Givetvis är utstrålningen beroende av både hålets area och tidsintervallet. 
 j=\frac{c}{4}\frac{U}{V}. 
 \end{equation}
 
-Sätt in detta uttryck i ekvation~\eqref{eq:photonbox} och ut fås det vi känner som Boltzmans lag,~\eqref{eq:boltzmanslag}
+Sätt in detta uttryck i ekvation~\eqref{eq:photonbox} så fås det vi känner som Stefan-Boltzmans lag,~\eqref{eq:boltzmanslag}
 \begin{equation}
 j=\frac{2\pi^5}{15}{(kT)^4}{h^3c^2}=\sigma T^4
 \end{equation}
 
-där $\sigma=\frac{2\pi^5k^4}{15h^3c^2}$ är Boltzmans konstant.
+där $\sigma=\frac{2\pi^5k^4}{15h^3c^2}$ är Stefan-Boltzmans konstant.
 
 
 \subsection{Strålning från omgivningen}
@@ -90,9 +87,8 @@ där $\sigma=\frac{2\pi^5k^4}{15h^3c^2}$ är Boltzmans konstant.
 \begin{figure}[hpbt]
 \centering
 \includegraphics[height=4cm]{images/blackbody_surroundings.eps}
-\caption{\label{fig:surroundings}{Så stor andel av den mot väggen instrålande 
-svartkroppsstrålningen kommer från olika omgivningar. Den undersökta fastigheten på 
-Walleriusgatan t.v., och Johannebergskyrkans församlingshem t.h.}}
+\caption{\label{fig:surroundings}{Den undersökta fastigheten på 
+Wallerius\-gatan till vänster, och Johannebergs\-kyrkans församlings\-hem till höger. Den mot väggen instrålade svartkroppstrålningen kommer från olika källor. Här illustreras hur mycket av väggens omgivning som upptas mark, annan fastighet respektive atmosfären.}}
 \end{figure}
 
 För att uppskatta hur mycket svartkroppsstrålning som kommer mot väggen från olika 
@@ -101,7 +97,7 @@ församlingshem ligger mitt emot vår undersökta fastighet på Walleriusgatan, 
 församlingshemmet ligger 30 meter bort och är 40 meter högt samt att det är det enda 
 föremålet av betydande storlek i närheten, se figur~\ref{fig:surroundings}. För varje punkt
  på väggen beskrivs sedan hur stor andel av dess omgivning som upptas av marken, 
- församlingshemmet respektive himlen, eller atmosfären med hjälp av ekvationerna
+ församlingshemmet respektive himlen, eller atmosfären, med hjälp av ekvationerna
 
 \begin{equation}
 p_\text{gata}=\tan^{-1}(30/h)/180
@@ -111,7 +107,7 @@ p_\text{gata}=\tan^{-1}(30/h)/180
 p_\text{byggnad}= \left\{
 \begin{array}{rl}
 \tan^{-1}(\frac{30}{h-40})/180 & \text{om } h > 40 \\
-(\tan^{-1}(\frac{40-h}{30})+\tan^{-1}(\frac{h}{30}))/180 & \text{om } h < 40 \\
+(\tan^{-1}(\frac{40-h}{30})+\tan^{-1}(\frac{h}{30}))/180^\circ & \text{om } h < 40 \\
 \end{array} \right.
 \end{equation}
 
@@ -119,13 +115,11 @@ p_\text{byggnad}= \left\{
 p_\text{atmosfär}=1-p_\text{gata}-p_\text{byggnad}.
 \end{equation}
 
-Medelvärdet då h går från 0 till 66 meter ger det genomsnittliga värdet för hur stor andel 
-av den instrålade svartkroppsstrålningen mot hela väggen som kommer från olika delar
- av omgivningen. Detta ger resultatet att 26\% kommer från gata, 36\% från 
- församlingshemmet och 38\% från atmosfären. Oftast antas allt som inte är atmosfären att ha utomhustemperatur.
- 
-Atmosfärens temperatur kan fås ur \cite{bb_atmosphere}, där Stephan-Boltzmans lag modifieras och att strålningen från atmosfären en klar dag kan beskrivas som 
+Medelvärdet då $h$ går från 0 till 66 meter ger det genomsnittliga värdet för hur stor del av omgivningen som representeras av mark, annan fastighet och atmosfär för hela väggen. Detta ger resultatet att 26\% är gata, 36\% är 
+ församlingshemmet och 38\% är atmosfären. Oftast antas allt som inte är atmosfären ha utomhustemperatur.
+
+\cite{bb_atmosphere} ger atmosfärens temperatur genom en modifierad variant av Stephan-Boltzmans lag och att strålningen från atmosfären en klar dag kan beskrivas som 
 \begin{equation}
 I_\text{atmosfär}=\sigma\cdot T_\text{ute}^4(1-c \cdot e^{-d(273-T_\text{ute})^2})
 \end{equation}
-där $c=0,261$ och $d=7,77\cdot10^{-4}$ kommer ur statistiska data. En helt molnig dag kan atmosfärens temperatur $T_\text{ute}$, det vill säga $c=0$. Denna ekvation har fåtts ut statistiska data från flera olika platser över hela världen. 
+där $c=0,261$ och $d=7,77\cdot10^{-4}$ kommer ur statistiska data. En helt molnig dag är atmosfärens temperatur samma som utomhustemperaturen, $T_\text{ute}$, det vill säga $c=0$. Denna ekvation har fåtts ut statistiska data och visar sig stämma bra för hela världen\cite{bb_atmosphere}.
