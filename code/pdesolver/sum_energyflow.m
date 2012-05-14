@@ -25,10 +25,13 @@ tiden=aprnosun2(length-172:length,1);
 tiden=tiden/3600-24*29;
 
 % SOL in gm fönster
-load si_apr.txt
-    aprsun=-si_apr(2:174,2);
-load si_dec.txt
-    decsun=-si_dec(2:174,2);
+%load si_apr.txt
+%    aprsun=-si_apr(2:174,2);
+%load si_dec.txt
+%    decsun=-si_dec(2:174,2);
+load ../sun/windowsimulation.mat;
+    aprsun=-windowssunapril(2:174,2);
+    decsun=-windowssundec(2:174,2);
 
 % strålning UT gm fönaster.
 sigma=5.67*10^(-8);
