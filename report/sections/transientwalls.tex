@@ -6,15 +6,16 @@
 För att visualisera hur flödet genom en vägg förändras med
 förändringar i vädret utomhus modelleras ett tidssteg där utomhustemperaturen förändras från
 $\unit[0]{^\circ C}$ till $\unit[10]{^\circ C}$. Inomhustemperaturen hålls konstant till $\unit[20]{^\circ C}$.
-Detta har gjorts för en vägg utan och en vägg med isolering samt fastigheten på Walleriusgatans burspråk
+Detta har gjorts för en vägg utan och en vägg med isolering samt en vägg motsvarande burspråket på fastigheten på Walleriusgatan,
 se figur \ref{fig:energyflow_trans}. Beräkningarna är genomförda med finita elementmetoden
-där den oisolerade väggen består av $\unit[0,5]{m}$ tegel och den isolerade har dessutom $\unit[0,1]{m}$ mineralull. Burspråken
+där den oisolerade väggen består av $\unit[0,5]{m}$ tegel och den isolerade dessutom har $\unit[0,1]{m}$ mineralull. Burspråken
 består av bland annat gips och $\unit[5]{cm}$ mineralull vilket finns närmare beskrivet i avsnitt~\ref{subsec:thehouse}.
 
-Stigtiden för de två tegelväggarna beräknades till $\unit[34,8]{timmar}$ för väggen utan isolering
-respektive $\unit[98,8]{timmar}$ för väggen med isolering. 
-Värt att notera är också att det tog $\unit[9,6]{timmar}$ respektive $\unit[16,8]{timmar}$ för energiflödet att falla $\unit[10]{\%}$. 
-På burspråket sker de första 10\%:ernas stigning på $46$ minuter och stigtiden blir $169$ minuter.
+Stigtiden är den tid det tar för väggen att anpassa sig till den nya utomhustemperaturen när den höjs i form av ett steg närmare bestämt den tid det tar från 10 \% till 90\% av stigningen att ske.
+För de två tegelväggarna beräknades tidskonstanten till $\unit[35]{timmar}$ för väggen utan isolering
+respektive $\unit[99]{timmar}$ för väggen med isolering. 
+Värt att notera är också att det tog $\unit[9,6]{timmar}$ respektive $\unit[16,8]{timmar}$ för energiflödet att stiga $\unit[10]{\%}$. 
+På burspråket sker de första 10\%:en av stigningen på $46$ minuter och stigtiden blir totalt $170$ minuter.
 
 \begin{figure}[hpbt]
 \centering
@@ -32,9 +33,9 @@ På burspråket sker de första 10\%:ernas stigning på $46$ minuter och stigtid
 
 \end{figure}
 
-Här kan alltså ses en avsevärd skillnad i hur lång tid det tar innan väggen har anpassat sig till en ny temperatur. En sådan här plötslig och drastisk förändring i temperaturen är inte något som sker speciellt ofta och ju kortare dagarna är desto mindre är temperaturvariationerna mellan dag och natt. \cite{SMHItempskillnad}
-Vid nyår kan man inte förvänt sig en skilland på mer än $\unit[2-3]{^\circ C}$. Vi kan ändå konstatera att förändringen i temperatur fortplantar sig betydligt långsammare i en isolerad vägg än en oisolerad. Har man då väggar som är olika bra isolerade behöver man troligen även ha två olika reglersystem för de delar av huset som ligger närmast respektive vägg, om man inte reglerar enbart efter inomhustemperaturen. 
+Här kan alltså ses en avsevärd skillnad i hur lång tid det tar innan väggen har anpassat sig till en ny temperatur. En sådan här plötslig och drastisk förändring i temperaturen är inte något som sker speciellt ofta och ju kortare dagarna är desto mindre är temperaturvariationerna mellan dag och natt\cite{SMHItempskillnad}.
+Vid nyår kan man inte förväntat sig en skilland på mer än $\unit[2-3]{^\circ C}$. Vi kan ändå konstatera att förändringen i temperatur fortplantar sig betydligt långsammare i en isolerad vägg än i en oisolerad. Har man då väggar som är olika bra isolerade behöver man troligen även ha två olika reglersystem för de delar av huset som ligger närmast respektive vägg, om man inte reglerar enbart efter inomhustemperaturen. 
 
-Återigen visas det att en isolerad vägg är mer motståndskraftig för förändringar i utomhustemperaturen vilket är en fördel om ett jämt inomhusklimat eftersträvas.
+Återigen visas det att en isolerad vägg är mer motståndskraftig för förändringar i utomhustemperaturen vilket är en fördel om ett jämnt inomhusklimat eftersträvas.
 
-Burspråkets temperatur skiftar relativt snabbt vilket till stor del beror på att den är så tunn och därför har så lågt U-värde.
+Burspråkets temperatur skiftar relativt snabbt vilket till stor del beror på att burspråkets vägg är så tunn och därför har så lågt U-värde.
