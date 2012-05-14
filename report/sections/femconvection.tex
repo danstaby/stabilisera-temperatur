@@ -28,11 +28,11 @@ p = p_s - \lambda\nabla\cdot\mathbf{v}.
 Här är $p_s$ någon form av önskat idealt statiskt
 tryck. Detta tryck följer Boussinesqs approximation.
 \cite{heinrich88}\cite{taylor79}
-Som kan ses leder den godtyckliga penaltyparametern $\lambda$ till att justera trycket
-om hastighetsfältets divergens inte är identiskt noll. I viss litteratur anges 
+Som kan ses leder den godtyckliga penaltyparametern $\lambda$ till en justering trycket
+om hastighetsfältets divergens inte är identiskt med noll. I en del litteratur \emph{\color{red} Källa?} anges 
 det att penaltyparametern skall vara i storleksordningen $10^7$ men att den
 är väldigt applikationsberoende. En för liten vald penaltyparameter leder till att
-trycket inte elimineras. Andra problem uppstår vid en för stor parameter så som att ekvationssystemet
+trycket inte elimineras. Andra problem uppstår vid en för stor parameter såsom att ekvationssystemet
 kan bli svårlöst och få stabilitetsproblem när parametern blir
 för stor i jämförelse med de andra delarna i differentialekvationen.\cite{reddy93}\cite{roy05}\cite{basak04}\cite{segal2011}
 
@@ -48,7 +48,7 @@ att eliminera trycket från differentialekvationerna, vilket resulterar i
 \label{eq:femconvection:partz}
 \frac{\partial p}{\partial z} &= \frac{\partial p_s}{\partial z} -
 \frac{\partial}{\partial z} \lambda\nabla\cdot\mathbf{v} =
--g\rho_0 - \frac{\partial}{\partial z} \lambda\nabla\cdot\mathbf{v}
+-g\rho_0 - \frac{\partial}{\partial z} \lambda\nabla\cdot\mathbf{v}.
 \end{align}
 
 Notera att det statiska trycket
@@ -70,7 +70,7 @@ Detta förs in i momentekvationerna vilket ger ekvationerna
 \end{align}
 
 vilket är det ekvationssystem $\mathbf{L}(u,w,T) = 0$
-som syftas att bli evaluerat.
+som ska lösas.
 
 %%%%
 Nu skapas en svag formulering som är ett variationsproblem där $(T,u,w)$ söks
@@ -78,13 +78,13 @@ så att de satisfierar
 
 \begin{equation}
 \label{eq:femconvection:variation}
-\int_\Omega \mathbf{L}(T,u,w) \phi \mathrm{d}\Omega = 0\mbox{,  } \forall \phi \in \Phi
+\int_\Omega \mathbf{L}(T,u,w) \phi \mathrm{d}\Omega = 0\mbox{,  } \forall \phi \in \Phi.
 \end{equation}
 
 De okända funktionerna ska här vara en linjärkombination av testfunktionerna.
 
 Då differentialekvationerna innehåller andra ordningens deriveringsoperatorer i form av
-partialderiveringsoperatorn och divergensoperatorn behövs lite analys.
+partialderiveringsoperatorn och divergensoperatorn behöver de analyseras ytterligare.
 Här används divergensteoremet för att eliminera en derivering. Efter detta
 förs differentialekvationerna in i den svaga formuleringen i ekvation
 \eqref{eq:femconvection:variation}.
@@ -109,7 +109,7 @@ n_z\phi\frac{\lambda}{\rho_0}\nabla\cdot\mathbf{v}\right)\mathrm{d}\Gamma
 \end{align}
 \begin{equation}
 \int_\Omega\left(\phi\mathbf{v}\cdot\nabla T + \alpha\nabla\phi\nabla T\right)\mathrm{d}\Omega
-= \int_\Gamma \alpha\phi\nabla T\cdot\mathbf{n}\mathrm{d}\Gamma
+= \int_\Gamma \alpha\phi\nabla T\cdot\mathbf{n}\mathrm{d}\Gamma.
 \label{eq:femconvection:weakT}
 \end{equation}
 
@@ -122,20 +122,20 @@ u(x,z) &= \sum^N_{k=1}u_k\phi_k(x,z)
 \nonumber \\
 w(x,z) &= \sum^N_{k=1}w_k\phi_k(x,z)
 \nonumber \\
-T(x,z) &= \sum^N_{k=1}T_k\phi_k(x,z)
+T(x,z) &= \sum^N_{k=1}T_k\phi_k(x,z).
 \label{eq:femconvection:ansatz}
 \end{align}
 
-Då $\phi_k \in \Phi$, $k=1,2,..,N$ så uppfylls även att $u,~w$ och $T$ tillhör
+Då $\phi_k \in \Phi$, $k=1,~2,~..,~N$ så uppfylls även att $u,~w$ och $T$ tillhör
 $\Phi$ då dessa är en linjärkombination av basen $\phi_k$. Om konstanterna
 är dimensionerade så att dessa uppfyller $\mathbf{L}(u,w,T) = 0$ är detta
 en lösning till variationsproblemet. \cite{johnson2009}\cite{heath2002}\cite{lewis04}
 
 Ansatsen kan nu sättas in i den svaga formuleringen.
-Alla förekomster av $\phi$ byts ut mot $\phi_i$ med $i=1,2,..,N$. Då
+Alla förekomster av $\phi$ byts ut mot $\phi_i$ med $i=1,~2,~..,~N$. Då
 kontinuitetskriteriet~\eqref{eq:convection:continuity} säger att
 $\nabla\cdot\mathbf{v} = 0$ sätts detta på randen vilket ger att den
-ena termen i högerhandsintegralerna som ekvation~\eqref{eq:femconvection:weaku} och
+ena termen i högerhandsintegralerna ekvationerna~\eqref{eq:femconvection:weaku} och
 \eqref{eq:femconvection:weakw}
 försvinner. Slutligen ger
 detta galerkinformuleringen i ekvationerna
@@ -177,6 +177,6 @@ detta galerkinformuleringen i ekvationerna
 \sum^N_{j=1}\sum^N_{k=1}w_jT_k\int_\Omega \phi_i\phi_j\nabla\phi_k \mathrm{d}\Omega \\ +
 \nonumber
 \sum^N_{j=1} T_j \int_\Omega \alpha\nabla\phi_i\nabla\phi_j \mathrm{d}\Omega &=
-\int_\Gamma \alpha\phi_i\nabla w \cdot \mathbf{n} \mathrm{d}\Gamma
+\int_\Gamma \alpha\phi_i\nabla w \cdot \mathbf{n} \mathrm{d}\Gamma.
 \end{align}
 

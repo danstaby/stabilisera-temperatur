@@ -1,11 +1,11 @@
 \section{Studie av konvektionsparametern}
 
-Finita element har använts även för att studera konvektionsparametern. Hastigeterna har alla
+Finita element har använts även för att studera konvektionsparametern. Hastigheterna har alla
 sats till noll på randerna med $h=\unit[6,19]{W~m^{-2}~K^{-1}}$ vilket motsvarar en helt vindstilla dag.
 Husets tak är adiabadiskt
 och problemet är studerat under en natt i jämviktsläge, det vill säga en evig natt, med
-$T_{ref} = \unit[0]{^\circ C}$ som referenstemperatur och $T_{inne} = \unit[20]{^\circ C}$ inomhus.
-Väggens U-värde är satt till $U = \unit[1,19]{W~m^{-2}~K^{-1}}$ vilket motsvarar den oisolerade söderväggen på fastigheten på Walleriusgatan. Penaltyparametern är satt till $\lambda = 10^7$.
+$T_\text{ref} = \unit[0]{^\circ C}$ som referenstemperatur och $T_\text{inne} = \unit[20]{^\circ C}$ inomhus.
+Väggens U-värde är satt till $U = \unit[1,19]{W~m^{-2}~K^{-1}}$ vilket motsvarar den oisolerade söderväggen på fastigheten på Walleriusgatan. Penaltyparametern är satt till $\lambda = 10^7$ \emph{\color{Enhet på penaltyparametern}}.
 
 \begin{figure}
 \centering
@@ -13,40 +13,39 @@ Väggens U-värde är satt till $U = \unit[1,19]{W~m^{-2}~K^{-1}}$ vilket motsva
 \caption{Definitionsmängd samt triangulering av problemuppställningen för studie av konvektion.}
 \end{figure}
 
-Svartkroppsstrålningen approximeras med första ordningens Taylorutveckling och
+Svartkroppsstrålningen approximeras med första ordningens taylorutveckling och
 för varje steg löses det slutgiltiga ekvationssystemet med den
-modifierade Newton-Raphson metoden. När systemet har lösts beräknas
+modifierade Newton-Raphsons metod. När systemet har lösts beräknas
 medeltemperaturen på väggen. Denna används sedan som gissning och utvecklingspunkt
 för ovan nämnda taylorutveckling. Denna process upprepas tills medeltemperaturen
-ligger tillräckligt nära gissningen. Således genomförs en rad Newtonsteg
-för att hitta hur mycket som strålar från fastigheten genom svartkroppsstrålning.
+ligger tillräckligt nära gissningen. Således genomförs en rad newtonsteg
+för att bestämma strålningseffekten från fastigheten genom svartkroppsstrålning.
 
-Sist beräknas konvektionsparametern genom att vi vet mängden energi som transporteras
-genom luften. I jämvikt gäller
+Sist beräknas konvektionsparametern då mängden energi som transporteras
+genom luften är känd. I jämvikt gäller
 
 \begin{equation}
 \label{eq:convectionmethod:balance}
-Q_v + Q_{sk} = Q_k
+Q_\text{vägg} + Q_\text{svartkropp} = Q_\text{konvektion}
 \end{equation}
 
-Här är $Q_v$ energin som flödar genom väggen, $Q_{sk}$ är energin från
-svartkroppsstrålning och $Q_k$ är då energin som transporteras med konvektion
+Här är $Q_\text{vägg}$ energin som flödar genom väggen, $Q_\text{svartkropp}$ är energin från
+svartkroppsstrålning och $Q_\text{konvektion}$ är då energin som transporteras med konvektion
 för att jämvikt skall uppstå.
 
 Medeltemperaturen $\bar{T}$ på väggen och referenstemperaturen $T_\infty$ är kända
 vilket ger att h-värdet kan beräknas enligt
 
 \begin{align}
-Q_k &= h(\bar{T}-T_\infty) \Rightarrow \nonumber \\
-h &= \frac{Q_v + Q_{sk}}{\bar{T}-T_\infty}
+Q_\text{konvektion} &= h(\bar{T}-T_\infty) \Rightarrow \nonumber \\
+h &= \frac{Q_\text{vägg} + Q_\text{svartkropp}}{\bar{T}-T_\infty}
 \end{align}
 
 
 \begin{figure}[hpbt]
 \centering
 \includegraphics[width=10cm]{images/convectemperature.eps}
-\caption{\label{fig:temp_dist}Temperaturfördelningen i $^\circ\mbox{C}$ utanför en vägg, beräknad med finita element av penaltymetoden. Inomh\
-ustempertur $\unit[20]{^\circ C}$, utomhustemperatur $\unit[0]{^\circ C}$.}
+\caption{\label{fig:temp_dist}Temperaturfördelningen i $^\circ\mbox{C}$ utanför en vägg, beräknad med finita element av penalty-metoden. Inomhus\-tempertur $\unit[20]{^\circ C}$, utomhustemperatur $\unit[0]{^\circ C}$.}
 \end{figure}
 
 % RESULTAT                                                                                                                                    
@@ -56,9 +55,9 @@ visar tydligt hur viktigt det är att inte bara reglera efter utomhustemperature
 Här finns dock anomala temperaturer vid nedre randen. Detta tyder på problem med
 metodiken.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                                                                  
-Även hastighetsfältet för temperaturens flöde, då det är vindstilla, har beräknats med finita element metoden
-applicerad på penaltymetoden. Detta kan ses i figur~\ref{fig:velocityfield} där också
-beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimligt små.
+Även hastighetsfältet för temperaturens flöde då det är vindstilla har beräknats med finita element metoden
+applicerad på penalty-metoden. Detta kan ses i figur~\ref{fig:velocityfield} där också
+beloppet av hastighetsfältet visas och det kan noteras att hastigheterna orimligt små.
 
 \begin{figure}[hpbt]
 \begin{center}
@@ -73,7 +72,8 @@ beloppet av hastighetsfältet syns och det kan noteras att hastigheterna orimlig
 \end{center}
 \end{figure}
 
-Då sedan konvektionsparametern beräkats utifrån detta blir den väldigt liten,
+
+Då sedan konvektionsparametern beräknas utifrån detta blir den väldigt liten,
 se figur~\ref{fig:konv_param}. Tyvärr verkade det inte som att metodiken som användes
 för att framställa ovanstående data fungerade tillräckligt bra för att med någon
 noggrannhet studera fenomenet konvektion. Vi menar dock att formen på hastighetsflödet intill marken och väggen
@@ -82,40 +82,40 @@ luft kan påverka då det inte var tillåtet för luften att passera där, vilke
 
 \begin{figure}[hpbt]
 \centering
-\subfloat[\label{fig:h_reftemp}Konvektionskoefficienten h mot referenstemperaturen]{
+\subfloat[\label{fig:h_reftemp}Konvektions\-koefficienten h mot referens\-temperaturen.]{
 \includegraphics[scale=0.5]{images/convech.eps}
 }
-\subfloat[\label{fig:h_penalty}Konvektionskoefficienten h mot penaltyparametern]{
+\subfloat[\label{fig:h_penalty}Konvektions\-koefficienten h mot penalty\-parametern.]{
 \includegraphics[scale=0.5]{images/convecpenalty.eps}
 }\vspace{1cm}
 
-\subfloat[\label{fig:h_volexp}Konvektionskoefficienten h mot den volymetriska expansionskoefficienten.]{
+\subfloat[\label{fig:h_volexp}Konvektions\-koefficienten h mot den volymetriska expansions\-koefficienten.]{
 \includegraphics[scale=0.5]{images/convecbeta.eps}
 }
 
-\caption{\label{fig:konv_param}Stabilitetsberäkningar av konvektionskoefficienten h mot några
-parametrar och naturkonstanter i finita elementsimuleringen av Navier-Stokes ekvationer.
-Inomhustemperaturen är satt till konstanta $\unit[20]{^\circ C}$ med en vägg vars U-värde är
-$\unit[1,19]{ W~m^{-2}~K^{-1}}$. Detta skall motsvara söderväggen på fastigheten som detta arbete behandlar.}
+\caption{\label{fig:konv_param}Stabilitets\-beräkningar av konvektions\-koefficienten h mot några
+parametrar och natur\-konstanter i finita element\-simuleringen av Navier-Stokes ekvationer.
+Inomhus\-temperaturen är satt konstant till $\unit[20]{^\circ C}$ med en vägg vars U-värde är
+$\unit[1,19]{ W~m^{-2}~K^{-1}}$. Detta skall motsvara söder\-väggen på fastigheten som detta arbete behandlar.}
 
 \end{figure}
 
 % RESULTAT                                                                                                                                    
-I figur~\ref{fig:h_reftemp} har finita elementmodellens beteende studerats vid variation på några essentiella storheter i modellen.
-Först har penaltyparametern varierats i figur~\ref{fig:h_penalty} och här kan det ses att modellens beteende förändras inte nämnvärt
-beroende på val av parameter när denna börjar vara i storleksordningen $\lambda = 10^7$. Det linjära förhållandet mellan
-konvektionskoefficienten och temperaturdifferansen är intressant men saknar stöd i litteraturen då den rimligtvis borde vara
+I figur~\ref{fig:h_reftemp} har beteendet hos metoden som bygger på finita elementmetoden studerats vid variation på några essentiella storheter i modellen.
+Först har penaltyparametern varierats i figur~\ref{fig:h_penalty} och här kan det ses att modellens beteende inte förändras nämnvärt
+beroende på val av parameter när denna närmar sig storleksordningen $\lambda = 10^7$. Det linjära förhållandet mellan
+konvektionskoefficienten och temperaturdifferensen är intressant men saknar stöd i litteraturen då den rimligtvis borde vara
 konstant eller nästan konstant. Slutligen varieras den volymetriska expansionskoefficienten
 i figur~\ref{fig:h_volexp}. Det är denna storhet
-som gör att luften stiger när den blir varm och av denna anledning fenomenet fri konvektion uppstår. Konvektionskoefficienten
-ser ut att öka mer än logaritmiskt men däremot ej så snabbt. Anledningen till att denna parameter varierades var för
-att se hur stor den parametern skulle behöva bli innan konvektionen började få samma energitransporterande egenskaper
-som den borde ha. Som kan ses så kommer inte modellen ens i närheten vid en väldigt stort vald volymetrisk expansionskoefficient.
+som gör att luften stiger när den blir varm och det är av denna anledning fenomenet fri konvektion uppstår. Konvektionskoefficienten
+ser ut att öka mer än logaritmiskt men däremot inte så snabbt. Anledningen till att penaltyparametern varierades var för
+att studera hur stor den skulle behöva bli innan konvektionen började få samma energitransporterande egenskaper
+som den förväntats ha. Som kan ses så kommer inte modellen ens i närheten av förväntat värde, inte ens då volymetrisk expansionskoefficient ett mycket högt värde.
 
 Slutligen kan vi bara konstatera att det inte gick att använda denna metod för att studera konvektionsparametern $h$. Litteraturen
-som har använts som grund till detta har använt sig av Streamline-Upwind/Petrov-Galerkin (SUPG). \cite{heinrich88}\cite{roy05} Ovanstående metod är dock
-Standard Galerkin med linjära triangulära element. Det är känt att Standard Galerkin kan leda till korsvindsproblem och lösningar som ej är
-exakta och stabila.\cite{segal2011}
-En misstanke är att det är detta problem vi ser trots att detta ej verifieras genom att titta på hastighetsfältet. Andra
+som ligger till grund för detta har använt sig av Streamline-Upwind/Petrov-Galerkin (SUPG)\cite{heinrich88}\cite{roy05}. Ovanstående metod är dock
+Standard Galerkin med linjära triangulära element. Det är känt att Standard Galerkin kan leda till korsvindsproblem och lösningar som inte är
+exakta och stabila\cite{segal2011}.
+En misstanke är att det är detta problem vi ser även om detta inte verifieras genom att studera hastighetsfältet. Andra
 möjliga orsaker kan vara randvillkor, för liten vald definitionsmängd eller något fel i den matematiska beskrivningen alternativt
 vid implementeringen i Matlab.

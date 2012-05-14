@@ -4,23 +4,21 @@ Ett hus är i praktiken omöjligt att göra helt tätt. Då vinden ligger på
 får man därför ett drag genom huset, en ofrivillig ventilation. Då vinden
 sällan är lika varm som inomhusluften leder detta till en energiförlust.
 Den har beräknats med hjälp av programvaran Comsol. Problemets geometri har
-setts upp enligt figur~ \ref{fig:windmethod:tri}.
+setts upp enligt figur~ \ref{fig:windmethod:tri}. Bredvid fastigheten på Walleriusgatan ligger en annan byggnad och problemet med vind från de olika hållen blir symmetriskt. Blåser det från norr illustreras den för projektet aktuella fastigheten till höger i bild, och blåser det från söder påverkas den som den till vänster.
 
+Från vänstra kanten så har luften blåst in med en konstant vindhastiget som varieras mellan olika
+experiment. På andra sidan av fastigheterna har det satt ett konstant lufttryck som motsvarar en
+atmosfärs tryck. På randerna som ligger mot mark eller mot hus är vindhastigheten satt till noll.
+Slutligen utför ej luftmassan ovanför definitionsmängden någon kraft på luften som ligger längs den
+övre randen.
 
 \begin{figure}
 \centering
 \includegraphics[width=127mm,height=76mm]{images/triinfiltration.eps}
-\caption{Triangulering samt definitionsmängd uppsatt för problemet}\label{fig:windmethod:tri}
+\caption{Triangulering samt definitionsmängd uppsatt för problemet.}\label{fig:windmethod:tri}
 \end{figure}
-
-Från vänstra kanten så har luften blåst in med en konstant vindhastiget som är varierad i olika
-experiment. På andra sidan av fastigheterna är det satt ett konstant lufttryck som motsvarar en
-atmosfärs tryck. På ränderna som ligger mot mark eller mot hus är vindhastigheten satt till noll.
-Slutligen utför ej luftmassan ovanför definitionsmängden någon kraft på luften som ligger längs den
-övre randen.
 
 Trycket inne i fastigheterna har sedan beräknats genom att luftläckaget antagits homogent utspritt över fastigheternas
 väggar och att inget luft läckt genom taket. Därefter har Darcys lag satts upp med antagande om jämvikt så att lika mycket
-luft som flödar in även kommer ut. Då både trycket inomhus och på ränderna är kända kan läckaget beräknas med Darcy's lag
-eller med någon annan exponent. Här är antagandet gjort att huset läcker mycket och har $C(50)^{0,60} = 1,2$. Dock
-så kommer även exponenten ha betydelse för läckaget.\cite{sasic}
+luft som flödar in även kommer ut. Då både trycket inomhus och på ränderna är kända kan läckaget beräknas med Darcys lag
+eller med någon annan exponent, se avsnitt~\ref{sec:darcy}. Här är antagandet gjort att huset läcker mycket och har $C(50)^{0,60} = 1,2$. \emph{\color{red} Vad menas här? Vad kom C ifrån? och siffrorna?} Dock kommer även exponenten ha betydelse för läckaget.\cite{sasic}
