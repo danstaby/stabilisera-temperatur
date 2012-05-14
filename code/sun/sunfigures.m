@@ -5,12 +5,12 @@ close all
 monthvector = [31,28,31,30,31,30,31,31,30,31,30,31];
 currentmonths = zeros(1,12);
 for i = 1:(month-1)
-      currentmonths(i)=1;
+    currentmonths(i)=1;
 end
 
-daynumber = dot(monthvector,currentmonths)
+daynumber = dot(monthvector,currentmonths) + day
 
-if month>3 month<10
+if month>3 && month<10
     sommartid=1;
 else
     sommartid=0;
@@ -21,7 +21,7 @@ year = 2011;
 long = 11.979435;
 lat = 57.691522;
 
-I0 = 1370;
+I0 = 1377;
 tau = [0.142,0.144,0.156,0.180,0.196,0.205,0.207,0.201,0.177,0.160,0.149, 0.142];
 daynumber = 360*(daynumber-1)/365;
 Ispace = I0*(1.00011 + 0.034221*cosd(daynumber) + 0.00128*sind(daynumber) + ...
@@ -33,12 +33,12 @@ I = [];
 eff = [];
 n = 0;
 
-for time=-(1+sommartid)*3600:500:((23-sommartid)*3600+100);
+for time=-(1+sommartid)*3600:500:(24*3600-(1+sommartid)*3480);
     UTC = time/3600;
     n = n + 1;
     if time>0
         [el(n), az(n)] = sunposition(long, lat, year, month, day, UTC);
-        theta(n) = angletheta(el(n), az(n), 180);
+        theta(n) = angletheta(el(n), az(n), 180-32);
     else
         el(n) = 0;
         az(n) = 0;
@@ -58,14 +58,16 @@ end
 %x = x/3600;
 x = x + 1 + sommartid;
 
+%{
 figure(1)
 plot(x, theta)
 hold on
 plot(x, el, 'r', x, az, 'g')
 xlabel('Tid, UTC+2 [timmar]')
 ylabel('Vinkel [grader]')
-axis([1+sommartid 22+1+sommartid -100 500])
+axis([0 24 -100 500])
 legend('Relativt horisontella södra riktningen','Höjd över horisonten','Azimuthala relativt öster, medsols positivt')
+%}
 
 figure(2)
 
