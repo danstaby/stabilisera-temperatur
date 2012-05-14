@@ -34,26 +34,40 @@
 \lhead{\sc\footnotesize Executive Summary till CTK Bachelor's Challenge}
 \rhead{\sc\footnotesize \today}
 \mbox{}
-\vspace{4mm}
+%\vspace{4mm}
 
 \begin{center}
 \textcolor{ForestGreen}{\textbf{\Huge För ett behagligt och grönt boende}}
 \end{center}
 
 \mbox{}
-\vspace{4mm}
+%\vspace{4mm}
 
 \setlength{\columnsep}{5mm}
 %\setlength{\columnseprule}{0.5mm}
 \begin{multicols}{2}
-\addtolength{\parskip}{1.5ex}
-\linespread{1.1}
+\addtolength{\parskip}{1.3ex}
+%\linespread{1.1}
 \normalsize
 
 % Ingress
-\textbf{Vi har undersökt hur vädret påverkar energiflödena genom en fastighet. Genom att ta hänsyn till fler väderparametrar än utomhusflödet kan energikonsumtionen minskas vilket i förlängningen bevarar miljön. Dessutom fås ett jämnare, och där med trivsammare, inomhusklimat vilket bara är en positiv bieffekt i vår förhoppning att kunna minska energiförbrukingen.}
+\textbf{Vi har undersökt hur vädret påverkar energiflödena genom en fastighet. Genom att ta hänsyn till fler väderparametrar än utomhustemperaturen kan energikonsumtionen minskas vilket i förlängningen bevarar miljön. Dessutom fås ett jämnare, och där med trivsammare, inomhusklimat vilket bara är en positiv bieffekt i vår förhoppning att kunna minska energiförbrukingen.}
 
-För att implementera vår modell behövs ingen ny värmeanläggning och väderdata är relativt enkelt att samla in. Är man en liten bostadsrättsförening eller bo i villa kanske man tycker att väderstationen är en stor utgift – då kan man gå ihop några grannar och samla in väderdata gemensamt.  
+\emph{\color{red} Vilket är vårt viktigaste resultat.}
+Under loppet av vårt kandidatarbete har det visat sig att både sol och vind kan
+ha markant effekt på inomhusklimatet och således energiförbrukningen. Det 
+förstnämnda leder till ett netto inflöde av energi vilket gör att en ganska
+betydande del kan sparas (\emph{\color{red} Hur mycket?}). Vinden
+ger däremot ett netto utflöde av energi och där går det inte att spara energi
+om inte fastigheten har för höga temperaturer inomhus då det inte blåser utomhus.
+
+Genom att ta hänsyn till nyss nämnda väderparametrar kan ett approximativt
+värde för energiåtgång beräknas. Då kännedom om de momentana energiförlusterna
+existerar så är det en lätt sak att reglera värmeanläggningen efter detta.
+För att implementera vår modell behövs ingen ny värmeanläggning och väderdata är relativt enkelt att samla in och distribuera. 
+
+\begin{comment}
+Är man en liten bostadsrättsförening eller bo i villa kanske man tycker att väderstationen är en stor utgift – då kan man gå ihop några grannar och samla in väderdata gemensamt.\end{comment}
 
 I och med att systemet är billigt att implementera och kan ge stora energivinster ligger det nära till hands att snart ha en färdig produkt ute på marknaden.
 
@@ -87,10 +101,19 @@ Genom att beräkna de olika energiflödena – ledning, konvektion och strålnin
 \end{tabular}
 }
 
-Moderna passivhus är utnyttjar redan vädret till sin fördel, men många hus är redan byggda utan den tekniken. Med våra modeller kan man till viss del utnyttja vädrets gratis energitillförsel även i äldre byggnader. Genom att ta hänsyn till solen kan man spara upp till 20~\% av sina energikostnader och genom att ta hänsyn till vind kan inomhusklimatet bli betydligt jämnare.
+Moderna passivhus är utnyttjar redan vädret till sin fördel, men många hus är redan byggda utan den tekniken. Med våra modeller kan man till viss del utnyttja vädrets gratis energitillförsel även i äldre byggnader. Genom att ta hänsyn till solen kan man spara upp till \emph{\color{red} ??\%} av sina energikostnader och genom att ta hänsyn till vind kan inomhusklimatet bli betydligt jämnare.
 
-Därför ska vi vinna!
 
+\emph{\color{red}Därför ska vi vinna!}
+En essentiell del av dagens och morgondagens teknologiska utveckling måste vara
+att minska energiförbrukningen genom effektivare processer. Då mycket energi
+används för uppvärmning av fastigheter, speciellt i våra nordliga breddgrader
+är det ypperligt att effektivisera uppvärmningsprocesser och
+minimera energiflörluster. Just den typen av förbättring som vårt kandidatarbete
+har studerat är väldigt bra på att uppfylla detta då det dels sparar mycket energi
+och dels är billigt att implementera. Detta innebär att en produkt baserad på
+denna princip även blir kommersiellt gångbar utan subventioner. Ett problem
+som många andra miljöförbättringar har. 
 
 
 \end{multicols}
