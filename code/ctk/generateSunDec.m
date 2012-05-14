@@ -29,7 +29,7 @@ figure(2)
 Energy = -(sunnorth(ind,2)-nosun(ind,2))*ARoof ...
        - (sunsouth(ind,2)-nosun(ind,2))*ARoof;
 
-plot(time, -(sunnorth(ind,2)-nosun(ind,2))*ARoof ...
+semilogy(time, -(sunnorth(ind,2)-nosun(ind,2))*ARoof ...
        - (sunsouth(ind,2)-nosun(ind,2))*ARoof)
 
 hold on
@@ -39,21 +39,18 @@ Energy = Energy - (decsun3(ind,2)-decnosun3(ind,2))*ABay;
 
 plot(time, -(decsun3(ind,2)-decnosun3(ind,2))*ABay, 'r')
 
-%Other wall contribution
 
-Energy = Energy - (decsun1(ind,2) - decnosun1(ind,2))*AOther;
-plot(time, -(decsun1(ind,2) - decnosun1(ind,2))*AOther, 'g')
 %North wall contribution
 
 Energy = Energy - (decsun2(ind,2) - decnosun2(ind,2))*ANorth;
 plot(time, -(decsun2(ind,2) - decnosun2(ind,2))*ANorth, 'k')
 %Window contribution
 
-legend('Roof', 'Bay', 'Other', 'North')
+
 %Energy = Energy + AWindow*sunpowerdec(:,2);
 plot(time, AWindow*sunpowerdec(:,2), 'm')
 hold off
-legend('Roof', 'Bay', 'Other', 'North', 'Window')
+legend('Roof', 'Bay' , 'North', 'Window')
 figure(1)
 plot(time, Energy)
 hold on
