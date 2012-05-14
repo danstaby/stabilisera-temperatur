@@ -29,7 +29,7 @@ tiden=tiden/3600-24*29;
 %    aprsun=-si_apr(2:174,2);
 %load si_dec.txt
 %    decsun=-si_dec(2:174,2);
-%load ../sun/windowsimulation.mat;
+load ../sun/windowsimulation.mat;
     aprsun=-windowssunapril(2:174,2);
     decsun=-windowssundec(2:174,2);
 
