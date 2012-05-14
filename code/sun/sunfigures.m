@@ -3,10 +3,11 @@ function [timefinal, intensity] = sunfigures(month, day, date)
 close all
 
 monthvector = [31,28,31,30,31,30,31,31,30,31,30,31];
-currentmonths = zeros(12);
+currentmonths = zeros(1,12);
 for i = 1:(month-1)
-      monthvector(i)=1
+      currentmonths(i)=1;
 end
+
 daynumber = dot(monthvector,currentmonths)
 
 if month>3 month<10
@@ -38,12 +39,12 @@ for time=-(1+sommartid)*3600:500:((23-sommartid)*3600+100);
     if time>0
         [el(n), az(n)] = sunposition(long, lat, year, month, day, UTC);
         theta(n) = angletheta(el(n), az(n), 180);
-    end
     else
         el(n) = 0;
         az(n) = 0;
         theta(n) = 0;
     end
+
     if el(n) > 0
         I(n) = Ispace*exp(-tau(month)/cosd(90-el(n)));
     else
@@ -51,10 +52,10 @@ for time=-(1+sommartid)*3600:500:((23-sommartid)*3600+100);
     end
     eff(n) = effekt(I(n), month, day, UTC);
     x(n)=UTC;
-    end
+    
 end
 
-x = x/3600;
+%x = x/3600;
 x = x + 1 + sommartid;
 
 figure(1)
@@ -67,7 +68,8 @@ axis([1+sommartid 22+1+sommartid -100 500])
 legend('Relativt horisontella södra riktningen','Höjd över horisonten','Azimuthala relativt öster, medsols positivt')
 
 figure(2)
-plot(x, I2, x, eff, 'r')
+
+plot(x, I, x, eff, 'r')
 xlabel('Tid, UTC [h]')
 ylabel('Intensitet [Wm^{-2}]')
 axis([0 24 0 1370])
