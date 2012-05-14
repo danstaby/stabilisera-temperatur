@@ -114,7 +114,7 @@ Problemet som återstår är då $AT = b$ vars lösning är $T_p$.
 \subsection{Lösning av problem med tidsberoende randvillkor}
 \label{subsec:mol}
 
-För att studera vädrets påverkan är det i många fall tvunget att behandla
+För att studera vädrets påverkan är det i många fall nödvändigt att behandla
 tidsberoende randvillkor. I detta arbete används framförallt två metoder för detta:
 Method-of-lines, MOL, och semidiskret MOL. Den förstnämnda metoden går ut på att
 ett system av första ordningens ordinära differentialekvationer löses analytiskt för
@@ -122,22 +122,20 @@ alla $t>0$. I den semidiskreta varianten approximeras istället randvillkoren vi
 ett visst tillfälle till en lätthanterlig funktion som endast är giltig vid
 den valda tidpunkten. Efter detta löser man differentialekvationerna upprepade gånger
 med den förra itereringens värden som nya initialvärden och de nya uppdaterade
-randvillkorenen. Denna metod är väldigt användbar det är möjligt att behandla en näsintill godtycklig
+randvillkorenen. Denna metod är väldigt användbar då det är möjligt att behandla en nästintill godtycklig
 funktion med den, så länge det finns  processorkraft att lägga på små tidssteg i jämförelse med
 randvillkorens förändringshastiget.
 
 För att lösa differentialekvationerna analytiskt för alla tider behöver man först
 sätta upp en funktion som beskriver randvillkorens beteende. Efter detta sätts
 dessa villkor i galerkinformuleringen. Dessa villkor kommer att bilda en inhomogenitet
-i systemet av differentialekvationer. Metoden för lösning av dessa blir då på analogt sätt
-som avsnittet ovan där systemet först diagonaliseras med till exempel egenvärdesdiagonalisering. Sedan är det bara att lösa systemet som vilka vanliga differentialekvationer som helst, för att sedan
-återföras till rätt storhet. Detta genomförs genom att diagonaliseringen inverseras.
+i systemet av differentialekvationer. \emph{\color{red}Metoden för lösning av dessa blir då på samma sätt som i avsnittet ovan, där systemet först diagonaliseras med till exempel egenvärdesdiagonalisering. Sedan är det bara att lösa systemet som vilka vanliga differentialekvationer som helst, för att sedan återföras till rätt storhet.} Detta genomförs genom att diagonaliseringen inverteras.
 
 Receptet för lösning blir då följande. Sätt upp ekvationssystemet
 
 \begin{equation}
 \label{eq:femheat:ourdiff}
-\dot{T}(t) + AT(t) = b(t)
+\dot{T}(t) + AT(t) = b(t).
 \end{equation}
 
 Diagonalisera systemet genom att definiera $V$ som matrisen av egenvektorer av $A$ och $D$ som den
@@ -145,21 +143,21 @@ diagonala matrisen vars element är egenvärdena av $A$. Från elementär linjä
 
 \begin{equation}
 \label{eq:femheat:vdv}
-A = VDV^{-1}
+A = VDV^{-1}.
 \end{equation}
 
 För att fortsätta beräkningarna skall ett variabelbyte genomföras. Ansätt att
 
 \begin{equation}
 \label{eq:femheat:vy}
-T = VY
+T = VY.
 \end{equation}
 
 Nu kan ekvationerna \eqref{eq:femheat:vdv} och \eqref{eq:femheat:vy} sättas in i differentialekvationen
 \eqref{eq:femheat:ourdiff}. Efter att termer flyttats och strukits ges
 
 \begin{equation}
-\dot{Y}(t) + DY(t) = V^{-1}b(t)
+\dot{Y}(t) + DY(t) = V^{-1}b(t).
 \end{equation}
 
 Slutligen söks den homogena lösningen $Y_h$ samt partikulärlösningen $Y_p$ och en linjärkombination bildas.
@@ -167,7 +165,7 @@ Lösningen uttryckt som $T$ blir då
 
 \begin{equation}
 \label{eq:femheat:solution}
-T(t) = V(Y_h+Y_p)
+T(t) = V(Y_h+Y_p).
 \end{equation}
 
 där koefficienterna dimensioneras så att begynelsevillkoret uppfylls.

@@ -7,26 +7,26 @@ Denna lösning begränsas dock till att enbart behandla statiska flöden
 vilket genomförs genom att sätta alla tidsderivator till noll.
 
 För att hantera trycket i Navier-Stokes ekvationer
-används den tidigare nämnda Boussinesq approximation
-och penalty-metoden. De göra hastighetsvektorn källfri och att
+används den tidigare nämnda Boussinesqs approximation
+och penalty-metoden. De gör hastighetsvektorn källfri och att
 kontinuitetsekvationen uppfylls. Det finns således inget direkt behov av att räkna ut trycket.
 Vid användning av många olika sorters elementtyper som inte uppfyller Babuska-Brezzikriteriet
 är detta dessutom nödvändigt då ekvationssystemet som skall lösas blir singulärt. 
 Detta beror på att trycket inte existerar i lika många ekvationer som hastighetskomponenterna.
-Finns det då fler okända trycknoder än hastighetsnoder finns det ingen entydigt definierad lösning
+Finns det då fler okända trycknoder än hastighetsnoder finns ingen entydigt definierad lösning
 till ekvationssystemet. En annan möjlighet för att lösa problemet är att välja element som
-uppfyller Babuska-Brezzikriteriet och det fås fler okända hasetighetspunkter än tryckpunkter.
+uppfyller Babuska-Brezzikriteriet och det uppstår fler okända hastighetspunkter än tryckpunkter. \emph{\red{Är tryckpunkter och trycknoder samma sak?}}.
 \cite{babuska1973}\cite{segal2011}
 
-Genom penaltymetoden beskrivs här trycket som $p$ enligt 
+Genom penalty-metoden beskrivs här trycket som $p$ enligt 
 
 \begin{equation}
 \label{eq:femconvection:penalty}
 p = p_s - \lambda\nabla\cdot\mathbf{v}.
 \end{equation}
 
-Här är $p_s$ någon form av önska, idealt. statiskt
-tryck. Detta tryck följer Boussinesq approximation.
+Här är $p_s$ någon form av önskat idealt statiskt
+tryck. Detta tryck följer Boussinesqs approximation.
 \cite{heinrich88}\cite{taylor79}
 Som kan ses leder den godtyckliga penaltyparametern $\lambda$ till att justera trycket
 om hastighetsfältets divergens inte är identiskt noll. I viss litteratur anges 

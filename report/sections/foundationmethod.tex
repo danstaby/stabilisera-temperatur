@@ -1,27 +1,26 @@
 \section{Värmeflöde genom grunden}
 
 För att räkna på energin som flödar genom grunden är det nödvämdigt att räkna
-transient. Detta då berget tar åt sig värme väldigt långsamt. I praktiken innebär detta att ett statiskt jämviktsläge aldrig uppnås.
+transient, eftersom berget tar åt sig värme väldigt långsamt. I praktiken innebär detta att ett statiskt jämviktsläge aldrig uppnås.
 
-Problemet är behandlat med finita elementmetoden av värmeledningsekvationen.
-Geometrin av problemet och trianguleringen kan ses i figur~\ref{fig:foundation:tri}.
+Problemet är behandlat med finita elementmetoden applicerad på värmeledningsekvationen.
+Problemets geometri och trianguleringen kan ses i figur~\ref{fig:foundation:tri}.
 Randvärdena som är satt är att alla rander som går från berg till berg är adiabatiska.
-Detta kommer inte stämma i praktiken om inte definitionsmängden sätts till oändligt
+Detta kommer inte att stämma i praktiken om inte definitionsmängden sätts oändligt
 stor. För lösning av detta problem kan det dock ses som en tillräckligt god
 approximation eftersom definitionsmängden är stor och temperaturen inte varierar så mycket
 från förväntat värde.
 
-Vid randerna mot grunden ligger ett neumannvillkor som säger att energiflödet är produkten
-av temperaturdifferansen mellan temperaturen på randen och inomhustemperaturen på $\unit[20]{^\circ C}$.
-Grundens U-värde har här satts till $U = 0,7/0,45 \approx \unit[1,556]{W~m^{-2}~K^{-1}}$. Detta värde är
-baserat på att det ligger $\unit[0,25]{m}$ betong mellan källaren och grunden och att det ligger ytterligare $\unit[0,2]{m}$
+Vid randerna mot grunden ligger ett neumannvillkor som säger att energiflödet är proportionell mot temperaturgradienten mellan temperaturen på randen och inomhustemperaturen på $\unit[20]{^\circ C}$.
+Grundens U-värde har här satts till $U = 0,70/0,45 \approx \unit[1,56]{W~m^{-2}~K^{-1}}$. Detta värde är
+baserat på att det ligger $\unit[0,25]{m}$ betong mellan källaren och grunden och att det ligger ytterligare $\unit[0,20]{m}$
 betong mellan uppvärmda utrymmen och källaren. Vidare antas att det föreligger god omrörning i de båda
-luftskikten vilket gör att de har $R=0$. Detta antagande är dock inte helt giltigt vilket leder till att kyleffekten
+luftskikten vilket innebär oändligt god värmeledningsförmåga och $U\rightarrow\infty$. Detta antagande är dock inte helt giltigt vilket leder till att kyleffekten
 uppskattas vara något för hög.
 Vid randerna till luft är konvektionsparametern satt
 till $h = \unit[15,5]{W~m^{-2}~K^{-1}}$. Detta är en siffra som motsvarar
 en vindhastighet på ungefär $v = \unit[2]{m~s^{-1}}$. Utomhustemperaturen har valts
-som en minstakvadratanpassad trigonetrisk funktion av
+som en minstakvadratanpassad trigonometrisk funktion av
 medeltemperaturen de senaste tjugo åren vilket kan ses i figur~
 \ref{fig:foundation:meantemperature}. Anpassningen gör att
 differentialekvationerna av galerkinformuleringen kan lösas analytiskt
@@ -38,7 +37,7 @@ nå konvergens. Den resulterande koden kan ses i bilaga~\ref{app:femfoundation}.
 \begin{figure}
 \centering
 \includegraphics{images/trifoundation.eps}
-\caption{Definitionsmängd och triangulering berget under grunden.}
+\caption{Definitionsmängd och triangulering för berget under grunden.}
 \label{fig:foundation:tri}
 \end{figure}
 
