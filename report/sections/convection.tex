@@ -175,7 +175,7 @@ En mängd andra samband mellan konvektionskoefficienten och vindhastigheten har 
 
 \subsection{Boussinesqs approximation}
 
-För flytkraftsdrivet flöde kan det vara lämpligt att använda sig av
+För \emph{\color{red} flytkraftsdrivet} flöde kan det vara lämpligt att använda sig av
 Boussinesqs app\-roximation. Denna säger att det enda som påverkar trycket är
 tyngdaccelerationen. Genom detta är det möjligt att sätta upp uttryck för densiteten
 och tryckderivatorna enligt ekvationerna~\eqref{eq:convection:density}
@@ -203,23 +203,22 @@ För att beskriva tryckdrivet luftläckage, i vårt fall drag på grund av vind,
 \end{equation}
     
 $k$ står för permeabiliteten hos materialet som fluiden flödar igenom och är en 
-materialkonstant som beskriver hur genomsläppligt det är. Luftflödet $\Phi$ mäts per 
+material\-konstant som beskriver hur genomsläppligt det är. Luftflödet $\Phi$ mäts per 
 kvadratmeter. Exponenten $\eta$ sätts till 1 för att motsvara Darcys lag. Hus är dock inte så
  porösa och ett för högt värde fås oftast med den här metoden. För att åtgärda det behövs 
  data från ett dörrtryckstest utföras. Detta utförs genom att man trycksätter huset genom 
  dörren och ser vilket luftflöde som krävs för att upprätthålla ett givet tryck. Flödet och trycket 
  ritas sedan upp i ett log-log-diagram. Vid låga tryck är kurvan konvex men rätas sedan ut till 
- en rät linje vars lutning är $\eta$. Ett vanligt värde är då ungefär 0,6, men för en del hus blir 
- det 0,75.\cite{sasic} Ett sådan här test är alltså essentiellt för att få veta hur byggnaden 
+ en linje vars lutning är $\eta$. Ett vanligt värde är då ungefär 0,6, men det kan lika gärna vara 0,75 eller något värde däremellan, helt beroende på hur tätt huset är\cite{sasic} Ett sådan test är alltså essentiellt för att få veta hur byggnaden 
  påverkas av vind.
  
-Sammanfattas alla konstanter fås istället ett uttryck på formen
+Slås alla konstanter samman fås istället ett uttryck på formen
 
 \begin{equation}
 \Phi = C\Delta P^\eta
 \end{equation}
 
-där $C=\frac{-k}{\mu \cdot L}$ och $C$ är en applikationsberoende konstant vilken uppmäts experimentellt med ett blåsdörrstest. 
+där $C=\frac{-k}{\mu \cdot L}$ är en applikationsberoende konstant som uppmäts experimentellt med ett dörrtryckstest. 
 
 Energiflödet $Q$ kan nu beräknas för ett visst flöde $\Phi$ och en viss area $A$
 
