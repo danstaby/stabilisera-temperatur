@@ -2,58 +2,53 @@
 \label{sec:femtheory}
 
 Inom fysiken modelleras ofta fysikaliska fenomen med partiella differentialekvationer.
-Dessa kan ofta vara icketriviala att evaluera analytiskt och exakt. Det finns en
-rad olika metoder för att hantera detta problem genom approximationer. En av
-dessa metoder kallas finita elementmetoden. Denna går ut på att den
+Dessa kan ofta vara icketriviala att evaluera analytiskt. Det finns en
+rad olika metoder för att hantera sådana problem genom approximationer. En av
+dessa metoder kallas finita elementmetoden. Den går ut på att den
 partiella differentialekvationen eller systemet av kopplade partiella
 differentialekvationer delas upp i små delar som är mer lätthanterliga.
 Denna metod tillåter också evalueringen av problem vars egenskaper i
-definitionsmängden är ickehomogena och diskontinuerliga. Dessutom kan
+definitionsmängden är inhomogena och diskontinuerliga. Dessutom kan
 problemen lösas för godtycklig geometri med godtyckliga randvillkor. Alla
-dessa egenskaper gör att finita elementmetoden är ett väldigt kraftfult redskap
-vid beräkning av svårtacklade problem. Denna metod kommer senare i arbetet
-att användas för att räkna på värme och luftflöden.
+dessa egenskaper gör att finita elementmetoden är ett väldigt kraftfullt redskap
+vid beräkning av komplicerade problem. Denna metod kommer senare i arbetet
+att användas för att räkna på värme- och luftflöden.
 
-Den undermetod av finita elementmetoden som skall användas i denna
-kandidatuppsats är Galerkins metod.
-En finita elementlösning med Galerkins metod kräver att problemet reduceras till
-ett ekvivalent variationsproblem.
-Här är $L$ differentialoperatorn
-som betecknar differentialekvationen i~\eqref{eq:femtheoryprob}.
-Här är $u = u(\mathbf{r},t)$ en funktion av de spatiala koordinaterna samt tiden.
+Den undermetod av finita element\-metoden som skall användas i denna
+kandidat\-uppsats är Galerkins metod.
+En finita element\-lösning med Galerkins metod kräver att problemet reduceras till
+ett ekvivalent variations\-problem.
+Här är $L$ differential\-operatorn
+som betecknar differential\-ekvationen
 
 \begin{equation}
 \label{eq:femtheoryprob}
-L(u) = 0
+L(u) = 0.
 \end{equation}
 
-\noindent
+Här är $u = u(\mathbf{r},t)$ en funktion av de spatiala koordinaterna samt tiden.
 $\Phi$ definieras sedan som rummet av alla testfunktioner $\phi$ vilka
  är kontinuerliga i
-definitionsmängden $\Omega$ samt vars derivator är bitvis kontinuerliga på randen
-$\Gamma$. Testfunktionerna $\phi \in \Phi$ måste även vara $L^2$ integrabla.
+definitionsmängden $\Omega$ samt vars derivator är styckvis kontinuerliga på randen
+$\Gamma$. Testfunktionerna $\phi \in \Phi$ måste även vara $L^2$-integrabla.
 Variationsproblemet blir då: Sök $u\in\Phi$
-som uppfyller ekvation~\eqref{eq:femtheoryweak}. Det är tydligt
-att alla $u$ som uppfyller $L(u) = 0$ är ortogonala mot alla
-$L^2$ integrabla testfunktioner ty integranden kommer då alltid vara identiskt noll.
-Detta variationsproblem brukar normalt kallas för den svaga formuleringen.
+som uppfyller 
 
 \begin{equation}
 \label{eq:femtheoryweak}
-\int_\Omega L(u)\phi(\mathbf{r}) \mathrm{d}\Omega = 0
+\int_\Omega L(u)\phi(\mathbf{r}) \mathrm{d}\Omega = 0.
 \end{equation}
 
-\noindent
-Om differentialekvationen innehåller andra ordningens deriveringsoperatorer behövs
-det lite analys. Vissa testfunktinoner som ibland används klarar ej att deriveras
-två gånger. Dessutom så ger kommande beräkningar oss en trevlig metod syftad
-till att implementera Neumannvillkor (se sektion~\ref{subsec:boundaryenforcement}).
+Det är tydligt
+att alla $u$ som uppfyller $L(u) = 0$ är ortogonala mot alla
+$L^2$ integrabla testfunktioner eftersom integranden då alltid kommer att vara identiskt noll.
+Detta variationsproblem brukar normalt kallas för den svaga formuleringen.
 
-Divergensteoremet i två dimensioner~\eqref{eq:femtheorygausstheorem}
-med $\mathbf{A} = (uw, 0)$ eller $\mathbf{A} = (0, uw)$ ger då ekvation
-\eqref{eq:femtheory:partint}. Slutligen summeras uttrycket över alla
-$k$ för att få~\eqref{eq:femtheory:green}. Här är $w$ utbytt mot $w_i$ med
-påståendet att $\mathbf{w} = (w_1, w_2) = \nabla v$. \cite{johnson2009}
+Om differentialekvationen innehåller andra ordningens deriveringsoperatorer krävs en utförligare analys då vissa testfunktioner som ibland används kan inte deriveras
+två gånger. Dessutom så ger kommande beräkningar oss en trevlig metod syftad
+till att implementera neumannvillkor, se avnsitt~\ref{subsec:boundaryenforcement}.
+
+Divergensteoremet i två dimensioner
 
 \begin{equation}
 \label{eq:femtheorygausstheorem}
@@ -61,31 +56,42 @@ påståendet att $\mathbf{w} = (w_1, w_2) = \nabla v$. \cite{johnson2009}
 \mathrm{d}\Gamma
 \end{equation}
 
+med $\mathbf{A} = (uw, 0)$ eller $\mathbf{A} = (0, uw)$ ger då
 \begin{equation}
 \label{eq:femtheory:partint}
 \int_\Omega w\frac{\partial u}{\partial x_k} \mathrm{d}\Omega +
 \int_\Omega u\frac{\partial w}{\partial x_k} \mathrm{d}\Omega =
-\int_\Gamma uwn_k \mathrm{d}\Gamma\mbox{,   }k=1,2
+\int_\Gamma uwn_k \mathrm{d}\Gamma\mbox{,   }k=1,~2.
 \end{equation}
+
+Slutligen summeras uttrycket över alla
+$k$ vilket ger
 
 \begin{equation}
 \label{eq:femtheory:green}
 \int_\Omega u\Delta v \mathrm{d}\Omega =
-\int_\Gamma u\nabla v\cdot\mathbf{n}\mathrm{d}\Gamma-\int_\Omega \nabla v\cdot\nabla u \mathrm{d}\Omega
+\int_\Gamma u\nabla v\cdot\mathbf{n}\mathrm{d}\Gamma-\int_\Omega \nabla v\cdot\nabla u \mathrm{d}\Omega.
 \end{equation}
 
-\noindent
+Här är $w$ utbytt mot $w_i$ där $\mathbf{w} = (w_1, w_2) = \nabla v$.\cite{johnson2009}
+
 Termer som innehåller laplaceoperatatorn kan enligt ovanstående recept utvecklas
-till ekvation \eqref{eq:femtheorylaplacerecepie}.
+till ekvation
 
 \begin{equation}
 \label{eq:femtheorylaplacerecepie}
 \int_\Omega \phi\Delta u \mathrm{d}\Omega = -\int_\Omega \nabla\phi\nabla u \mathrm{d}\Omega +
-\int_\Gamma \phi \mathbf{n}\cdot\nabla u \mathrm{d}\Gamma
+\int_\Gamma \phi \mathbf{n}\cdot\nabla u \mathrm{d}\Gamma.
 \end{equation} 
 
-\noindent
-Slutligen så ansätts ekvation \eqref{eq:femtheoryansatz} vilket stoppas
+Slutligen så ansätts 
+
+\begin{equation}
+\label{eq:femtheoryansatz}
+u(\mathbf{r}) \approx \sum_n u_n \phi_n(\mathbf{r})
+\end{equation}
+
+vilket stoppas
 in i den svaga formuleringen i ekvation \eqref{eq:femtheoryweak}. Nu kan
 konstanterna i linjärkombinationen av testfunktioner plockas ut ur integralerna
 och integralerna av testfunktionerna evalueras. Genom detta så kan
@@ -94,22 +100,17 @@ fås då man låter den fria testfunktionen löpa över alla okända noder.
 För exempel på dessa beräkningar se avsnitten~\ref{sec:femconvection} och
 \ref{sec:femheat}.
 
-\begin{equation}
-\label{eq:femtheoryansatz}
-u(\mathbf{r}) \approx \sum_n u_n \phi_n(\mathbf{r})
-\end{equation}
-
 
 \subsection{Spatial diskretisering}
 
 Lösningen av de galerkinformulerade ekvationerna kräver att en basfunktion väljs.
-Ett i populärt val i litteraturen är linjära triangulära element på grund av att de
+Ett populärt val i litteraturen är linjära triangulära element då de
 är lätta att använda. Det är dock bara fantasin som begränsar valet av basfunktion
 och elementgeometri.
 \cite{johnson2009}\cite{lewis04}\cite{reddy93}\cite{fem50} Området den
 partiella differentialekvationen skall lösas i delas upp i triangulära element.
-Trianglarnas hörn blir då noder. Elementen uppför sig genom att i en basfunktion
-är funktionen ett för noden som har samma nummer som basfunktionen. Denna funktion
+Trianglarnas hörn blir då noder. \emph{\color{red} Elementen uppför sig genom att i en basfunktion
+är funktionen ett för noden som har samma nummer som basfunktionen.} Denna funktion
 antar sedan värdet noll på alla motstående kanter på alla trianglar som innehar noden
 med samma nummer som basfunktionen. Mellan dessa positioner bildar basfunktionen
 linjära plan på det sätt att basfunktionen blir kontinuerlig med en bitvis
@@ -119,14 +120,13 @@ Utanför dessa trianglar är basfunktionen noll. \cite{johnson2009}
 \subsection{Påtvingande av randvillkor}
 \label{subsec:boundaryenforcement}
 Två typer av randvillkor är relevanta för detta arbete främst i lösning med Galerkins 
-metod. Det ena är dirichletvillkor som
-innebär att sökt funktion antar ett visst värde på randen. Det andra är neumannvillkor
-vilket sätter derivatan i randnormalriktningen till ett värde. Tillvägagångssättet
+metod. Det ena är dirichletvillkor, vilket
+innebär att sökt funktion antar ett visst värde på randen. Det andra är neumannvillkor,
+som sätter derivatan i randnormalriktningen till ett visst värde. Tillvägagångssättet
 för påtvingande av dessa villkor i Galerkins metod är lite olika. Dirichletvillkor
 påtvingas lättast genom att noderna som innehar denna typ av villkor sätts till ett värde
 och att ekvationerna uppdateras med detta värde. Neumannvillkor påtvingas istället
 genom att värdet på dessa rander sätts in i integralerna som går över randen. Det
 är viktigt att tillräckligt många randvillkor sätts. Om inte detta genomförs
-så får problemet en lösning vars egenskaper inte är explicit bestämda eller
-i värsta fall en trivial lösning. Vilka dessa randvillkor är beror helt
+så får problemet en lösning vars egenskaper inte är explicit bestämda. I värsta fall kan en en trivial lösning fås. Vilka randvillkor som väljs beror helt
 på applikationen.
