@@ -26,7 +26,15 @@ existerar så att temperaturen inomhus hålls till konstant $\unit[20]{^\circ C}
 från utsidan av väggen genom vilka energiflöden som strömmar till väggen. Dessa är svartkroppsstrålning, solinstrålning
 samt konvektion. Beräkningarna är sedan genomförda med solinstrålningsdata från en solig och en molnig decemberdag samt
 en solig aprildag och en molnig aprildag. Solens position och mängden svartkroppsstrålning är beräknade enligt avsnitt
-\ref{sec:sunthroughwindows} och avsnitt \ref{sec:blackbody}.
+\ref{sec:sunthroughwindows} och avsnitt \ref{sec:blackbody}. Enligt detta recept kan nu neumannvillkoret
+på utsidan av väggen tecknas som ekvation~\eqref{eq:wallneumann}. Här är $T_{ref}$ utomhustemperaturen
+och $\partial T/\partial n$ betecknar normalderivatan.
+
+\begin{equation}
+\label{eq:wallneumann}
+\frac{\partial T}{\partial n} = Q_{sol} + Q_{svartkropp} + h(T_{ref}-T)
+\end{equation}
+
 Konvektionsparametern är sedan satt till $h=\unit[6,19]{W~m^{-2}~K^{-1}}$ för aprildagen vilket motsvarar helt vindstilla.
 För decemberdagen sattes konvektionsparametern till $h=\unit[35]{W~m^{-2}~K^{-1}}$ vilket motsvarar en decemberdag med en vindhastighet på $v=\unit[7]{m~s^{-1}}$ parallellt
 med ytan.

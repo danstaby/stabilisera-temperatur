@@ -1,20 +1,20 @@
 \section{Värmeledning}
 \label{sec:heatconduction}
 
-Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig flyttar på sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $k$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion i enheten $\unit{W~m^{-1}~K^{-1}}$. I denna rapport används den förstnämnda symbolen, $k$. För att bestämma $k$ för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Generellt gäller att värmeflödet per ytenhet är $\mathbf{q} = - \unit[k \nabla T]{Wm^{-2}}$. Detta samband brukar kallas för Fouriers värmelag. I en dimension förenklas detta till
+Det pågår ständigt värmetransport från varma till kalla objekt. Konduktion, eller värmeledning, innebär att värmeenergi flödar genom ett material, utan att materialet i sig flyttar på sig. Värmetransporten är proportionell mot temperaturskillnaden över konstruktionen. Konduktiviteten, eller värmeledningsförmågan, ofta betecknad $k$ inom fysiken eller $\lambda$ inom byggsektorn är en materialegenskap som beskriver hur snabbt en temperaturskillnad utjämnas genom konduktion i enheten $\unit{W~m^{-1}~K^{-1}}$. I denna rapport används den förstnämnda symbolen, $k$. För att bestämma $k$ för ett material utsätter man det för en temperaturskillnad och mäter den värmemängd som passerar genom materialet per tidsenhet. Generellt gäller att värmeflödet per ytenhet är $\mathbf{q} = - \unit[k \nabla T]{[Wm^{-2}]}$. Detta samband brukar kallas för Fouriers värmelag. I en dimension förenklas detta till
 
 \begin{equation}\label{eq:conduction:fourier}\boxed{ \; \; \;
-q_x = -k \frac{\mathrm{d}T}{\mathrm{d}x} \unit{Wm^{-2}}.
+q_x = -k \frac{\mathrm{d}T}{\mathrm{d}x}.
 \; \; \; }
 \end{equation}
 
 Vid termisk jämvikt och homogent material kan detta utvecklas till
 
 \begin{equation}
-q_x = -\frac{k}{\mathrm{d}}\left( T_2-T_1\right) \unit{Wm^{-2}},
+q_x = -\frac{k}{\mathrm{d}}\left( T_2-T_1\right),
 \end{equation}
 
-där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i vardera änden av materialet. Begreppet U-värde kan nu införas och definieras som $U = \frac{k}{\mathrm{d}} \unit{Wm^{-2}K^{-1}}$, det vill säga $q_x = U\mathrm{d}T = U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet, alltså $R=1/U \unit{m^2KW^{-1}}$. Observera att U- respektive R-värden endast kan användas vid termisk jämvikt, se härledningen nedan. Dessa två storheter är ofta användbara inom byggfysik och relaterade områden eftersom man med dem exempelvis kan jämföra olika väggars värmeledningsförmåga.
+där $d$ betecknar materialets tjocklek och $T_2$ samt $T_1$ är temperaturen i vardera änden av materialet. Begreppet U-värde kan nu införas och definieras som $U~=~\frac{k}{\mathrm{d}}$, det vill säga $q_x = U\mathrm{d}T~=~U\left( T_2-T_1 \right)$. Även R-värdet introduceras och definieras som inversen av U-värdet, alltså $R=1/U$. Observera att U- respektive R-värden endast kan användas vid termisk jämvikt, se härledningen nedan. Dessa två storheter är ofta användbara inom byggfysik och relaterade områden eftersom man med dem exempelvis kan jämföra olika väggars värmeledningsförmåga.
 
 En schematisk bild över en vägg i en dimension som består av $n$ olika material kan ses i figur~\ref{fig:staticwallmethod:wall}. Med materialens värmeledningsförmåga, $k_i$, för $i=1,2\,,\,...\,,\,n$ samt längden på elementen, $d_i$, använder vi nu Fouriers värmeledningsekvation för att teckna värmeflödet och temperaturerna $T_i$, i punkterna mellan de olika delarna av väggen med randvillkoren $T_1 = T_H$ samt $T_{n+1} = T_L$.
 
@@ -74,4 +74,4 @@ c_p \rho \frac{\partial T}{\partial t} = \frac{\partial}{\partial x} \left( k \f
 där det andra sambandet gäller då $k$ är oberoende av $x$. Detta samband brukar kallas för värmeledningsekvationen.
 
 \paragraph{Tröghet}
-Det kan förefalla intuitivt att väderförändringar påverkar fastigheter, men hur mycket det spelar roll det egentligen? I det resonemanget spelar termen tröghet en betydande roll. Beroende på hur tjocka väggarna är, samt vilket material de är byggda av spelar de yttre omständigheterna olika stor roll. Trögheten i väggarna är således ett begrepp för hur lång tid det tar innan en väderförändring märks inomhus då yttre parametrarna ändrar sig. En stor tröghet bidrar till ett jämnare inomhusklimat då väggarna fungerar som lågpassfilter och dämpar svängningarna i temperaturen.
+Det kan förefalla intuitivt att väderförändringar påverkar fastigheter, men inte på vilket sätt eller hur mycket. I det resonemanget spelar termen tröghet en betydande roll. Beroende på hur tjocka väggarna är, samt vilket material de är byggda av spelar de yttre omständigheterna olika stor roll. Trögheten i väggarna är således ett begrepp för hur lång tid det tar innan en väderförändring märks inomhus då yttre parametrarna ändrar sig. En stor tröghet bidrar till ett jämnare inomhusklimat då väggarna fungerar som lågpassfilter och dämpar svängningarna i temperaturen.

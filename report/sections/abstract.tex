@@ -8,7 +8,7 @@ Avsikten är att undersöka hur energi flödar genom en fastighet beroende på v
 % metoden som användes
 Fastigheten har delats upp i byggnadsskalet med väggar, tak, fönster och grund där energiflödet undersökts genom var och en av delarna för sig. Solinstrålning genom fönstren och ofrivillig ventilation, alltså drag på grund av vind, behandlas också separat.
 
-Termisk energi överförs genom strålning, konvektion och ledning och i varje beräkning av fastighetens energiflöde är det viktigt att undersöka alla sådana flöden. För detta har vi använt både analytiska beräkningsmetoder och simuleringar i Matlab och Comsol Multiphysics. En återkommande beräkningsmetod är finita elementmetoden och givetvis är även värmeledningsekvationen en central del.
+Termisk energi överförs genom strålning, konvektion och ledning och i varje beräkning av fastighetens energiflöde är det viktigt att undersöka alla sådana flöden. För detta har vi använt både analytiska beräkningsmetoder och simuleringar i \emph{Matlab} och \emph{Comsol Multiphysics}. En återkommande beräkningsmetod är finita elementmetoden och givetvis är även värmeledningsekvationen en central del.
 
 % vilka resultat som erhölls samt 
 Det visade sig att de främsta källorna till energiförluster är fönstren och ofrivillig ventialtion. Att ta hänsyn till solinstrålning ger en besparing på över 17 \% av energin en solig dag vilket motsvarar 4 \% av energin för alla dagar. Vinden sänker temperaturen och att ta hänsyn till den kan ge en jämnare inomhustemperatur men inte nödvändigtvis en minskning i energiåtgång. För att avgöra exakt hur mycket energi som försvinner vid vind behöver ett trycktest göras.
@@ -32,7 +32,16 @@ The different parts of the building have been separated to wall, windows, roof a
 
 Thermal energy is transmitted through radiation, convection and heat conduction. These three fundamental physical processes have been used in the investigation of every subflow. To evaluate the differential equations and physical properties, both analytical and numerical methods were used. These include the finite element method which were implemented \emph{ad hoc} in \emph{Matlab}. The softwares \emph{Comsol Multiphysics} have also been used to evaluate differential equations with the finite element method. 
 
-The models in this Bachelor’s thesis showed that the primary sources of energy expense is radiation through windows and infiltration losses. It is also possible to reduce the energy consumption by 22 \% by adjusting the heating system of the building to account for solar irradiation. \emph{\color{red} Blowdoor och nya siffror.}
+The models in this Bachelor’s thesis showed that the primary sources of
+energy expense is radiation through windows and infiltration losses. It
+is also possible to reduce the energy consumption by at least $\unit[17]{\%}$ by adjusting
+the heating system of the building to account for solar irradiation a sunny day. This means
+that it is possible to save over $\unit[4]{\%}$ of the energy expense through a whole year.
+The wind lowers the temperature inside. This means that it is probaly not possible to save energy
+by taking consideration of wind's effect.
+To completely understand how much energy is lost due to infiltration a
+blow door test needs to be performed.
+
 
 Another main conclusion of this project was that the different walls had very different reaction times when the weather changed rapidly. It varied from below 4 hours up to above 100 hours, and it is important to have this in mind when adjusting the heating system of the building.
 

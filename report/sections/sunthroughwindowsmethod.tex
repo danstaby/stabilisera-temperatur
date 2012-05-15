@@ -5,7 +5,7 @@ Flera olika metoder har använts vid beräkning av energiflöde genom fönster i
 \subsection{Solinstrålning}
 För att beräkna den totala effekt som solstrålning tillför byggnaden via fönster behövs fönstrenas vinkelberoende g-värden, som presenteras i avsnitt~\ref{gvalue}. För att bestämma detta värde ur ekvation~\eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90^\circ$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta görs genom att utgå från aktuellt datum och tid på dygnet.
 
-En metod för att räkna ut solens position presenteras i \cite{walraven78} och en Matlabfunktion baserad på samma artikel kan ses i appendix \ref{app:sunposition}. Argumenten i denna funktion består av longitudinella och latitudinella koordinater för den aktuella platsen samt datum och tidpunkt. För Walleriusgatan är koordinaterna ungefär $12^\circ$ E respektive $58^\circ$ N.
+En metod för att räkna ut solens position presenteras i \cite{walraven78} och en matlabfunktion baserad på samma artikel kan ses i appendix \ref{app:sunposition}. Argumenten i denna funktion består av longitudinella och latitudinella koordinater för den aktuella platsen samt datum och tidpunkt. För Walleriusgatan är koordinaterna ungefär $12^\circ$ E respektive $58^\circ$ N.
 
 När de azimuthala och altitudinella vinklarna, som här kallas $\beta$ och $\alpha$, relativt ett väderstreck respektive horisonten har beräknats, relateras infallsvinkeln mot glaset $\theta$ som
 
@@ -19,9 +19,10 @@ Med dessa samband tillgängliga kan effektflödet på grund av solstrålning gen
 
 För att ge ett exempel på hur effekten varierar med solintensiteten måste det byggas upp en approximativ funktion som beskriver solens intensitet vid marknivå som funktion av vinkeln över horisonten. Detta kan göras med hjälp av metoden i referens~\cite{ozel11}. För det första sätts strålningen utanför atmosfären från solen till $I_{sol}=\unit[1377]{Wm^{-2}}$. En korrektion måste göras för att ta hänsyn till att jorden precesserar i sin bana, vilket leder till att den mot atmosfären infallande solstrålningen tecknas som $I_0 = I_{sol}\left( D/D_0\right)^2$, där den korrektionsfaktorn ges av
 
-\begin{equation}
-\left( D/D_0 \right)^2 = 1,00011 + 34,221\cdot 10^{-3}\cdot \cos{\left(x\right)} + 1,28\cdot 10^{-3}\cdot \sin{\left(x\right)} + 0,719\cdot 10^{-3}\cdot \cos{\left(2x\right)} + 77\cdot 10^{-6}\cdot \sin{\left(2x\right)}
-\end{equation}
+\begin{align}
+\left( D/D_0 \right)^2 & = & 1,00011 + 34,221\cdot 10^{-3}\cdot \cos{\left(x\right)} + 1,28\cdot 10^{-3}\cdot \sin{\left(x\right)} + \nonumber\\
+&& + 0,719\cdot 10^{-3}\cdot \cos{\left(2x\right)} + 77\cdot 10^{-6}\cdot \sin{\left(2x\right)}
+\end{align}
 
 och $x = 360\left( N-1\right) /365)$ då aktuella dagen på året är $N$. Den direkta solstrålningen som passerar atmosfären och når jordens yta blir då
 
@@ -29,7 +30,7 @@ och $x = 360\left( N-1\right) /365)$ då aktuella dagen på året är $N$. Den d
 I = I_0e^{-\tau / cos{90-\alpha}}
 \end{equation}
 
-där $\tau$ ges av tabulerad data i \cite{ozel11} och $\alpha$, som tidigare är solens höjd över horisonten. Det ska dock påpekas att de använda värdena för $\tau$ är medelvärden gällande USA, men i sammanhanget orsakar inte detta några större problem eftersom målet är ett typexempel för hur solstrålningen kan te sig.
+där $\tau$ ges av tabulerad data i \cite{ozel11} och $\alpha$ som tidigare är solens höjd över horisonten. Det ska dock påpekas att de använda värdena för $\tau$ är medelvärden gällande USA, men i sammanhanget orsakar inte detta några större problem eftersom målet är ett typexempel för hur solstrålningen kan te sig.
 
 \paragraph{Inverkan av skuggor, rummets interiör och dylikt}
 
