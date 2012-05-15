@@ -1,5 +1,5 @@
 function M = laplacestiff(vertices)
-%Calculates the local stiffness matrix. This Function
+%Calculates the local stiffness matrix. This function
 %is described by Alberty et. al. (1999) "Remarks around 50 lines of
 %Matlab: short finite element implementation"
 
