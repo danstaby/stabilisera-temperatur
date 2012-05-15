@@ -15,7 +15,7 @@ Vid användning av många olika sorters elementtyper som inte uppfyller Babuska-
 Detta beror på att trycket inte existerar i lika många ekvationer som hastighetskomponenterna.
 Finns det då fler okända trycknoder än hastighetsnoder finns ingen entydigt definierad lösning
 till ekvationssystemet. En annan möjlighet för att lösa problemet är att välja element som
-uppfyller Babuska-Brezzikriteriet och det uppstår fler okända hastighetspunkter än tryckpunkter. \emph{\color{red} Är tryckpunkter och trycknoder samma sak?}.
+uppfyller Babuska-Brezzikriteriet och det uppstår fler okända hastighetsnoder än trycknoder.
 \cite{babuska1973}\cite{segal2011}
 
 Genom penalty-metoden beskrivs här trycket som $p$ enligt 
@@ -30,7 +30,7 @@ tryck. Detta tryck följer Boussinesqs approximation.
 \cite{heinrich88}\cite{taylor79}
 Som kan ses leder den godtyckliga penaltyparametern $\lambda$ till en justering trycket
 om hastighetsfältets divergens inte är identiskt med noll. I en del litteratur \emph{\color{red} Källa?} anges 
-det att penaltyparametern skall vara i storleksordningen $10^7$ men att den
+det att penaltyparametern skall vara i storleksordningen $\lambda = \unit[10^7]{Pa~s}$ men att den
 är väldigt applikationsberoende. En för liten vald penaltyparameter leder till att
 trycket inte elimineras. Andra problem uppstår vid en för stor parameter såsom att ekvationssystemet
 kan bli svårlöst och få stabilitetsproblem när parametern blir
@@ -135,7 +135,7 @@ Ansatsen kan nu sättas in i den svaga formuleringen.
 Alla förekomster av $\phi$ byts ut mot $\phi_i$ med $i=1,~2,~..,~N$. Då
 kontinuitetskriteriet~\eqref{eq:convection:continuity} säger att
 $\nabla\cdot\mathbf{v} = 0$ sätts detta på randen vilket ger att den
-ena termen i högerhandsintegralerna ekvationerna~\eqref{eq:femconvection:weaku} och
+ena termen integralerna på höger sida i ekvationerna~\eqref{eq:femconvection:weaku} och
 \eqref{eq:femconvection:weakw}
 försvinner. Slutligen ger
 detta galerkinformuleringen i ekvationerna
