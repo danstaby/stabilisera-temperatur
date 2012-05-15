@@ -310,9 +310,11 @@ summaIn1=constant/1000;
 
 % Totalt
 total=summaUt1+summaIn1;
+total2=summaUt2+summaIn1;
 % Maximal energibesparing för isolerad vägg
 max((swWall-swWalli)./1000./total);
-decutan=sum(total)*500;
+decutan=sum(total)*500; % arean under grafen utan isolering
+decutan2=sum(total2)*500; % arean under grafen med isolering
 
 figure(3)
 area(tiden, summaUt1,'FaceColor',colors(1,:));
@@ -422,4 +424,3 @@ hold off
 
 sunnydays=0.2045;
 besparing=1-sunnydays+sunnydays*decutan/decmed;
-besparing
