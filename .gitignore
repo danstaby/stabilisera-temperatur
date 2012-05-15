@@ -17,6 +17,7 @@ dummy.pdf
 report.pdf
 pitch.pdf
 report/images/*.pdf
+*.pdf
 
 #Emacs temporary files
 
