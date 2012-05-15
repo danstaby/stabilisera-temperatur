@@ -17,7 +17,7 @@ fig4 = figure(4);
 plot(t, q)
 xlabel('Tid i timmar')
 ylabel('Kyleffekt (W m^{-2})')
-title('Kyleffekt, vÃ¤rmeledning fÃ¶nster', 'fontsize', 12)
+title('Kyleffekt, värmeledning fönster', 'fontsize', 12)
 xlim([0 24])
 set(fig4, 'Position', [300 700 300 200])
 
@@ -33,7 +33,7 @@ q = Ueff.*(20 - T);
 
 fig5 = figure(5);
 plot(t,q)
-title('Kyleffekt,  vÃ¤rmeledning fÃ¶nster', 'fontsize', 12)
+title('Kyleffekt,  värmeledning fönster', 'fontsize', 12)
 xlabel('Tid i timmar')
 ylabel('Kyleffekt (W m^{-2})')
 xlim([0 24])
