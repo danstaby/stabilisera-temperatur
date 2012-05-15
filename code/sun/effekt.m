@@ -1,17 +1,18 @@
 function q = effekt(I, month, day, hour)
 % hour in UTC decimal format
-% 0 < I < 1400 W/m^2, typ
-g0 = 0.61; % Från ASHRAE
-p = 3; % Antal glasskivor i fönstret
-q = 4; % Beroende av beläggningar o.d., inga belägningar => 4
+% I = intensity
+g0 = 0.61; % From ASHRAE
+p = 3; % Number of glazings
+q = 4; % Depending on coatings etc. No coatings => 4
+gamma = 180-32; % Angle of windows normal relative north
 
-long = 11.98;
-lat = 57.7;
+long = 11.979435;
+lat = 57.691522;
 year = 2012;
 
 [alpha, beta] = sunposition(long, lat, year, month, day, hour);
 
-theta = angletheta(alpha, beta, 148);
+theta = angletheta(alpha, beta, gamma);
 
 g = gvalue(g0, p, q, theta);
 
