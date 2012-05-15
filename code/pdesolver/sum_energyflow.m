@@ -25,9 +25,13 @@ tiden=aprnosun2(length-172:length,1);
 tiden=tiden/3600-24*29;
 
 % SOL in gm fönster
-load sunpower.mat
-    aprsun=-sunpowerapril(2:174,2);
-    decsun=-sunpowerapril(2:174,2);
+%load si_apr.txt
+%    aprsun=-si_apr(2:174,2);
+%load si_dec.txt
+%    decsun=-si_dec(2:174,2);
+load ../sun/windowsimulation.mat;
+    aprsun=-windowssunapril(2:174,2);
+    decsun=-windowssundec(2:174,2);
 
 % strålning UT gm fönaster.
 sigma=5.67*10^(-8);
@@ -305,8 +309,8 @@ summaIn1=constant/1000;
 % Totalt
 total=summaUt1+summaIn1;
 % Maximal energibesparing för isolerad vägg
-max((swWall-swWalli)./1000./total)
-decutan=sum(total)*500
+max((swWall-swWalli)./1000./total);
+decutan=sum(total)*500;
 
 figure(3)
 area(tiden, summaUt1,'FaceColor',colors(1,:));
@@ -387,7 +391,7 @@ summaIn2=(windowNeg)/1000;
 
 % Totalt
 total=summaUt1+summaIn1;
-decmed=sum(total)*500
+decmed=sum(total)*500;
 
 figure(4)
 area(tiden, summaUt1,'FaceColor',colors(1,:));
@@ -412,3 +416,8 @@ xlabel('Tid, h','FontSize',12)
 ylabel('Energiutflöde, kW','FontSize',12)
 
 hold off
+
+
+sunnydays=0.2045;
+besparing=1-sunnydays+sunnydays*decutan/decmed;
+besparing

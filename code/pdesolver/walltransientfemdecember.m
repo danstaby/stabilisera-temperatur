@@ -12,7 +12,7 @@ bUseSun = UseSun;
 
 %Temperature inside
 
-PrepareInterpolation('sunintensity_december.txt');
+PrepareInterpolation('si_dec.txt');
 PrepareTempInterpolation([6, -11;16,-5]);
 
 %t = [0:60:24*3600];
@@ -217,7 +217,7 @@ for t = Time(1):Time(2):Time(3)
     [Qw, Qd] = Qsun(t);
   end
   
-  Qtot = Qw + 0.2*Qd;
+  Qtot = Qw; %+ 0.2*Qd;
   h = 35;
   Rair = sigma*To^4*(1-0.261*exp(-7.77e-4*(273-To)^2));
   Raimb = sigma*To^4;

@@ -1,10 +1,9 @@
-function ret = walltransientfem(Time, Nodes, Insulated, UseSun, StaticTemp)
-% walltransientfem(Time, Nodes, Insulated, UseSun, StaticTemp)
+function ret = walltransientfem(Time, Nodes, Insulated, UseSun)
+% walltransientfem(Time, Nodes, Insulated, UseSun, SunFile)
 %
 % This Script calculates the transient temperatures in a wall with
 % a specified amount of nodes. Insulated = 0 means uninsulated wall
 % and Insulated = 1 mean that the wall is insulated.
-%StaticTemp = -999 means that the dynamic temperature is used instead.
 %UseSun = 0 means no sun, UseSun=1 means full sun, UseSun = 2 means cloudy
 
 global bUseSun
@@ -12,7 +11,7 @@ bUseSun = UseSun;
 
 %Temperature inside
 
-PrepareInterpolation('sunintensity_april.txt');
+PrepareInterpolation('si_apr.txt');
 PrepareTempInterpolation([6, 6;16,9]); %[Time, T; Time, T]
 
 %t = [0:60:24*3600];
@@ -34,9 +33,9 @@ PrepareTempInterpolation([6, 6;16,9]); %[Time, T; Time, T]
 
 Tin = 20;
 
-if(nargin < 5)
-  StaticTemp = -999;
-end
+
+StaticTemp = -999;
+
 if(nargin < 4)
   UseSun = 1;
 end
@@ -216,7 +215,7 @@ for t = Time(1):Time(2):Time(3)
     [Qw, Qd] = Qsun(t);
   end
   
-  Qtot = Qw + 0.2*Qd;
+  Qtot = Qw;% + 0.2*Qd;
   h = 6.19;
   Rair = sigma*To^4*(1-0.261*exp(-7.77e-4*(273-To)^2));
   Raimb = sigma*To^4;
