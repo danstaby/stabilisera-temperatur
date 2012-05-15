@@ -33,14 +33,16 @@ load ../sun/windowsimulation.mat;
     aprsun=-windowssunapril(2:174,2);
     decsun=-windowssundec(2:174,2);
 
-% strålning UT gm fönaster.
+% strålning och värmeledning UT gm fönaster.
 sigma=5.67*10^(-8);
 intemp=ones(173,1)*(273+20);
 utetemp=temperature();
 tempapr=utetemp(:,1)+273;
 tempdec=utetemp(:,2)+273;
-utapr=0.75*sigma.*(intemp.^4-tempapr.^4)+(intemp-tempapr);
-utdec=0.75*sigma.*(intemp.^4-tempdec.^4)+(intemp-tempdec);
+utapr=0.75*sigma.*(intemp.^4-tempapr.^4)+(1/(1+1/6.19))*(intemp-tempapr);
+utdec=0.75*sigma.*(intemp.^4-tempdec.^4)+(1/(1+1/35))*(intemp-tempdec);
+
+
 
 %figure(5)
 %plot(tiden, utapr)
