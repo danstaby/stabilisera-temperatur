@@ -55,7 +55,7 @@ end
 delta = asin(sin(ep)*sin(l));
 
 % From celestial to horizontol coordinates
-% Greenwich mean siderial time
+% Greenwich mean sidereal time
 gmst = 6.6974243242 + 0.0657098283*n + hr;
 % Local mean siderial time
 lmst = (gmst*15 + long)*rad;

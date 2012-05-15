@@ -4,7 +4,7 @@ function coef = getMeanTemp(display)
 %Calculates the least square interpolation of the average
 %temperature for Gothenburg the last twenty years.
 %T = a + b*cos(omega*t) + c*sin(omega*t)
-%with omega so its 2*pi for t = the number of days in a year.
+%with omega so it equals 2*pi for t = the number of days in a year.
 
 
 if(nargin == 0)
