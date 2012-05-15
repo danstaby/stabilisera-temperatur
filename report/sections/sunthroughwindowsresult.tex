@@ -45,4 +45,12 @@ Utomhustemperaturen varierar mellan $\unit[6]{^\circ C}$ på natten och $\unit[9
 
 \subsection{Värmeledning}
 
-Ytterligare ett värmeflöde genom fönster tillkommer i och med värmeledning. Enligt \cite{petersarneo} har fönstrena ett totalt U-värde $U=\unit[1,0]{Wm^{-2}K^{-1}}$ vilket leder till ett värmeflöde $q_{U}=\unit[T_\text{inne}-T_\text{ute}]{Wm^{-2}}$ där $T_\text{inne}$ sätts konstant till $\unit[20]{^{\circ}C}$ och $T_\text{ute}$ sätts till samma värden som i föregående avsnitt en april- respektive decemberdag. Energiflödena blir alltså $\unit[20]{^{\circ}C}$ minus gällande temperatur som beskrivits i figur~\ref{fig:temperaturedist}.
+Ytterligare ett värmeflöde genom fönster tillkommer i och med värmeledning. Enligt \cite{petersarneo} har fönstrena ett totalt U-värde på $\unit[1,0]{Wm^{-2}K^{-1}}$. Vidare måste hänsyn tas till konvektionen på utsidan av fönstret, men detta görs enkelt genom att summera U- respektive h-värdena såsom i \ref{eq:summationU}. Detta leder till det effektiva U-värdet
+
+\begin{equation}
+U_{eff} = \frac{1}{\frac{1}{U} + \frac{1}{h}}.
+\end{equation}
+
+Värmeflödet ges då av $q_{U}=U_{eff} \left( T_\text{inne}-T_\text{ute} \right)$, där $T_\text{inne}$ sätts konstant till $\unit[20]{^{\circ}C}$ och $T_\text{ute}$ sätts till samma värden som i föregående avsnitt en april- respektive decemberdag. Även h-värdena sätts till samma värden som tidigare: $h=35$ i december och $h=6,19$.
+\textcolor{red}{Nya figurer här!}
+%Energiflödena blir alltså $\unit[20]{^{\circ}C}$ minus gällande temperatur som beskrivits i figur~\ref{fig:temperaturedist}.
