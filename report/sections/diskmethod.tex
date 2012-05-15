@@ -1,30 +1,28 @@
 \section{Diskussion kring metoden}\label{sec:discmethod}
 
-I avsikt att nå målet har en rad olika metoder används. För strålning från både solen och omgivningen har svartkroppsstrålning används. För ledning utnyttjas det fysikaliska fenomenet att värme leds från varma till kalla objekt som står i kontakt med varandra. Detta beräknas med Fouriers värmelag. Konvektion sker främst på grund av cirkulation i luften och för att beräkna det har ett flertal strömningsmekaniska metoder använts.
+I avsikt att nå projektets mål har en rad olika metoder använts. För att utföra beräkningar på strålning från både solen och omgivningen har principen kring svartkroppsstrålning använts. För beräkningar på ledning utnyttjas termodynamikens nollte huvudsats och dessa beräkningar genomförs med Fouriers värmelag. Konvektion sker främst på grund av cirkulation i luften och för att beräkna hur detta sker har ett flertal strömningsmekaniska metoder använts.
 
-% \emph{\color{red} Motivera varför vi har valt våra metoder, exempelvis varför Nusselt-Jürges korrelation i konvektionsavsnittet (för att h-värdet egentligen måste mätas empiriskt)}
-
-I början av projektet fanns det förhoppningar att fastighetens väderstation skulle kunna tillhandahålla väderdata att använda för att sätta upp statistiska modeller. 
-Ganska snart insågs dock att detta inte skulle bli verklighet och helt analytiska modeller blev istället vår metod. Senare visade sig att statistiken hade varit bra för att närmare kunna undersöka hur stor inverkan olika väderparametrar har vid just fastigheten på Walleriusgatan. 
-Detta fick istället lösas med statistik från SMHIs hemsida, som tyvärr var något otillräcklig.
+I början av projektet fanns det förhoppningar om att fastighetens väderstation skulle kunna tillhandahålla väderdata att använda för att sätta upp statistiska modeller. 
+Ganska snart insågs dock att detta inte skulle bli verklighet och modeller blev istället vår metod. Senare visade sig att statistiken hade varit bra för att närmare kunna undersöka hur stor inverkan olika väderparametrar har vid just fastigheten på Walleriusgatan. 
+Detta fick istället lösas med statistik från SMHI:s hemsida. Statistiken var tyvärr något otillräcklig.
 
 För att sätta upp de fysikaliska modellerna behövdes också värden för ett antal materialkonstanter för luft och för tegel. 
-Dessa beror dock av en eller flera väderparametrar så som tryck, temperatur och fukt och således är det tveksamt om de överhuvudtaget bör kallas konstanter. 
-Det visade sig dock vara mycket svårt att få fram tillförlitlig och tillräckligt högupplöst data som visade detta än mindre uttryck av ekvationskaraktär.
-Vid diskussion med sakkunniga fick vi uppfattningen att det finns en tydlig konsensus inom branchen vad som är relevant och inte, men ingen tydlig dokumentation på området.
+Dessa beror dock av en eller flera väderparametrar såsom tryck, temperatur och fukt och således är det tveksamt om de överhuvudtaget borde kallas konstanter. 
+Det visade sig dock vara mycket svårt att få fram tillförlitlig och tillräckligt högupplöst data som visade detta, än mindre att hitta uttryck på ekvationsform.
+Vid diskussion med sakkunniga fick vi uppfattningen att det finns en tydlig konsensus inom branschen vad som är relevant och inte, men ingen tydlig dokumentation på området.
 
-Vid lösning av de rådande differentialekvationerna behövdes problemgeometri samt randvillkor sättas upp. För
-att förenkla beräkningarna har ofta problemen reducerats i dimensioner. Bland annat så har väggarna antagits vara oändligt
-långa vilket är ekvivalent med att de är perfekt isolerade på alla andra sidor än utsidan och insidan. Detta stämmer inte
-i praktiken och kan således vara en källa till fel. En liknande approximation genomfördes för grunden där fastigheten
-antagits vara oändligt lång. I det här fallet så är den undersökta fastigheten mittendelen av en lång fastighet vilket
-gör att approximationen är giltig men ändock en källa till fel. Bergets material har antagits varit homogen granit vilket
+Vid lösning av de relevanta differentialekvationerna behövdes problemets geometri och randvillkor sättas upp. För
+att förenkla beräkningarna har ofta antalet dimensioner i problemen reducerats. Bland annat så har väggarna antagits vara oändligt
+långa vilket är ekvivalent med att de är perfekt isolerade på korsidorna, alltså alla andra sidor än utsidan och insidan. Detta stämmer inte
+i praktiken och kan således vara en källa till fel. En liknande approximation genomfördes för grunden, där fastigheten
+antagits vara oändligt lång. I det här fallet är den undersökta fastigheten mittendelen av en lång fastighet vilket
+gör att approximationen är giltig men så pass grov att den ändå är en källa till fel. Bergets material antas vara homogen granit vilket
 heller inte är helt korrekt. 
 
 I alla lösningar har differentialekvationernas beteende utanför definitionsmängderna approximerats. Beteendet på randerna
 är väldigt beroende på omgivningen och detta kommer även vara en stor källa till fel. Här har bland annat svartkroppsstrålning,
-solinstrålning och konvektionsparametern approximerats. Dessa approximationer är en nödvändighet om det inte är önskvärt att
-simulera hela stadsdelen eller till och med staden vilket kommer bli väldigt beräkningsintensivt. Vi hoppas ändock att våra
+solinstrålning och konvektionsparametern approximerats. Dessa approximationer är en nödvändighet för att man inte ska behöva
+simulera hela stadsdelen eller till och med staden vilket kommer bli väldigt beräkningsintensivt. Vi hoppas ändå att våra
 värden ger en idé om hur det kan se ut i verkligheten och att det ger en god idé om hur stora energiflödena är i jämförelse med varandra.
 
-Som ett extra steg har olika förslag på energibesparande åtgärder tagits fram och dessa har jämförts med att ta hänsyn till väderparametrar på det sätt som projektet fått fram. För att sätta dessa i proportion till varandra har även konstnader för de olika åtgärderna tagits fram. Det har dock varit svårt att få exakta värden på kostnader då projektet är tredje part och inte direkt företräder fastighetens ansvariga.
+Som ett extra steg har förslag på ytterligare energibesparande åtgärder tagits fram och dessa har jämförts med att ta hänsyn till väderparametrar på det sätt som projektet fått fram. För att sätta dessa i proportion till varandra har även konstnader för de olika åtgärderna tagits fram. Det har dock varit svårt att få exakta värden på kostnader då författarna för projektet är tredje part och inte direkt företräder fastighetens ansvariga.
