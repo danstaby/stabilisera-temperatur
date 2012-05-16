@@ -9,6 +9,7 @@
 *.dvi
 *.bbl
 *.blg
+*.out
 report.ps
 
 # pdf files
