@@ -62,8 +62,10 @@ f(\alpha) = f(x_n) + f^\prime(x_n)(x_n-\alpha) + \frac{f^{\prime\prime}(\xi_n)}{
 
 Den kvadratiska termen är Lagranges restterm med parametern $\xi_n \in [\alpha, x_n]$.
 
-\emph{\color{red} Nu kan förstaderivatan av $f(x_n)$ divideras över samt $f(\alpha)$ är känt att vara noll.}
-Efter detta identifieras $f(x_n)/f^\prime(x_n) = x_n-x_{n+1}$ och ersätts \emph{\color{red} Av vad?}. Slutligen fås att $x_{n+1}-\alpha \propto (x_{n}-\alpha)^2$ ur
+Efter detta divideras alla termer med $f^\prime(x_n)$. Uttrycket $f(\alpha)$ sätts även till $0$ då det är känt att $f(\alpha)=0$.
+Nästföljande identifieras  $f(x_n)/f^\prime(x_n)$ som ett newtonsteg och ersätts enligt
+$f(x_n)/f^\prime(x_n) = x_n-x_{n+1}$. Slutligen fås att $x_{n+1}-\alpha \propto (x_{n}-\alpha)^2$ ur
+
 \begin{equation}
 0 = \frac{f(x_n)}{f^\prime(x_n)} + \alpha - x_n + \frac{f^{\prime\prime}(\xi_n)}{2f^\prime(x_n)}(x_n-\alpha)^2
 \Rightarrow
