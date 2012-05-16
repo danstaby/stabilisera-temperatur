@@ -1,15 +1,24 @@
 \section{Diskussion kring metoden}\label{sec:discmethod}
 
-I avsikt att nå projektets mål har en rad olika metoder använts. För att utföra beräkningar på strålning från både solen och omgivningen har principen kring svartkroppsstrålning använts. För beräkningar på ledning utnyttjas termodynamikens nollte huvudsats och dessa beräkningar genomförs med Fouriers värmelag. Konvektion sker främst på grund av cirkulation i luften och för att beräkna hur detta sker har ett flertal strömningsmekaniska metoder använts.
+I avsikt att nå projektets mål har en rad olika metoder använts. För att utföra beräkningar på strålning från både solen och
+omgivningen har principen kring svartkroppsstrålning använts. För beräkningar på ledning utnyttjas termodynamikens nollte huvudsats
+och dessa beräkningar genomförs med Fouriers värmelag och värmeledningsekvationen. Konvektion sker främst på grund av cirkulation i luften och för att beräkna hur
+detta sker har ett flertal strömningsmekaniska metoder använts.
 
 I början av projektet fanns det förhoppningar om att fastighetens väderstation skulle kunna tillhandahålla väderdata att använda för att sätta upp statistiska modeller. 
-Ganska snart insågs dock att detta inte skulle bli verklighet och modeller blev istället vår metod. Senare visade sig att statistiken hade varit bra för att närmare kunna undersöka hur stor inverkan olika väderparametrar har vid just fastigheten på Walleriusgatan. 
+Ganska snart insågs dock att detta inte skulle bli verklighet och modeller blev istället vår metod. Senare visade sig att statistiken hade
+varit bra för att närmare kunna undersöka hur stor inverkan olika väderparametrar har vid just fastigheten på Walleriusgatan. 
 Detta fick istället lösas med statistik från SMHI:s hemsida. Statistiken var tyvärr något otillräcklig.
 
 För att sätta upp de fysikaliska modellerna behövdes också värden för ett antal materialkonstanter för luft och för tegel. 
 Dessa beror dock av en eller flera väderparametrar såsom tryck, temperatur och fukt och således är det tveksamt om de överhuvudtaget borde kallas konstanter. 
 Det visade sig dock vara mycket svårt att få fram tillförlitlig och tillräckligt högupplöst data som visade detta, än mindre att hitta uttryck på ekvationsform.
 Vid diskussion med sakkunniga fick vi uppfattningen att det finns en tydlig konsensus inom branschen vad som är relevant och inte, men ingen tydlig dokumentation på området.
+Det har även varit ett stort problem att finna goda källor på vissa naturkonstanter. Värmeledningsförmåga och specifik värmekapacitet kan till exempel
+variera mycket mellan olika tillverkare av ett visst material och ålder på materialet. Av denna anledning finns det även stora felkällor i val av dessa naturkonstanter. Det har även
+varit svårt att hitta mätningar på precis rätt material eller mätningar på liknande material över huvud taget. Av denna anledning finns det ibland
+källor av tveksam karaktär vilket även introducerar fel. För att få exakta värmden måste således mätningar genomföras på materialen i fastigheten. De uppskattningar
+på naturkonstanter är ändock det bästa som gick att genomföra utan att ha tillgång till mätningar från fastigheten.
 
 Vid lösning av de relevanta differentialekvationerna behövdes problemets geometri och randvillkor sättas upp. För
 att förenkla beräkningarna har ofta antalet dimensioner i problemen reducerats. Bland annat så har väggarna antagits vara oändligt
