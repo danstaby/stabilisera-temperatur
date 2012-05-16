@@ -1,10 +1,10 @@
 function q = effekt(I, month, day, hour)
 % hour in UTC decimal format
 % I = intensity
-g0 = 0.61; % From ASHRAE
+g0 = 0.61; % g-value at normal incidence, from ASHRAE
 p = 3; % Number of glazings
 q = 4; % Depending on coatings etc. No coatings => 4
-gamma = 180-32; % Angle of windows normal relative north
+  gamma = 180-32; % Angle of windows normal relative north, clockwise positive
 
 long = 11.979435;
 lat = 57.691522;
