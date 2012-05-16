@@ -31,7 +31,7 @@ Den andra termen kan skrivas om med hjälp av Gauss sats (även kallad divergens
 \label{fig:massflowcube}
 \end{figure}
 
-Betrakta nu en infinitesimal kontrollvolym som den i figur~\ref{fig:massflowcube}. Integralerna över V ersätts med den infinitesimala volymen $\mathrm{d}x\mathrm{d}y\mathrm{d}z$ och~\eqref{eq:convection:masscon} reduceras till
+Detta blir intuitivt riktigt om man betraktar figur~\ref{fig:massflowcube}. Inflödet genom den infinitesimala ytan $\mathrm{d}y\mathrm{d}z$ blir $\left( \rho u \right) \mathrm{d}y\mathrm{d}z$ medan utflödet blir detsamma plus en term som beskriver hur flödet förändrats på sin väg genom volymen. Sammantaget, med alla sidor på kvadraten inräknade, blir alltså summan av alla flöden in och ut återigen lika med $\nabla \left( \rho \mathbf{v} \right)\mathrm{d}x\mathrm{d}y\mathrm{d}z$. Om nu integralerna över V i de tidigare använda integralrelationerna ersätts med den infinitesimala volymen $\mathrm{d}x\mathrm{d}y\mathrm{d}z$ reduceras~\eqref{eq:convection:masscon} till
 
 \begin{equation}
 \label{eq:convection:massconinf}
@@ -56,7 +56,7 @@ Om inkompressibilitet antas (det vill säga $\rho$ är konstant) reduceras denna
 
 Detta är kontinuitetsekvationen för inkompressibla fluider.
 
-Betrakta åter~\eqref{eq:convection:reynolds} och sätt nu $B = m\mathbf{v}$. På samma vis som kontinuitetsekvationen~\eqref{eq:convection:continuityinc} härleddes, fås för det infinitesimala volymelementet i \emph{\color{red} figur~\ref{fig:}} sambandet
+Betrakta åter~\eqref{eq:convection:reynolds} och sätt nu $B = m\mathbf{v}$. På samma vis som kontinuitetsekvationen~\eqref{eq:convection:continuity} härleddes, fås för ett infinitesimala volymelement att
 
 \begin{eqnarray}
 \label{eq:convection:linear}
@@ -65,7 +65,7 @@ Betrakta åter~\eqref{eq:convection:reynolds} och sätt nu $B = m\mathbf{v}$. P�
 & = &\left( \frac{\partial}{\partial t} \left( \rho\mathbf{v} \right) + \mathbf{v}\left(\nabla\cdot\rho\mathbf{v}\right) + \left(\rho\mathbf{v} \cdot \nabla\right) \mathbf{v}\right) \mathrm{d}x\mathrm{d}y\mathrm{d}z
 \end{eqnarray}
 
-ty enligt Newtons andra lag är tidsderivatan av rörelsemängden $m\mathbf{v}$ lika med summan av alla krafter som verkar på kroppen. $\dot{m}_i$ betecknar här massflödet $\rho\mathbf{v}_i\cdot\mathbf{A}_i$.
+ty enligt Newtons andra lag är tidsderivatan av rörelsemängden $m\mathbf{v}$ lika med summan av alla krafter som verkar på kroppen. $\dot{m}_i$ betecknar här massflödet $\rho\mathbf{v}_i\cdot\mathbf{A}_i$. Även här hade integralen över randen kunnat resoneras fram via en figur liknande \ref{fig:massflowcube}, om in- och utflödestermerna modifierats något.
 
 Det sista högerledet kan skrivas om som
 
@@ -73,9 +73,7 @@ Det sista högerledet kan skrivas om som
 \left( \mathbf{v}\left[ \frac{\partial \rho}{\partial t} + \nabla\cdot \rho \mathbf{v}\right] + \rho\left[ \frac{\partial \mathbf{v}}{\partial t} + u\frac{\partial\mathbf{v}}{\partial x} + v\frac{\partial\mathbf{v}}{\partial y} + w\frac{\partial\mathbf{v}}{\partial z} \right]\right)\mathrm{d}x\mathrm{d}y\mathrm{d}z.
 \end{equation}
 
-Första termen inom hakparentes är kontinuitetsekvationen~\eqref{eq:convection:continuity} försvinner.
-
-Därmed reduceras~\eqref{eq:convection:linear} till
+Första termen inom hakparentes är kontinuitetsekvationen~\eqref{eq:convection:continuity} som är identiskt noll. Därmed reduceras~\eqref{eq:convection:linear} till
 
 \begin{equation}
 \label{eq:convection:linearfinal}
@@ -84,9 +82,7 @@ Därmed reduceras~\eqref{eq:convection:linear} till
 
 Summan av de på volymen verkande krafterna måste nu utvecklas. Dessa krafter uppstår på grund av gravitation, tryck och viskositet. Andra krafter, såsom från elektromagnetiska fält, kan i sammanhanget anses vara försumbara. Gravitationskraften $\mathbf{F}_g$ beskrivs för den infinitesimala volymen med $\rho \mathbf{g} \mathrm{d}x\mathrm{d}y\mathrm{d}z = \rho g \mathrm{d}x\mathrm{d}y\mathrm{d}z \hat{z}$. Tryckkraften $\mathbf{F}_p$, i sin tur, ges av tryckgradienten $-\nabla \left( p \right) \mathrm{d}x\mathrm{d}y\mathrm{d}z$. Den viskösa kraften $\mathbf{F}_\text{viskositet}$ är lite besvärligare att sammanställa. Anta att volymen är en newtonsk fluid, det vill säga stresstensorn $\tau$ är linjärt proportionell mot hastighetsgradienten $\nabla\mathbf{v}$ med proportionaltitetskonstanten $\mu$, $\tau = \mu \nabla \mathbf{v}$. Den viskösa kraften verkande på kroppen blir då $\mathbf{F}_\text{viskositet} = \mu\Delta\mathbf{v}\mathrm{d}x\mathrm{d}y\mathrm{d}z$.
 
-% Skriv om till integralrelationer och använd gauss sats, därefter infinitesimal volym
-
-Vi har alltså ekvationssystemet
+Tillslut sammanställs alltså ekvationssystemet
 
 \begin{equation}
 \label{eq:convection:momentum}
@@ -102,7 +98,7 @@ Vi har alltså ekvationssystemet
 
 % Energirelationen
 
-Slutligen sätts i~\ref{eq:convection:reynolds} $B=E$ för att söka ett uttryck för energins bevarande. Med antagandet att volymen inte utför något arbete består $E$ enbart av värmeenergi, och på samma vis som i avsnitt
+Slutligen sätts, i~\eqref{eq:convection:reynolds}, att $B=E$ för att söka ett uttryck för energins bevarande. Med antagandet att volymen inte utför något arbete består $E$ enbart av värmeenergi, och på samma vis som i avsnitt
 \ref{sec:heatconduction} blir då $E = c_p \rho dT$, vilket ger följande:
 
 \begin{eqnarray}
