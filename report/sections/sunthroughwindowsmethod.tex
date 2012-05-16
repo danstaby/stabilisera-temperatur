@@ -5,7 +5,7 @@ Flera olika metoder har använts vid beräkning av energiflöde genom fönster i
 \subsection{Solinstrålning}
 För att beräkna den totala effekt som solstrålning tillför byggnaden via fönster behövs fönstrenas vinkelberoende g-värden, som presenteras i avsnitt~\ref{gvalue}. För att bestämma detta värde ur ekvation~\eqref{eq:radiationwindowstheory:gvalue} behöver parametern $z = \theta/90^\circ$ beräknas, där $\theta$ är vinkeln mellan solstrålingens riktning och fönstrets normal i grader. Detta görs genom att utgå från aktuellt datum och tid på dygnet.
 
-En metod för att räkna ut solens position presenteras i \cite{walraven78} och en matlabfunktion baserad på samma artikel kan ses i appendix \ref{app:sunposition}. Argumenten i denna funktion består av longitudinella och latitudinella koordinater för den aktuella platsen samt datum och tidpunkt. För Walleriusgatan är koordinaterna ungefär $11,979435^\circ$ E respektive $57,691522^\circ$ N.
+En metod för att räkna ut solens position presenteras i \cite{walraven78} och en matlabfunktion baserad på samma artikel kan ses i bilaga \ref{app:sunposition}. Argumenten i denna funktion består av longitudinella och latitudinella koordinater för den aktuella platsen samt datum och tidpunkt. För Walleriusgatan är koordinaterna ungefär $11,979435^\circ$ E respektive $57,691522^\circ$ N.
 
 När de azimuthala och altitudinella vinklarna, det vill säga vinklarna i sidled och höjdled, som här kallas $\beta$ och $\alpha$, relativt ett väderstreck respektive horisonten har beräknats, relateras infallsvinkeln mot glaset $\theta$ som
 
@@ -13,9 +13,9 @@ När de azimuthala och altitudinella vinklarna, det vill säga vinklarna i sidle
 \theta = \arccos{\left( \cos{\left(\beta - \gamma\right)}\cos{\left(\alpha\right)}\right)}
 \end{equation}
 
-där $\gamma$ är vinkeln mellan fönstrets normal och väderstrecket mot vilken den azimuthala vinkeln anges. Detta görs med funktionen angletheta i appendix \ref{app:sunwindows}.
+där $\gamma$ är vinkeln mellan fönstrets normal och väderstrecket mot vilken den azimuthala vinkeln anges. Detta görs med funktionen angletheta i bilaga \ref{app:sunwindows}.
 
-Med dessa samband tillgängliga kan effektflödet på grund av solstrålning genom fönster beräknas, vilket kan göras med funktionerna \textit{gvalue} samt \textit{effekt} från appendix \ref{app:sunwindows}. Nödvändiga argument för dessa funktioner är g-värdet vid vinkelrätt infallande strålning samt konstanterna $p$ och $q$ från ekvation~\eqref{eq:gconstants}. % Repetera ekvationen?
+Med dessa samband tillgängliga kan effektflödet på grund av solstrålning genom fönster beräknas, vilket kan göras med funktionerna \textit{gvalue} samt \textit{effekt} från bilaga \ref{app:sunwindows}. Nödvändiga argument för dessa funktioner är g-värdet vid vinkelrätt infallande strålning samt konstanterna $p$ och $q$ från ekvation~\eqref{eq:gconstants}. % Repetera ekvationen?
 
 För att ge ett exempel på hur effekten varierar med solintensiteten måste det byggas upp en approximativ funktion som beskriver solens intensitet vid marknivå som funktion av vinkeln över horisonten. Detta kan göras med hjälp av metoden i referens~\cite{ozel11}. För det första sätts strålningen utanför atmosfären från solen till $I_{sol}=\unit[1377]{Wm^{-2}}$. En korrektion måste göras för att ta hänsyn till att jorden precesserar i sin bana, vilket leder till att den mot atmosfären infallande solstrålningen tecknas som $I_0 = I_{sol}\left( D/D_0\right)^2$, där den korrektionsfaktorn ges av
 
