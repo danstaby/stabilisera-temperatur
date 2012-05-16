@@ -109,13 +109,16 @@ Ett populärt val i litteraturen är linjära triangulära element då de
 och elementgeometri.
 \cite{johnson2009}\cite{lewis04}\cite{reddy93}\cite{fem50} Området den
 partiella differentialekvationen skall lösas i delas upp i triangulära element.
-Trianglarnas hörn blir då noder. \emph{\color{red} Elementen uppför sig genom att i en basfunktion
-är funktionen ett för noden som har samma nummer som basfunktionen.} Denna funktion
-antar sedan värdet noll på alla motstående kanter på alla trianglar som innehar noden
-med samma nummer som basfunktionen. Mellan dessa positioner bildar basfunktionen
-linjära plan på det sätt att basfunktionen blir kontinuerlig med en bitvis
-kontinuerlig derivata.
-Utanför dessa trianglar är basfunktionen noll. \cite{johnson2009}
+Trianglarnas hörn blir då noder och trianglarna kallas element. Elementen ligger i ett plan vars normal kallas $\phi$. Basfunktionen bildar linjära plan från noden och $\phi=1$ ned till intillliggande elements rander i planet. Basfunktionen antar värdet noll på resten av planet.\cite{johnson2009} För att se ett exempel på hur linjära
+triangulära element kan se ut i en dimension se figur \ref{fig:basefunction}.
+
+\begin{figure}
+\centering
+\includegraphics{images/basefunction.eps}
+\caption{Illustration över basfunktionerna $\phi_1$, $\phi_2$ och $\phi_3$ i en
+dimension med noderna $x_1$, $x_2$ samt $x_3$.}\label{fig:basefunction}
+\end{figure}
+
 
 \subsection{Påtvingande av randvillkor}
 \label{subsec:boundaryenforcement}
@@ -130,3 +133,5 @@ genom att värdet på dessa rander sätts in i integralerna som går över rande
 är viktigt att tillräckligt många randvillkor sätts. Om inte detta genomförs
 så får problemet en lösning vars egenskaper inte är explicit bestämda. I värsta fall kan en en trivial lösning fås. Vilka randvillkor som väljs beror helt
 på applikationen.
+
+
