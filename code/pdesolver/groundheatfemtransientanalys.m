@@ -2,7 +2,7 @@ function [outData] = groundheatfemtransientanalys(refinements)
 %outData = groundheatfemtransientanalys(refinements)
 %
 %Application to calculate the heat flow through the ground.
-%refinements indicate how many refinemesh that shoud be run.
+%refinements indicate how many refinemesh should be run.
 
 global tCoef
 
@@ -100,7 +100,7 @@ Uconc = 0.7/(0.45); %The U-value of the foundation
 uLast = (9+kelvin)*sparse(ones(pCount,1)); %Set initial values
 
 
-%Settings vetor for the dirichlet conditions
+%Settings vector for the Dirichlet conditions
 
 dirichletConditions = [NaN, NaN, NaN,    NaN,    NaN,    NaN, NaN, NaN]; 
 dirnan = isnan(dirichletConditions(e(5,:)));
@@ -123,7 +123,7 @@ u = sparse(pCount, 1);
 
 
 
-%Settings vectors for the neumann conditions.
+%Settings vectors for the Neumann conditions.
 % The coefficients are
 % dT/dn = neumannConditions + T*neumannTConditions +
 %neumannCosConditions*cos(omega*t) + neumannSinConditions*sin(omega*t)
@@ -188,7 +188,7 @@ b = b - (A+Q) * u + g;
 
 
 %Solve system
-fprintf(1,'Creating eigen value decomoposition... ')
+fprintf(1,'Creating eigenvalue decomposition... ')
 
 [VecTemp lambdaTemp] = eig(full(MinvA(Free,Free)+Minv(Free,Free)* ...
 				Q(Free,Free))); %Calculate
@@ -264,7 +264,7 @@ outData = [0:(3600*24):365*3600*24]'; %Initiate return data vectors
 outData = [outData, zeros(size(outData,1),1)];
 
 Lengths = zeros(3,1);
-boundoffs = 3; %This is boundary dependant. Change if you're using
+boundoffs = 3; %This is boundary dependent. Change if you're using
                %a new boundary.
 for eid = 1:3
     ind = find(~(e(5,:)-eid-boundoffs)); %Calculate the lengths of
@@ -274,7 +274,7 @@ end
 n = 0;
 
 fprintf(1, 'Iterating time steps... ')
-%Calculate the solution for all each day in a year
+%Calculate the solution for every each day during a year
 for tNow = 0:(3600*24):365*3600*24
   n = n +1;
   u(Free) = Vec*(aConst+bConst*cos(omega*tNow)+ cConst*sin(omega*tNow));

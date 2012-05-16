@@ -1,8 +1,7 @@
 function g = gvalue(g0, p, q, theta)
-
-%{
-Testa: g0 = ?, p = 3, q = 4
-%}
+% g0 = g-value at normal incidence
+% p and q  depending on window properties
+% theta = suns angle relative windows normal
 
 a = 8;
 b = 0.25/q;

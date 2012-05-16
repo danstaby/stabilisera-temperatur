@@ -31,7 +31,7 @@ och $\partial T/\partial n$ betecknar normalderivatan.
 
 \begin{equation}
 \label{eq:wallneumann}
-\frac{1}{k}\frac{\partial T}{\partial n} = Q_{sol} + Q_{svartkropp} + h(T_{ref}-T)
+\frac{\partial T}{\partial n} = \frac{1}{k}\left( Q_{sol} + Q_{svartkropp} + h(T_{ref}-T) \right)
 \end{equation}
 
 Konvektionsparametern och temperaturen under april- respektive decemberdagen har satts till värden som kan ses i tabell~\ref{tbl:aprdec}. Temperaturen har sedan linjariserats mellan dessa värden över dagen, vilket kan ses i figur~\ref{fig:temperaturedist}. Att sätta temperaturvariationen till en triangelvåg med maximalt och minimalt värde vid samma tidpunkt i både april och december är en approximation av hur det ofta blir när vädret är relativt konstant över flera dagar. Vädret skiftar dock hela tiden och den faktiska utomhustemperaturen är relativt godtycklig.
@@ -55,12 +55,12 @@ Problemet har sedan satts upp för två olika väggar, en som enbart innehåller
 
 \begin{table}[hpbt]
 \centering
-\caption{Använda materialkonstanter, hämtade från referens \cite{kandidatarbete2010}\cite{engineeringtoolboxdensity}\cite{bkvthermal}\cite{engineeringtoolboxspecificheat}\cite{engineeringcom}\cite{engineeringtoolboxthermalconductivity}\cite{ozel11}. $k$ betecknar här värmelednningsförmågan, medan $c_p\rho$ anger volymetriska värmekapacitiviteten.}
+\caption{Använda materialkonstanter, hämtade från referens \cite{kandidatarbete2010}, \cite{engineeringtoolboxdensity}, \cite{bkvthermal}, \cite{engineeringtoolboxspecificheat}, \cite{engineeringcom}, \cite{engineeringtoolboxthermalconductivity} och \cite{ozel11}. $k$ betecknar här värmelednningsförmågan, medan $c_p\rho$ anger volymetriska värmekapacitiviteten.}
 \begin{tabular}{c|c|c|c|c|c|c}
 & Tegel & Mineralull & Koppar & Spånskiva & Puts & Takpannor \\
 \hline
 $k$ [$Wm^{-1}K^{-1}$] & 0,6 & $5,2\cdot 10^{-7}$ & 401 & 0,5 & 0,25 & 0,85\\
-$c_p \rho$ [$kJm^{3}$] & 1154 & 58,8 & 3490 & 1300 & 872 & 1748
+$c_p \rho$ [$kJ~m^{-3}$] & 1154 & 58,8 & 3490 & 1300 & 872 & 1748
 \end{tabular}
 \label{tbl:materialconstants}
 \end{table}

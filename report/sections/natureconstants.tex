@@ -1,5 +1,5 @@
 \section{Naturkonstanter för luft}
-Luftens egenskaper kan beskrivas med hjälp av en mängd olika konstanter. Dessa påverkas av luftens temperatur, fuktighet och tryck, alltså vädret. I våra beräkningar av hur luften värms  och kyls av olika väderfenomen är detta i högsta grad något vi har behövt ta hänsyn till.
+Luftens egenskaper kan beskrivas med hjälp av en mängd olika konstanter. Dessa påverkas av luftens temperatur, fuktighet och tryck, alltså vädret. I våra beräkningar av hur luften värms upp och kyls ned av olika väderfenomen är detta i högsta grad något vi har behövt ta hänsyn till.
 
 % Vid olika tryck, fuktighet, temperatur och annat väder som påverkar. Luft består av 78,1\% kväve och 21,0\% syre (mer exakt http://en.wikipedia.org/wiki/Air\#Composition)
 
@@ -17,10 +17,10 @@ där
 \begin{itemize}
    \item[] k är termisk konduktivitetet, $\unit{W~m^{-1}~K^{-1}}$
    \item[] $\rho$ är densiteten, $\unit{kg~m^{-3}}$
-   \item[] $c_p$ specifika värmekapaciteten, $\unit{J~kg^{-1}~K^{-1})}$
+   \item[] $c_p$ är specifika värmekapaciteten, $\unit{J~kg^{-1}~K^{-1})}$
 \end{itemize}
 
-och har enheten $\unit{m^2~s^{-1}}$.
+och $\alpha$ har enheten $\unit{m^2~s^{-1}}$.
 
 %Luft: $\unit[1.9\cdot10^{-5}]{m/s^2}$
 
@@ -31,7 +31,7 @@ och har enheten $\unit{m^2~s^{-1}}$.
 %%%%%
 
 \paragraph{Värmeledningsförmåga} % Viktigt
-Värmeledningsförmågan, eller termisk konduktivitet, är ett materials förmåga att leda värme och mäts i $\unit{W~m^{-1}~K^{-1})}$. I Schroeder \cite{schroeder00} återfinns en beräkning av luftens värmeledningsfömåga, se ekvation~(\ref{eq:natconst:schroeder1}) och (\ref{eq:natconst:schroeder2}), som ger $\unit[0,031]{W~m^{-1}~K^{-1})}$. Som också beskrivs där är detta tyvärr en ganska approximativ beräkning och den uppmätta värmeledningsförmågan för luft vid rumstemperatur är $\unit[0,024]{W~m^{-1}~K^{-1})}$.
+Värmeledningsförmåga, eller termisk konduktivitet, är ett materials förmåga att leda värme och mäts i $\unit{W~m^{-1}~K^{-1})}$. I \cite{schroeder00} återfinns en beräkning av luftens värmeledningsfömåga, se ekvation~\eqref{eq:natconst:schroeder1} och \eqref{eq:natconst:schroeder2}, vilket ger $\unit[0,031]{W~m^{-1}~K^{-1}}$. Som också beskrivs där är detta tyvärr en väl approximativ beräkning och den uppmätta värmeledningsförmågan för luft vid rumstemperatur är $\unit[0,024]{W~m^{-1}~K^{-1}}$\cite{physicshandbook}.
 
 Ur \cite[ss.~41-42]{schroeder00} fås:
 
@@ -49,7 +49,7 @@ där $\bar{v}$ är molekylernas genomsnittliga hastighet.
 
 där $f$ är antal frihetsgrader för en molekyl och $l\approx\frac{1}{4\pi r^2}\frac{V}{N}$. För luft i rumstemperatur är $f=5$ och $l=\unit[1,5\cdot 10^{-7}]{m}$.
 
-Värmeledningsförmågan ändras generellt med temperaturen. För de flesta ämnen minskar den något med stigande temperatur. Vid låga temperaturer kan det även bero på trycket. 
+Värmeledningsförmågan ändras generellt med temperaturen. För de flesta ämnen minskar den något med stigande temperatur. Vid låga temperaturer kan den även bero på trycket. 
 
 % SKRIV NÅGOT MER!
 
@@ -59,35 +59,33 @@ Värmeledningsförmågan ändras generellt med temperaturen. För de flesta ämn
 \label{sec:densitet}
 
 % https://www.brisbanehotairballooning.com.au/faqs/education/116-calculate-air-density.html
-
-Luftens densitet beskriver hur mycket den väger per volymsenhet. Vid normala variationer i lufttryck kan vi använda ideala gaslagen, vilket ger att densiteten, $\rho$, är
+Luftens densitet mäts i $\unit{kg~m^{-3}}$Vid normala variationer i lufttryck kan vi använda ideala gaslagen, vilket ger att densiteten, $\rho$, är
 
 \begin{equation}
 \rho_\text{luft}=\frac{p M}{R M_\text{luft}}
 \end{equation}
 
+där
 \begin{itemize}
    \item[] $p$ är lufttrycket, $\unit{N~m^{-2}}$
    \item[] $R=\unit[8,315]{J~mol^{-1}~K^{-1}}$ är gaskonstanten
-   \item[] $T$ luftens temperatur, $\unit{K}$
-   \item[] $M_\text{luft}$ luftens molmassa, $\unit{kg)}$
+   \item[] $T$ är luftens temperatur, $\unit{K}$
+   \item[] $M$ är antalet mol
+   \item[] $M_\text{luft}$ är luftens molmassa, $\unit{kg~mol^{-1}}$
 \end{itemize}
 
-Luftens molmassa fås ur att att den består av 78 \% kväve, 21 \% syre och 1 \% argon och blir $M_\text{luft}=\unit[0,029]{kg}$.
+Luftens molmassa fås ur att att den består av 78 \% kväve, 21 \% syre och 1 \% argon och blir $M_\text{luft}=\unit[0,029]{kg~mol^{-1}}$.
 
 %%%%%
 
-\paragraph{Specifik värmekapacitivitet}
-Den specifika värmekapaciteten för luft kan approximeras med konstanten $\unit[1,005]{kJ/kg\cdot K}$ och är tämligen oberoende av tryck och temperatur.\cite{engineeringtoolbox}
+\paragraph{Specifik värmekapacitet}
+Den specifika värmekapacitet för luft kan approximeras till $\unit[1,005]{kJ~kg^{-1}~K^{-1}}$ och är tämligen oberoende av tryck och temperatur.\cite{engineeringtoolbox}
 
-Som tas upp i avsnittet om väder, avsnitt~\ref{subsec_weather}, påverkas den ej heller nämnvärt av luftfuktigheten. Detta kan härledas ur att, trots att vatten har en värmekapacitivitet ungefär fyra gånger större än den för luft så innehåller luften, även vid 100 \% luftfuktighet, relativt lite vatten. Detta gäller dock i Sverige där vi sällan har temperaturer över $\unit[20]{^\circ C}$.
-
+Som tas upp i avsnittet om väder, avsnitt~\ref{subsec_weather}, påverkas den specifika värmekapaciteten inte heller nämnvärt av luftfuktigheten. För trots att vatten har en specifik värmekapacitet som är ungefär fyra gånger större än den för luft, innehåller luft relativt lite vatten vid de temperaturer vi har i Sverige, även vid 100 \% luftfuktighet.
 %%%%%
 
-\paragraph{Volumetriska expansionskoefficienten} % Viktig
-Den volymetriska expansionskoefficienten beskriver ur ett ämnes volym förändras med temperaturen, $\frac{1}{V}\frac{\Delta V}{\Delta T}$. För luft tordes eventuell luftfuktighet vara helt oviktig, eftersom vattnets expansionskoefficient är så låg och även vid hög luftfuktighet innehåller luften relativt lite vatten.
-
-För torr luft borde det gå att använda allmänna gaslagen som ger ett förhållande mellan tryck, volym och temperatur och den volymetriska expansionskoefficienten.% $\beta=\frac{1}{pT}$
+\paragraph{Volymetrisk expansionskoefficient} % Viktig
+Den volymetriska expansionskoefficienten beskriver hur ett ämnes volym förändras med temperaturen, alltså $\frac{1}{V}\frac{\Delta V}{\Delta T}$.  Eventuell luftfuktighet torde vara helt oviktig för luftens volymetriska expansionskoefficient, eftersom vattnets expansionskoefficient är så låg och även vid hög luftfuktighet innehåller luften relativt lite vatten. För torr luft borde det gå att använda allmänna gaslagen som ger ett förhållande mellan tryck, volym och temperatur och den volymetriska expansionskoefficienten.% $\beta=\frac{1}{pT}$
 
 %\begin{itemize}
 %   \item[] $p$ är lufttrycket, $\unit{N/m^2}$
@@ -109,11 +107,11 @@ Den kinematiska viskositeten, $\nu$, definieras som \cite{kinematiskviskositet}
 
 där 
 \begin{itemize}
-\item[] $\mu$ är den dynamiska viskositeten, $\unit{Pa~s}$
-\item[] $\rho$ är lufts densitet, se ovan.\\
+\item[] $\mu$ är den dynamiska viskositeten, $\unit{Pa~s}, se nedan.$
+\item[] $\rho$ är lufts densitet, $\unit{kg~m^{-3}}$, se ovan.\\
 \end{itemize}
 
-För att bestämma den dynamiska viskositeten kan Sutherlands formel användas. Sutherlands formel är riktig för temperaturer mellan 0 och 555 K och vid låga tryck, tryck under \unit[3,45]{MPa} fås endast mindre avvikelser, vilka vi kan bortse i från.\cite{sutherlandsformula}
+För att bestämma den dynamiska viskositeten kan Sutherlands formel användas. Sutherlands formel är tillämpar för temperaturer mellan 0 och 555 K och vid låga tryck. För tryck under \unit[3,45]{MPa} fås endast mindre avvikelser, vilka kan bortses från i de här tillämpningarna.\cite{sutherlandsformula}
 
 Den ger  
 \begin{equation}

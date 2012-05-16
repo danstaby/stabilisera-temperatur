@@ -1,6 +1,6 @@
 \section{Konvektion}
 \label{section:convection}
-I fasta ämnen går det utmärkt att approximera värmeflöde enbart med hjälp av värmeledningsekvationen. Detta håller dock ej lika bra för fluider, det vill säga material som deformeras då de utsätts för tryck. Under dessa förhållanden måste det tas hänsyn till konservation av massa, rörelsemängd och energi. I det följande kommer en homogen fluid betraktas. För att härleda giltiga differentialekvationer som beskriver en fluids rörelse används ofta sambandet
+I fasta ämnen går det utmärkt att approximera värmeflöde enbart med hjälp av värme\-lednings\-ekvationen. Detta håller dock ej lika bra för fluider, det vill säga material som deformeras då de utsätts för tryck. Under dessa förhållanden måste hänsyn tas till bevarande av massa, rörelsemängd och energi. I det följande kommer en homogen fluid att betraktas. För att härleda giltiga differentialekvationer som beskriver en fluids rörelse används ofta sambandet
 
 \begin{equation}
 \label{eq:convection:reynolds}
@@ -13,7 +13,7 @@ Sätt $B = m$ där $m$ är fluidens massa (oberoende av tiden) och låt $V$ vara
 
 \begin{equation}
 \label{eq:convection:masscon}
-0 = \int_V \frac{\partial \rho}{\partial t} \mathrm{d}V + \int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) \mathrm{d}A
+0 = \int_V \frac{\partial \rho}{\partial t} \mathrm{d}V + \int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) \mathrm{d}A.
 \end{equation}
 
 Första termen i detta uttryck beskriver förändringar i densiteten inom kontrollvolymen medan andra termen omfattar alla flöden in och ut genom kontrollvolymens rand. För masskonservering krävs alltså att summan av dessa termer ska vara noll.
@@ -22,16 +22,16 @@ Den andra termen kan skrivas om med hjälp av Gauss sats (även kallad divergens
 
 \begin{equation}
 \label{eq:convection:gauss}
-\int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) \mathrm{d}A = \int_V \nabla \cdot \rho \mathbf{v} \mathrm{d}V
+\int_{\partial V} \rho \left( \mathbf{v} \cdot \mathbf{n} \right) \mathrm{d}A = \int_V \nabla \cdot \rho \mathbf{v} \mathrm{d}V.
 \end{equation}
 
 \begin{figure}[hpbt]\centering
 \includegraphics[scale=1]{images/massflowcube.eps}
-\caption{Infinitesimal kontrollvolym för derivering av bevaranderelationer, här med massflödet exemplifierat}
+\caption{Infinitesimal kontrollvolym för derivering av bevaranderelationer, här med massflödet exemplifierat.}
 \label{fig:massflowcube}
 \end{figure}
 
-Betrakta nu en infinitesimal kontrollvolym som den i figur~\ref{fig:massflowcube}. Integralerna över V ersätts med den infinitesimala volymen $\mathrm{d}x\mathrm{d}y\mathrm{d}z$ och~\eqref{eq:convection:masscon} reduceras till
+Detta blir intuitivt riktigt om man betraktar figur~\ref{fig:massflowcube}. Inflödet genom den infinitesimala ytan $\mathrm{d}y\mathrm{d}z$ blir $\left( \rho u \right) \mathrm{d}y\mathrm{d}z$ medan utflödet blir detsamma plus en term som beskriver hur flödet förändrats på sin väg genom volymen. Sammantaget, med alla sidor på kvadraten inräknade, blir alltså summan av alla flöden in och ut återigen lika med $\nabla \left( \rho \mathbf{v} \right)\mathrm{d}x\mathrm{d}y\mathrm{d}z$. Om nu integralerna över V i de tidigare använda integralrelationerna ersätts med den infinitesimala volymen $\mathrm{d}x\mathrm{d}y\mathrm{d}z$ reduceras~\eqref{eq:convection:masscon} till
 
 \begin{equation}
 \label{eq:convection:massconinf}
@@ -43,7 +43,7 @@ vilket, om $\mathrm{d}x\mathrm{d}y\mathrm{d}z$ förkortas bort, kan förenklas s
 \begin{equation}
 \label{eq:convection:continuity}
 \boxed{ \; \; \;
-0 = \frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \mathbf{v} \right) 
+0 = \frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \mathbf{v} \right).
 \; \; \; }
 \end{equation}
 
@@ -51,12 +51,12 @@ Om inkompressibilitet antas (det vill säga $\rho$ är konstant) reduceras denna
 
 \begin{equation}
 \label{eq:convection:continuityinc}
-\nabla \cdot \mathbf{v} = 0
+\nabla \cdot \mathbf{v} = 0.
 \end{equation}
 
 Detta är kontinuitetsekvationen för inkompressibla fluider.
 
-Betrakta åter~\eqref{eq:convection:reynolds} och sätt nu $B = m\mathbf{v}$. På samma vis som kontinuitetsekvationen~\eqref{eq:convection:continuityinc} härleddes, fås för det infinitesimala volymelementet i figur sambandet
+Betrakta åter~\eqref{eq:convection:reynolds} och sätt nu $B = m\mathbf{v}$. På samma vis som kontinuitetsekvationen~\eqref{eq:convection:continuity} härleddes, fås för ett infinitesimala volymelement att
 
 \begin{eqnarray}
 \label{eq:convection:linear}
@@ -65,7 +65,7 @@ Betrakta åter~\eqref{eq:convection:reynolds} och sätt nu $B = m\mathbf{v}$. P�
 & = &\left( \frac{\partial}{\partial t} \left( \rho\mathbf{v} \right) + \mathbf{v}\left(\nabla\cdot\rho\mathbf{v}\right) + \left(\rho\mathbf{v} \cdot \nabla\right) \mathbf{v}\right) \mathrm{d}x\mathrm{d}y\mathrm{d}z
 \end{eqnarray}
 
-ty enligt Newtons andra lag är tidsderivatan av rörelsemängden $m\mathbf{v}$ lika med summan av alla krafter som verkar på kroppen. $\dot{m}_i$ betecknar här massflödet $\rho\mathbf{v}_i\cdot\mathbf{A}_i$.
+ty enligt Newtons andra lag är tidsderivatan av rörelsemängden $m\mathbf{v}$ lika med summan av alla krafter som verkar på kroppen. $\dot{m}_i$ betecknar här massflödet $\rho\mathbf{v}_i\cdot\mathbf{A}_i$. Även här hade integralen över randen kunnat resoneras fram via en figur liknande \ref{fig:massflowcube}, om in- och utflödestermerna modifierats något.
 
 Det sista högerledet kan skrivas om som
 
@@ -73,20 +73,16 @@ Det sista högerledet kan skrivas om som
 \left( \mathbf{v}\left[ \frac{\partial \rho}{\partial t} + \nabla\cdot \rho \mathbf{v}\right] + \rho\left[ \frac{\partial \mathbf{v}}{\partial t} + u\frac{\partial\mathbf{v}}{\partial x} + v\frac{\partial\mathbf{v}}{\partial y} + w\frac{\partial\mathbf{v}}{\partial z} \right]\right)\mathrm{d}x\mathrm{d}y\mathrm{d}z.
 \end{equation}
 
-Första termen inom hakparentes är kontinuitetsekvationen~\eqref{eq:convection:continuity} och går alltså bort.
-
-Därmed reduceras~\eqref{eq:convection:linear} till
+Första termen inom hakparentes är kontinuitetsekvationen~\eqref{eq:convection:continuity} som är identiskt noll. Därmed reduceras~\eqref{eq:convection:linear} till
 
 \begin{equation}
 \label{eq:convection:linearfinal}
 \sum \mathbf{F} = \rho \left( \frac{\partial \mathbf{v}}{\partial t} + \mathbf{v}\cdot \nabla\mathbf{v} \right)\mathrm{d}x\mathrm{d}y\mathrm{d}z.
 \end{equation}
 
-Summan av de på volymen verkande krafterna måste nu utvecklas. Dessa krafter uppstår på grund av gravitation, tryck och viskositet. Andra krafter, såsom från elektromagnetiska fält, kan i sammanhanget anses vara försumbara. Gravitationskraften $\mathbf{F}_g$ beskrivs för den infinitesimala volymen med $\rho \mathbf{g} \mathrm{d}x\mathrm{d}y\mathrm{d}z = \rho g \mathrm{d}x\mathrm{d}y\mathrm{d}z \hat{z}$. Tryckkraften $\mathbf{F}_p$, i sin tur, ges av tryckgradienten $-\nabla \left( p \right) \mathrm{d}x\mathrm{d}y\mathrm{d}z$. Viskösa kraften $\mathbf{F}_{visc}$ är lite besvärligare att sammanställa. Anta att volymen är en Newtonsk fluid, det vill säga stresstensorn $\tau$ är linjärt proportionell mot hastighetsgradienten $\nabla\mathbf{v}$ med proportionaltitetskonstanten $\mu$, $\tau = \mu \nabla \mathbf{v}$. Den viskösa kraften verkande på kroppen blir då $\mathbf{F}_{visc} = \mu\Delta\mathbf{v}\mathrm{d}x\mathrm{d}y\mathrm{d}z$.
+Summan av de på volymen verkande krafterna måste nu utvecklas. Dessa krafter uppstår på grund av gravitation, tryck och viskositet. Andra krafter, såsom från elektromagnetiska fält, kan i sammanhanget anses vara försumbara. Gravitationskraften $\mathbf{F}_g$ beskrivs för den infinitesimala volymen med $\rho \mathbf{g} \mathrm{d}x\mathrm{d}y\mathrm{d}z = \rho g \mathrm{d}x\mathrm{d}y\mathrm{d}z \hat{z}$. Tryckkraften $\mathbf{F}_p$, i sin tur, ges av tryckgradienten $-\nabla \left( p \right) \mathrm{d}x\mathrm{d}y\mathrm{d}z$. Den viskösa kraften $\mathbf{F}_\text{viskositet}$ är lite besvärligare att sammanställa. Anta att volymen är en newtonsk fluid, det vill säga stresstensorn $\tau$ är linjärt proportionell mot hastighetsgradienten $\nabla\mathbf{v}$ med proportionaltitetskonstanten $\mu$, $\tau = \mu \nabla \mathbf{v}$. Den viskösa kraften verkande på kroppen blir då $\mathbf{F}_\text{viskositet} = \mu\Delta\mathbf{v}\mathrm{d}x\mathrm{d}y\mathrm{d}z$.
 
-% Skriv om till integralrelationer och använd gauss sats, därefter infinitesimal volym
-
-Vi har alltså ekvationssystemet
+Tillslut sammanställs alltså ekvationssystemet
 
 \begin{equation}
 \label{eq:convection:momentum}
@@ -95,14 +91,14 @@ Vi har alltså ekvationssystemet
 \begin{aligned} 
 \rho\left(\frac{\partial u}{\partial t} + \mathbf{v}\cdot \nabla u\right) & = -\frac{\partial p}{\partial x} + \mu\Delta u\\
 \rho\left(\frac{\partial v}{\partial t} + \mathbf{v}\cdot \nabla v\right) & = -\frac{\partial p}{\partial y} + \mu\Delta v\\
-\rho\left(\frac{\partial w}{\partial t} + \mathbf{v}\cdot \nabla w\right) & = -\rho g -\frac{\partial p}{\partial z} + \mu\Delta w  
+\rho\left(\frac{\partial w}{\partial t} + \mathbf{v}\cdot \nabla w\right) & = -\rho g -\frac{\partial p}{\partial z} + \mu\Delta w.
 \end{aligned} 
 } 
 \end{equation}
 
 % Energirelationen
 
-Slutligen sätts i~\ref{eq:convection:reynolds} $B=E$ för att söka ett uttryck för energins bevarande. Med antagandet att volymen inte utför något arbete består $E$ enbart av värmeenergi, och på samma vis som i avsnitt
+Slutligen sätts, i~\eqref{eq:convection:reynolds}, att $B=E$ för att söka ett uttryck för energins bevarande. Med antagandet att volymen inte utför något arbete består $E$ enbart av värmeenergi, och på samma vis som i avsnitt
 \ref{sec:heatconduction} blir då $E = c_p \rho dT$, vilket ger följande:
 
 \begin{eqnarray}
@@ -110,10 +106,10 @@ Slutligen sätts i~\ref{eq:convection:reynolds} $B=E$ för att söka ett uttryck
 \frac{\mathrm{d}E}{\mathrm{d}t} & = & \frac{\partial}{\partial t} \int_V \frac{\mathrm{d}E}{\mathrm{d}m}\rho \mathrm{d}V + \int_{\partial V}\frac{\mathrm{d}E}{\mathrm{d}m}\rho \mathbf{v} \cdot \mathbf{n} \mathrm{d}A \nonumber\\
 & = & \frac{\partial}{\partial t} \int_V c_p T \rho \mathrm{d}V + \int_{\partial V} c_p T \rho \mathbf{v} \cdot \mathbf{n} \mathrm{d}A \nonumber\\
 & = & \left(\frac{\partial}{\partial t} \left( c_p T \rho \right) + \nabla\cdot c_p T \rho \mathbf{v}\right) \mathrm{d}x\mathrm{d}y\mathrm{d}z \nonumber\\
-& = & c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right)
+& = & c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right).
 \end{eqnarray}
 
-Sista steget följer av att kontinuitetsekvationen bryts ut som i fallet med rörelsemängdsekvationen. För att utveckla vänsterledet betraktas återigen en infinetisemal volym såsom i figur~\ref{fig:massflowcube}. Värmeflödet in i volymen i x-led ges av $q_x dy dz$ medan utflödet ges av $\left[ q_x + \frac{\partial}{\partial x} \left( q_x\right)dx\right]dydz$ och analogt för y- respektive z-led. Totala ökningen av värmeenergi i kuben ges alltså av utflödet subtraherat från inflödet, vilket innebär att
+Sista steget följer av att kontinuitetsekvationen bryts ut som i fallet med rörelsemängdsekvationen. För att utveckla vänsterledet betraktas återigen en infinitesimal volym såsom i figur~\ref{fig:massflowcube}. Värmeflödet in i volymen i $x$-led ges av $q_x dy dz$ medan utflödet ges av $\left[ q_x + \frac{\partial}{\partial x} \left( q_x\right)dx\right]dydz$ och analogt för $y$-respektive $z$-led. Totala ökningen av värmeenergi i kuben ges alltså av utflödet subtraherat från inflödet, vilket innebär att
 
 \begin{equation}
 \frac{\mathrm{d}E}{\mathrm{d}t} = - \nabla \cdot \mathbf{q} \mathrm{d}x\mathrm{d}y\mathrm{d}z.
@@ -130,7 +126,7 @@ och detta i sin tur leder till resultatet
 
 \begin{equation}
 \label{eq:convection:energy}\boxed{ \; \; \;
-\nabla \cdot \left( k \nabla T \right) = c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right)
+\nabla \cdot \left( k \nabla T \right) = c_p \rho \left( \frac{\partial T}{\partial t} + \mathbf{v}\cdot \nabla T\right).
 \; \; \;}
 \end{equation}
 
@@ -140,43 +136,43 @@ För homogena inkompressibla fluider i två dimensioner gäller alltså ekvation
 \subsection{Vindens konvektionskoefficient}
 \label{subsec:windconv}
 
-Då vinden blåser kommer en del värmeenergi överföras via konvektion, men istället för att lösa den invecklade konvektions-diffussionsekvationen används ofta något som kallas för vindens konvektionskoefficient, betecknat med $h$. I analogi med Fouriers värmelag, ekvation~\ref{eq:conduction:fourier}, skrivs
+Då vinden blåser kommer en del värmeenergi att överföras via konvektion, men istället för att lösa den invecklade konvektions-diffussionsekvationen används ofta något som kallas för vindens konvektionskoefficient som betecknas med $h$. Analogt med Fouriers värmelag, ekvation~\ref{eq:conduction:fourier}, skrivs
 
 \begin{equation}\boxed{ \; \; \;
 q = h\mathrm{d}T = h\left( T_\text{vägg} - T_\text{ute}\right).
 \; \; \;}\end{equation}
 
-där h alltså kan jämföras med det ovan härledda U-värdet. 
+där $h$ alltså kan jämföras med det ovan härledda U-värdet. 
 
 Denna konvektionskoefficient beskrivs ofta av en ekvation anpassad till empiriska resultat, och ett stort antal experiment har genomförts för att bestämma parametern, även om en helhetsbild saknas i dagsläget.
 
 Vid fri (naturlig) konvektion, det vill säga då vinden är försumbar och luftcirkulationen
-följer av stigande varm luft, brukar h fås till mellan $2$ och $\unit[25]{W~m^{-2}~K^{-1}}$.
+följer av stigande varm luft, brukar $h$ fås till mellan $2$ och $\unit[25]{W~m^{-2}~K^{-1}}$.
 Vid forcerad konduktion, det vill säga då vinden inte är försumbar,
 kan $h$ variera från $25$ till $\unit[250]{W~m^{-2}~K^{-1}}$. \cite{ASHRAE09}
 
 Traditionellt används ofta något som kallas för Nusselt-Jürges korrelation vid beräkning av konvektionskoefficienten, som lyder
 
 \begin{equation}\label{Nusselt}
-h = 5,678 \left( a + b \left( \frac{965,42}{T_{out}}\left(|\mathbf{v}_{wind}\times \mathbf{n}|\right) \right)^c \right)
+h = 5,678 \left( a + b \left( \frac{965,42}{T_\text{ute}}\left(|\mathbf{v}_\text{vind}\times \mathbf{n}|\right) \right)^c \right)
 \end{equation}
 
-där $\mathbf{n}$ betecknar väggens normalvektor, och a, b samt c beror på väggens ytegenskaper. För en skrovlig yta med $|\mathbf{v}_{vind}\times \mathbf{n}| < \unit[4,88]{m~s^{-1}}$ fås att $a=1,09$, $b=0,23$ samt $c=1$, medan starkare vind ger $a=0$, $b=0,53$ samt $c=0,78$. Olika isotermer beräknade med detta samband kan ses i figur~\ref{hvalues}.
+där $\mathbf{n}$ betecknar väggens normalvektor, och a, b samt c beror på väggens ytegenskaper. För en skrovlig yta med $|\mathbf{v}_\text{vind}\times \mathbf{n}| < \unit[4,88]{m~s^{-1}}$ fås att $a=1,09$, $b=0,23$ och $c=1$, medan starkare vind ger $a=0$, $b=0,53$ och $c=0,78$. Olika isotermer som beräknats med detta samband kan ses i figur~\ref{hvalues}.
 
 \begin{figure}[hpbt]\centering
 \includegraphics[scale=0.7]{images/hvalues.eps}
-\caption{Teoretiska konvektionskoefficienter (h-värden) beräknade med Nusselt-Jürges korrelation,~\eqref{Nusselt}. De olika linjerna är isotermer där den lägst belägna motsvarar $\unit[30]{^{\circ}C}$ och den högsta motsvarar $\unit[-20]{^{\circ}C}$ med $\unit[10]{^{\circ}C}$ skillnad mellan två linjer. Den svarta linjen motsvarar brytpunkten vid $\unit{4,88}{m~s^{-1}}$ då konstanterna förändras}
+\caption{Teoretiska konvektionskoefficienter (h-värden) beräknade med Nusselt-Jürges korrelation,~\eqref{Nusselt}. De olika linjerna är isotermer där den nedersta motsvarar $\unit[30]{^{\circ}C}$ och den översta motsvarar $\unit[-20]{^{\circ}C}$ med $\unit[10]{^{\circ}C}$ skillnad mellan två linjer. Den svarta linjen motsvarar brytpunkten vid $\unit[4,88]{m~s^{-1}}$ då konstanterna förändras}
 \label{hvalues}
 \end{figure}
 
-En mängd andra samband mellan konvektionskoefficienten och vindhastigheten har härletts, både teoritiskt och empiriskt, på grund av dess starka beroende av byggnadens ytegenskaper och area, men av anledningar som diskuteras i avsnitt~\ref{sec:discmethod} använder vi oss av ekvation~\ref{Nusselt} i denna rapport.\cite{palyvos08}
+En mängd andra samband mellan konvektionskoefficienten och vindhastigheten har härletts, både teoretiskt och empiriskt, på grund av dess starka beroende av byggnadens ytegenskaper och area, men av anledningar som diskuteras i avsnitt~\ref{sec:discmethod} använder vi oss av ekvation~\ref{Nusselt} i denna rapport.\cite{palyvos08}
 
 % Skapa graf över T och v beroende
 
-\subsection{Boussinesq approximation}
+\subsection{Boussinesqs approximation}
 
-För flytkraftsdrivet flöde kan det vara lämpligt att använda sig av
-Boussinesq approximation. Denna säger att det enda som påverkar trycket är
+För \emph{\color{red} flytkraftsdrivet} flöde kan det vara lämpligt att använda sig av
+Boussinesqs app\-roximation. Denna säger att det enda som påverkar trycket är
 tyngdaccelerationen. Genom detta är det möjligt att sätta upp uttryck för densiteten
 och tryckderivatorna enligt ekvationerna~\eqref{eq:convection:density}
 och~\eqref{eq:convection:pressurez}. Här är
@@ -190,36 +186,35 @@ $T_0$ temperaturen som råder vid referensdensiteten $\rho_0$.
 
 \begin{equation}
 \label{eq:convection:pressurez}
-\frac{\partial p}{\partial z} = -\rho_0g
+\frac{\partial p}{\partial z} = -\rho_0g.
 \end{equation}
 
 \subsection{Tryckdrivet luftläckage}
 \label{subsec:darcy}
 
-För att beskriva tryckdrivet luftläckage, i vårt fall drag på grund av vind, kan till exempel Darcys lag användas. Den beskriver hur en fluid flödar genom ett poröst material och den kan användas i en mängd olika tillämpningar. Sambandet kan fås ur Navier-Stokes ekvationer genom homogenisering så väl som genom experminent. Lagen beskriver ett pågående flöde genom materialet, $\Phi$, i termer av fluidens viskositet, $\mu$, och tryckfallet, $P_b - P_a$, över ett givet avstånd, $L$.
+För att beskriva tryckdrivet luftläckage, i vårt fall drag på grund av vind, kan till exempel Darcys lag användas. Den beskriver hur en fluid flödar genom ett poröst material och kan användas i en mängd olika tillämpningar. Sambandet kan fås ur Navier-Stokes ekvationer genom homogenisering såväl som genom experiment. Lagen beskriver ett pågående flöde genom materialet, $\Phi$, i termer av fluidens viskositet, $\mu$, och tryckfallet $P_b - P_a$ över ett givet avstånd $L$.
 
 \begin{equation}
 \Phi=\frac{-k}{\mu} \frac{(P_\text{in} - P_\text{ut})^\eta}{L}.
 \end{equation}
     
 $k$ står för permeabiliteten hos materialet som fluiden flödar igenom och är en 
-materialkonstant som beskriver hur genomsläppligt det är. Luftflödet $\Phi$ mäts per 
+material\-konstant som beskriver hur genomsläppligt det är. Luftflödet $\Phi$ mäts per 
 kvadratmeter. Exponenten $\eta$ sätts till 1 för att motsvara Darcys lag. Hus är dock inte så
  porösa och ett för högt värde fås oftast med den här metoden. För att åtgärda det behövs 
  data från ett dörrtryckstest utföras. Detta utförs genom att man trycksätter huset genom 
  dörren och ser vilket luftflöde som krävs för att upprätthålla ett givet tryck. Flödet och trycket 
  ritas sedan upp i ett log-log-diagram. Vid låga tryck är kurvan konvex men rätas sedan ut till 
- en rät linje vars lutning är $\eta$. Ett vanligt värde är då ungefär 0,6, men för en del hus blir 
- det 0,75.\cite{sasic} Ett sådan här test är alltså essentiellt för att få veta hur byggnaden 
+ en linje vars lutning är $\eta$. Ett vanligt värde är då ungefär 0,6, men det kan lika gärna vara 0,75 eller något värde däremellan, helt beroende på hur tätt huset är\cite{sasic} Ett sådan test är alltså essentiellt för att få veta hur byggnaden 
  påverkas av vind.
  
-Sammanfattas alla konstanter fås istället ett uttryck på formen
+Slås alla konstanter samman fås istället ett uttryck på formen
 
 \begin{equation}
 \Phi = C\Delta P^\eta
 \end{equation}
 
-där $C=\frac{-k}{\mu \cdot L}$ och $C$ är en applikationsberoende konstant vilken uppmäts experimentellt med ett blåsdörrstest. 
+där $C=\frac{-k}{\mu \cdot L}$ är en applikationsberoende konstant som uppmäts experimentellt med ett dörrtryckstest. 
 
 Energiflödet $Q$ kan nu beräknas för ett visst flöde $\Phi$ och en viss area $A$
 

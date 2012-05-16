@@ -1,6 +1,5 @@
 function theta = angletheta(alpha, beta, gamma)
-% gamma = vinkel mellan norr och fönstrets normal,
-% öster om norr positivt
+% gamma = angle of windows normal relative north, east positive
 
 beta = beta - gamma;
 

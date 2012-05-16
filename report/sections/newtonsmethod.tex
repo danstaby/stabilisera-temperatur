@@ -1,11 +1,11 @@
 \section{Optimering med Newton-Raphsons metod}
 
-När ett ekvationssystem är ickelinjärt kan ej exakta metoder som Gausseliminering användas
+När ett ekvationssystem är ickelinjärt kan inga exakta metoder som gausseliminering användas
 för ekvationslösning. Detta stötte vi till exempel på vid finita elementlösningen
 av Navier-Stokes ekvationer i avsnitt~\ref{sec:femconvection}.
 I dessa fall måste approximativa optimeringsmetoder utnyttjas. En sådan
 metod är Newton-Raphsons metod. Denna bygger på trunkerad Taylorutveckling 
-av en funktion för att linjarisera ett ickelinjärt ekvationssystem
+av en funktion för att linearisera ett ickelinjärt ekvationssystem
 $\mathbf{f}(\mathbf{x}) = 0$
 vilket kan ses i ekvation \eqref{eq:newtonsmethod:taylor}. Här är
 $\mathbf{J}_f(\mathbf{x})$ jacobianen för $\mathbf{f}(\mathbf{x})$. 
@@ -19,7 +19,7 @@ $\mathbf{J}_f(\mathbf{x})$ jacobianen för $\mathbf{f}(\mathbf{x})$.
 \noindent
 Principen går ut på att algoritmen upprepat gissar nya lösningar där de
 nya lösningarna följer den negativa jacobianen. Till en början är en god initial gissning
-$\mathbf{x}_0$ ett kriterie för att Newton-Raphson skall konvergera. Därefter så beräknas
+$\mathbf{x}_0$ ett kriterium för att Newton-Raphsons metod skall konvergera. Därefter beräknas
 funktionsvärdet $\mathbf{f}(\mathbf{x}_0)$ samt jacobianen $\mathbf{J}_f(\mathbf{x}_0)$.
 Dessa används för att beräkna nästa gissning genom att lösa
 \eqref{eq:newtonsmethod:guess} och beräkna nästa $\mathbf{x}$ med
@@ -36,18 +36,15 @@ Dessa används för att beräkna nästa gissning genom att lösa
 \end{equation}
 
 \noindent
-Itereringen bör avbrytas då ett maxantal itereringar har uppnåtts och funktionen
-ej har konvergerat alternativt när felet är tillräckligt litet. En av styrkorna 
+Itereringen bör avbrytas när felet är tillräckligt litet, alternativ då ett största tillåtna antal itereringar har uppnåtts och funktionen inte har konvergerat. En av styrkorna 
 med denna algoritm är dess kvadratiska konvergens mot enkelrötter. \cite{ympa95}
-En svaghet med Newton-Raphson är att det i många fall ej är möjligt att analytiskt beräkna
-jacobianen. Istället måste andra algoritmer untnyttjas som till exempel finita differensmetoden
-för beräkning av jacobianen. Omvägar som denna bidrar till att lösningsprocessen blir mycket
-mer omständig och processorintensiv. 
+En svaghet hos Newton-Raphsons metod är att det i många fall inte är möjligt att analytiskt beräkna
+jacobianen. Istället måste andra algoritmer utnyttjas för beräkning av jacobianen, som till exempel finita differensmetoden. Detta är omvägar som denna bidrar till att lösningsprocessen blir mer omständig och processorintensiv.
 
-\subsection{Konvergens samt konvergenskriterier}
+\subsection{Konvergens och konvergenskriterier}
 
-För att enklare förstå några problem som kan uppstå med Newton-Raphsons metod kan det vara lämpligt
-att repetera beviset av dess kvadratiska konvergens. Definiera en funktion $f(x)$ enligt \eqref{eq:newtonproof}.
+För att enklare förstå några av de problem som kan uppstå med Newton-Raphsons metod kan det vara lämpligt
+att repetera beviset för dess kvadratiska konvergens. Definiera en funktion $f(x)$ enligt \eqref{eq:newtonproof}.
 Antag att den unika roten $f(x) = 0$ existerar för $x = \alpha$.
 
 \begin{align}
@@ -56,18 +53,18 @@ f: & \mathbb{R} \to \mathbb{R} \nonumber \\
 \end{align}
 
 \noindent
-Härnäst genomförs en taylorutveckling av funktionen $f(x)$ i ekvation~\eqref{eq:newtonprooftaylor}.
-Den kvadratiska termen är här Lagranges restterm med parametern $\xi_n \in [\alpha, x_n]$.
+Sedan genomförs en taylorutveckling av funktionen $f(x)$ i 
 
 \begin{equation}
 \label{eq:newtonprooftaylor}
-f(\alpha) = f(x_n) + f^\prime(x_n)(x_n-\alpha) + \frac{f^{\prime\prime}(\xi_n)}{2}(x_n-\alpha)^2
+f(\alpha) = f(x_n) + f^\prime(x_n)(x_n-\alpha) + \frac{f^{\prime\prime}(\xi_n)}{2}(x_n-\alpha)^2.
 \end{equation}
 
-\noindent
-Nu kan förstaderivatan av $f(x_n)$ divideras över samt $f(\alpha)$ är känt att vara noll.
-Efter detta identifieras $f(x_n)/f^\prime(x_n) = x_n-x_{n+1}$ och ersätts. Slutligen så ses
-det i ekvation~\eqref{eq:newtonqed} att $x_{n+1}-\alpha \propto (x_{n}-\alpha)^2$.
+Den kvadratiska termen är Lagranges restterm med parametern $\xi_n \in [\alpha, x_n]$.
+
+Efter detta divideras alla termer med $f^\prime(x_n)$. Det år också känt att $f(\alpha)=0$.
+Därefter identifieras  $f(x_n)/f^\prime(x_n)$ som ett newtonsteg och ersätts enligt
+$f(x_n)/f^\prime(x_n) = x_n-x_{n+1}$. Slutligen fås att $x_{n+1}-\alpha \propto (x_{n}-\alpha)^2$ ur
 
 \begin{equation}
 0 = \frac{f(x_n)}{f^\prime(x_n)} + \alpha - x_n + \frac{f^{\prime\prime}(\xi_n)}{2f^\prime(x_n)}(x_n-\alpha)^2
@@ -79,40 +76,35 @@ det i ekvation~\eqref{eq:newtonqed} att $x_{n+1}-\alpha \propto (x_{n}-\alpha)^2
 x_{n-1} - \alpha = - \frac{f^{\prime\prime}(\xi_n)}{2f^\prime(x_n)}(x_n-\alpha)^2 
 \end{equation}
 
-\noindent
-För att ovanstående bevis ska gälla så måste andraderivatan vara uppåt begränsad, förstaderivatan får ej
-vara noll och den högre ordningens derivator får ej vara av stor betydelse för funktionens uppträdande
-nära roten $f(x) = 0$. Rent praktiskt innebär detta att en god gissning är essentiell för att få
-konvergens i metoden. Även med en god gissning så kan problem uppstå om derivatan av funktionen
-förändras snabbt i omgivningen av $x$. Detta kan resultera i både att nästa gissning ligger för långt
-bort och för nära. Det förstnämnda problemet innebär att metoden hoppar över roten vilket till och med
-kan innebära att metoden divergerar. Det andra problemet är mindre allvarligt då det endast innebär 
-att metoden förlorar sin kvadratiska konvergens.
+För att ovanstående bevis ska gälla måste andraderivatan vara uppåt begränsad, förstaderivatan måste vara nollskild och den högre ordningens derivator får inte vara av stor betydelse för funktionens beteende nära roten $f(x) = 0$. Rent praktiskt innebär detta att en god gissning är essentiell för att få
+konvergens i metoden men även med en god gissning kan problem uppstå om derivatan av funktionen
+förändras snabbt i $x$:s omgivning. Det kan resultera både i att nästa gissning ligger för långt
+bort eller för nära från svaret. Det förstnämnda problemet leder till att metoden hoppar över roten vilket kan ge att metoden divergerar. Det andra problemet är mindre allvarligt men kan leda till att metoden förlorar sin kvadratiska konvergens.
 
 \subsection{Förbättrad Newton-Raphson}
 
-En metod för att hantera att metoden hoppar över rötter är att i varje steg försöka minimera $|f(x_{n+1})|$.
-Rent praktiskt innbär detta att vi väljer en konstant $0 \le k_n \le 1$ och genomför ett modifierat
-Newtonsteg enligt ekvation~\eqref{eq:newtonmodified}.
+En åtgärd för att undvika att metoden hoppar över rötter är att i varje steg försöka minimera $|f(x_{n+1})|$.
+Rent praktiskt innebär det att en konstant $0 \le k_n \le 1$ väljs och ett modifierat
+newtonsteg genomförs enligt
 
 \begin{equation}
 \label{eq:newtonmodified}
-x_{n+1} = x_n - k_n\frac{f(x_n)}{f^\prime(x_n)}
+x_{n+1} = x_n - k_n\frac{f(x_n)}{f^\prime(x_n)}.
 \end{equation}
 
-\noindent
-För att identifiera det optimala valet av $k_n$ kan godtycklig linjesökningsalgoritm användas. Ett val av metod
-är att behandla det analytiskt för att göra metoden mindre processorintensiv. En ny funktion definieras
-enligt ekvation~\eqref{eq:newtong} med $\Delta x_n = f(x_n)/f^\prime(x_n)$.
+För att identifiera det optimala valet av $k_n$ kan en godtycklig linje\-söknings\-algoritm användas. Ett alternativ till dylik algoritm
+är att behandla sökningen med en kvadratisk interpolering för att göra metoden mindre processor\-intensiv. En ny funktion definieras
+enligt 
 
 \begin{equation}
 \label{eq:newtong}
 g(k_n) = f(x_n- k_n\Delta x_n)
 \end{equation}
 
-\noindent
-I ekvation~\eqref{eq:newtongmin} deriveras funktionen med avseende på $k_n$ i punkten $k_n=0$
-och kedjeregeln används för att skriva om uttrycket till något som är användbart.
+med $\Delta x_n = f(x_n)/f^\prime(x_n)$.
+
+Sedan bestämma funktionens derivata med avseende på $k_n$ i punkten $k_n=0$
+och kedjeregeln används för att skriva om uttrycket till något som är användbart, alltså
 
 \begin{align}
 \frac{\partial g(k_n)}{\partial k_n}\,\bigg|_{k_n=0} & = 
@@ -123,34 +115,27 @@ och kedjeregeln används för att skriva om uttrycket till något som är använ
 \label{eq:newtongmin}
 \end{align}
 
-\noindent
-Ett förslag på algoritm är nu att i varje iterationssteg först beräkna det fulla newtonsteget motsvarande $k_n=1$.
-Är då $f(x_{n+1}) < f(x_n)$ så kan steget godtagas. Stämmer inte detta så beräkas derivatan av $g(k_n)$ och
-funktionen $g(k_n)$ ansätts vara ett polynom av andra ordningen enligt ekvation~\eqref{eq:newtonfit}.
+Ett förslag på algoritm är att i varje iterations\-steg först beräkna det fulla newtonsteget, motsvarande $k_n=1$.
+Är då $f(x_{n+1}) < f(x_n)$ kan steget godtas. Stämmer inte detta deriveras $g(k_n)$ och funktionen $g(k_n)$ ansätts att vara ett polynom av andra ordningen enligt
 
 \begin{equation}
 \label{eq:newtonfit}
-g(k_n) = ak^2_n + bk_n + c
+g(k_n) = ak^2_n + bk_n + c.
 \end{equation}
 
-\noindent
-Nu kan de kända värdena $g(0)$, $g(1)$ samt $g^\prime(0)$ användas för att lösa ut koefficienterna i polynomet.
-Dessa kan slutligen användas för att beräkna derivatan av $g(k_n)$ för att hitta dess minimum och således
-hitta den optimala parametern $k_n$.
+Nu kan de kända värdena $g(0)$, $g(1)$ och $g^\prime(0)$ användas för att lösa ut koefficienterna i polynomet.
+Slutligen kan dessa användas för att beräkna derivatan av $g(k_n)$ och för att hitta dess minimum vilket ger den optimala parametern $k_n$.
 
-\noindent
-Om denna metod skall användas för att lösa ett ekvationssystem istället för en realvärd funktion i en dimension
-så behövs något mått sättas upp. Problemet som önskas att lösas är $\mathbf{F}(\mathbf{x}) = 0$.
-Funktionen som skall minimeras kan då med fördel väljas till $f(\mathbf{x}) = \mathbf{F}(\mathbf{x})^2/2$.
-På ett analogt sätt ovan så beräknas derivatan av funktionen $g(k)$ till ekvation~\eqref{eq:newtonvecg}.\cite{fortran77}
+Om denna metod ska användas för att lösa ett ekvationssystem istället för en realvärd funktion i en dimension behöver ett mått sättas upp. Problemet som ska lösas är $\mathbf{F}(\mathbf{x}) = 0$.
+Funktionen som ska minimeras kan med fördel väljas till $f(\mathbf{x}) = \mathbf{F}(\mathbf{x})^2/2$.
+På samma sätt som ovan beräknas derivatan av funktionen $g(k)$ till\cite{fortran77}
 
 \begin{equation}
 \label{eq:newtonvecg}
 g_n^\prime(0) = - \mathbf{F}(\mathbf{x_n})^2 \le 0
 \end{equation}
 
-\noindent
-För att hitta roten $\mathbf{F}(\mathbf{x}) = 0$ så ansätts som ovan ett polynom där koefficienterna beräknas.
-Som kan ses så existerar det ett $k_n$ så att $\mathbf{F}(\mathbf{x}_{n+1}) \le \mathbf{F}(\mathbf{x}_n)$ ty
-$g^\prime(0) \le 0$ och enbart noll om roten redan är funnen.
+För att hitta roten $\mathbf{F}(\mathbf{x}) = 0$ ansätts som ovan ett polynom där koefficienterna beräknas.
+Som kan ses så existerar det ett $k_n$ sådant att $\mathbf{F}(\mathbf{x}_{n+1}) \le \mathbf{F}(\mathbf{x}_n)$ eftersom
+$g^\prime(0) \le 0$, och noll endast om roten redan är funnen.
 
