@@ -19,6 +19,7 @@ report.pdf
 pitch.pdf
 report/images/*.pdf
 *.pdf
+!opponering/opponering_mats.pdf
 
 #Emacs temporary files
 
