@@ -36,3 +36,8 @@ report/images/*.pdf
 
 #Miscelleneous files
 *.swp
+
+#Beamer temporary files
+*.nav
+*.ps
+*.snm
