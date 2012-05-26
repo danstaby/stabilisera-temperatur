@@ -3,6 +3,7 @@
 #Latex temporary files
 
 *.aux
+*.nav
 *.log
 *.gz
 *.toc
@@ -10,6 +11,7 @@
 *.bbl
 *.blg
 *.out
+*.snm
 report.ps
 
 # pdf files
