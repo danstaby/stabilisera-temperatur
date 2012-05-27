@@ -1,11 +1,12 @@
 function ret = barUGraph()
 
-U = [1.186,0.279,0.393, 0.171, 0.1];
-strNames = {'Syd- och vÃ¤stvÃ¤gg', ...
-	    'NorrvÃ¤gg',...
-	    'BursprÃ¥k',...
+str=sprintf('Syd- och\n\r västvägg');
+U = [1.186,0.279,0.393, 0.171, 1];
+strNames = {str, ...
+	    'Norrvägg',...
+	    'Burspråk',...
 	    'Tak',...
-	    'FÃ¶nster'};
+	    'Fönster'};
 cvec = [2,1,6,4,7];
 
 
@@ -17,7 +18,7 @@ cm = colormap(hsv(7));
 % 4 - Tak
 % 5 - grund
 % 3 - konstnta
-% 7 - FÃ¶nster
+% 7 - Fönster
 
 
 figure(1)
@@ -34,7 +35,7 @@ for n = 1:max(size(bh))
   set(bh(n), 'FaceColor', cm(cvec(n),:))
 end
 
-ylabel('U-vÃ¤rde (Wm^{-2}s^{-1})', 'Fontsize', 12)
+ylabel('U-värde (Wm^{-2}s^{-1})', 'Fontsize', 14)
 ax = axis; % Current axis limits
 axis(axis); % Set the axis limit modes (e.g. XLimMode) to manual
 Yl = ax(3:4); % Y-axis limits
@@ -42,7 +43,7 @@ Yl = ax(3:4); % Y-axis limits
 % Place the text labels
 t = text(1:5,zeros(1,5),strNames);
 set(t,'HorizontalAlignment','left','VerticalAlignment','top', ...
-'Rotation',-45, 'Units', 'normalized', 'Clipping', 'off', 'Fontsize', 12);
+'Rotation',-45, 'Units', 'normalized', 'Clipping', 'off', 'Fontsize', 14);
 
 % Remove the default labels
 set(gca,'XTickLabel','')
