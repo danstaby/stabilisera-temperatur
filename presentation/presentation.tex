@@ -27,7 +27,7 @@
 
 \section{Presentation}
 
-\frame{
+\begin{frame}[label=firstframe]
   \begin{center}
 
     \textcolor{olive}{{
@@ -49,8 +49,7 @@
     29 maj, 2012
 
   \end{center}
-
-}
+\end{frame}
 
 \input{sections/purpose.tex}
 
@@ -63,5 +62,7 @@
 \input{sections/conclusion.tex}
 
 \input{sections/summary.tex}
+
+\againframe{firstframe}
 
 \end{document}
