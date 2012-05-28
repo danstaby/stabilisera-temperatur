@@ -36,7 +36,7 @@ for n = 1:max(size(bh))
 end
 
 ylabel('U-värde (Wm^{-2}s^{-1})', 'Fontsize', 14);
-title('Klimatskalets u-värden', 'Fontsize', 22);
+title('Klimatskalets U-värden', 'Fontsize', 22);
 ax = axis; % Current axis limits
 axis(axis); % Set the axis limit modes (e.g. XLimMode) to manual
 Yl = ax(3:4); % Y-axis limits
