@@ -1,5 +1,5 @@
 function ret = barUGraph()
-
+clc
 str=sprintf('Syd- och\n\r västvägg');
 U = [1.186,0.279,0.393, 0.171, 1];
 strNames = {str, ...
@@ -32,10 +32,11 @@ bh = bar(data, 'stacked');
 
 
 for n = 1:max(size(bh))
-  set(bh(n), 'FaceColor', cm(cvec(n),:))
+  set(bh(n), 'FaceColor', cm(cvec(n),:));
 end
 
-ylabel('U-värde (Wm^{-2}s^{-1})', 'Fontsize', 14)
+ylabel('U-värde (Wm^{-2}s^{-1})', 'Fontsize', 14);
+title('Klimatskalets u-värden', 'Fontsize', 22);
 ax = axis; % Current axis limits
 axis(axis); % Set the axis limit modes (e.g. XLimMode) to manual
 Yl = ax(3:4); % Y-axis limits
@@ -54,14 +55,14 @@ for ii = 1:5
 end
 Ha = gca;
 Hfig = get(Ha, 'Parent');
-set(Hfig, 'Units', 'normalized')
+set(Hfig, 'Units', 'normalized');
 set(Ha, 'Units', 'normalized', 'ActivePositionProperty', 'OuterPosition');
-Axpos = get(Ha, 'OuterPosition')
+Axpos = get(Ha, 'OuterPosition');
 %Move axis object
 
-TickExt
+TickExt;
 
-offs = min(TickExt(:,2))-max(TickExt(:,2))+0.05%-TickExt(:,4))
+offs = min(TickExt(:,2))-max(TickExt(:,2))+0.05;%-TickExt(:,4))
 Axpos(2) = Axpos(2)-offs;
 Axpos(4) = Axpos(4)+offs;
 
@@ -69,5 +70,21 @@ set(Ha,'OuterPosition',Axpos);
 
 set(Hfig, 'Units', 'normalized');
 set(Ha, 'Units', 'normalized');
-set(t, 'Units', 'normalized')
+set(t, 'Units', 'normalized');
+
+U = [1.186,0.279,0.393, 0.171, 1];
+% Add values for bars
+p1 = text(0.8,1.25,'1,19');
+p2 = text(1.78,0.35,'0,28'); 
+p3 = text(2.8,0.45,'0,39');
+p4 = text(3.8,0.23,'0,17');
+p5 = text(4.8,1.06,'1,00'); 
+set(p1, 'Fontsize', 14);
+set(p2, 'Fontsize', 14);
+set(p3, 'Fontsize', 14);
+set(p4, 'Fontsize', 14);
+set(p5, 'Fontsize', 14);
+
+
+
 
