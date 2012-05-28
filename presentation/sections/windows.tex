@@ -9,22 +9,30 @@
 
 \subsubsection{Direkt strålning, konduktion, konvektion och IR}
 \begin{frame}{Flöden genom fönster}
-  \begin{align*}
-    g\left( \theta \right) & = g_0 \cdot p\left( \theta \right)\\[10pt]
-    p\left( \theta \right) & \propto \text{Antal rutor \& beläggningar}\\[10pt]
-    Q_{\text{sol}} \,\,\,\, & = g\left( \theta \right) \cdot I_0 \cos{\left( \theta \right)}\\[10pt]
-    Q_{\text{kond}} & = \frac{1}{\frac{1}{U}+\frac{1}{h}} \left( T_{inne} - T_{ute}\right)\\[10pt]
-    Q_{\text{långvåg}} & = 0,75 \cdot \sigma \left( T_{inne}^4 - T_{ute}^4\right)
-  \end{align*}
-\end{frame}
+  \begin{columns}
+    \begin{column}{.48\textwidth}
+      {\small
+      \begin{eqnarray*}
+        g\left( \theta \right) = g_0 \cdot p\left( \theta \right)\\[10pt]
+        p\left( \theta \right) \propto \text{Antal rutor \& beläggningar}\\[10pt]
+        \pause Q_{\text{sol}} =  g\left( \theta \right) \cdot I_0 \cos{\left( \theta \right)}\\[10pt]
+        \pause Q_{\text{kond}} = \frac{1}{\frac{1}{U}+\frac{1}{h}} \left( T_{inne} - T_{ute}\right)\\[10pt]
+        \pause Q_{\text{långvåg}} = 0,75 \cdot \sigma \left( T_{inne}^4 - T_{ute}^4\right)
+      \end{eqnarray*}
+      }
+    \end{column}
+    %\hfill
 
 % Se Karlsson, J. och Roos, A. (2000) för g-värden
 % Förklaring av hur vi räknat med S-B:s lag
 % Diffus strålning och omedelbar reflektion borträknat
 
-\subsubsection{Totalt genom fönster}
-\begin{frame}{Flöden genom fönster}
-\begin{center}
-\includegraphics[scale=0.5]{images/windows_flow.eps}
-\end{center}
+    \begin{column}{.5\textwidth}
+      \pause
+      \vspace{-30pt}
+      \begin{center}
+        \includegraphics[scale=0.4]{images/windows_flow.eps}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}

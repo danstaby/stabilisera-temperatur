@@ -9,13 +9,13 @@ cm=colormap(hsv(7));
 windowcolor=hsv(7);
 
 hold on
-plot(windowssundec(:,1), windowssundec(:,2), 'Color', [cm(7,:)])
-plot(intensitydec(:,1), intensitydec(:,2), '--', 'Color', [cm(7,:)])
-plot(conductionwindows(:,1), conductionwindows(:,2), 'Color', [cm(7,:)])
-plot(longwavewindows(:,1),longwavewindows(:,2), 'Color', [cm(7,:)])
+plot(windowssundec(:,1), windowssundec(:,2), 'Color', [cm(7,:)], 'LineWidth',2)
+plot(intensitydec(:,1), intensitydec(:,2), '--', 'Color', [cm(7,:)], 'LineWidth',2)
+plot(conductionwindows(:,1), conductionwindows(:,2), 'Color', [cm(7,:)], 'LineWidth',2)
+plot(longwavewindows(:,1),longwavewindows(:,2), 'Color', [cm(7,:)], 'LineWidth',2)
 %hline=refline(0,0);
 
-plot(windowssundec(:,1),zeros(1,174),'--k')
+plot(windowssundec(:,1),zeros(1,174),':k', 'LineWidth',2)
 %set(hline,'Color','k')
 xlim([0,24])
 set(gca,'XTick',[0:4:24],'XTickLabel',[0:4:24])
